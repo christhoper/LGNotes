@@ -3,8 +3,8 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "LGNotes"
-  spec.version      = "1.0.0"
-  spec.summary      = "笔记"
+  spec.version      = "1.0.1"
+  spec.summary      = "笔记工具"
 
   spec.homepage     = "https://github.com/christhoper/LGNotes"
 
@@ -31,7 +31,7 @@ Pod::Spec.new do |spec|
 
   # spec.public_header_files = "Classes/**/*.h"
 
-
+  spec.resources = "LGNotes/Resource/LGNote.bundle"
 
   spec.requires_arc = true
 

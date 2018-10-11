@@ -37,12 +37,14 @@
 
 - (void)enterNoteViewController:(UIButton *)sender {
     NoteMainViewController *noteController = [[NoteMainViewController alloc] init];
+    // 配置笔记首页所需参数
     noteController.paramModel = [self configureParams];
     [self.navigationController pushViewController:noteController animated:YES];
 }
 
 - (void)enterEditViewController:(UIButton *)sender{
     NoteEditViewController *editController = [[NoteEditViewController alloc] init];
+    // 配置新增笔记时所需参数
     editController.isNewNote = YES;
     editController.paramModel = [self configureAddParams];
     [self.navigationController pushViewController:editController animated:YES];
