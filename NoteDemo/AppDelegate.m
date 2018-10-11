@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [self.window makeKeyWindow];
+    ViewController *controller = [[ViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    [nav.navigationBar setBarTintColor:[UIColor cyanColor]];
+    nav.navigationBar.translucent = NO;
+    self.window.rootViewController = nav;
+    
     return YES;
 }
 
@@ -47,5 +54,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+- (UIWindow *)window{
+    if (!_window) {
+        _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _window.backgroundColor = [UIColor whiteColor];
+    }
+    return _window;
+}
 
 @end

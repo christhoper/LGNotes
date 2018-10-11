@@ -23,7 +23,7 @@ Pod::Spec.new do |spec|
 
 
 
-  spec.source       = { :git => "https://github.com/christhoper/LGNotes.git", :tag => "{spec.version}" }
+  spec.source       = { :git => "https://github.com/christhoper/LGNotes.git", :tag => "1.0.0" }
 
 
   spec.source_files  = "LGNotes", "LGNotes/**/*.{h,m}"
@@ -35,5 +35,11 @@ Pod::Spec.new do |spec|
 
   spec.requires_arc = true
 
+  spec.dependency 'Masonry'
+  spec.dependency 'MJExtension'
+  spec.dependency 'MBProgressHUD'
+  spec.dependency 'ReactiveObjC'
+  spec.dependency 'AFNetworking'
+  spec.dependency 'MJRefresh'
 
 end
