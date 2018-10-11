@@ -67,6 +67,7 @@ typedef void(^LGHUDDidHiddenBlock)(void);
  */
 - (void)hideDelayTime:(NSInteger)delayTime;
 
+- (void)showAlertControllerOn:(UIViewController *)viewController title:(NSString *)title message:(NSString *)message oneTitle:(NSString *)oneTitle oneHandle:(void (^)(UIAlertAction *))oneHandle twoTitle:(NSString *)twoTitle twoHandle:(void (^)(UIAlertAction *))twoHandle completion:(void (^)(void))completion;
 
 @end
 

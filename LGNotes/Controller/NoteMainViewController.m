@@ -12,6 +12,7 @@
 #import "LGBaseTextField.h"
 #import "NoteSearchViewController.h"
 #import "NoteFilterViewController.h"
+#import "NoteEditViewController.h"
 
 @interface NoteMainViewController ()<LGBaseTableViewCustomDelegate,LGFilterViewControllerDelegate>
 
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) NoteViewModel *viewModel;
 @property (nonatomic, strong) LGBaseTextField *searchBar;
 @property (nonatomic, strong) UIButton *enterSearchBtn;
+@property (nonatomic, strong) UIButton *mainBtn;
+
 @property (nonatomic, strong) UIView *searchBgView;
 
 @end
@@ -38,6 +41,24 @@
     self.navigationItem.titleView = self.searchBgView;
     [self addRightNavigationBar];
 }
+
+- (void)creatSubViews{
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.mainBtn];
+    [self setupSubViewsContraints];
+}
+
+- (void)setupSubViewsContraints{
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    [self.mainBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view).offset(-40);
+        make.right.equalTo(self.view).offset(-30);
+        make.size.mas_equalTo(CGSizeMake(44, 44));
+    }];
+}
+
 
 - (void)addRightNavigationBar{
     UIImage *image = [NSBundle lg_imagePathName:@"lg_filter"];
@@ -59,18 +80,6 @@
         filterController.subjectArray = x;
     }];
     [self.navigationController pushViewController:filterController animated:YES];
-}
-
-- (void)creatSubViews{
-    [self.view addSubview:self.tableView];
-    
-    [self setupSubViewsContraints];
-}
-
-- (void)setupSubViewsContraints{
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
 }
 
 #pragma mark - delegate
@@ -107,7 +116,12 @@
     }];
 }
 
-
+- (void)mainBtnClick:(UIButton *)sender{
+    NoteEditViewController *editController = [[NoteEditViewController alloc] init];
+    editController.isNewNote = YES;
+    editController.paramModel = self.paramModel;
+    [self.navigationController pushViewController:editController animated:YES];
+}
 
 
 
@@ -138,6 +152,16 @@
         [_enterSearchBtn addTarget:self action:@selector(enterSearchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _enterSearchBtn;
+}
+
+- (UIButton *)mainBtn{
+    if (!_mainBtn) {
+        _mainBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _mainBtn.frame = CGRectZero;
+        [_mainBtn setImage:[NSBundle lg_imagePathName:@"lg_addNote"] forState:UIControlStateNormal];
+        [_mainBtn addTarget:self action:@selector(mainBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _mainBtn;
 }
 
 - (LGBaseTextField *)searchBar{

@@ -115,15 +115,17 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NoteModel *model = self.dataArray[indexPath.section];
-        self.viewModel.paramModel.SystemID = model.SystemID;
-        self.viewModel.paramModel.SubjectID = model.SubjectID;
-        [self.viewModel.deletedCommand execute:model.NoteID];
-//        @weakify(self);
-//        [kMBAlert alertWithTitle:@"提示:" message:@"您确定要删除该条笔记数据吗?" cancelTitle:@"确定" cancelBlock:^{
-//            @strongify(self);
-//        } sureTitle:@"取消" sureBlock:^{
-//
-//        }];
+        @weakify(self);
+        [kMBAlert showAlertControllerOn:self.ownerController title:@"提示:" message:@"您确定要删除该条笔记数据吗?" oneTitle:@"确定" oneHandle:^(UIAlertAction * _Nonnull one) {
+            @strongify(self);
+            self.viewModel.paramModel.SystemID = model.SystemID;
+            self.viewModel.paramModel.SubjectID = model.SubjectID;
+            [self.viewModel.deletedCommand execute:model.NoteID];
+        } twoTitle:@"取消" twoHandle:^(UIAlertAction * _Nonnull two) {
+            
+        } completion:^{
+            
+        }];
     }
 }
 

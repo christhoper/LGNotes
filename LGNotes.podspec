@@ -23,7 +23,7 @@ Pod::Spec.new do |spec|
 
 
 
-  spec.source       = { :git => "https://github.com/christhoper/LGNotes.git", :tag => "1.0.0" }
+  spec.source       = { :git => "https://github.com/christhoper/LGNotes.git", :tag => "1.0.1" }
 
 
   spec.source_files  = "LGNotes", "LGNotes/**/*.{h,m}"

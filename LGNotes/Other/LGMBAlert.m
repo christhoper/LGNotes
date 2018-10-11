@@ -168,6 +168,17 @@
 }
 
 
+- (void)showAlertControllerOn:(UIViewController *)viewController title:(nonnull NSString *)title message:(nonnull NSString *)message oneTitle:(nonnull NSString *)oneTitle oneHandle:(nonnull void (^)(UIAlertAction * _Nonnull))oneHandle twoTitle:(nonnull NSString *)twoTitle twoHandle:(nonnull void (^)(UIAlertAction * _Nonnull))twoHandle completion:(nonnull void (^)(void))completion{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:oneTitle style:UIAlertActionStyleDefault handler:oneHandle];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:twoTitle style:UIAlertActionStyleDefault handler:twoHandle];
+    [action1 setValue:[UIColor redColor] forKey:@"titleTextColor"];
+    //    [action2 setValue:[UIColor redColor] forKey:@"titleTextColor"];
+    [alertController addAction:action2];
+    [alertController addAction:action1];
+    [viewController presentViewController:alertController animated:YES completion:completion];
+}
+
 /** HUD提示的内容 */
 - (NSMutableAttributedString *)showHUDContent:(NSString *)content imageName:(NSString *)imageName{
     NSTextAttachment *attment = [[NSTextAttachment alloc] init];
