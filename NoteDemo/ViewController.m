@@ -33,8 +33,6 @@
 }
 
 
-
-
 - (void)enterNoteViewController:(UIButton *)sender {
     NoteMainViewController *noteController = [[NoteMainViewController alloc] init];
     // 配置笔记首页所需参数
@@ -47,7 +45,16 @@
     // 配置新增笔记时所需参数
     editController.isNewNote = YES;
     editController.paramModel = [self configureAddParams];
+    editController.updateSubject = [RACSubject subject];
     [self.navigationController pushViewController:editController animated:YES];
+    
+    [editController.updateSubject subscribeNext:^(id  _Nullable x) {
+        
+        NoteMainViewController *noteController = [[NoteMainViewController alloc] init];
+        // 配置笔记首页所需参数
+        noteController.paramModel = [self configureParams];
+        [self.navigationController pushViewController:noteController animated:YES];
+    }];
 }
 
 
@@ -61,7 +68,7 @@
     params.UserID = @"x001";
     params.NoteBaseUrl = @"http://192.168.3.157:1313/";
     params.SchoolID = @"S27-666-0F84";
-    params.Token = @"AC1D61E8-1DDC-4857-82EF-C489BA799EFC";
+    params.Token = @"F977C0E6-2B6F-4FDC-B4C4-27952687AFDA";
     return params;
 }
 
@@ -74,7 +81,7 @@
     model.ResourceName = @"荷塘月色";
     model.ResourceID = @"510";
     model.SchoolID = @"S27-666-0F84";
-    model.Token = @"AC1D61E8-1DDC-4857-82EF-C489BA799EFC";
+    model.Token = @"F977C0E6-2B6F-4FDC-B4C4-27952687AFDA";
     model.NoteBaseUrl = @"http://192.168.3.157:1313/";
     return model;
 }

@@ -32,10 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
  显示内容
  
  @param dataSource 数据源
- @param matchName 需要匹配的字段(选中效果)
+ @param matchIndex 需要匹配下标(选中效果)
  */
 - (void)showPickerViewMenuForDataSource:(NSArray *)dataSource
-                              matchName:(NSString *)matchName;
+                             matchIndex:(NSInteger)matchIndex;
 
 @end
 

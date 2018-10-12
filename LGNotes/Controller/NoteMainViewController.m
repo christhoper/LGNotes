@@ -120,7 +120,13 @@
     NoteEditViewController *editController = [[NoteEditViewController alloc] init];
     editController.isNewNote = YES;
     editController.paramModel = self.paramModel;
+    editController.updateSubject = [RACSubject subject];
     [self.navigationController pushViewController:editController animated:YES];
+    @weakify(self);
+    [editController.updateSubject subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
+    }];
 }
 
 

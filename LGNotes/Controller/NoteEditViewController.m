@@ -34,6 +34,7 @@ LGSubjectPickerViewDelegate
 @property (nonatomic, assign) CGFloat tipTotalHeight;
 
 @property (nonatomic, strong) NoteModel *model;
+@property (nonatomic, assign) NSInteger currentSelectedIndex;
 
 @end
 
@@ -108,24 +109,6 @@ static CGFloat const kTipLabelHeight   = 44;
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
-- (void)rightBarButtonItem:(UIButton *)sender{
-    if (self.isNewNote) {
-        self.model.OperateFlag = 1;
-        self.viewModel.paramModel.Skip = 1;
-    } else {
-        self.model.OperateFlag = 0;
-        self.viewModel.paramModel.Skip = 0;
-    }
-    
-    [self opseratedNote];
-}
-
-- (void)back:(UIBarButtonItem *)sender{
-    if (self.updateSubject) {
-        [self.updateSubject sendNext:@"update"];
-    }
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (void)createSubViews{
     [self.view addSubview:self.titleBgView];
@@ -215,8 +198,23 @@ static CGFloat const kTipLabelHeight   = 44;
 
 
 #pragma mark - 导航栏右按钮触发事件
-- (void)navigationRight_button_event:(id)sender{
+- (void)rightBarButtonItem:(UIButton *)sender{
+    if (self.isNewNote) {
+        self.model.OperateFlag = 1;
+        self.viewModel.paramModel.Skip = 1;
+    } else {
+        self.model.OperateFlag = 0;
+        self.viewModel.paramModel.Skip = 0;
+    }
     
+    [self opseratedNote];
+}
+
+- (void)back:(UIBarButtonItem *)sender{
+    if (self.updateSubject && !self.isNewNote) {
+        [self.updateSubject sendNext:@"update"];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)opseratedNote{
@@ -242,9 +240,9 @@ static CGFloat const kTipLabelHeight   = 44;
     [self.viewModel.operateSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         if (x && self.updateSubject) {
+            [self.navigationController popViewControllerAnimated:YES];
             [self.updateSubject sendNext:@"成功"];
         }
-        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 
@@ -280,12 +278,13 @@ static CGFloat const kTipLabelHeight   = 44;
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
     SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
     pickerView.delegate = self;
-    [pickerView showPickerViewMenuForDataSource:self.pickerArray matchName:@"B"];
+    [pickerView showPickerViewMenuForDataSource:self.pickerArray matchIndex:self.currentSelectedIndex];
 }
 
 - (void)pickerView:(SubjectPickerView *)pickerView didSelectedCellIndexPathRow:(NSInteger)row{
     SubjectModel *model = self.pickerArray[row];
     self.subjectNameLabel.text = model.SubjectName;
+    self.currentSelectedIndex = row;
 }
 
 #pragma mark - lazy

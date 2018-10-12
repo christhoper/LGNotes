@@ -8,12 +8,13 @@
 
 #import "SubjectPickerView.h"
 #import "Configure.h"
+#define kSeletedLabelTextColor   kColorInitWithRGB(27, 98, 129, 1)
 
 @interface SubjectPickerView () <UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, copy)   NSArray *pickerArray;
-@property (nonatomic, copy)   NSString *currentMatchName;
+@property (nonatomic, assign) NSInteger currentRow;
 
 @end
 @implementation SubjectPickerView
@@ -39,11 +40,16 @@
     [self dismiss];
 }
 
-- (void)showPickerViewMenuForDataSource:(NSArray *)dataSource matchName:(NSString *)matchName{
+- (void)showPickerViewMenuForDataSource:(NSArray *)dataSource matchIndex:(NSInteger)matchIndex{
     self.pickerArray = dataSource;
-    self.currentMatchName = matchName;
+    self.currentRow = matchIndex;
+    
     self.pickerView.frame = CGRectMake(0, self.frame.size.height - 200, self.frame.size.width, 200);
     [self addSubview:self.pickerView];
+    
+    if (!IsArrEmpty(dataSource)) {
+        [self.pickerView selectRow:self.currentRow inComponent:0 animated:YES];
+    }
 }
 
 - (void)dismiss{
@@ -93,9 +99,9 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    self.currentRow = row;
     if (self.delegate && [self.delegate respondsToSelector:@selector(pickerView:didSelectedCellIndexPathRow:)]) {
         [self.delegate pickerView:self didSelectedCellIndexPathRow:row];
-        [self dismiss];
     }
 }
 
