@@ -7,9 +7,9 @@
 //
 
 #import "LGMBAlert.h"
-#import "Configure.h"
-
-
+#import "LGNoteConfigure.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import "NSBundle+Notes.h"
 
 @interface LGMBAlert ()
 {

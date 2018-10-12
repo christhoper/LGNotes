@@ -7,10 +7,10 @@
 //
 
 #import "NoteSearchViewController.h"
-#import "NoteModel.h"
 #import "NoteViewModel.h"
 #import "NoteMainTableView.h"
 #import "LGBaseTextField.h"
+#import "LGNoteConfigure.h"
 
 @interface NoteSearchViewController () <LGBaseTextFieldDelegate>
 
@@ -121,8 +121,8 @@
         _tableView = [[NoteMainTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         [_tableView allocInitRefreshHeader:NO allocInitFooter:NO];
         _tableView.ownerController = self;
-        _tableView.errorImageName = @"NoSearchResult";
-        _tableView.showErrorInfo = @"未搜索到结果";
+        _tableView.errorImageView.image = kImage(@"NoSearchResult");
+        _tableView.errorInfoLabel.text = @"未搜索到结果";
         [_tableView lg_bindViewModel:self.viewModel];
         _tableView.requestStatus = LGBaseTableViewRequestStatusNoData;
     }

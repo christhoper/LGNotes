@@ -7,8 +7,8 @@
 //
 
 #import "SubjectPickerView.h"
-#import "Configure.h"
-#define kSeletedLabelTextColor   kColorInitWithRGB(27, 98, 129, 1)
+#import "LGNoteConfigure.h"
+#import "SubjectModel.h"
 
 @interface SubjectPickerView () <UIPickerViewDataSource,UIPickerViewDelegate>
 

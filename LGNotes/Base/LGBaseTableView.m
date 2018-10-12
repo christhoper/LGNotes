@@ -7,19 +7,18 @@
 //
 
 #import "LGBaseTableView.h"
+#import <Masonry/Masonry.h>
+#import <MJRefresh/MJRefresh.h>
+#import "LGNoteConfigure.h"
+#import "LGMBAlert.h"
+#import "NSBundle+Notes.h"
 
-
-typedef NS_ENUM(NSInteger, RequestStatusViewTag) {
-    RequestStatusViewTagLoading,
-    RequestStatusViewTagError
-};
 @interface LGBaseTableView () <UIGestureRecognizerDelegate>
+
 /** 加载中 */
 @property (nonatomic, strong) UIView *viewLoading;
 /** 错误 */
 @property (nonatomic, strong) UIView *viewError;
-@property (nonatomic, strong) UILabel *errorInfoLabel;
-@property (nonatomic, strong) UIImageView *errorImageView;
 
 @end
 
@@ -52,12 +51,12 @@ typedef NS_ENUM(NSInteger, RequestStatusViewTag) {
 }
 
 - (void)allocInitRefreshHeader:(BOOL)header allocInitFooter:(BOOL)footer{
+    
+    weakSelf(wSelf);
     if (header) {
-        @weakify(self);
         self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            @strongify(self);
-            if (self.cusDelegate && [self.cusDelegate respondsToSelector:@selector(baseTableView:pullUpRefresh:pullDownRefresh:)]) {
-                [self.cusDelegate baseTableView:self pullUpRefresh:YES pullDownRefresh:NO];
+            if (wSelf.cusDelegate && [wSelf.cusDelegate respondsToSelector:@selector(baseTableView:pullUpRefresh:pullDownRefresh:)]) {
+                [wSelf.cusDelegate baseTableView:self pullUpRefresh:YES pullDownRefresh:NO];
             }
         }];
         ((MJRefreshNormalHeader *)self.mj_header).lastUpdatedTimeLabel.hidden = YES;
@@ -67,10 +66,8 @@ typedef NS_ENUM(NSInteger, RequestStatusViewTag) {
     }
     
     if (footer) {
-        @weakify(self);
         self.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            @strongify(self);
-            if (self.cusDelegate && [self.cusDelegate respondsToSelector:@selector(baseTableView:pullUpRefresh:pullDownRefresh:)]) {
+            if (wSelf.cusDelegate && [wSelf.cusDelegate respondsToSelector:@selector(baseTableView:pullUpRefresh:pullDownRefresh:)]) {
                 [self.cusDelegate baseTableView:self pullUpRefresh:NO pullDownRefresh:YES];
             }
         }];
@@ -89,13 +86,6 @@ typedef NS_ENUM(NSInteger, RequestStatusViewTag) {
     }
 }
 
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(nonnull UITouch *)touch{
-    if (self.cusDelegate && [self.cusDelegate respondsToSelector:@selector(baseTableView:didReceiveTouch:)]) {
-        [self.cusDelegate baseTableView:self didReceiveTouch:touch];
-    }
-    return YES;
-}
 
 #pragma mark - setter
 - (void)setRequestStatus:(LGBaseTableViewRequestStatus)requestStatus{
@@ -128,7 +118,6 @@ typedef NS_ENUM(NSInteger, RequestStatusViewTag) {
 //                self.errorInfoLabel.text = @"请检查网络是否正常";
 //            } else {
 //            }
-            self.errorInfoLabel.text = self.showErrorInfo;
         }
             break;
     }
@@ -151,7 +140,7 @@ typedef NS_ENUM(NSInteger, RequestStatusViewTag) {
 
 - (void)showRequestOnView:(UIView *)view{
     
-    if (!view || view.tag == RequestStatusViewTagError) {
+    if (!view) {
         return;
     }
     if (view.superview) {
@@ -167,23 +156,10 @@ typedef NS_ENUM(NSInteger, RequestStatusViewTag) {
     [self setContentOffset:CGPointZero animated:NO];
 }
 
-- (NSString *)showErrorInfo{
-    if (!_showErrorInfo) {
-        _showErrorInfo = @"数据为空,请刷新重试";
-    }
-    return _showErrorInfo;
-}
-
-- (void)setErrorImageName:(NSString *)errorImageName{
-    _errorImageName = errorImageName;
-    self.errorImageView.image = kImage(errorImageName);
-}
-
 #pragma mark - lazy
 - (UIView *)viewError {
     if (!_viewError) {
         _viewError = [[UIView alloc] init];
-        _viewError.tag = RequestStatusViewTagError;
         [self addSubview:_viewError];
         [_viewError mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
@@ -203,6 +179,7 @@ typedef NS_ENUM(NSInteger, RequestStatusViewTag) {
         
         _errorInfoLabel = [[UILabel alloc] init];
         _errorInfoLabel.textAlignment = NSTextAlignmentCenter;
+        _errorInfoLabel.text = @"数据为空,请刷新重试";
         _errorInfoLabel.textColor = kLabelColorLightGray;
         _errorInfoLabel.font = kSYSTEMFONT(14.f);
         [_viewError addSubview:_errorInfoLabel];

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Configure.h"
+
 
 @class LGBaseTableView;
 typedef void(^LGRefreshBlock)(void);
@@ -37,26 +37,18 @@ typedef NS_ENUM(NSInteger, LGBaseTableViewRequestStatus) {
  */
 - (void)baseTableView:(LGBaseTableView *)tableView pullUpRefresh:(BOOL)upRefresh pullDownRefresh:(BOOL)downRefresh;
 
-/**
- 接收到某种手势操作(此处用于作息总结隐藏提示框用)
-
- @param tableView <#tableView description#>
- @param touch <#touch description#>
- */
-- (void)baseTableView:(LGBaseTableView *)tableView didReceiveTouch:(UITouch *)touch;
-
 
 @end
 
 @interface LGBaseTableView : UITableView
+/** 错误信息 */
+@property (nonatomic, strong) UILabel *errorInfoLabel;
+/** 错误图片 */
+@property (nonatomic, strong) UIImageView *errorImageView;
 
 @property (nonatomic, assign) LGBaseTableViewRequestStatus requestStatus;
-/** 自定义错误信息 */
-@property (nonatomic, copy) NSString *showErrorInfo;
-/** 自定义错误时图片 */
-@property (nonatomic, copy) NSString *errorImageName;
 @property (nonatomic, weak) id <LGBaseTableViewCustomDelegate> cusDelegate;
-@property (nonatomic, weak) BaseViewController  *ownerController;
+@property (nonatomic, weak) UIViewController  *ownerController;
 
 
 - (void)lg_bindViewModel:(id)viewModel;

@@ -125,6 +125,7 @@
 		325BC3AB216EF7B700D077F5 /* LGFilterCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFilterCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		325BC3AC216EF7B800D077F5 /* LGFilterCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFilterCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		325BC3AD216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFilterCollectionReusableViewHeader.m; sourceTree = "<group>"; };
+		3267FD6E2170372700CCBCEF /* LGNoteConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteConfigure.h; sourceTree = "<group>"; };
 		598743329030DF392A5BCC27 /* Pods-NoteDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteDemo.debug.xcconfig"; path = "Target Support Files/Pods-NoteDemo/Pods-NoteDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F69574B6C56DF4CDE82A6315 /* Pods_NoteDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoteDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -297,6 +298,7 @@
 				32326485216E2C87005CC784 /* LGNetworkManager.h */,
 				32326486216E2C87005CC784 /* LGNetworkManager.m */,
 				32326471216DF03A005CC784 /* Configure.h */,
+				3267FD6E2170372700CCBCEF /* LGNoteConfigure.h */,
 				32326472216DF420005CC784 /* NoteTools.h */,
 				32326473216DF420005CC784 /* NoteTools.m */,
 				3232647F216E265D005CC784 /* LGMBAlert.h */,

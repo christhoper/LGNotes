@@ -7,8 +7,10 @@
 //
 
 #import "NoteMainTableView.h"
+#import "LGNoteConfigure.h"
 #import "NoteMainTableViewCell.h"
 #import "NoteViewModel.h"
+#import "NoteModel.h"
 #import "NoteEditViewController.h"
 
 @interface NoteMainTableView () <UITableViewDataSource,UITableViewDelegate>

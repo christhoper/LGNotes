@@ -8,13 +8,9 @@
 
 #import "LGFilterCollectionViewCell.h"
 #import "SubjectModel.h"
-#import "Configure.h"
+#import "LGNoteConfigure.h"
+#import <Masonry/Masonry.h>
 
-
-/** 选中背景 */
-#define kSeletedColor            kColorInitWithRGB(191, 232, 250, 1)
-#define kSeletedLabelTextColor   kColorInitWithRGB(27, 98, 129, 1)
-#define kUnseleterColor          kColorInitWithRGB(229, 229, 229, 1)
 
 @interface LGFilterCollectionViewCell ()
 

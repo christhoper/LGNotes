@@ -7,7 +7,11 @@
 //
 
 #import "NoteMainTableViewCell.h"
-#import "Configure.h"
+#import "LGNoteConfigure.h"
+#import <Masonry/Masonry.h>
+#import "NoteTools.h"
+#import "NoteModel.h"
+#import "NSBundle+Notes.h"
 
 @interface NoteMainTableViewCell ()
 

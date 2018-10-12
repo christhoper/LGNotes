@@ -11,6 +11,8 @@
 #import "SubjectPickerView.h"
 #import "LGBaseTextField.h"
 #import "LGBaseTextView.h"
+#import "LGNoteConfigure.h"
+#import "SubjectModel.h"
 
 @interface NoteEditViewController ()
 <

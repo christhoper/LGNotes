@@ -13,6 +13,8 @@
 #import "NoteSearchViewController.h"
 #import "NoteFilterViewController.h"
 #import "NoteEditViewController.h"
+#import "LGNoteConfigure.h"
+
 
 @interface NoteMainViewController ()<LGBaseTableViewCustomDelegate,LGFilterViewControllerDelegate>
 
