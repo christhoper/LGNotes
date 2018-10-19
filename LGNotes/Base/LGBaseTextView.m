@@ -56,7 +56,6 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
 
 - (void)commonInit{
     _toolBarHeight = 44;
-    _cursorPosition = self.selectedRange;
     self.delegate = self;
     self.inputAccessoryView = self.toolBar;
 }
@@ -164,9 +163,13 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
     }
 }
 
-- (void)textViewDidChange:(UITextView *)textView{
+
+- (void)textViewDidChangeSelection:(UITextView *)textView{
     //获取光标位置
-    _cursorPosition = textView.selectedRange;
+    _cursorPosition = textView.selectedRange.location;
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
     if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDidChange:)]) {
         [self.lgDelegate lg_textViewDidChange:self];
     }

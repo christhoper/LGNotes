@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, LGTextViewKeyBoardType){
 /** 输入类型 */
 @property (nonatomic, assign) LGTextViewKeyBoardType inputType;
 /** 光标位置 */
-@property (nonatomic, assign, readonly) NSRange cursorPosition;
+@property (nonatomic, assign, readonly) NSInteger cursorPosition;
 @property (nonatomic, assign, readonly) CGFloat keyboardHeight;
 @property (nonatomic, assign, readonly) CGFloat toolBarHeight;
 @property (nonatomic, weak) id<LGBaseTextViewDelegate> lgDelegate;

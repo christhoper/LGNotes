@@ -222,7 +222,7 @@ static bool autoHeight = NO;
 }
 
 - (void)addImage:(UIImage *)image scale:(CGFloat)scale index:(NSInteger)index{
-    [self addImage:image size:CGSizeZero index:(self.attributedText.length > 0 ? self.attributedText.length:0) scale:scale];
+    [self addImage:image size:CGSizeZero index:(self.attributedText.length > 0 ? index:0) scale:scale];
 }
 
 /* 插入一张图片 image:要添加的图片 size:图片大小 index:插入的位置 multiple:放大／缩小的倍数 */
@@ -245,7 +245,8 @@ static bool autoHeight = NO;
     }
     
     NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:textAttachment];
-    [attributedString replaceCharactersInRange:NSMakeRange(index, 0) withAttributedString:attrStringWithImage];
+    [attributedString insertAttributedString:attrStringWithImage atIndex:index];
+//    [attributedString replaceCharactersInRange:NSMakeRange(index, 0) withAttributedString:attrStringWithImage];
     self.attributedText = attributedString;
     [self textViewTextChange];
     [self refreshPlaceholderView];

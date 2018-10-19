@@ -41,6 +41,11 @@
 		325BC3AE216EF7B800D077F5 /* LGFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A8216EF7B700D077F5 /* LGFilterCollectionViewCell.m */; };
 		325BC3AF216EF7B800D077F5 /* LGFilterCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3AC216EF7B800D077F5 /* LGFilterCollectionViewFlowLayout.m */; };
 		325BC3B0216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3AD216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m */; };
+		32656A162179F76500DA1465 /* LGDrawBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A152179F76500DA1465 /* LGDrawBoardViewController.m */; };
+		32656A21217A03DF00DA1465 /* LJBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A19217A03DF00DA1465 /* LJBaseModel.m */; };
+		32656A22217A03DF00DA1465 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A1C217A03DF00DA1465 /* NSObject+YYModel.m */; };
+		32656A23217A03DF00DA1465 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A1D217A03DF00DA1465 /* YYClassInfo.m */; };
+		32656A24217A03DF00DA1465 /* LSDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A1F217A03DF00DA1465 /* LSDrawView.m */; };
 		C089BECC87C865CAFC5664C8 /* Pods_NoteDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69574B6C56DF4CDE82A6315 /* Pods_NoteDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +136,17 @@
 		325BC3AB216EF7B700D077F5 /* LGFilterCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFilterCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		325BC3AC216EF7B800D077F5 /* LGFilterCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFilterCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		325BC3AD216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFilterCollectionReusableViewHeader.m; sourceTree = "<group>"; };
+		32656A142179F76500DA1465 /* LGDrawBoardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGDrawBoardViewController.h; sourceTree = "<group>"; };
+		32656A152179F76500DA1465 /* LGDrawBoardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGDrawBoardViewController.m; sourceTree = "<group>"; };
+		32656A18217A03DF00DA1465 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		32656A19217A03DF00DA1465 /* LJBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJBaseModel.m; sourceTree = "<group>"; };
+		32656A1A217A03DF00DA1465 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
+		32656A1B217A03DF00DA1465 /* LSDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDrawView.h; sourceTree = "<group>"; };
+		32656A1C217A03DF00DA1465 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		32656A1D217A03DF00DA1465 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
+		32656A1E217A03DF00DA1465 /* LJBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJBaseModel.h; sourceTree = "<group>"; };
+		32656A1F217A03DF00DA1465 /* LSDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDrawView.m; sourceTree = "<group>"; };
+		32656A20217A03DF00DA1465 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
 		3267FD6E2170372700CCBCEF /* LGNoteConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteConfigure.h; sourceTree = "<group>"; };
 		598743329030DF392A5BCC27 /* Pods-NoteDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteDemo.debug.xcconfig"; path = "Target Support Files/Pods-NoteDemo/Pods-NoteDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F69574B6C56DF4CDE82A6315 /* Pods_NoteDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoteDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +331,7 @@
 				325BC3A3216EE39F00D077F5 /* NSBundle+Notes.m */,
 				3229F568217865F400B101AF /* UITextView+LGExtension.h */,
 				3229F569217865F400B101AF /* UITextView+LGExtension.m */,
+				32656A17217A03DF00DA1465 /* DrawView */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -332,6 +349,8 @@
 				32326498216E3B35005CC784 /* LGBaseTextView.m */,
 				3229F56B2178889E00B101AF /* LGImagePickerViewController.h */,
 				3229F56C2178889E00B101AF /* LGImagePickerViewController.m */,
+				32656A142179F76500DA1465 /* LGDrawBoardViewController.h */,
+				32656A152179F76500DA1465 /* LGDrawBoardViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -342,6 +361,22 @@
 				325BC3A0216EE2EB00D077F5 /* LGNote.bundle */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		32656A17217A03DF00DA1465 /* DrawView */ = {
+			isa = PBXGroup;
+			children = (
+				32656A1A217A03DF00DA1465 /* YYModel.h */,
+				32656A1E217A03DF00DA1465 /* LJBaseModel.h */,
+				32656A19217A03DF00DA1465 /* LJBaseModel.m */,
+				32656A1B217A03DF00DA1465 /* LSDrawView.h */,
+				32656A1F217A03DF00DA1465 /* LSDrawView.m */,
+				32656A18217A03DF00DA1465 /* YYClassInfo.h */,
+				32656A1D217A03DF00DA1465 /* YYClassInfo.m */,
+				32656A20217A03DF00DA1465 /* NSObject+YYModel.h */,
+				32656A1C217A03DF00DA1465 /* NSObject+YYModel.m */,
+			);
+			path = DrawView;
 			sourceTree = "<group>";
 		};
 		CB317818D090F1B714C2CE6F /* Frameworks */ = {
@@ -542,6 +577,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32656A22217A03DF00DA1465 /* NSObject+YYModel.m in Sources */,
 				32326481216E265D005CC784 /* LGMBAlert.m in Sources */,
 				325BC3B0216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m in Sources */,
 				32326425216D9006005CC784 /* ViewController.m in Sources */,
@@ -552,8 +588,10 @@
 				3232647B216E2142005CC784 /* ParamModel.m in Sources */,
 				325BC3A4216EE39F00D077F5 /* NSBundle+Notes.m in Sources */,
 				3232647E216E240A005CC784 /* SubjectModel.m in Sources */,
+				32656A21217A03DF00DA1465 /* LJBaseModel.m in Sources */,
 				32326456216D93A9005CC784 /* NoteModel.m in Sources */,
 				32326468216DED2D005CC784 /* NoteMainTableViewCell.m in Sources */,
+				32656A162179F76500DA1465 /* LGDrawBoardViewController.m in Sources */,
 				3232645F216DE8F8005CC784 /* NoteEditViewController.m in Sources */,
 				325BC3A7216EF2E600D077F5 /* NoteFilterViewController.m in Sources */,
 				3232649A216E3B35005CC784 /* LGBaseTextView.m in Sources */,
@@ -564,9 +602,11 @@
 				32326465216DE963005CC784 /* NoteViewModel.m in Sources */,
 				3232648E216E2C94005CC784 /* LGBaseTableView.m in Sources */,
 				32326422216D9006005CC784 /* AppDelegate.m in Sources */,
+				32656A24217A03DF00DA1465 /* LSDrawView.m in Sources */,
 				3232645C216DE8E2005CC784 /* NoteMainViewController.m in Sources */,
 				32326474216DF420005CC784 /* NoteTools.m in Sources */,
 				32326462216DE923005CC784 /* NoteSearchViewController.m in Sources */,
+				32656A23217A03DF00DA1465 /* YYClassInfo.m in Sources */,
 				32326491216E3796005CC784 /* SubjectPickerView.m in Sources */,
 				325BC3AE216EF7B800D077F5 /* LGFilterCollectionViewCell.m in Sources */,
 				3229F56A217865F400B101AF /* UITextView+LGExtension.m in Sources */,

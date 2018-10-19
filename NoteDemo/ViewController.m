@@ -47,7 +47,6 @@
     editController.paramModel = [self configureAddParams];
     editController.updateSubject = [RACSubject subject];
     [self.navigationController pushViewController:editController animated:YES];
-    
     [editController.updateSubject subscribeNext:^(id  _Nullable x) {
         
         NoteMainViewController *noteController = [[NoteMainViewController alloc] init];

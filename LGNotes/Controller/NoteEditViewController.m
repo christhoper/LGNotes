@@ -14,6 +14,7 @@
 #import "LGNoteConfigure.h"
 #import "SubjectModel.h"
 #import "LGImagePickerViewController.h"
+#import "LGDrawBoardViewController.h"
 
 @interface NoteEditViewController ()
 <
@@ -271,9 +272,11 @@ static CGFloat const kTipLabelHeight   = 44;
     }
     LGImagePickerViewController *picker = [[LGImagePickerViewController alloc] init];
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    @weakify(self);
     [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
-        NSLog(@"光标位置是：%@",NSStringFromRange(self.contentTextView.cursorPosition));
-        [self.contentTextView addImage:image scale:-1];
+        @strongify(self);
+        NSLog(@"光标位置是：%ld",self.contentTextView.cursorPosition);
+        [self.contentTextView addImage:image scale:-1 index:self.contentTextView.cursorPosition];
     }];
     [self presentViewController:picker animated:YES completion:nil];
 }
@@ -284,15 +287,18 @@ static CGFloat const kTipLabelHeight   = 44;
     }
     LGImagePickerViewController *picker = [[LGImagePickerViewController alloc] init];
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    @weakify(self);
     [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
-        NSLog(@"光标位置是：%@",NSStringFromRange(self.contentTextView.cursorPosition));
-        [self.contentTextView addImage:image scale:-1];
+        @strongify(self);
+        NSLog(@"光标位置是：%ld",self.contentTextView.cursorPosition);
+        [self.contentTextView addImage:image scale:-1 index:self.contentTextView.cursorPosition];
     }];
     [self presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)lg_textViewDrawBoardEvent:(LGBaseTextView *)textView{
-    
+    LGDrawBoardViewController *drawController = [[LGDrawBoardViewController alloc] init];
+    [self.navigationController pushViewController:drawController animated:YES];
 }
 
 
