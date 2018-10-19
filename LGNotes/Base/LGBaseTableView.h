@@ -35,7 +35,9 @@ typedef NS_ENUM(NSInteger, LGBaseTableViewRequestStatus) {
  @param upRefresh 上拉
  @param downRefresh 下拉
  */
-- (void)baseTableView:(LGBaseTableView *)tableView pullUpRefresh:(BOOL)upRefresh pullDownRefresh:(BOOL)downRefresh;
+- (void)baseTableView:(LGBaseTableView *)tableView
+        pullUpRefresh:(BOOL)upRefresh
+      pullDownRefresh:(BOOL)downRefresh;
 
 
 @end
@@ -59,7 +61,8 @@ typedef NS_ENUM(NSInteger, LGBaseTableViewRequestStatus) {
  @param header 是否创建header
  @param footer 是否创建footer
  */
-- (void)allocInitRefreshHeader:(BOOL)header allocInitFooter:(BOOL)footer;
+- (void)allocInitRefreshHeader:(BOOL)header
+               allocInitFooter:(BOOL)footer;
 
 
 

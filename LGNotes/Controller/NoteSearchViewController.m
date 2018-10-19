@@ -58,11 +58,11 @@
 }
 
 #pragma mark - TextFieldDelegate
-- (void)as_textFieldDidChange:(LGBaseTextField *)textField{
+- (void)lg_textFieldDidChange:(LGBaseTextField *)textField{
     self.viewModel.paramModel.SearchKeycon = textField.text;
 }
 
-- (void)as_textFieldDidEndEditing:(LGBaseTextField *)textField{
+- (void)lg_textFieldDidEndEditing:(LGBaseTextField *)textField{
     [self searchEvent];
 }
 
@@ -85,9 +85,9 @@
         _searchBar.layer.cornerRadius = 15.f;
         _searchBar.layer.masksToBounds = YES;
         _searchBar.borderStyle = UITextBorderStyleNone;
-        _searchBar.limitType = LGTextFiledLimitTypeNoneEmoji;
+        _searchBar.limitType = LGTextFiledKeyBoardInputTypeNoneEmoji;
         _searchBar.placeholder = @"请输入搜索内容";
-        _searchBar.asDelegate = self;
+        _searchBar.lgDelegate = self;
     }
     return _searchBar;
 }

@@ -7,187 +7,125 @@
 //
 
 #import "LGBaseTextView.h"
+#import <objc/runtime.h>
 #import "NSString+EMOEmoji.h"
+#import "NSBundle+Notes.h"
+
+/** 辅助工具上功能类型 */
+typedef NS_ENUM(NSInteger ,LGToolBarFuntionType){
+    LGToolBarFuntionTypeClear,
+    LGToolBarFuntionTypeCamera,
+    LGToolBarFuntionTypePhoto,
+    LGToolBarFuntionTypeDrawBoard,
+    LGToolBarFuntionTypeDone
+};
+
+
+NSString  *const LGTextViewKeyBoardDidShowNotification    = @"LGTextViewKeyBoardDidShowNotification";
+NSString  *const LGTextViewKeyBoardWillHiddenNotification = @"LGTextViewKeyBoardWillHiddenNotification";
+
+static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextTypeKey;
 
 @interface LGBaseTextView ()<UITextViewDelegate>
-{
-    UILabel *placeHolderLabel;
-}
 
-@property (nonatomic, strong) UIToolbar *customAccessoryView;
-
-- (void)refreshPlaceholder;
+@property (nonatomic, strong) UIToolbar *toolBar;
 
 @end
 
 @implementation LGBaseTextView
 
--(void)dealloc{
+- (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.inputAccessoryView = self.customAccessoryView;
-        [self initialize];
+        [self commonInit];
+        [self registerNotification];
     }
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
-        self.inputAccessoryView = self.customAccessoryView;
-        [self initialize];
+        [self commonInit];
+        [self registerNotification];
     }
     return self;
 }
 
-- (UIToolbar *)customAccessoryView{
-    if (!_customAccessoryView) {
-        CGFloat width = [UIScreen mainScreen].bounds.size.width;
-        _customAccessoryView = [[UIToolbar alloc]initWithFrame:(CGRect){0,0,width,kToolBarHeight}];
-        _customAccessoryView.barTintColor = [UIColor whiteColor];
-        UIBarButtonItem *clear = [[UIBarButtonItem alloc]initWithTitle:@"清空" style:UIBarButtonItemStyleDone target:self action:@selector(clearAction)];
-        UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        UIBarButtonItem *finish = [[UIBarButtonItem alloc]initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
-        [_customAccessoryView setItems:@[clear,space,finish]];
-    }
-    return _customAccessoryView;
-}
-
-- (void)clearAction{
-    self.text = @"";
-    if (self.delegate &&
-        [self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
-        [self.delegate textViewDidChange:self];
-    }
-}
-
-- (void)done{
-    [self resignFirstResponder];
-}
-
--(void)initialize{
+- (void)commonInit{
+    _toolBarHeight = 44;
+    _cursorPosition = self.selectedRange;
     self.delegate = self;
-    self.maxLength = NSUIntegerMax;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPlaceholder) name:UITextViewTextDidChangeNotification object:self];
+    self.inputAccessoryView = self.toolBar;
 }
 
--(void)refreshPlaceholder{
-    if([[self text] length]){
-        [placeHolderLabel setAlpha:0];
-    } else {
-        [placeHolderLabel setAlpha:1];
-    }
-    @try {
-        [self setNeedsLayout];
-        [self layoutIfNeeded];
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
+- (void)registerNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidAppear:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidDisAppear:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)setText:(NSString *)text{
-    [super setText:text];
-    [self refreshPlaceholder];
-}
 
--(void)setFont:(UIFont *)font{
-    [super setFont:font];
-    placeHolderLabel.font = self.font;
-    
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-}
-
--(void)layoutSubviews{
-    [super layoutSubviews];
-    if (self.placeholder.length == 0) {
-        self.placeholder = @"请输入...";
-    }
-    [placeHolderLabel sizeToFit];
-    placeHolderLabel.frame = CGRectMake(8, 8, CGRectGetWidth(self.frame)-16, CGRectGetHeight(placeHolderLabel.frame));
-}
-
--(void)setPlaceholder:(NSString *)placeholder{
-    _placeholder = placeholder;
-    
-    if ( placeHolderLabel == nil ){
-        placeHolderLabel = [[UILabel alloc] init];
-        placeHolderLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
-        placeHolderLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        placeHolderLabel.numberOfLines = 0;
-        placeHolderLabel.font = self.font;
-        placeHolderLabel.backgroundColor = [UIColor clearColor];
-        placeHolderLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1.0];
-        placeHolderLabel.alpha = 0;
-        [self addSubview:placeHolderLabel];
-    }
-    
-    placeHolderLabel.text = self.placeholder;
-    [self refreshPlaceholder];
-}
-
--(id<UITextViewDelegate>)delegate{
-    [self refreshPlaceholder];
+- (id <UITextViewDelegate>)delegate{
     return [super delegate];
+}
+
+#pragma mark - ToolBarItemEvent
+- (void)toolBarEvent:(UIBarButtonItem *)sender{
+    switch (sender.tag) {
+        case LGToolBarFuntionTypeClear:{
+            self.text = @"";
+            if (self.delegate &&
+                [self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+                [self.delegate textViewDidChange:self];
+            }
+        }
+            break;
+        case LGToolBarFuntionTypeCamera:{
+            if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewCameraEvent:)]) {
+                [self.lgDelegate lg_textViewCameraEvent:self];
+            }
+        }
+            break;
+        case LGToolBarFuntionTypePhoto:{
+            if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewPhotoEvent:)]) {
+                [self.lgDelegate lg_textViewPhotoEvent:self];
+            }
+        }
+            break;
+        case LGToolBarFuntionTypeDrawBoard:{
+            if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDrawBoardEvent:)]) {
+                [self.lgDelegate lg_textViewDrawBoardEvent:self];
+            }
+        }
+            break;
+        case LGToolBarFuntionTypeDone:{
+            [self resignFirstResponder];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 
 #pragma mark UITextViewDelegate
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-    if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewShouldBeginEditing:)]) {
-        return [self.lgDelegate lg_textViewShouldBeginEditing:self];
-    }
-    return YES;
-}
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView{
-    if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewShouldEndEditing:)]) {
-        return [self.lgDelegate lg_textViewShouldEndEditing:self];
-    }
-    return YES;
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDidBeginEditing:)]) {
-        [self.lgDelegate lg_textViewDidBeginEditing:self];
-    }
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView{
-    if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDidEndEditing:)]) {
-        [self.lgDelegate lg_textViewDidEndEditing:self];
-    }
-}
-
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    //如果用户点击了return
-    if([text isEqualToString:@"\n"]){
-        if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewShouldReturn:)]) {
-            return [self.lgDelegate lg_textViewShouldReturn:self];
-        }
+    //如果用户点击了return/ 输入为空
+    if([text isEqualToString:@"\n"] || text.length == 0){
         return YES;
     }
-    if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textView:shouldChangeTextInRange:replacementText:)]) {
-        return [self.lgDelegate lg_textView:self shouldChangeTextInRange:range replacementText:text];
-    }
-    if (text.length == 0) {
-        return YES;
-    }
-    //获取高亮部分
+
     UITextRange *selectedRange = [textView markedTextRange];
     UITextPosition *pos = [textView positionFromPosition:selectedRange.start offset:0];
     if (selectedRange && pos) {
         NSInteger startOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRange.start];
         NSInteger endOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRange.end];
         NSRange offsetRange = NSMakeRange(startOffset, endOffset - startOffset);
+        
         //如果有高亮且当前字数开始位置小于最大限制时允许输入
-        if (offsetRange.location < self.maxLength) {
+        if (offsetRange.location <= self.maxLength) {
             if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDidChange:)]) {
                 [self.lgDelegate lg_textViewDidChange:self];
             }
@@ -205,20 +143,20 @@
     if ([emojis containsString:text]) {
         return YES;
     }
-    switch (self.limitType) {
-        case LGTextViewLimitTypeDefault:
+    switch (self.inputType) {
+        case LGTextViewKeyBoardTypeDefault:
             return [self limitTypeDefaultInRange:range replacementText:text];
             break;
-        case LGTextViewLimitTypeNumber:
+        case LGTextViewKeyBoardTypeNumber:
             return [self limitTypeNumberInRange:range replacementText:text];
             break;
-        case LGTextViewLimitTypeDecimal:
+        case LGTextViewKeyBoardTypeDecimal:
             return [self limitTypeDecimalInRange:range replacementText:text];
             break;
-        case LGTextViewLimitTypeCharacter:
+        case LGTextViewKeyBoardTypeCharacter:
             return [self limitTypeCharacterInRange:range replacementText:text];
             break;
-        case LGTextViewLimitTypeEmojiLimit:
+        case LGTextViewKeyBoardTypeEmojiLimit:
             return [self limitTypeEmojiInRange:range replacementText:text];
             break;
         default:
@@ -227,6 +165,8 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
+    //获取光标位置
+    _cursorPosition = textView.selectedRange;
     if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDidChange:)]) {
         [self.lgDelegate lg_textViewDidChange:self];
     }
@@ -278,9 +218,6 @@
     if ([self exceedLimitLengthInRange:range replacementText:text]) {
         return NO;
     } else {
-        //        if (![NSString stringContainsEmoji:text]) {
-        //            return YES;
-        //        }
         if (![text emo_containsEmoji]) {
             return YES;
         }
@@ -291,6 +228,7 @@
 
 - (BOOL)exceedLimitLengthInRange:(NSRange)range replacementText:(NSString *)text{
     NSString *str = [NSString stringWithFormat:@"%@%@", self.text, text];
+    // 这里不能等于，否则会越界
     if (str.length > self.maxLength){
         NSRange rangeIndex = [str rangeOfComposedCharacterSequenceAtIndex:self.maxLength];
         if (rangeIndex.length == 1){//字数超限
@@ -302,7 +240,6 @@
             NSRange rangeRange = [str rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, self.maxLength)];
             self.text = [str substringWithRange:rangeRange];
         }
-//        [MBAlert showInfoWithStatus:@"字数已达限制"];
         return YES;
     }
     return NO;
@@ -327,80 +264,64 @@
     return [predicate evaluateWithObject:text];
 }
 
-#pragma mark 自适应键盘方法
-- (CGFloat)keyboardHeight{
-    if (_keyboardHeight == 0) {
-        _keyboardHeight = 225;
-    }
-    return _keyboardHeight;
-}
 
-- (void)setAutoAdjust:(BOOL)autoAdjust{
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object: nil];
-    //        [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(textDidChanged:) name: UITextViewTextDidChangeNotification object: nil];
-    //        [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(textDidChanged:) name: UITextViewTextDidBeginEditingNotification object: nil];
-}
-
-- (void)setAutoCursorPosition:(BOOL)autoCursorPosition{
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(cp_keyboardWillShow:) name: UIKeyboardWillShowNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(cp_keyboardWillShow:) name: UIKeyboardWillChangeFrameNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object: nil];
-    //    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(cp_keyboardWillShow:) name: UITextViewTextDidChangeNotification object: nil];
-    //    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(cp_keyboardWillShow:) name: UITextViewTextDidBeginEditingNotification object: nil];
-}
-
-- (void)keyboardWillShow: (NSNotification *)notification{
-    CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    self.keyboardHeight = keyboardHeight;
-    if (!self.isOffset) {
-        [self adjustFrameWithNoti:notification];
-    }
-}
-
-
-- (void)cp_keyboardWillShow: (NSNotification *)notification{
-    CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    self.keyboardHeight = keyboardHeight;
-    [self cp_adjustFrameWithNoti:notification];
-}
-
-//- (void)textDidChanged:(NSNotification *)notification{
-//    [self adjustFrameWithNoti:notification];
-//}
-
-- (void)keyboardWillHide: (NSNotification *)notification{
-    self.isOffset = NO;
-    [[NSNotificationCenter defaultCenter] postNotificationName:LGTextViewWillDidEndEditingNotification object:nil userInfo:nil];
-}
-
-
-- (void)cp_adjustFrameWithNoti:(NSNotification *)notification{
+#pragma mark - 通知：获取键盘高度
+- (void)keyboardDidAppear:(NSNotification *)notification{
+    _keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     if (self.isFirstResponder) {
-        CGFloat actualKeyboardHeight = self.keyboardHeight+self.assistHeight;
-        [[NSNotificationCenter defaultCenter] postNotificationName:LGTextViewWillDidBeginEditingCursorNotification object:nil userInfo:@{@"offset":@(actualKeyboardHeight)}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LGTextViewKeyBoardDidShowNotification object:nil];
     }
 }
 
+- (void)keyboardDidDisAppear:(NSNotification *)notification{
+    _keyboardHeight = 0.f;
+    [[NSNotificationCenter defaultCenter] postNotificationName:LGTextViewKeyBoardWillHiddenNotification object:nil];
+}
 
-- (void)adjustFrameWithNoti:(NSNotification *)notification{
-    if (self.isFirstResponder) {
-        self.isOffset = YES;
-        CGPoint relativePoint = [self convertRect: self.bounds toView: [UIApplication sharedApplication].keyWindow].origin;
-        CGSize relativeSize = [self convertRect: self.bounds toView: [UIApplication sharedApplication].keyWindow].size;
-        CGFloat textActualHeight = relativePoint.y + relativeSize.height - CGRectGetHeight([UIScreen mainScreen].bounds);
-        if (textActualHeight < 0) {
-            textActualHeight = 0;
-        }
-        CGFloat keyboardHeight = self.keyboardHeight;
-        keyboardHeight += self.assistHeight;
-        CGFloat actualHeight = CGRectGetHeight(self.frame) - textActualHeight + relativePoint.y + keyboardHeight;
+#pragma mark - setter && getter
+- (void)setInputType:(LGTextViewKeyBoardType)inputType{
+    objc_setAssociatedObject(self, LGTextViewInputTextTypeKey, [NSString stringWithFormat:@"%ld",inputType], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    switch (inputType) {
+        case LGTextViewKeyBoardTypeNumber:
+            self.keyboardType = UIKeyboardTypeNumberPad;
+            break;
+        default:
+            self.keyboardType = UIKeyboardTypeDefault;
+            break;
+    }
+}
+
+- (LGTextViewKeyBoardType)inputType{
+    return [objc_getAssociatedObject(self, LGTextViewInputTextTypeKey) integerValue];
+}
+
+
+#pragma mark - lazy
+- (UIToolbar *)toolBar{
+    if (!_toolBar) {
+        CGFloat width = [UIScreen mainScreen].bounds.size.width;
+        _toolBar = [[UIToolbar alloc]initWithFrame:(CGRect){0,0,width,_toolBarHeight}];
+        _toolBar.barTintColor = [UIColor whiteColor];
+        UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
+        clear.tag = LGToolBarFuntionTypeClear;
         
-        CGFloat overstep = actualHeight - CGRectGetHeight([UIScreen mainScreen].bounds);
-        if (overstep > 1 && [notification.name isEqualToString:UIKeyboardWillShowNotification]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:LGTextViewWillDidEndEditingNotification object:nil userInfo:@{@"offset":@(overstep)}];
-        }
+        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        
+        UIBarButtonItem *photo = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_photo"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
+        photo.tag = LGToolBarFuntionTypePhoto;
+        
+        UIBarButtonItem *camera = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_camera"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
+        camera.tag = LGToolBarFuntionTypeCamera;
+        
+        UIBarButtonItem *drawBoard = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_draw"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
+        drawBoard.tag = LGToolBarFuntionTypeDrawBoard;
+        
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
+        done.tag = LGToolBarFuntionTypeDone;
+        
+        [_toolBar setItems:@[clear,space,camera,space,photo,space,drawBoard,space,done]];
     }
+    return _toolBar;
 }
 
 

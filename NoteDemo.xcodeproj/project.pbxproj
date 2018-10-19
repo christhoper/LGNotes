@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3229F56A217865F400B101AF /* UITextView+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3229F569217865F400B101AF /* UITextView+LGExtension.m */; };
+		3229F56D2178889E00B101AF /* LGImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3229F56C2178889E00B101AF /* LGImagePickerViewController.m */; };
 		32326422216D9006005CC784 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326421216D9006005CC784 /* AppDelegate.m */; };
 		32326425216D9006005CC784 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326424216D9006005CC784 /* ViewController.m */; };
 		32326428216D9006005CC784 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32326426216D9006005CC784 /* Main.storyboard */; };
@@ -61,6 +63,10 @@
 
 /* Begin PBXFileReference section */
 		1327CF5CEE302EAC89AC964E /* Pods-NoteDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteDemo.release.xcconfig"; path = "Target Support Files/Pods-NoteDemo/Pods-NoteDemo.release.xcconfig"; sourceTree = "<group>"; };
+		3229F568217865F400B101AF /* UITextView+LGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LGExtension.h"; sourceTree = "<group>"; };
+		3229F569217865F400B101AF /* UITextView+LGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LGExtension.m"; sourceTree = "<group>"; };
+		3229F56B2178889E00B101AF /* LGImagePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGImagePickerViewController.h; sourceTree = "<group>"; };
+		3229F56C2178889E00B101AF /* LGImagePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGImagePickerViewController.m; sourceTree = "<group>"; };
 		3232641D216D9006005CC784 /* NoteDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32326420216D9006005CC784 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32326421216D9006005CC784 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -307,6 +313,8 @@
 				32326495216E3A11005CC784 /* NSString+EMOEmoji.m */,
 				325BC3A2216EE39F00D077F5 /* NSBundle+Notes.h */,
 				325BC3A3216EE39F00D077F5 /* NSBundle+Notes.m */,
+				3229F568217865F400B101AF /* UITextView+LGExtension.h */,
+				3229F569217865F400B101AF /* UITextView+LGExtension.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -322,6 +330,8 @@
 				32326493216E398C005CC784 /* LGBaseTextField.m */,
 				32326499216E3B35005CC784 /* LGBaseTextView.h */,
 				32326498216E3B35005CC784 /* LGBaseTextView.m */,
+				3229F56B2178889E00B101AF /* LGImagePickerViewController.h */,
+				3229F56C2178889E00B101AF /* LGImagePickerViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -535,6 +545,7 @@
 				32326481216E265D005CC784 /* LGMBAlert.m in Sources */,
 				325BC3B0216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m in Sources */,
 				32326425216D9006005CC784 /* ViewController.m in Sources */,
+				3229F56D2178889E00B101AF /* LGImagePickerViewController.m in Sources */,
 				32326497216E3A11005CC784 /* NSString+EMOEmoji.m in Sources */,
 				32326494216E398C005CC784 /* LGBaseTextField.m in Sources */,
 				32326477216DF5D0005CC784 /* NoteMainTableView.m in Sources */,
@@ -558,6 +569,7 @@
 				32326462216DE923005CC784 /* NoteSearchViewController.m in Sources */,
 				32326491216E3796005CC784 /* SubjectPickerView.m in Sources */,
 				325BC3AE216EF7B800D077F5 /* LGFilterCollectionViewCell.m in Sources */,
+				3229F56A217865F400B101AF /* UITextView+LGExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

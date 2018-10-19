@@ -29,7 +29,8 @@ typedef void(^LGHUDDidHiddenBlock)(void);
  @param status <#Status description#>
  */
 - (void)showStatus:(NSString *)status;
-- (void)showInfoWithStatus:(NSString *)status onView:(UIView *) view;
+- (void)showInfoWithStatus:(NSString *)status
+                    onView:(UIView *) view;
 
 /**
  *  成功提示(带图片)
@@ -37,7 +38,10 @@ typedef void(^LGHUDDidHiddenBlock)(void);
  *  @param status 提示语
  */
 - (void)showSuccessWithStatus:(NSString *)status;
-- (void)showSuccessWithStatus:(NSString *)status afterDelay:(NSTimeInterval)delay completetion:(LGHUDDidHiddenBlock)completetion;
+
+- (void)showSuccessWithStatus:(NSString *)status
+                   afterDelay:(NSTimeInterval)delay
+                 completetion:(LGHUDDidHiddenBlock)completetion;
 
 
 /**
@@ -67,7 +71,14 @@ typedef void(^LGHUDDidHiddenBlock)(void);
  */
 - (void)hideDelayTime:(NSInteger)delayTime;
 
-- (void)showAlertControllerOn:(UIViewController *)viewController title:(NSString *)title message:(NSString *)message oneTitle:(NSString *)oneTitle oneHandle:(void (^)(UIAlertAction *))oneHandle twoTitle:(NSString *)twoTitle twoHandle:(void (^)(UIAlertAction *))twoHandle completion:(void (^)(void))completion;
+- (void)showAlertControllerOn:(UIViewController *)viewController
+                        title:(NSString *)title
+                      message:(NSString *)message
+                     oneTitle:(NSString *)oneTitle
+                    oneHandle:(void (^)(UIAlertAction *))oneHandle
+                     twoTitle:(NSString *)twoTitle
+                    twoHandle:(void (^)(UIAlertAction *))twoHandle
+                   completion:(void (^)(void))completion;
 
 @end
 

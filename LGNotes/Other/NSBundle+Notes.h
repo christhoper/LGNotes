@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSBundle (Notes)
 
 + (instancetype)lg_noteBundle;
+
 + (NSString *)lg_bundlePathWithName:(NSString *)name;
 + (UIImage *)lg_imageName:(NSString *)name;
 + (UIImage *)lg_imagePathName:(NSString *)name;

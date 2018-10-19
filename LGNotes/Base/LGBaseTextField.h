@@ -10,45 +10,37 @@
 
 @class LGBaseTextField;
 
-typedef NS_ENUM(NSInteger, LGTextFiledLimitType) {
-    LGTextFiledLimitTypeNone,                // 无限制
-    LGTextFiledLimitTypeNumber,              // 只允许数字
-    LGTextFiledLimitTypeDecimal,             // 只允许实数，包括.
-    LGTextFiledLimitTypeNoChinese,           // 不允许中文
-    LGTextFiledLimitTypeNoneEmoji            // 不允许表情
+
+UIKIT_EXTERN NSString  *const LGTextFieldKeyBoardDidShowNotification;
+UIKIT_EXTERN NSString  *const LGTextFieldKeyBoardWillHiddenNotification;
+
+typedef NS_ENUM(NSInteger, LGTextFiledKeyBoardInputType) {
+    LGTextFiledKeyBoardInputTypeNone,                // 无限制
+    LGTextFiledKeyBoardInputTypeNumber,              // 只允许数字
+    LGTextFiledKeyBoardInputTypeDecimal,             // 只允许实数，包括.
+    LGTextFiledKeyBoardInputTypeNoChinese,           // 不允许中文
+    LGTextFiledKeyBoardInputTypeNoneEmoji            // 不允许表情
 };
 
-
-static NSString *  const LGTextFieldWillDidEndEditingNotification = @"LGTextFieldWillDidEndEditingNotification";
-static NSString *  const LGTextFieldWillDidBeginEditingCursorNotification = @"LGTextFieldWillDidEndEditingNotification";
 
 @protocol LGBaseTextFieldDelegate <NSObject>
 @optional
 
-- (BOOL)as_textFieldShouldBeginEditing:(LGBaseTextField *)textField;
-- (void)as_textFieldDidBeginEditing:(LGBaseTextField *)textField;
-- (BOOL)as_textFieldShouldEndEditing:(LGBaseTextField *)textField;
-- (void)as_textFieldDidEndEditing:(LGBaseTextField *)textField;
-- (BOOL)as_textField:(LGBaseTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
-- (BOOL)as_textFieldShouldClear:(LGBaseTextField *)textField;
-- (BOOL)as_textFieldShouldReturn:(LGBaseTextField *)textField;
-
-- (void)as_textFieldDidChange:(LGBaseTextField *)textField;
+- (void)lg_textFieldDidEndEditing:(LGBaseTextField *)textField;
+- (void)lg_textFieldDidChange:(LGBaseTextField *)textField;
+/** 字数达到最大限制时触发 */
+- (void)lg_textFieldShowMaxTextLengthWarning;
 
 @end
 
 
 @interface LGBaseTextField : UITextField
 
-@property (nonatomic, weak) id <LGBaseTextFieldDelegate> asDelegate;
+@property (nonatomic, assign, readonly) CGFloat keyboardHeight;
+@property (nonatomic, assign, readonly) CGFloat toolBarHeight;
+@property (nonatomic, weak) id <LGBaseTextFieldDelegate> lgDelegate;
 @property (nonatomic, strong) UIImageView *leftImageView;
 @property (nonatomic, assign) NSInteger maxLength;
-@property (nonatomic, assign) LGTextFiledLimitType limitType;
-/** 获取键盘高度 */
-@property (nonatomic, assign) CGFloat keyboardHeight;
-/** 辅助视图高度 */
-@property (nonatomic, assign) CGFloat assistHeight;
-/** 自动适应 */
-- (void)setAutoAdjust: (BOOL)autoAdjust;
+@property (nonatomic, assign) LGTextFiledKeyBoardInputType limitType;
 
 @end

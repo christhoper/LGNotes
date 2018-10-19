@@ -7,54 +7,47 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UITextView+LGExtension.h"
+
 @class LGBaseTextView;
 
-typedef NS_ENUM(NSInteger, LGTextViewLimitType){
-    LGTextViewLimitTypeDefault,       // 不限制
-    LGTextViewLimitTypeNumber,        // 只允许输入数字
-    LGTextViewLimitTypeDecimal,       //  只允许输入实数，包括.
-    LGTextViewLimitTypeCharacter,     // 只允许非中文输入
-    LGTextViewLimitTypeEmojiLimit     // 过滤表情
+UIKIT_EXTERN NSString  *const LGTextViewKeyBoardDidShowNotification;
+UIKIT_EXTERN NSString  *const LGTextViewKeyBoardWillHiddenNotification;
+
+
+typedef NS_ENUM(NSInteger, LGTextViewKeyBoardType){
+    LGTextViewKeyBoardTypeDefault,       // 不限制
+    LGTextViewKeyBoardTypeNumber,        // 只允许输入数字
+    LGTextViewKeyBoardTypeDecimal,       //  只允许输入实数，包括.
+    LGTextViewKeyBoardTypeCharacter,     // 只允许非中文输入
+    LGTextViewKeyBoardTypeEmojiLimit     // 过滤表情
 };
 
 
 @protocol LGBaseTextViewDelegate <NSObject>
 @optional
 
-- (BOOL)lg_textViewShouldReturn:(nullable LGBaseTextView *)textView;
-- (BOOL)lg_textViewShouldBeginEditing:(nullable LGBaseTextView *)textView;
-- (BOOL)lg_textViewShouldEndEditing:(nullable LGBaseTextView *)textView;
-- (BOOL)lg_textView:(nullable LGBaseTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(nullable NSString *)text;
-
-- (void)lg_textViewDidBeginEditing:(nullable LGBaseTextView *)textView;
-- (void)lg_textViewDidEndEditing:(nullable LGBaseTextView *)textView;
-
-
-- (void)lg_textViewDidChange:(nullable LGBaseTextView *)textView;
+/** 文本输入 */
+- (void)lg_textViewDidChange:(LGBaseTextView *)textView;
+/** 相册访问 */
+- (void)lg_textViewPhotoEvent:(LGBaseTextView *)textView;
+/** 相机访问 */
+- (void)lg_textViewCameraEvent:(LGBaseTextView *)textView;
+/** 画板 */
+- (void)lg_textViewDrawBoardEvent:(LGBaseTextView *)textView;
 
 @end
 
-static NSString * _Nullable const LGTextViewWillDidEndEditingNotification = @"LGTextViewWillDidEndEditingNotification";
-static NSString * _Nullable const LGTextViewWillDidBeginEditingCursorNotification = @"LGTextViewWillDidBeginEditingCursorNotification";
-/** j辅助键盘高度 */
-static CGFloat const kToolBarHeight  =  40.f;
 
 @interface LGBaseTextView : UITextView
 
-@property(nullable, nonatomic, copy) IBInspectable NSString  *placeholder;
-@property (nonatomic, assign) LGTextViewLimitType limitType;
-@property (nonatomic, assign) NSInteger maxLength;
-@property (nullable, nonatomic, weak) id<LGBaseTextViewDelegate> lgDelegate;
-
-/** 获取键盘高度 */
-@property (nonatomic, assign) CGFloat keyboardHeight;
-/** 辅助视图高度 */
-@property (nonatomic, assign) CGFloat assistHeight;
-@property (nonatomic, assign) BOOL isOffset;
-/** 自动适应 */
-- (void)setAutoAdjust: (BOOL)autoAdjust;
-/** 自动适应光标 */
-- (void)setAutoCursorPosition: (BOOL)autoCursorPosition;
+/** 输入类型 */
+@property (nonatomic, assign) LGTextViewKeyBoardType inputType;
+/** 光标位置 */
+@property (nonatomic, assign, readonly) NSRange cursorPosition;
+@property (nonatomic, assign, readonly) CGFloat keyboardHeight;
+@property (nonatomic, assign, readonly) CGFloat toolBarHeight;
+@property (nonatomic, weak) id<LGBaseTextViewDelegate> lgDelegate;
 
 
 @end

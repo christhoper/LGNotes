@@ -18,13 +18,8 @@
 
 @interface NoteMainViewController ()<LGBaseTableViewCustomDelegate,LGFilterViewControllerDelegate>
 
-@property (nonatomic, strong) NoteMainTableView *tableView;
 @property (nonatomic, strong) NoteViewModel *viewModel;
-@property (nonatomic, strong) LGBaseTextField *searchBar;
-@property (nonatomic, strong) UIButton *enterSearchBtn;
-@property (nonatomic, strong) UIButton *mainBtn;
 
-@property (nonatomic, strong) UIView *searchBgView;
 
 @end
 
@@ -131,7 +126,10 @@
     }];
 }
 
-
+#pragma mark - Public Method
+- (void)refreshNote{
+    [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
+}
 
 #pragma mark - lazy
 - (NoteMainTableView *)tableView{

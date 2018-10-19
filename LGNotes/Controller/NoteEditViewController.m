@@ -13,6 +13,7 @@
 #import "LGBaseTextView.h"
 #import "LGNoteConfigure.h"
 #import "SubjectModel.h"
+#import "LGImagePickerViewController.h"
 
 @interface NoteEditViewController ()
 <
@@ -62,8 +63,8 @@ static CGFloat const kTipLabelHeight   = 44;
     [self addRightNavigationBar];
     [self addLeftNavigationBar];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewWillDidBeginEditingNoti:) name:LGTextViewWillDidBeginEditingCursorNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewWillDidEndEditingNoti:) name:LGTextViewWillDidEndEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewKeyBoardDidShowNotification:) name:LGTextViewKeyBoardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewKeyBoardWillHiddenNotification:) name:LGTextViewKeyBoardWillHiddenNotification object:nil];
 
     if (self.isNewNote) {
         [kMBAlert showIndeterminateWithStatus:@"正在进行，请稍等..."];
@@ -209,7 +210,7 @@ static CGFloat const kTipLabelHeight   = 44;
         self.viewModel.paramModel.Skip = 0;
     }
     
-    [self opseratedNote];
+    [self operatedNote];
 }
 
 - (void)back:(UIBarButtonItem *)sender{
@@ -219,22 +220,17 @@ static CGFloat const kTipLabelHeight   = 44;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)opseratedNote{
+- (void)operatedNote{
     if (IsStrEmpty(self.model.NoteTitle)) {
         [kMBAlert showRemindStatus:@"标题不能为空!"];
-        //        [self.titleTextF positionAnimation];
         return;
     }
     
     if (IsStrEmpty(self.model.NoteContent)) {
         [kMBAlert showRemindStatus:@"内容不能为空!"];
-        //        [self.contentTextView positionAnimation];
         return;
     }
-//    self.noteModel.UserID = self.viewModel.paramModel.UserID;
-//    self.noteModel.UserName = self.viewModel.paramModel.UserName;
-    
-    
+
     [kMBAlert showIndeterminateWithStatus:@"正在进行，请稍等..."];
     [self.viewModel.operateCommand execute:[self.model mj_keyValues]];
     
@@ -249,17 +245,16 @@ static CGFloat const kTipLabelHeight   = 44;
 }
 
 
-
 #pragma mark - NSNotification action
-- (void)textViewWillDidBeginEditingNoti:(NSNotification *) noti{
-    NSDictionary *info = noti.userInfo;
-    CGFloat overstep = [[info objectForKey:@"offset"] floatValue];
+- (void)textViewKeyBoardDidShowNotification:(NSNotification *)notification{
+    NSLog(@"键盘高度 ：%f",self.contentTextView.keyboardHeight);
     [self.contentTextView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(self.view.frame.size.height - overstep - self.tipTotalHeight + kToolBarHeight);
+        make.height.mas_equalTo(self.view.frame.size.height - self.contentTextView.keyboardHeight - self.tipTotalHeight);
     }];
 }
 
-- (void)textViewWillDidEndEditingNoti:(NSNotification *) noti{
+- (void)textViewKeyBoardWillHiddenNotification:(NSNotification *)notification{
+    NSLog(@"消失时键盘高度 ：%f",self.contentTextView.keyboardHeight);
     [self.contentTextView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(self.view.frame.size.height - self.tipTotalHeight);
     }];
@@ -270,9 +265,44 @@ static CGFloat const kTipLabelHeight   = 44;
     self.model.NoteContent = textView.text;
 }
 
+- (void)lg_textViewPhotoEvent:(LGBaseTextView *)textView{
+    if (![LGImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        [[LGMBAlert shareMBAlert] showErrorWithStatus:@"没有打开相册权限"];
+    }
+    LGImagePickerViewController *picker = [[LGImagePickerViewController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
+        NSLog(@"光标位置是：%@",NSStringFromRange(self.contentTextView.cursorPosition));
+        [self.contentTextView addImage:image scale:-1];
+    }];
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)lg_textViewCameraEvent:(LGBaseTextView *)textView{
+    if (![LGImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [[LGMBAlert shareMBAlert] showErrorWithStatus:@"没有打开照相机权限"];
+    }
+    LGImagePickerViewController *picker = [[LGImagePickerViewController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
+        NSLog(@"光标位置是：%@",NSStringFromRange(self.contentTextView.cursorPosition));
+        [self.contentTextView addImage:image scale:-1];
+    }];
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)lg_textViewDrawBoardEvent:(LGBaseTextView *)textView{
+    
+}
+
+
 #pragma mark - textFildDelegate
-- (void)as_textFieldDidChange:(LGBaseTextField *)textField{
+- (void)lg_textFieldDidChange:(LGBaseTextField *)textField{
     self.model.NoteTitle = textField.text;
+}
+
+- (void)lg_textFieldShowMaxTextLengthWarning{
+    [[LGMBAlert shareMBAlert] showRemindStatus:@"字数已达限制"];
 }
 
 #pragma mark - btnEvent
@@ -306,11 +336,11 @@ static CGFloat const kTipLabelHeight   = 44;
         _titleTextF = [[LGBaseTextField alloc] init];
         _titleTextF.borderStyle = UITextBorderStyleNone;
         _titleTextF.backgroundColor = [UIColor whiteColor];
-        _titleTextF.placeholder = @"请输入标题...(30字内)";
+        _titleTextF.placeholder = @"请输入标题(100字内)...";
         _titleTextF.leftView = nil;
-        _titleTextF.asDelegate = self;
-        _titleTextF.maxLength = 30;
-        _titleTextF.limitType = LGTextFiledLimitTypeNoneEmoji;
+        _titleTextF.lgDelegate = self;
+        _titleTextF.maxLength = 100;
+        _titleTextF.limitType = LGTextFiledKeyBoardInputTypeNoneEmoji;
         _titleTextF.textAlignment = NSTextAlignmentRight;
         //        [_titleTextF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     }
@@ -332,11 +362,13 @@ static CGFloat const kTipLabelHeight   = 44;
     if (!_contentTextView) {
         _contentTextView = [[LGBaseTextView alloc] initWithFrame:CGRectZero];
         _contentTextView.placeholder = @"请输入内容...";
-        [_contentTextView setAutoCursorPosition:YES];
-        _contentTextView.assistHeight = 40;
-        _contentTextView.limitType = LGTextViewLimitTypeEmojiLimit;
+        _contentTextView.inputType = LGTextViewKeyBoardTypeEmojiLimit;
+        _contentTextView.maxLength = 50000;
         _contentTextView.font = [UIFont systemFontOfSize:15];
         _contentTextView.lgDelegate = self;
+        [_contentTextView showMaxTextLengthWarn:^{
+            [[LGMBAlert shareMBAlert] showRemindStatus:@"字数已达限制"];
+        }];
     }
     return _contentTextView;
 }

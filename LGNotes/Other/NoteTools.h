@@ -38,7 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)getSubjectImageNameWithSubjectID:(NSString *)subjectID;
 
-+ (NSMutableAttributedString *)attributedStringByStrings:(NSArray<NSString *> *)strings colors:(NSArray<UIColor *> *)colors fonts:(NSArray *)fonts;
++ (NSMutableAttributedString *)attributedStringByStrings:(NSArray<NSString *> *)strings
+                                                  colors:(NSArray<UIColor *> *)colors
+                                                   fonts:(NSArray *)fonts;
 
 @end
 
