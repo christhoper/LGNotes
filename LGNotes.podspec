@@ -3,7 +3,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "LGNotes"
-  spec.version      = "1.0.1.1"
+  spec.version      = "1.0.1.2"
   spec.summary      = "笔记工具"
 
   spec.homepage     = "https://github.com/christhoper/LGNotes"
@@ -23,7 +23,7 @@ Pod::Spec.new do |spec|
 
 
 
-  spec.source       = { :git => "https://github.com/christhoper/LGNotes.git", :tag => "1.0.1.1" }
+  spec.source       = { :git => "https://github.com/christhoper/LGNotes.git", :tag => "1.0.1.2" }
 
 
   spec.source_files  = "LGNotes", "LGNotes/**/*.{h,m}"
