@@ -6,23 +6,23 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "LGBaseTableView.h"
+#import "LGNoteBaseTableView.h"
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
 #import "LGNoteConfigure.h"
-#import "LGMBAlert.h"
+#import "LGNoteMBAlert.h"
 #import "NSBundle+Notes.h"
 
-@interface LGBaseTableView () <UIGestureRecognizerDelegate>
+@interface LGNoteBaseTableView () <UIGestureRecognizerDelegate>
 
 /** 加载中 */
-@property (nonatomic, strong) UIView *viewLoading;
+//@property (nonatomic, strong) UIView *viewLoading;
 /** 错误 */
 @property (nonatomic, strong) UIView *viewError;
 
 @end
 
-@implementation LGBaseTableView
+@implementation LGNoteBaseTableView
 
 - (void)dealloc{
     NSLog(@"%@ 释放了",NSStringFromClass([self class]));
@@ -124,7 +124,7 @@
 }
 
 - (void)tableViewShowEndLoading{
-    self.viewLoading.hidden = YES;
+//    self.viewLoading.hidden = YES;
     self.scrollEnabled = YES;
     [self.mj_footer endRefreshing];
     [self.mj_header endRefreshing];
@@ -163,6 +163,7 @@
         [self addSubview:_viewError];
         [_viewError mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
+            make.size.mas_equalTo(CGSizeMake(kMain_Screen_Width, kMain_Screen_Height));
         }];
 
         [self setContentOffset:CGPointZero animated:NO];
@@ -172,8 +173,8 @@
         [_viewError addSubview:_errorImageView];
         _errorImageView.image = [NSBundle lg_imagePathName:@"lg_empty"];
         [_errorImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.centerY.equalTo(self).offset(-30);
+            make.centerX.equalTo(self.viewError);
+            make.centerY.equalTo(self.viewError).offset(-30);
 //            make.size.mas_equalTo(CGSizeMake(70, 70));
         }];
         
@@ -185,7 +186,7 @@
         [_viewError addSubview:_errorInfoLabel];
         [_errorInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.errorImageView.mas_bottom).offset(15);
-            make.centerX.equalTo(self);
+            make.centerX.equalTo(self.viewError);
         }];
     }
     return _viewError;

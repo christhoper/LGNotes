@@ -34,58 +34,58 @@ typedef NS_ENUM(NSInteger, ResponseSerializer) {
     ResponseSerializerHTTP
 };
 
-@interface LGNetworkManager : AFHTTPSessionManager
+@interface LGNoteNetworkManager : AFHTTPSessionManager
 /** 网络状态 */
 @property (nonatomic, assign) AFNetworkReachabilityStatus networkReachabilityStatus;
 
-+ (LGNetworkManager *)shareManager;
++ (LGNoteNetworkManager *)shareManager;
 
 /** 网络监控 */
 - (void)netMonitoring;
 
 
 /** 检测token是否有效 */
-- (LGNetworkManager *(^)(BOOL verifyTokenEnable))setVerifyTokenEnable;
+- (LGNoteNetworkManager *(^)(BOOL verifyTokenEnable))setVerifyTokenEnable;
 
 /**
  设置超时时间
  */
-- (LGNetworkManager *(^)(NSTimeInterval timeoutInterval))setTimeoutInterval;
+- (LGNoteNetworkManager *(^)(NSTimeInterval timeoutInterval))setTimeoutInterval;
 
 /**
  请求方式
  */
-- (LGNetworkManager *(^)(RequestType requestType))setRequestType;
+- (LGNoteNetworkManager *(^)(RequestType requestType))setRequestType;
 
 /**
  版本
  */
-- (LGNetworkManager *(^)(APIVersion version))setAPIVersion;
+- (LGNoteNetworkManager *(^)(APIVersion version))setAPIVersion;
 
 /**
  请求网址
  */
-- (LGNetworkManager *(^)(NSString *requestUrl))setRequestUrl;
+- (LGNoteNetworkManager *(^)(NSString *requestUrl))setRequestUrl;
 
 /**
  请求参数
  */
--(LGNetworkManager *(^)(id parameters))setParameters;
+-(LGNoteNetworkManager *(^)(id parameters))setParameters;
 
 /**
  请求头
  */
-- (LGNetworkManager *(^)(NSDictionary *HTTPHeaderDic))setHTTPHeaderDic;
+- (LGNoteNetworkManager *(^)(NSDictionary *HTTPHeaderDic))setHTTPHeaderDic;
 
 /**
  数据发送类型，默认HTTP
  */
-- (LGNetworkManager *(^)(RequestSerializer RequestSerializer))setSerializer;
+- (LGNoteNetworkManager *(^)(RequestSerializer RequestSerializer))setSerializer;
 
 /**
  请求结果接收类型，默认JSON
  */
-- (LGNetworkManager *(^)(ResponseSerializer Responerializer))setResponerializer;
+- (LGNoteNetworkManager *(^)(ResponseSerializer Responerializer))setResponerializer;
 
 /**
  发送请求(带进度)

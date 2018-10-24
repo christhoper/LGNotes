@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class LGBaseTextField;
+@class LGNoteBaseTextField;
 
 
 UIKIT_EXTERN NSString  *const LGTextFieldKeyBoardDidShowNotification;
@@ -23,22 +23,22 @@ typedef NS_ENUM(NSInteger, LGTextFiledKeyBoardInputType) {
 };
 
 
-@protocol LGBaseTextFieldDelegate <NSObject>
+@protocol LGNoteBaseTextFieldDelegate <NSObject>
 @optional
 
-- (void)lg_textFieldDidEndEditing:(LGBaseTextField *)textField;
-- (void)lg_textFieldDidChange:(LGBaseTextField *)textField;
+- (void)lg_textFieldDidEndEditing:(LGNoteBaseTextField *)textField;
+- (void)lg_textFieldDidChange:(LGNoteBaseTextField *)textField;
 /** 字数达到最大限制时触发 */
 - (void)lg_textFieldShowMaxTextLengthWarning;
 
 @end
 
 
-@interface LGBaseTextField : UITextField
+@interface LGNoteBaseTextField : UITextField
 
 @property (nonatomic, assign, readonly) CGFloat keyboardHeight;
 @property (nonatomic, assign, readonly) CGFloat toolBarHeight;
-@property (nonatomic, weak) id <LGBaseTextFieldDelegate> lgDelegate;
+@property (nonatomic, weak) id <LGNoteBaseTextFieldDelegate> lgDelegate;
 @property (nonatomic, strong) UIImageView *leftImageView;
 @property (nonatomic, assign) NSInteger maxLength;
 @property (nonatomic, assign) LGTextFiledKeyBoardInputType limitType;

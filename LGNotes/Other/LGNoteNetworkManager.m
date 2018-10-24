@@ -6,9 +6,9 @@
 //  Copyright © 2017年 hend. All rights reserved.
 //
 
-#import "LGNetworkManager.h"
+#import "LGNoteNetworkManager.h"
 
-@interface LGNetworkManager ()
+@interface LGNoteNetworkManager ()
 /** 网络请求超时时长 */
 @property (assign, nonatomic) NSTimeInterval timeout;
 /** 版本号 */
@@ -30,13 +30,13 @@
 
 @end
 
-@implementation LGNetworkManager
+@implementation LGNoteNetworkManager
 
-+ (LGNetworkManager *)shareManager{
-    static LGNetworkManager *manager = nil;
++ (LGNoteNetworkManager *)shareManager{
+    static LGNoteNetworkManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[LGNetworkManager alloc] init];
+        manager = [[LGNoteNetworkManager alloc] init];
         [manager resettingRequestParams];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain",nil];
     });
@@ -62,64 +62,64 @@
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
 }
 
-- (LGNetworkManager *(^)(BOOL))setVerifyTokenEnable{
-    return ^LGNetworkManager *(BOOL verifyTokenEnable){
+- (LGNoteNetworkManager *(^)(BOOL))setVerifyTokenEnable{
+    return ^LGNoteNetworkManager *(BOOL verifyTokenEnable){
         self.verifyTokenEnable = verifyTokenEnable;
         return self;
     };
 }
 
-- (LGNetworkManager *(^)(NSTimeInterval))setTimeoutInterval{
-    return ^LGNetworkManager *(NSTimeInterval timeoutInterval){
+- (LGNoteNetworkManager *(^)(NSTimeInterval))setTimeoutInterval{
+    return ^LGNoteNetworkManager *(NSTimeInterval timeoutInterval){
         self.timeout = timeoutInterval;
         return self;
     };
 }
 
-- (LGNetworkManager *(^)(RequestType))setRequestType{
-    return ^LGNetworkManager *(RequestType requestType){
+- (LGNoteNetworkManager *(^)(RequestType))setRequestType{
+    return ^LGNoteNetworkManager *(RequestType requestType){
         self.requestType = requestType;
         return self;
     };
 }
 
-- (LGNetworkManager *(^)(APIVersion))setAPIVersion{
-    return ^LGNetworkManager *(APIVersion version){
+- (LGNoteNetworkManager *(^)(APIVersion))setAPIVersion{
+    return ^LGNoteNetworkManager *(APIVersion version){
         self.version = version;
         return self;
     };
 }
 
-- (LGNetworkManager *(^)(NSString *))setRequestUrl{
-    return ^LGNetworkManager *(NSString *requestUrl){
+- (LGNoteNetworkManager *(^)(NSString *))setRequestUrl{
+    return ^LGNoteNetworkManager *(NSString *requestUrl){
         self.url = requestUrl;
         return self;
     };
 }
 
-- (LGNetworkManager *(^)(id))setParameters{
-    return ^LGNetworkManager *(id parameters){
+- (LGNoteNetworkManager *(^)(id))setParameters{
+    return ^LGNoteNetworkManager *(id parameters){
         self.parameters = parameters;
         return self;
     };
 }
 
-- (LGNetworkManager *(^)(NSDictionary *))setHTTPHeaderDic{
-    return ^LGNetworkManager *(NSDictionary *HTTPHeaderDic){
+- (LGNoteNetworkManager *(^)(NSDictionary *))setHTTPHeaderDic{
+    return ^LGNoteNetworkManager *(NSDictionary *HTTPHeaderDic){
         self.HTTPHeaderDic = HTTPHeaderDic;
         return self;
     };
 }
 
-- (LGNetworkManager *(^)(RequestSerializer))setSerializer{
-    return ^LGNetworkManager *(RequestSerializer serializer){
+- (LGNoteNetworkManager *(^)(RequestSerializer))setSerializer{
+    return ^LGNoteNetworkManager *(RequestSerializer serializer){
         self.serializer = serializer;
         return self;
     };
 }
 
-- (LGNetworkManager *(^)(ResponseSerializer))setResponerializer{
-    return ^LGNetworkManager *(ResponseSerializer respone){
+- (LGNoteNetworkManager *(^)(ResponseSerializer))setResponerializer{
+    return ^LGNoteNetworkManager *(ResponseSerializer respone){
         self.respone = respone;
         return self;
     };
@@ -148,8 +148,8 @@
 }
 
 /** 开始请求前的设置 */
-- (LGNetworkManager *)setupAttributeBeforSendRequest{
-    LGNetworkManager *manager = [[LGNetworkManager class] manager];
+- (LGNoteNetworkManager *)setupAttributeBeforSendRequest{
+    LGNoteNetworkManager *manager = [[LGNoteNetworkManager class] manager];
     
     [self setupATRequestSerializerWithManager:manager];
     
@@ -162,7 +162,7 @@
 }
 
 /** 设置发送类型及超时时间 */
-- (LGNetworkManager *)setupATRequestSerializerWithManager:(LGNetworkManager *)manager{
+- (LGNoteNetworkManager *)setupATRequestSerializerWithManager:(LGNoteNetworkManager *)manager{
     switch (self.serializer) {
         case RequestSerializerJSON:{
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -180,7 +180,7 @@
 }
 
 /** 设置请求头 */
-- (LGNetworkManager *)setupATHTTPHeaderWithManager:(LGNetworkManager *)manager{
+- (LGNoteNetworkManager *)setupATHTTPHeaderWithManager:(LGNoteNetworkManager *)manager{
     for (NSString *key in self.HTTPHeaderDic) {
         [manager.requestSerializer setValue:self.HTTPHeaderDic[key] forHTTPHeaderField:key];
     }
@@ -188,7 +188,7 @@
 }
 
 /** 设置返回结果类型 */
-- (LGNetworkManager *)setupATResponeSerrializerWithManager:(LGNetworkManager *)manager{
+- (LGNoteNetworkManager *)setupATResponeSerrializerWithManager:(LGNoteNetworkManager *)manager{
     switch (self.respone) {
         case ResponseSerializerJSON:{
             manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -234,7 +234,7 @@
 
 - (void)startSendRequestWithProgress:(void (^)(NSProgress *))progress success:(void (^)(id))success failure:(void (^)(NSError *))failure{
    
-    LGNetworkManager *manager = [self setupAttributeBeforSendRequest];
+    LGNoteNetworkManager *manager = [self setupAttributeBeforSendRequest];
     manager.timeout = self.timeout;
     NSString *url = [[self setupRequestUrl] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 

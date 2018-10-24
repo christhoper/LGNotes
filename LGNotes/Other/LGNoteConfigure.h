@@ -10,8 +10,8 @@
 #define LGNoteConfigure_h
 
 
-#define kMBAlert                          [LGMBAlert shareMBAlert]
-#define kNetwork                          [LGNetworkManager shareManager]
+#define kMBAlert                          [LGNoteMBAlert shareMBAlert]
+#define kNetwork                          [LGNoteNetworkManager shareManager]
 #define kImage(imageName)                 [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
 #define kColorBackgroundGray              kColorInitWithRGB(242, 242, 242, 1)
 #define kColorWithHex(rgbValue)           [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]

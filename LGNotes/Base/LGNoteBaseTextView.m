@@ -6,7 +6,7 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "LGBaseTextView.h"
+#import "LGNoteBaseTextView.h"
 #import <objc/runtime.h>
 #import "NSString+EMOEmoji.h"
 #import "NSBundle+Notes.h"
@@ -26,13 +26,13 @@ NSString  *const LGTextViewKeyBoardWillHiddenNotification = @"LGTextViewKeyBoard
 
 static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextTypeKey;
 
-@interface LGBaseTextView ()<UITextViewDelegate>
+@interface LGNoteBaseTextView ()<UITextViewDelegate>
 
 @property (nonatomic, strong) UIToolbar *toolBar;
 
 @end
 
-@implementation LGBaseTextView
+@implementation LGNoteBaseTextView
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -322,7 +322,8 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
         UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
         done.tag = LGToolBarFuntionTypeDone;
         
-        [_toolBar setItems:@[clear,space,camera,space,photo,space,drawBoard,space,done]];
+//        [_toolBar setItems:@[clear,space,camera,space,photo,space,drawBoard,space,done]];
+        [_toolBar setItems:@[clear,space,done]];
     }
     return _toolBar;
 }

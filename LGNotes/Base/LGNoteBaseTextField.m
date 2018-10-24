@@ -6,7 +6,7 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "LGBaseTextField.h"
+#import "LGNoteBaseTextField.h"
 #import "NSString+EMOEmoji.h"
 #import "NSBundle+Notes.h"
 
@@ -14,13 +14,13 @@
 NSString  *const LGTextFieldKeyBoardDidShowNotification    = @"LGTextFieldKeyBoardDidShowNotification";
 NSString  *const LGTextFieldKeyBoardWillHiddenNotification = @"LGTextFieldKeyBoardDidShowNotification";
 
-@interface LGBaseTextField ()<UITextFieldDelegate>
+@interface LGNoteBaseTextField ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UIToolbar *toolBarView;
 
 @end
 
-@implementation LGBaseTextField
+@implementation LGNoteBaseTextField
 
 - (void)dealloc{
      [[NSNotificationCenter defaultCenter] removeObserver:self];

@@ -9,12 +9,12 @@
 #import "NoteSearchViewController.h"
 #import "NoteViewModel.h"
 #import "NoteMainTableView.h"
-#import "LGBaseTextField.h"
+#import "LGNoteBaseTextField.h"
 #import "LGNoteConfigure.h"
 
-@interface NoteSearchViewController () <LGBaseTextFieldDelegate>
+@interface NoteSearchViewController () <LGNoteBaseTextFieldDelegate>
 
-@property (nonatomic, strong) LGBaseTextField *searchBar;
+@property (nonatomic, strong) LGNoteBaseTextField *searchBar;
 @property (nonatomic, strong) NoteMainTableView *tableView;
 @property (nonatomic, copy)   NSArray *searchResultArray;
 @property (nonatomic, strong) UIButton *searchBtn;
@@ -58,11 +58,11 @@
 }
 
 #pragma mark - TextFieldDelegate
-- (void)lg_textFieldDidChange:(LGBaseTextField *)textField{
+- (void)lg_textFieldDidChange:(LGNoteBaseTextField *)textField{
     self.viewModel.paramModel.SearchKeycon = textField.text;
 }
 
-- (void)lg_textFieldDidEndEditing:(LGBaseTextField *)textField{
+- (void)lg_textFieldDidEndEditing:(LGNoteBaseTextField *)textField{
     [self searchEvent];
 }
 
@@ -79,9 +79,9 @@
 
 
 #pragma mark - lazy
-- (LGBaseTextField *)searchBar{
+- (LGNoteBaseTextField *)searchBar{
     if (!_searchBar) {
-        _searchBar = [[LGBaseTextField alloc] init];
+        _searchBar = [[LGNoteBaseTextField alloc] init];
         _searchBar.layer.cornerRadius = 15.f;
         _searchBar.layer.masksToBounds = YES;
         _searchBar.borderStyle = UITextBorderStyleNone;

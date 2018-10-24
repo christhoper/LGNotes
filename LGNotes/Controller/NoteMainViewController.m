@@ -9,14 +9,14 @@
 #import "NoteMainViewController.h"
 #import "NoteMainTableView.h"
 #import "NoteViewModel.h"
-#import "LGBaseTextField.h"
+#import "LGNoteBaseTextField.h"
 #import "NoteSearchViewController.h"
 #import "NoteFilterViewController.h"
 #import "NoteEditViewController.h"
 #import "LGNoteConfigure.h"
 
 
-@interface NoteMainViewController ()<LGBaseTableViewCustomDelegate,LGFilterViewControllerDelegate>
+@interface NoteMainViewController ()<LGNoteBaseTableViewCustomDelegate,LGFilterViewControllerDelegate>
 
 @property (nonatomic, strong) NoteViewModel *viewModel;
 
@@ -80,7 +80,7 @@
 }
 
 #pragma mark - delegate
-- (void)baseTableView:(LGBaseTableView *)tableView pullUpRefresh:(BOOL)upRefresh pullDownRefresh:(BOOL)downRefresh{
+- (void)baseTableView:(LGNoteBaseTableView *)tableView pullUpRefresh:(BOOL)upRefresh pullDownRefresh:(BOOL)downRefresh{
     if (upRefresh) {
         self.viewModel.paramModel.Skip = -1;
         self.viewModel.paramModel.PageIndex = 1;
@@ -170,9 +170,9 @@
     return _mainBtn;
 }
 
-- (LGBaseTextField *)searchBar{
+- (LGNoteBaseTextField *)searchBar{
     if (!_searchBar) {
-        _searchBar = [[LGBaseTextField alloc] init];
+        _searchBar = [[LGNoteBaseTextField alloc] init];
         _searchBar.layer.cornerRadius = 15;
         _searchBar.layer.masksToBounds = YES;
         _searchBar.borderStyle = UITextBorderStyleNone;

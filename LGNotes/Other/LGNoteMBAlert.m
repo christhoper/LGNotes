@@ -1,17 +1,17 @@
 //
-//  LGMBAlert.m
+//  LGNoteMBAlert.m
 //  NoteDemo
 //
 //  Created by hend on 2018/10/10.
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "LGMBAlert.h"
+#import "LGNoteMBAlert.h"
 #import "LGNoteConfigure.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "NSBundle+Notes.h"
 
-@interface LGMBAlert ()
+@interface LGNoteMBAlert ()
 {
     MBProgressHUD *_hud;
     NSTimer       *_timer;
@@ -22,13 +22,13 @@
 @end
 
 
-@implementation LGMBAlert
+@implementation LGNoteMBAlert
 
-+ (LGMBAlert *)shareMBAlert{
-    static LGMBAlert * manager = nil;
++ (LGNoteMBAlert *)shareMBAlert{
+    static LGNoteMBAlert * manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[LGMBAlert alloc]init];
+        manager = [[LGNoteMBAlert alloc]init];
     });
     return manager;
 }

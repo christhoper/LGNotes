@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UITextView+LGExtension.h"
 
-@class LGBaseTextView;
+@class LGNoteBaseTextView;
 
 UIKIT_EXTERN NSString  *const LGTextViewKeyBoardDidShowNotification;
 UIKIT_EXTERN NSString  *const LGTextViewKeyBoardWillHiddenNotification;
@@ -24,22 +24,22 @@ typedef NS_ENUM(NSInteger, LGTextViewKeyBoardType){
 };
 
 
-@protocol LGBaseTextViewDelegate <NSObject>
+@protocol LGNoteBaseTextViewDelegate <NSObject>
 @optional
 
 /** 文本输入 */
-- (void)lg_textViewDidChange:(LGBaseTextView *)textView;
+- (void)lg_textViewDidChange:(LGNoteBaseTextView *)textView;
 /** 相册访问 */
-- (void)lg_textViewPhotoEvent:(LGBaseTextView *)textView;
+- (void)lg_textViewPhotoEvent:(LGNoteBaseTextView *)textView;
 /** 相机访问 */
-- (void)lg_textViewCameraEvent:(LGBaseTextView *)textView;
+- (void)lg_textViewCameraEvent:(LGNoteBaseTextView *)textView;
 /** 画板 */
-- (void)lg_textViewDrawBoardEvent:(LGBaseTextView *)textView;
+- (void)lg_textViewDrawBoardEvent:(LGNoteBaseTextView *)textView;
 
 @end
 
 
-@interface LGBaseTextView : UITextView
+@interface LGNoteBaseTextView : UITextView
 
 /** 输入类型 */
 @property (nonatomic, assign) LGTextViewKeyBoardType inputType;
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, LGTextViewKeyBoardType){
 @property (nonatomic, assign, readonly) NSInteger cursorPosition;
 @property (nonatomic, assign, readonly) CGFloat keyboardHeight;
 @property (nonatomic, assign, readonly) CGFloat toolBarHeight;
-@property (nonatomic, weak) id<LGBaseTextViewDelegate> lgDelegate;
+@property (nonatomic, weak) id<LGNoteBaseTextViewDelegate> lgDelegate;
 
 
 @end

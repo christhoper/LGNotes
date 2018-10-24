@@ -6,11 +6,11 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "LGBaseTableView.h"
+#import "LGNoteBaseTableView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NoteMainTableView : LGBaseTableView
+@interface NoteMainTableView : LGNoteBaseTableView
 
 @end
 

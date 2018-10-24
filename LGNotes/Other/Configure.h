@@ -14,7 +14,7 @@
 #import <MJExtension/MJExtension.h>
 #import <MJRefresh/MJRefresh.h>
 #import <MBProgressHUD/MBProgressHUD.h>
-#import "LGMBAlert.h"
+#import "LGNoteMBAlert.h"
 #import "NSBundle+Notes.h"
 #import "ParamModel.h"
 #import "NoteModel.h"

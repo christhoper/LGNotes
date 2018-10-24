@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@class LGBaseTableView;
+@class LGNoteBaseTableView;
 typedef void(^LGRefreshBlock)(void);
 
 /** 数据开始加载、加载时、加载后的状态 */
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, LGBaseTableViewRequestStatus) {
 };
 
 
-@protocol LGBaseTableViewCustomDelegate <NSObject>
+@protocol LGNoteBaseTableViewCustomDelegate <NSObject>
 
 @optional
 
@@ -35,21 +35,21 @@ typedef NS_ENUM(NSInteger, LGBaseTableViewRequestStatus) {
  @param upRefresh 上拉
  @param downRefresh 下拉
  */
-- (void)baseTableView:(LGBaseTableView *)tableView
+- (void)baseTableView:(LGNoteBaseTableView *)tableView
         pullUpRefresh:(BOOL)upRefresh
       pullDownRefresh:(BOOL)downRefresh;
 
 
 @end
 
-@interface LGBaseTableView : UITableView
+@interface LGNoteBaseTableView : UITableView
 /** 错误信息 */
 @property (nonatomic, strong) UILabel *errorInfoLabel;
 /** 错误图片 */
 @property (nonatomic, strong) UIImageView *errorImageView;
 
 @property (nonatomic, assign) LGBaseTableViewRequestStatus requestStatus;
-@property (nonatomic, weak) id <LGBaseTableViewCustomDelegate> cusDelegate;
+@property (nonatomic, weak) id <LGNoteBaseTableViewCustomDelegate> cusDelegate;
 @property (nonatomic, weak) UIViewController  *ownerController;
 
 

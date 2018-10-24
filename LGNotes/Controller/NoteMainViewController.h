@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, NoteMainViewControllerStyle) {
     NoteMainViewControllerStyleCustomNaviBar      // 自定义导航栏
 };
 
-@class NoteMainTableView,LGBaseTextField;
+@class NoteMainTableView,LGNoteBaseTextField;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NoteMainViewController : BaseViewController
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *customNavigationBar;
 @property (nonatomic, strong) NoteMainTableView *tableView;
 @property (nonatomic, strong) ParamModel *paramModel;
-@property (nonatomic, strong) LGBaseTextField *searchBar;
+@property (nonatomic, strong) LGNoteBaseTextField *searchBar;
 @property (nonatomic, strong) UIButton *enterSearchBtn;
 @property (nonatomic, strong) UIButton *mainBtn;
 @property (nonatomic, strong) UIView *searchBgView;

@@ -9,9 +9,9 @@
 #import "NoteViewModel.h"
 #import "NoteModel.h"
 #import "SubjectModel.h"
-#import "LGNetworkManager.h"
+#import "LGNoteNetworkManager.h"
 #import "LGNoteConfigure.h"
-#import "LGMBAlert.h"
+#import "LGNoteMBAlert.h"
 #import <MJExtension/MJExtension.h>
 
 @interface NoteViewModel ()

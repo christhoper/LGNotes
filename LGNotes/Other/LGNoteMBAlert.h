@@ -1,5 +1,5 @@
 //
-//  LGMBAlert.h
+//  LGNoteMBAlert.h
 //  NoteDemo
 //
 //  Created by hend on 2018/10/10.
@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 菊花完成hidden时 */
 typedef void(^LGHUDDidHiddenBlock)(void);
 
-@interface LGMBAlert : NSObject
+@interface LGNoteMBAlert : NSObject
 
-+ (LGMBAlert *)shareMBAlert;
++ (LGNoteMBAlert *)shareMBAlert;
 /**
  *  带菊花样式提示框
  */
