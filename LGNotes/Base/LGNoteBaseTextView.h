@@ -23,6 +23,14 @@ typedef NS_ENUM(NSInteger, LGTextViewKeyBoardType){
     LGTextViewKeyBoardTypeEmojiLimit     // 过滤表情
 };
 
+/** 键盘上方工具条风格 */
+typedef NS_ENUM(NSInteger, LGTextViewToolBarStyle) {
+    LGTextViewToolBarStyleDefault,         // 默认：只有“清除”和“确定”
+    LGTextViewToolBarStyleCameras,         // 有访问相机、照片
+    LGTextViewToolBarStyleDrawBoard,       // 有画板功能
+    LGTextViewToolBarStyleNone             // 什么都没有(即隐藏掉)
+};
+
 
 @protocol LGNoteBaseTextViewDelegate <NSObject>
 @optional
@@ -36,10 +44,18 @@ typedef NS_ENUM(NSInteger, LGTextViewKeyBoardType){
 /** 画板 */
 - (void)lg_textViewDrawBoardEvent:(LGNoteBaseTextView *)textView;
 
+/** 开始编辑 */
+- (void)lg_textViewDidBeginEditing:(LGNoteBaseTextView *)textView;
+/** 结束编辑 */
+- (void)lg_textViewDidEndEditing:(LGNoteBaseTextView *)textView;
+
 @end
 
 
 @interface LGNoteBaseTextView : UITextView
+/** 键盘上方工具条风格 */
+@property (nonatomic, assign) LGTextViewToolBarStyle toolBarStyle;
+@property (nonatomic, strong) UIToolbar *toolBar;
 
 /** 输入类型 */
 @property (nonatomic, assign) LGTextViewKeyBoardType inputType;

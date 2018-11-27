@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger, RequestType) {
     GETXML,
     POST,
     POSTSYSTEM,
-    GETSYSTEM
+    GETSYSTEM,
+    UPLOAD            // 上传
 };
 /** 版本号 */
 typedef NS_ENUM(NSInteger, APIVersion) {
@@ -34,9 +35,19 @@ typedef NS_ENUM(NSInteger, ResponseSerializer) {
     ResponseSerializerHTTP
 };
 
+/** 上传数据的类型 */
+typedef NS_ENUM(NSInteger, LGNoteUploadType) {
+    LGNoteUploadTypeImage,    // 图片
+    LGNoteUploadTypeVideo,    // 视频
+    LGNoteUploadTypeOther     // 其他
+};
+
+
 @interface LGNoteNetworkManager : AFHTTPSessionManager
 /** 网络状态 */
 @property (nonatomic, assign) AFNetworkReachabilityStatus networkReachabilityStatus;
+/** 上传进度 */
+@property (nonatomic, strong, readonly) NSProgress *uploadProgress;
 
 + (LGNoteNetworkManager *)shareManager;
 
@@ -86,6 +97,18 @@ typedef NS_ENUM(NSInteger, ResponseSerializer) {
  请求结果接收类型，默认JSON
  */
 - (LGNoteNetworkManager *(^)(ResponseSerializer Responerializer))setResponerializer;
+
+
+/**
+ 上传的数据
+ */
+- (LGNoteNetworkManager *(^)(NSArray<NSData *> *uploadDatas))setUploadDatas;
+
+/**
+ 图片上传方式
+ */
+- (LGNoteNetworkManager *(^)(LGNoteUploadType uploadType))setUploadType;
+
 
 /**
  发送请求(带进度)

@@ -25,10 +25,9 @@ NSString  *const LGTextViewKeyBoardDidShowNotification    = @"LGTextViewKeyBoard
 NSString  *const LGTextViewKeyBoardWillHiddenNotification = @"LGTextViewKeyBoardWillHiddenNotification";
 
 static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextTypeKey;
+static const void *LGTextViewToolBarStyleKey          = &LGTextViewToolBarStyleKey;
 
 @interface LGNoteBaseTextView ()<UITextViewDelegate>
-
-@property (nonatomic, strong) UIToolbar *toolBar;
 
 @end
 
@@ -54,10 +53,14 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
     return self;
 }
 
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    self.inputAccessoryView = self.toolBar;
+}
+
 - (void)commonInit{
     _toolBarHeight = 44;
     self.delegate = self;
-    self.inputAccessoryView = self.toolBar;
 }
 
 - (void)registerNotification{
@@ -73,35 +76,35 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
 #pragma mark - ToolBarItemEvent
 - (void)toolBarEvent:(UIBarButtonItem *)sender{
     switch (sender.tag) {
-        case LGToolBarFuntionTypeClear:{
-            self.text = @"";
-            if (self.delegate &&
-                [self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
-                [self.delegate textViewDidChange:self];
+            case LGToolBarFuntionTypeClear:{
+                self.text = @"";
+                if (self.delegate &&
+                    [self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+                    [self.delegate textViewDidChange:self];
+                }
             }
-        }
             break;
-        case LGToolBarFuntionTypeCamera:{
-            if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewCameraEvent:)]) {
-                [self.lgDelegate lg_textViewCameraEvent:self];
+            case LGToolBarFuntionTypeCamera:{
+                if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewCameraEvent:)]) {
+                    [self.lgDelegate lg_textViewCameraEvent:self];
+                }
             }
-        }
             break;
-        case LGToolBarFuntionTypePhoto:{
-            if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewPhotoEvent:)]) {
-                [self.lgDelegate lg_textViewPhotoEvent:self];
+            case LGToolBarFuntionTypePhoto:{
+                if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewPhotoEvent:)]) {
+                    [self.lgDelegate lg_textViewPhotoEvent:self];
+                }
             }
-        }
             break;
-        case LGToolBarFuntionTypeDrawBoard:{
-            if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDrawBoardEvent:)]) {
-                [self.lgDelegate lg_textViewDrawBoardEvent:self];
+            case LGToolBarFuntionTypeDrawBoard:{
+                if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDrawBoardEvent:)]) {
+                    [self.lgDelegate lg_textViewDrawBoardEvent:self];
+                }
             }
-        }
             break;
-        case LGToolBarFuntionTypeDone:{
-            [self resignFirstResponder];
-        }
+            case LGToolBarFuntionTypeDone:{
+                [self resignFirstResponder];
+            }
             break;
         default:
             break;
@@ -115,7 +118,7 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
     if([text isEqualToString:@"\n"] || text.length == 0){
         return YES;
     }
-
+    
     UITextRange *selectedRange = [textView markedTextRange];
     UITextPosition *pos = [textView positionFromPosition:selectedRange.start offset:0];
     if (selectedRange && pos) {
@@ -143,19 +146,19 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
         return YES;
     }
     switch (self.inputType) {
-        case LGTextViewKeyBoardTypeDefault:
+            case LGTextViewKeyBoardTypeDefault:
             return [self limitTypeDefaultInRange:range replacementText:text];
             break;
-        case LGTextViewKeyBoardTypeNumber:
+            case LGTextViewKeyBoardTypeNumber:
             return [self limitTypeNumberInRange:range replacementText:text];
             break;
-        case LGTextViewKeyBoardTypeDecimal:
+            case LGTextViewKeyBoardTypeDecimal:
             return [self limitTypeDecimalInRange:range replacementText:text];
             break;
-        case LGTextViewKeyBoardTypeCharacter:
+            case LGTextViewKeyBoardTypeCharacter:
             return [self limitTypeCharacterInRange:range replacementText:text];
             break;
-        case LGTextViewKeyBoardTypeEmojiLimit:
+            case LGTextViewKeyBoardTypeEmojiLimit:
             return [self limitTypeEmojiInRange:range replacementText:text];
             break;
         default:
@@ -169,11 +172,25 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
     _cursorPosition = textView.selectedRange.location;
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDidBeginEditing:)]) {
+        [self.lgDelegate lg_textViewDidBeginEditing:self];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDidEndEditing:)]) {
+        [self.lgDelegate lg_textViewDidEndEditing:self];
+    }
+}
+
 - (void)textViewDidChange:(UITextView *)textView{
     if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewDidChange:)]) {
         [self.lgDelegate lg_textViewDidChange:self];
     }
 }
+
+
 
 #pragma mark LimitAction
 - (BOOL)limitTypeDefaultInRange:(NSRange)range replacementText:(NSString *)text{
@@ -285,7 +302,7 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
 - (void)setInputType:(LGTextViewKeyBoardType)inputType{
     objc_setAssociatedObject(self, LGTextViewInputTextTypeKey, [NSString stringWithFormat:@"%ld",inputType], OBJC_ASSOCIATION_COPY_NONATOMIC);
     switch (inputType) {
-        case LGTextViewKeyBoardTypeNumber:
+            case LGTextViewKeyBoardTypeNumber:
             self.keyboardType = UIKeyboardTypeNumberPad;
             break;
         default:
@@ -298,10 +315,18 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
     return [objc_getAssociatedObject(self, LGTextViewInputTextTypeKey) integerValue];
 }
 
+- (void)setToolBarStyle:(LGTextViewToolBarStyle)toolBarStyle{
+    objc_setAssociatedObject(self, LGTextViewToolBarStyleKey, [NSString stringWithFormat:@"%ld",toolBarStyle], OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (LGTextViewToolBarStyle)toolBarStyle{
+    return [objc_getAssociatedObject(self, LGTextViewToolBarStyleKey) integerValue];
+}
 
 #pragma mark - lazy
 - (UIToolbar *)toolBar{
     if (!_toolBar) {
+        
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
         _toolBar = [[UIToolbar alloc]initWithFrame:(CGRect){0,0,width,_toolBarHeight}];
         _toolBar.barTintColor = [UIColor whiteColor];
@@ -316,17 +341,37 @@ static const void *LGTextViewInputTextTypeKey         = &LGTextViewInputTextType
         UIBarButtonItem *camera = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_camera"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
         camera.tag = LGToolBarFuntionTypeCamera;
         
-        UIBarButtonItem *drawBoard = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_draw"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
+        UIBarButtonItem *drawBoard = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_photo"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
         drawBoard.tag = LGToolBarFuntionTypeDrawBoard;
         
         UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
         done.tag = LGToolBarFuntionTypeDone;
-        
-//        [_toolBar setItems:@[clear,space,camera,space,photo,space,drawBoard,space,done]];
-        [_toolBar setItems:@[clear,space,done]];
+        switch (self.toolBarStyle) {
+                case LGTextViewToolBarStyleDefault:{
+                    [_toolBar setItems:@[clear,space,done]];
+                }
+                break;
+                case LGTextViewToolBarStyleCameras:{
+                    [_toolBar setItems:@[clear,space,camera,space,photo,space,done]];
+                }
+                break;
+                case LGTextViewToolBarStyleDrawBoard:{
+                    [_toolBar setItems:@[clear,space,camera,space,photo,space,drawBoard,space,done]];
+                }
+                break;
+                case LGTextViewToolBarStyleNone:{
+                    _toolBar.hidden = YES;
+                    
+                }
+            default:
+                break;
+        }
+        //        [_toolBar setItems:@[clear,space,done]];
     }
     return _toolBar;
 }
+
+
 
 
 @end

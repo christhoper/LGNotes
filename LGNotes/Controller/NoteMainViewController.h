@@ -18,19 +18,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NoteMainViewController : BaseViewController
 /** 自定义导航栏 */
-@property (nonatomic, strong) UIView *customNavigationBar;
 @property (nonatomic, strong) NoteMainTableView *tableView;
 @property (nonatomic, strong) ParamModel *paramModel;
-@property (nonatomic, strong) LGNoteBaseTextField *searchBar;
-@property (nonatomic, strong) UIButton *enterSearchBtn;
-@property (nonatomic, strong) UIButton *mainBtn;
-@property (nonatomic, strong) UIView *searchBgView;
+@property (nonatomic, strong, readonly) UIView *customNavigationBar;
+@property (nonatomic, strong, readonly) LGNoteBaseTextField *searchBar;
+@property (nonatomic, strong, readonly) UIButton *enterSearchBtn;
+@property (nonatomic, strong, readonly) UIButton *mainBtn;
+@property (nonatomic, strong, readonly) UIView *searchBgView;
 
 
 /**
  刷新笔记列表数据（提供给外部自定义导航栏时使用，可以改变param参数后再刷新）
  */
-- (void)refreshNote;
+- (void)refreshNoteData;
 
 @end
 

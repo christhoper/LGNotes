@@ -58,6 +58,13 @@ typedef void(^LGHUDDidHiddenBlock)(void);
  */
 - (void)showRemindStatus:(NSString *)status;
 
+/**
+ 带有进度的提示框
+ 
+ @param progress <#progress description#>
+ */
+- (void)showBarDeterminateWithProgress:(CGFloat) progress;
+- (void)showBarDeterminateWithProgress:(CGFloat) progress status:(NSString *)status;
 
 /**
  *  隐藏

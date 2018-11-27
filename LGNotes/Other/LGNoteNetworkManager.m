@@ -27,6 +27,10 @@
 @property (assign, nonatomic) ResponseSerializer respone;
 /** 验证token */
 @property (nonatomic,assign) BOOL verifyTokenEnable;
+/** 上传的数据 */
+@property (nonatomic, copy) NSArray *uploadDatas;
+/** 上传方式(图片/视频) */
+@property (nonatomic, copy) NSString *uploadTypeString;
 
 @end
 
@@ -121,6 +125,26 @@
 - (LGNoteNetworkManager *(^)(ResponseSerializer))setResponerializer{
     return ^LGNoteNetworkManager *(ResponseSerializer respone){
         self.respone = respone;
+        return self;
+    };
+}
+
+- (LGNoteNetworkManager *(^)(NSArray<NSData *> *))setUploadDatas{
+    return ^LGNoteNetworkManager *(NSArray <NSData *> *uploadDatas){
+        self.uploadDatas = uploadDatas;
+        return self;
+    };
+}
+
+- (LGNoteNetworkManager *(^)(LGNoteUploadType))setUploadType{
+    return ^LGNoteNetworkManager *(LGNoteUploadType uploadType){
+        if (uploadType == LGNoteUploadTypeImage) {
+            self.uploadTypeString = @"image/png";
+        } else if (uploadType == LGNoteUploadTypeVideo) {
+            self.uploadTypeString = @"video/quicktime";
+        } else {
+            self.uploadTypeString = @"application/octet-stream";
+        }
         return self;
     };
 }
@@ -369,7 +393,40 @@
             [dataTask resume];
         }
             break;
-            
+        case UPLOAD:{
+            [self POST:url parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                NSInteger count = self.uploadDatas.count;
+                for (int i = 0; i < count; i ++) {
+                    NSData *uploadData = self.uploadDatas[i];
+                    static NSDateFormatter *formatter = nil;
+                    static dispatch_once_t onceToken;
+                    dispatch_once(&onceToken, ^{
+                        formatter = [[NSDateFormatter alloc] init];
+                    });
+                    // 设置时间格式
+                    [formatter setDateFormat:@"yyyyMMddHHmmss"];
+                    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                    NSString *fileName = [NSString  stringWithFormat:@"照片_%@_%d.jpg", dateString , i];
+                    // name  这里先给死
+                    [formData appendPartWithFileData:uploadData name:@"LGAssistanter_Uploadfile" fileName:fileName mimeType:self.uploadTypeString.length == 0 ? @"image/png":self.uploadTypeString];
+                }
+                
+            } progress:^(NSProgress * _Nonnull uploadProgress) {
+                _uploadProgress = uploadProgress;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    progress(uploadProgress);
+                });
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(responseObject);
+                });
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failure(error);
+                });
+            }];
+        }
+            break;
         default:
             break;
     }

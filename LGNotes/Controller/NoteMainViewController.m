@@ -19,7 +19,11 @@
 @interface NoteMainViewController ()<LGNoteBaseTableViewCustomDelegate,LGFilterViewControllerDelegate>
 
 @property (nonatomic, strong) NoteViewModel *viewModel;
-
+@property (nonatomic, strong, readwrite) UIView *customNavigationBar;
+@property (nonatomic, strong, readwrite) LGNoteBaseTextField *searchBar;
+@property (nonatomic, strong, readwrite) UIButton *enterSearchBtn;
+@property (nonatomic, strong, readwrite) UIButton *mainBtn;
+@property (nonatomic, strong, readwrite) UIView *searchBgView;
 
 @end
 
@@ -127,7 +131,9 @@
 }
 
 #pragma mark - Public Method
-- (void)refreshNote{
+- (void)refreshNoteData{
+    self.viewModel.paramModel.PageIndex = 1;
+    self.viewModel.paramModel.PageSize = 10;
     [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
 }
 
@@ -176,7 +182,7 @@
         _searchBar.layer.cornerRadius = 15;
         _searchBar.layer.masksToBounds = YES;
         _searchBar.borderStyle = UITextBorderStyleNone;
-        _searchBar.placeholder = @"查找笔记";
+        _searchBar.placeholder = @"请输入关键字搜索";
         [_searchBar setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
         _searchBar.backgroundColor = [UIColor whiteColor];
         _searchBar.userInteractionEnabled = NO;

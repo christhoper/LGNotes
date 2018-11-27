@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *NoteTitle;
 /** 笔记内容 */
 @property (nonatomic, copy) NSString *NoteContent;
+/** 笔记内容富文本 */
+@property (nonatomic, strong) NSMutableAttributedString *NoteContent_Att;
 /** 笔记ID */
 @property (nonatomic, copy) NSString *NoteID;
 /** 笔记最近编辑时间 */
@@ -51,6 +53,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 自定义：笔记数据总数 */
 @property (nonatomic, assign) NSInteger TotalCount;
+
+
+@property (nonatomic, strong) NSMutableDictionary *imageInfo;
+
+- (void)updateImageInfo:(NSDictionary *) imageInfo imageAttr:(NSAttributedString *) imageAttr;
+
+// 将富文本转换从字符串
+- (void)updateText:(NSAttributedString *)textAttr;
 
 @end
 

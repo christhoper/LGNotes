@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3211836921ACDF9C0022F2F7 /* NSString+LGExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211836821ACDF9C0022F2F7 /* NSString+LGExtention.m */; };
+		3211836C21ACE6740022F2F7 /* NoteEditTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211836B21ACE6740022F2F7 /* NoteEditTextView.m */; };
 		3229F56A217865F400B101AF /* UITextView+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3229F569217865F400B101AF /* UITextView+LGExtension.m */; };
 		3229F56D2178889E00B101AF /* LGImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3229F56C2178889E00B101AF /* LGImagePickerViewController.m */; };
 		32326422216D9006005CC784 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326421216D9006005CC784 /* AppDelegate.m */; };
@@ -68,6 +70,10 @@
 
 /* Begin PBXFileReference section */
 		1327CF5CEE302EAC89AC964E /* Pods-NoteDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteDemo.release.xcconfig"; path = "Target Support Files/Pods-NoteDemo/Pods-NoteDemo.release.xcconfig"; sourceTree = "<group>"; };
+		3211836721ACDF9C0022F2F7 /* NSString+LGExtention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LGExtention.h"; sourceTree = "<group>"; };
+		3211836821ACDF9C0022F2F7 /* NSString+LGExtention.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGExtention.m"; sourceTree = "<group>"; };
+		3211836A21ACE6740022F2F7 /* NoteEditTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteEditTextView.h; sourceTree = "<group>"; };
+		3211836B21ACE6740022F2F7 /* NoteEditTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteEditTextView.m; sourceTree = "<group>"; };
 		3229F568217865F400B101AF /* UITextView+LGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LGExtension.h"; sourceTree = "<group>"; };
 		3229F569217865F400B101AF /* UITextView+LGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LGExtension.m"; sourceTree = "<group>"; };
 		3229F56B2178889E00B101AF /* LGImagePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGImagePickerViewController.h; sourceTree = "<group>"; };
@@ -302,6 +308,8 @@
 				32326467216DED2D005CC784 /* NoteMainTableViewCell.m */,
 				32326475216DF5D0005CC784 /* NoteMainTableView.h */,
 				32326476216DF5D0005CC784 /* NoteMainTableView.m */,
+				3211836A21ACE6740022F2F7 /* NoteEditTextView.h */,
+				3211836B21ACE6740022F2F7 /* NoteEditTextView.m */,
 				3232648F216E3796005CC784 /* SubjectPickerView.h */,
 				32326490216E3796005CC784 /* SubjectPickerView.m */,
 				325BC3AA216EF7B700D077F5 /* LGFilterCollectionReusableViewHeader.h */,
@@ -331,6 +339,8 @@
 				325BC3A3216EE39F00D077F5 /* NSBundle+Notes.m */,
 				3229F568217865F400B101AF /* UITextView+LGExtension.h */,
 				3229F569217865F400B101AF /* UITextView+LGExtension.m */,
+				3211836721ACDF9C0022F2F7 /* NSString+LGExtention.h */,
+				3211836821ACDF9C0022F2F7 /* NSString+LGExtention.m */,
 				32656A17217A03DF00DA1465 /* DrawView */,
 			);
 			path = Other;
@@ -531,6 +541,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -542,6 +553,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TFHpple.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -578,11 +590,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				32656A22217A03DF00DA1465 /* NSObject+YYModel.m in Sources */,
+				3211836921ACDF9C0022F2F7 /* NSString+LGExtention.m in Sources */,
 				32326481216E265D005CC784 /* LGNoteMBAlert.m in Sources */,
 				325BC3B0216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m in Sources */,
 				32326425216D9006005CC784 /* ViewController.m in Sources */,
 				3229F56D2178889E00B101AF /* LGImagePickerViewController.m in Sources */,
 				32326497216E3A11005CC784 /* NSString+EMOEmoji.m in Sources */,
+				3211836C21ACE6740022F2F7 /* NoteEditTextView.m in Sources */,
 				32326494216E398C005CC784 /* LGNoteBaseTextField.m in Sources */,
 				32326477216DF5D0005CC784 /* NoteMainTableView.m in Sources */,
 				3232647B216E2142005CC784 /* ParamModel.m in Sources */,

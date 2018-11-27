@@ -153,6 +153,28 @@
     [_hud hideAnimated:YES afterDelay:2.f];
 }
 
+
+- (void)showBarDeterminateWithProgress:(CGFloat) progress{
+    [self showBarDeterminateWithProgress:progress status:@"上传中..."];
+}
+
+- (void)showBarDeterminateWithProgress:(CGFloat) progress status:(NSString *)status{
+    if (_hud) {
+        [self hide];
+    }
+    if (!_hud) {
+        _hud = [MBProgressHUD showHUDAddedTo:[self currentView] animated:YES];
+        _hud.detailsLabel.text = status;
+        _hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    }
+    _hud.progress = progress;
+    if (progress >= 1) {
+        _hud.detailsLabel.text = @"已完成";
+        [self hide];
+    }
+}
+
+
 - (void)hide{
     [_hud hideAnimated:YES];
     _hud = nil;

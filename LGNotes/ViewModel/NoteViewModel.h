@@ -46,6 +46,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (RACSignal *)getSystemAllSubject;
 
+/**
+ 上传图片
+ 
+ @param images <#images description#>
+ @return <#return value description#>
+ */
+- (RACSignal *)uploadImages:(NSArray <UIImage *> *)images;
+
 @end
 
 NS_ASSUME_NONNULL_END

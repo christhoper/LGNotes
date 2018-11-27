@@ -38,13 +38,13 @@
     @weakify(self);
     self.refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
         @strongify(self);
-        // 清空
-        [self.dataArray removeAllObjects];
         
         RACSignal *mainSignal = [self getNotesWithUserID:self.paramModel.UserID systemID:self.paramModel.SystemID subjectID:self.paramModel.SubjectID schoolID:self.paramModel.SchoolID pageIndex:self.paramModel.PageIndex pageSize:self.paramModel.PageSize keycon:self.paramModel.SearchKeycon];
         RACSignal *subjectSignal = [self getSystemAllSubject];
         
         [[mainSignal combineLatestWith:subjectSignal] subscribeNext:^(id  _Nullable x) {
+            // 清空
+            [self.dataArray removeAllObjects];
             @strongify(self);
             RACTupleUnpack(NSArray *notesInfo, NSArray *subjectArray) = x;
             self.subjectArray = subjectArray;
@@ -72,6 +72,7 @@
         
         return [RACSignal empty];
     }];
+    
     
     self.operateSubject = [RACSubject subject];
     self.operateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
@@ -270,6 +271,55 @@
         }];
         return nil;
     }];
+}
+
+
+- (RACSignal *)uploadImages:(NSArray<UIImage *> *)images{
+    return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        NSString *url = @"http://192.168.3.157:1313/api/V2/NoteTool/UploadImg";
+        NSArray *uploadDatas = [images.rac_sequence map:^id _Nullable(UIImage * _Nullable value) {
+            return [self LGUIImageJPEGRepresentationImage:value];
+        }].array;
+        [kMBAlert showBarDeterminateWithProgress:0];
+        [kNetwork.setRequestUrl(url).setRequestType(UPLOAD).setUploadDatas(uploadDatas) startSendRequestWithProgress:^(NSProgress *progress) {
+            [kMBAlert showBarDeterminateWithProgress:progress.fractionCompleted];
+        } success:^(id respone) {
+            if (![respone[kErrorcode] hasSuffix:kSuccess]) {
+                [kMBAlert showErrorWithStatus:respone[kReason]];
+                [subscriber sendNext:nil];
+                [subscriber sendCompleted];
+                return;
+            }
+            
+            NSArray *dataArray = respone[kResult];
+            // 图片上传后，暂时取返回的第一个数据，因为每次只上传一张图片，如果后期要一次上传多张，则这里返回一个数组
+            NSString *imagePath = [dataArray objectAtIndex:0];
+            
+            [kMBAlert showSuccessWithStatus:@"上传成功"];
+            [subscriber sendNext:imagePath];
+            [subscriber sendCompleted];
+            
+        } failure:^(NSError *error) {
+            [kMBAlert showErrorWithStatus:@"上传失败,请检查网络后再重试!"];
+            [subscriber sendNext:nil];
+            [subscriber sendCompleted];
+            
+        }];
+        
+        return nil;
+    }];
+}
+
+
+/**
+ 将图片转化成data （上传图片使用）
+ 
+ @param image <#image description#>
+ @return <#return value description#>
+ */
+- (NSData *)LGUIImageJPEGRepresentationImage:(UIImage *)image{
+    NSData *data = UIImageJPEGRepresentation(image, 0.5);
+    return data;
 }
 
 

@@ -79,7 +79,7 @@
         ((MJRefreshAutoNormalFooter *)self.mj_footer).stateLabel.font = [UIFont systemFontOfSize:15];
         // 设置颜色
         ((MJRefreshAutoNormalFooter *)self.mj_footer).stateLabel.textColor = [UIColor lightGrayColor];
-        ((MJRefreshAutoNormalFooter *)self.mj_footer).automaticallyHidden = YES;
+//        ((MJRefreshAutoNormalFooter *)self.mj_footer).automaticallyHidden = YES;
     } else {
         [self.mj_footer removeFromSuperview];
         self.mj_footer = nil;

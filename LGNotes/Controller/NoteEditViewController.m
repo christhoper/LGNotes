@@ -15,6 +15,7 @@
 #import "SubjectModel.h"
 #import "LGImagePickerViewController.h"
 #import "LGDrawBoardViewController.h"
+#import "NoteEditTextView.h"
 
 @interface NoteEditViewController ()
 <
@@ -27,7 +28,7 @@ LGSubjectPickerViewDelegate
 @property (nonatomic, strong) LGNoteBaseTextField *titleTextF;
 @property (nonatomic, strong) UIView *titleBgView;
 @property (nonatomic, strong) UILabel *contentTipLabel;
-@property (nonatomic, strong) LGNoteBaseTextView *contentTextView;
+@property (nonatomic, strong) NoteEditTextView *contentTextView;
 @property (nonatomic, strong) NoteViewModel *viewModel;
 @property (nonatomic, strong) UILabel *subjectTipLabel;
 @property (nonatomic, strong) UIImageView *subjectChooseTip;
@@ -71,6 +72,12 @@ static CGFloat const kTipLabelHeight   = 44;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewKeyBoardDidShowNotification:) name:LGTextViewKeyBoardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewKeyBoardWillHiddenNotification:) name:LGTextViewKeyBoardWillHiddenNotification object:nil];
 
+    if (IsStrEmpty(self.paramModel.NoteBaseUrl)) {
+        [kMBAlert showErrorWithStatus:@"笔记地址为空"];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
     if (self.isNewNote) {
         [kMBAlert showIndeterminateWithStatus:@"正在进行，请稍等..."];
         [self lg_bindSubjectData];
@@ -88,6 +95,7 @@ static CGFloat const kTipLabelHeight   = 44;
             [self.pickerArray removeObjectAtIndex:0];
         } else {
             [kMBAlert showErrorWithStatus:@"获取学科信息失败"];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }
@@ -237,7 +245,7 @@ static CGFloat const kTipLabelHeight   = 44;
     }
 
     [kMBAlert showIndeterminateWithStatus:@"正在进行，请稍等..."];
-    [self.viewModel.operateCommand execute:[self.model mj_keyValues]];
+    [self.viewModel.operateCommand execute:[self.contentTextView.imageTextModel mj_keyValues]];
     
     @weakify(self);
     [self.viewModel.operateSubject subscribeNext:^(id  _Nullable x) {
@@ -253,6 +261,11 @@ static CGFloat const kTipLabelHeight   = 44;
 #pragma mark - NSNotification action
 - (void)textViewKeyBoardDidShowNotification:(NSNotification *)notification{
     NSLog(@"键盘高度 ：%f",self.contentTextView.keyboardHeight);
+    // 如果还不能编辑，则不能改变约束
+    if (self.contentTextView.toolBar.hidden) {
+        return;
+    }
+    
     [self.contentTextView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(self.view.frame.size.height - self.contentTextView.keyboardHeight - self.tipTotalHeight);
     }];
@@ -264,47 +277,6 @@ static CGFloat const kTipLabelHeight   = 44;
         make.height.mas_equalTo(self.view.frame.size.height - self.tipTotalHeight);
     }];
 }
-
-#pragma mark - textViewDelegate
-- (void)lg_textViewDidChange:(LGNoteBaseTextView *)textView{
-    self.model.NoteContent = textView.text;
-}
-
-- (void)lg_textViewPhotoEvent:(LGNoteBaseTextView *)textView{
-    if (![LGImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"没有打开相册权限"];
-    }
-    LGImagePickerViewController *picker = [[LGImagePickerViewController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    @weakify(self);
-    [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
-        @strongify(self);
-        NSLog(@"光标位置是：%ld",self.contentTextView.cursorPosition);
-        [self.contentTextView addImage:image scale:-1 index:self.contentTextView.cursorPosition];
-    }];
-    [self presentViewController:picker animated:YES completion:nil];
-}
-
-- (void)lg_textViewCameraEvent:(LGNoteBaseTextView *)textView{
-    if (![LGImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"没有打开照相机权限"];
-    }
-    LGImagePickerViewController *picker = [[LGImagePickerViewController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    @weakify(self);
-    [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
-        @strongify(self);
-        NSLog(@"光标位置是：%ld",self.contentTextView.cursorPosition);
-        [self.contentTextView addImage:image scale:-1 index:self.contentTextView.cursorPosition];
-    }];
-    [self presentViewController:picker animated:YES completion:nil];
-}
-
-- (void)lg_textViewDrawBoardEvent:(LGNoteBaseTextView *)textView{
-    LGDrawBoardViewController *drawController = [[LGDrawBoardViewController alloc] init];
-    [self.navigationController pushViewController:drawController animated:YES];
-}
-
 
 #pragma mark - textFildDelegate
 - (void)lg_textFieldDidChange:(LGNoteBaseTextField *)textField{
@@ -352,7 +324,6 @@ static CGFloat const kTipLabelHeight   = 44;
         _titleTextF.maxLength = 100;
         _titleTextF.limitType = LGTextFiledKeyBoardInputTypeNoneEmoji;
         _titleTextF.textAlignment = NSTextAlignmentRight;
-        //        [_titleTextF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     }
     return _titleTextF;
 }
@@ -368,14 +339,18 @@ static CGFloat const kTipLabelHeight   = 44;
     return _contentTipLabel;
 }
 
-- (LGNoteBaseTextView *)contentTextView{
+- (NoteEditTextView *)contentTextView{
     if (!_contentTextView) {
-        _contentTextView = [[LGNoteBaseTextView alloc] initWithFrame:CGRectZero];
+        _contentTextView = [[NoteEditTextView alloc] initWithFrame:CGRectZero];
         _contentTextView.placeholder = @"请输入内容...";
         _contentTextView.inputType = LGTextViewKeyBoardTypeEmojiLimit;
+        _contentTextView.toolBarStyle = LGTextViewToolBarStyleCameras;
         _contentTextView.maxLength = 50000;
         _contentTextView.font = [UIFont systemFontOfSize:15];
-        _contentTextView.lgDelegate = self;
+        
+        _contentTextView.imageTextModel = self.model;
+        _contentTextView.ownController = self;
+        _contentTextView.viewModel = self.viewModel;
         [_contentTextView showMaxTextLengthWarn:^{
             [[LGNoteMBAlert shareMBAlert] showRemindStatus:@"字数已达限制"];
         }];

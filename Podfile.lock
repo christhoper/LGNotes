@@ -19,6 +19,7 @@ PODS:
   - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.7)
   - ReactiveObjC (3.0.0)
+  - TFHpple (2.0.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - ReactiveObjC (~> 3.0.0)
+  - TFHpple (~> 2.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -36,6 +38,7 @@ SPEC REPOS:
     - MJExtension
     - MJRefresh
     - ReactiveObjC
+    - TFHpple
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -44,7 +47,8 @@ SPEC CHECKSUMS:
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
+  TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
 
-PODFILE CHECKSUM: 1f82632e1d31a1846c7d05f17104700edd99a038
+PODFILE CHECKSUM: 712e9ac8c95a7fc518d6d00beb081d1c85f25d7a
 
 COCOAPODS: 1.6.0.beta.1
