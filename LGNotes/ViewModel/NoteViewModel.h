@@ -54,6 +54,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (RACSignal *)uploadImages:(NSArray <UIImage *> *)images;
 
+
+/**
+ 通过学科数组、学科名，返回对应学科ID和在picker显示的下标
+ 
+ @param subjectArray 学科集合
+ @param subjectName 学科名
+ @return <#return value description#>
+ */
+- (RACSignal *)getSubjectIDAndPickerSelectedForSubjectArray:(NSArray *)subjectArray
+                                                subjectName:(NSString *)subjectName;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

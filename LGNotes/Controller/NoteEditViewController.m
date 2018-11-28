@@ -93,6 +93,17 @@ static CGFloat const kTipLabelHeight   = 44;
         if (!IsArrEmpty(x)) {
             [self.pickerArray addObjectsFromArray:x];
             [self.pickerArray removeObjectAtIndex:0];
+            // 匹配选中的学科
+            RACSignal *signal = [self.viewModel getSubjectIDAndPickerSelectedForSubjectArray:self.pickerArray subjectName:@"英语"];
+            @weakify(self);
+            [signal subscribeNext:^(NSArray *  _Nullable x) {
+                @strongify(self);
+                self.subjectNameLabel.text = @"英语";
+                self.contentTextView.imageTextModel.SubjectID = [x firstObject];
+                self.contentTextView.imageTextModel.SubjectName = @"英语";
+                self.currentSelectedIndex = [[x lastObject] integerValue];
+            }];
+            
         } else {
             [kMBAlert showErrorWithStatus:@"获取学科信息失败"];
             [self.navigationController popViewControllerAnimated:YES];
@@ -106,7 +117,7 @@ static CGFloat const kTipLabelHeight   = 44;
     self.model.UserID = self.viewModel.paramModel.UserID;
     self.model.SchoolID = self.viewModel.paramModel.SchoolID;
     self.titleTextF.text      = self.model.NoteTitle;
-    self.contentTextView.text = self.model.NoteContent;
+    self.contentTextView.attributedText = self.model.NoteContent_Att;
 }
 
 - (void)addRightNavigationBar{
@@ -226,6 +237,7 @@ static CGFloat const kTipLabelHeight   = 44;
     [self operatedNote];
 }
 
+
 - (void)back:(UIBarButtonItem *)sender{
     if (self.updateSubject && !self.isNewNote) {
         [self.updateSubject sendNext:@"update"];
@@ -260,7 +272,6 @@ static CGFloat const kTipLabelHeight   = 44;
 
 #pragma mark - NSNotification action
 - (void)textViewKeyBoardDidShowNotification:(NSNotification *)notification{
-    NSLog(@"键盘高度 ：%f",self.contentTextView.keyboardHeight);
     // 如果还不能编辑，则不能改变约束
     if (self.contentTextView.toolBar.hidden) {
         return;
@@ -272,7 +283,6 @@ static CGFloat const kTipLabelHeight   = 44;
 }
 
 - (void)textViewKeyBoardWillHiddenNotification:(NSNotification *)notification{
-    NSLog(@"消失时键盘高度 ：%f",self.contentTextView.keyboardHeight);
     [self.contentTextView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(self.view.frame.size.height - self.tipTotalHeight);
     }];
@@ -384,12 +394,6 @@ static CGFloat const kTipLabelHeight   = 44;
         _subjectNameLabel.font = kSYSTEMFONT(15.f);
         _subjectNameLabel.textColor = kLabelColorLightGray;
         _subjectNameLabel.textAlignment = NSTextAlignmentRight;
-        if (self.isNewNote) {
-//            NoteSubjectModel *model = [self.pickerArray lg_objectAtIndex:0];
-//            _subjectNameLabel.text = model.SubjectName;
-//            self.noteModel.SubjectID = model.SubjectID;
-//            self.noteModel.SubjectName = model.SubjectName;
-        }
     }
     return _subjectNameLabel;
 }

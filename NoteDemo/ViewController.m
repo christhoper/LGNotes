@@ -64,10 +64,10 @@
     params.PageSize = 10;
     params.PageIndex = 1;
     params.SubjectName = @"英语";
-    params.UserID = @"x001";
+    params.UserID = @"x008";
     params.NoteBaseUrl = @"http://192.168.3.157:1313/";
     params.SchoolID = @"S27-666-0F84";
-    params.Token = @"F977C0E6-2B6F-4FDC-B4C4-27952687AFDA";
+    params.Token = @"B73F75A1-39A0-486E-9E34-B8BD005019B3";
     return params;
 }
 
@@ -75,12 +75,12 @@
     ParamModel *model = [[ParamModel alloc] init];
     model.SystemID = @"S21";
     model.SubjectID = @"S2_English";
-    model.UserID = @"x001";
+    model.UserID = @"x008";
     model.UserName = @"威震天";
     model.ResourceName = @"荷塘月色";
     model.ResourceID = @"510";
     model.SchoolID = @"S27-666-0F84";
-    model.Token = @"F977C0E6-2B6F-4FDC-B4C4-27952687AFDA";
+    model.Token = @"B73F75A1-39A0-486E-9E34-B8BD005019B3";
     model.NoteBaseUrl = @"http://192.168.3.157:1313/";
     return model;
 }
