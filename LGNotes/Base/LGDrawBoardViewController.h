@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^DrawCompletionBlock)(UIImage *image);
 @interface LGDrawBoardViewController : BaseViewController
+
+- (void)drawBoardDidFinished:(DrawCompletionBlock)completion;
 
 @end
 

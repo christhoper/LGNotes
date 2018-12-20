@@ -9,7 +9,6 @@
 #import "NoteFilterViewController.h"
 #import "LGFilterCollectionViewCell.h"
 #import "LGFilterCollectionReusableViewHeader.h"
-#import "LGFilterCollectionViewFlowLayout.h"
 #import "SubjectModel.h"
 
 @interface NoteFilterViewController ()

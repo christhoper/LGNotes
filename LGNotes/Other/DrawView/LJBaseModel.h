@@ -66,7 +66,7 @@ typedef NS_ENUM(NSInteger, LSDrawAction)
     LSDrawActionRedo,
     LSDrawActionSave,
     LSDrawActionClean,
-    LSDrawActionOther,
+    LSDrawActionOther
 };
 
 @interface LSActionModel : LSDrawModel

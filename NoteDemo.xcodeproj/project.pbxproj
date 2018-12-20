@@ -41,7 +41,6 @@
 		325BC3A4216EE39F00D077F5 /* NSBundle+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A3216EE39F00D077F5 /* NSBundle+Notes.m */; };
 		325BC3A7216EF2E600D077F5 /* NoteFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A6216EF2E600D077F5 /* NoteFilterViewController.m */; };
 		325BC3AE216EF7B800D077F5 /* LGFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A8216EF7B700D077F5 /* LGFilterCollectionViewCell.m */; };
-		325BC3AF216EF7B800D077F5 /* LGFilterCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3AC216EF7B800D077F5 /* LGFilterCollectionViewFlowLayout.m */; };
 		325BC3B0216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3AD216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m */; };
 		32656A162179F76500DA1465 /* LGDrawBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A152179F76500DA1465 /* LGDrawBoardViewController.m */; };
 		32656A21217A03DF00DA1465 /* LJBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A19217A03DF00DA1465 /* LJBaseModel.m */; };
@@ -139,8 +138,6 @@
 		325BC3A8216EF7B700D077F5 /* LGFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFilterCollectionViewCell.m; sourceTree = "<group>"; };
 		325BC3A9216EF7B700D077F5 /* LGFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFilterCollectionViewCell.h; sourceTree = "<group>"; };
 		325BC3AA216EF7B700D077F5 /* LGFilterCollectionReusableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFilterCollectionReusableViewHeader.h; sourceTree = "<group>"; };
-		325BC3AB216EF7B700D077F5 /* LGFilterCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFilterCollectionViewFlowLayout.h; sourceTree = "<group>"; };
-		325BC3AC216EF7B800D077F5 /* LGFilterCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFilterCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		325BC3AD216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFilterCollectionReusableViewHeader.m; sourceTree = "<group>"; };
 		32656A142179F76500DA1465 /* LGDrawBoardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGDrawBoardViewController.h; sourceTree = "<group>"; };
 		32656A152179F76500DA1465 /* LGDrawBoardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGDrawBoardViewController.m; sourceTree = "<group>"; };
@@ -316,8 +313,6 @@
 				325BC3AD216EF7B800D077F5 /* LGFilterCollectionReusableViewHeader.m */,
 				325BC3A9216EF7B700D077F5 /* LGFilterCollectionViewCell.h */,
 				325BC3A8216EF7B700D077F5 /* LGFilterCollectionViewCell.m */,
-				325BC3AB216EF7B700D077F5 /* LGFilterCollectionViewFlowLayout.h */,
-				325BC3AC216EF7B800D077F5 /* LGFilterCollectionViewFlowLayout.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -611,7 +606,6 @@
 				3232649A216E3B35005CC784 /* LGNoteBaseTextView.m in Sources */,
 				32326487216E2C87005CC784 /* LGNoteNetworkManager.m in Sources */,
 				3232648D216E2C94005CC784 /* BaseViewController.m in Sources */,
-				325BC3AF216EF7B800D077F5 /* LGFilterCollectionViewFlowLayout.m in Sources */,
 				32326430216D9007005CC784 /* main.m in Sources */,
 				32326465216DE963005CC784 /* NoteViewModel.m in Sources */,
 				3232648E216E2C94005CC784 /* LGNoteBaseTableView.m in Sources */,

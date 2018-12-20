@@ -82,14 +82,15 @@
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     @weakify(self);
     [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
-        [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
-            @strongify(self);
-            if (!x) {
-                [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"上传失败，上传地址为空"];
-                return ;
-            }
-            [self settingImageAttributes:image imageFTPPath:x];
-        }];
+        [self addImage:image];
+//        [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
+//            @strongify(self);
+//            if (!x) {
+//                [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"上传失败，上传地址为空"];
+//                return ;
+//            }
+//            [self settingImageAttributes:image imageFTPPath:x];
+//        }];
     }];
     [self.ownController presentViewController:picker animated:YES completion:nil];
 }
@@ -118,6 +119,10 @@
 - (void)lg_textViewDrawBoardEvent:(LGNoteBaseTextView *)textView{
     LGDrawBoardViewController *drawController = [[LGDrawBoardViewController alloc] init];
     [self.ownController.navigationController pushViewController:drawController animated:YES];
+    
+    [drawController drawBoardDidFinished:^(UIImage * _Nonnull image) {
+        [self addImage:image];
+    }];
 }
 
 - (NoteModel *)imageTextModel{

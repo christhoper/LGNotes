@@ -103,10 +103,9 @@ static CGFloat const kTipLabelHeight   = 44;
                 self.contentTextView.imageTextModel.SubjectName = @"英语";
                 self.currentSelectedIndex = [[x lastObject] integerValue];
             }];
-            
         } else {
             [kMBAlert showErrorWithStatus:@"获取学科信息失败"];
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }
@@ -116,7 +115,7 @@ static CGFloat const kTipLabelHeight   = 44;
     self.model = dataSource;
     self.model.UserID = self.viewModel.paramModel.UserID;
     self.model.SchoolID = self.viewModel.paramModel.SchoolID;
-    self.titleTextF.text      = self.model.NoteTitle;
+    self.titleTextF.text = self.model.NoteTitle;
     self.contentTextView.attributedText = self.model.NoteContent_Att;
 }
 
@@ -354,7 +353,7 @@ static CGFloat const kTipLabelHeight   = 44;
         _contentTextView = [[NoteEditTextView alloc] initWithFrame:CGRectZero];
         _contentTextView.placeholder = @"请输入内容...";
         _contentTextView.inputType = LGTextViewKeyBoardTypeEmojiLimit;
-        _contentTextView.toolBarStyle = LGTextViewToolBarStyleCameras;
+        _contentTextView.toolBarStyle = LGTextViewToolBarStyleDrawBoard;
         _contentTextView.maxLength = 50000;
         _contentTextView.font = [UIFont systemFontOfSize:15];
         

@@ -48,7 +48,6 @@
     editController.updateSubject = [RACSubject subject];
     [self.navigationController pushViewController:editController animated:YES];
     [editController.updateSubject subscribeNext:^(id  _Nullable x) {
-        
         NoteMainViewController *noteController = [[NoteMainViewController alloc] init];
         // 配置笔记首页所需参数
         noteController.paramModel = [self configureParams];

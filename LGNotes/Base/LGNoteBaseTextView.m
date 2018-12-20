@@ -341,7 +341,7 @@ static const void *LGTextViewToolBarStyleKey          = &LGTextViewToolBarStyleK
         UIBarButtonItem *camera = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_camera"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
         camera.tag = LGToolBarFuntionTypeCamera;
         
-        UIBarButtonItem *drawBoard = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_photo"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
+        UIBarButtonItem *drawBoard = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_draw"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
         drawBoard.tag = LGToolBarFuntionTypeDrawBoard;
         
         UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];

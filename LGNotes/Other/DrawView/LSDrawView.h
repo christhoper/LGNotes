@@ -104,6 +104,8 @@ typedef NS_ENUM(NSInteger, LSShapeType)
 
 @end
 /////////////////////////////////////////////////////////////////////
+/** DrawView 事件完成后 */
+typedef void(^DrawViewActionCompletionBlock)(NSString *msg);
 
 @interface LSDrawView : UIView
 
@@ -117,13 +119,15 @@ typedef NS_ENUM(NSInteger, LSShapeType)
 @property (assign, nonatomic) LSShapeType shapeType;
 //背景图
 @property (assign, nonatomic) UIImage *backgroundImage;
+/** 绘画完成，保存到系统的图片(可以不用保存到相册直接使用) */
+@property (nonatomic, strong, readonly) UIImage *drawCallBackImage;
 
 //撤销
 - (void)unDo;
 //重做
 - (void)reDo;
 //保存到相册
-- (void)save;
+- (void)saveCompletion:(DrawViewActionCompletionBlock)completion;
 //清除绘制
 - (void)clean;
 

@@ -63,7 +63,8 @@
 @property (nonatomic, strong) NSMutableArray *undoArray;
 //重做容器
 @property (nonatomic, strong) NSMutableArray *redoArray;
-
+//绘画事件
+@property (nonatomic, copy) DrawViewActionCompletionBlock block;
 
 //linyl
 //记录脚本用
@@ -74,6 +75,9 @@
 
 //绘制脚本用
 @property (nonatomic, strong) NSMutableArray *recPackageArray;
+
+@property (nonatomic, strong, readwrite) UIImage *drawCallBackImage;
+
 
 @end
 
@@ -310,8 +314,9 @@
     
 }
 
-- (void)save
+- (void)saveCompletion:(DrawViewActionCompletionBlock)completion
 {
+    _block = completion;
     UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, 0.0);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -320,7 +325,8 @@
     
     UIImage *getImage = UIGraphicsGetImageFromCurrentImageContext();
     
-    UIImageWriteToSavedPhotosAlbum(getImage, nil, nil, nil);
+//    UIImageWriteToSavedPhotosAlbum(getImage, nil, nil, nil);
+    UIImageWriteToSavedPhotosAlbum(getImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     UIGraphicsEndImageContext();
     
     //linyl
@@ -328,6 +334,7 @@
     actionModel.ActionType = LSDrawActionSave;
     
     [self addModelToPackage:actionModel];
+    
     //linyl
 }
 
@@ -521,6 +528,7 @@
     if (backgroundImage)
     {
         _bgImgView.image = backgroundImage;
+        self.drawCallBackImage = backgroundImage;
     }
 }
 
@@ -879,6 +887,29 @@
     [self drawNextPackage];
     
 }
+
+
+#pragma mark -- <保存到相册>
+-(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    self.drawCallBackImage = image;
+    NSString *msg = nil ;
+    if(error){
+        msg = @"保存图片失败" ;
+    } else {
+        msg = @"保存图片成功" ;
+    }
+    if (self.block) {
+        self.block(msg);
+    }
+}
+
+- (UIImage *)drawCallBackImage{
+    if (!_drawCallBackImage) {
+        _drawCallBackImage = [[UIImage alloc] init];
+    }
+    return _drawCallBackImage;
+}
+
 
 //- (UIImage*)getAlphaImg
 //{
