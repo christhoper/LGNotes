@@ -7,8 +7,8 @@
 //
 
 #import "NoteFilterViewController.h"
-#import "LGFilterCollectionViewCell.h"
-#import "LGFilterCollectionReusableViewHeader.h"
+#import "LGNoteFilterCollectionViewCell.h"
+#import "LGNoteFilterCollectionReusableViewHeader.h"
 #import "SubjectModel.h"
 
 @interface NoteFilterViewController ()
@@ -98,13 +98,13 @@ UICollectionViewDelegateFlowLayout
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    LGFilterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([LGFilterCollectionViewCell class]) forIndexPath:indexPath];
+    LGNoteFilterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([LGNoteFilterCollectionViewCell class]) forIndexPath:indexPath];
     [self settingSubjectCell:cell indexPath:indexPath];
     return cell;
 }
 
 // 学科cell
-- (void)settingSubjectCell:(LGFilterCollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath{
+- (void)settingSubjectCell:(LGNoteFilterCollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath{
     SubjectModel *subjectModel = self.subjectArray[indexPath.row];
     cell.dataSourceModel = subjectModel;
     if (self.selectedSubjectPath == indexPath  || [subjectModel.SubjectID isEqualToString:self.currentSubjectID]) {
@@ -119,7 +119,7 @@ UICollectionViewDelegateFlowLayout
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    LGFilterCollectionReusableViewHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([LGFilterCollectionReusableViewHeader class]) forIndexPath:indexPath];
+    LGNoteFilterCollectionReusableViewHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([LGNoteFilterCollectionReusableViewHeader class]) forIndexPath:indexPath];
     headerView.reusableTitle = @"学科";
     return headerView;
 }
@@ -129,11 +129,11 @@ UICollectionViewDelegateFlowLayout
     SubjectModel * subjectModel = self.subjectArray[indexPath.row];
     self.currentSubjectID = subjectModel.SubjectID;
     
-    LGFilterCollectionViewCell *celled = (LGFilterCollectionViewCell *)[collectionView cellForItemAtIndexPath:_selectedSubjectPath];
+    LGNoteFilterCollectionViewCell *celled = (LGNoteFilterCollectionViewCell *)[collectionView cellForItemAtIndexPath:_selectedSubjectPath];
     celled.selectedItem = NO;
     
     _selectedSubjectPath = indexPath;
-    LGFilterCollectionViewCell *cell = (LGFilterCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    LGNoteFilterCollectionViewCell *cell = (LGNoteFilterCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.selectedItem = YES;
     [UIView performWithoutAnimation:^{
         [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
@@ -158,8 +158,8 @@ UICollectionViewDelegateFlowLayout
         layout.sectionInset = UIEdgeInsetsMake(0, 10, 15, 10);
         layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 30);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        [_collectionView registerClass:[LGFilterCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([LGFilterCollectionViewCell class])];
-        [_collectionView registerClass:[LGFilterCollectionReusableViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([LGFilterCollectionReusableViewHeader class])];
+        [_collectionView registerClass:[LGNoteFilterCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([LGNoteFilterCollectionViewCell class])];
+        [_collectionView registerClass:[LGNoteFilterCollectionReusableViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([LGNoteFilterCollectionReusableViewHeader class])];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.backgroundColor = [UIColor whiteColor];

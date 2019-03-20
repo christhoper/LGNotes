@@ -276,7 +276,7 @@
 
 - (RACSignal *)uploadImages:(NSArray<UIImage *> *)images{
     return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        NSString *url = @"http://192.168.3.157:1313/api/V2/NoteTool/UploadImg";
+        NSString *url = @"http://192.168.3.158:1314/api/V2/NoteTool/UploadImg";
         NSArray *uploadDatas = [images.rac_sequence map:^id _Nullable(UIImage * _Nullable value) {
             return [self LGUIImageJPEGRepresentationImage:value];
         }].array;

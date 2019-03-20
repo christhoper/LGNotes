@@ -6,11 +6,11 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "LGNoteBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NoteSearchViewController : BaseViewController
+@interface NoteSearchViewController : LGNoteBaseViewController
 
 @property (nonatomic, strong) RACSubject *backRefreshSubject;
 @property (nonatomic, strong) ParamModel *paramModel;

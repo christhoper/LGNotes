@@ -7,10 +7,10 @@
 //
 
 #import "NoteEditTextView.h"
-#import "NSString+LGExtention.h"
-#import "LGImagePickerViewController.h"
+#import "NSString+Notes.h"
+#import "LGNoteImagePickerViewController.h"
 #import "LGNoteMBAlert.h"
-#import "LGDrawBoardViewController.h"
+#import "LGNoteDrawBoardViewController.h"
 
 @interface NoteEditTextView () <LGNoteBaseTextViewDelegate>
 
@@ -71,35 +71,35 @@
         self.selectedRange = NSMakeRange(self.currentLocation + self.imgAttr.length,0);
     }
     self.isInsert = NO;
-    [self.imageTextModel updateText:self.attributedText];
+//    [self.imageTextModel updateText:self.attributedText];
 }
 
 - (void)lg_textViewPhotoEvent:(LGNoteBaseTextView *)textView{
-    if (![LGImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+    if (![LGNoteImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"没有打开相册权限"];
     }
-    LGImagePickerViewController *picker = [[LGImagePickerViewController alloc] init];
+    LGNoteImagePickerViewController *picker = [[LGNoteImagePickerViewController alloc] init];
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     @weakify(self);
     [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
         [self addImage:image];
-//        [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
-//            @strongify(self);
-//            if (!x) {
-//                [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"上传失败，上传地址为空"];
-//                return ;
-//            }
-//            [self settingImageAttributes:image imageFTPPath:x];
-//        }];
+        [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
+            @strongify(self);
+            if (!x) {
+                [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"上传失败，上传地址为空"];
+                return ;
+            }
+            [self settingImageAttributes:image imageFTPPath:x];
+        }];
     }];
     [self.ownController presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)lg_textViewCameraEvent:(LGNoteBaseTextView *)textView{
-    if (![LGImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if (![LGNoteImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"没有打开照相机权限"];
     }
-    LGImagePickerViewController *picker = [[LGImagePickerViewController alloc] init];
+    LGNoteImagePickerViewController *picker = [[LGNoteImagePickerViewController alloc] init];
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     @weakify(self);
     [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
@@ -117,8 +117,8 @@
 }
 
 - (void)lg_textViewDrawBoardEvent:(LGNoteBaseTextView *)textView{
-    LGDrawBoardViewController *drawController = [[LGDrawBoardViewController alloc] init];
-    [self.ownController.navigationController pushViewController:drawController animated:YES];
+    LGNoteDrawBoardViewController *drawController = [[LGNoteDrawBoardViewController alloc] init];
+    [self.ownController presentViewController:drawController animated:YES completion:nil];
     
     [drawController drawBoardDidFinished:^(UIImage * _Nonnull image) {
         [self addImage:image];

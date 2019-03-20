@@ -16,8 +16,7 @@
 @interface NoteMainTableViewCell ()
 
 @property (nonatomic, strong) UILabel *noteTitleLabel;
-@property (nonatomic, strong) UIImageView *subjectBgImageView;
-@property (nonatomic, strong) UIImageView *subjectNameImage;
+@property (nonatomic, strong) UILabel *noteContentLabel;
 @property (nonatomic, strong) UILabel *editTimeLabel;
 @property (nonatomic, strong) UILabel *sourceLabel;
 
@@ -47,8 +46,7 @@
 - (void)lg_addSubViews{
     self.contentView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.noteTitleLabel];
-    [self.contentView addSubview:self.subjectBgImageView];
-    [self.contentView addSubview:self.subjectNameImage];
+    [self.contentView addSubview:self.noteContentLabel];
     [self.contentView addSubview:self.editTimeLabel];
     [self.contentView addSubview:self.sourceLabel];
     
@@ -56,72 +54,70 @@
 }
 
 - (void)lg_setupSubViewsContraints{
-    [self.subjectBgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.contentView);
-        make.left.equalTo(self.contentView).offset(12);
-        make.size.mas_equalTo(CGSizeMake(40, 50));
-    }];
-    [self.subjectNameImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.subjectBgImageView).offset(-5);
-        make.right.equalTo(self.subjectBgImageView.mas_right).offset(6);
-    }];
     [self.noteTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.subjectBgImageView);
-        make.left.equalTo(self.editTimeLabel);
-        make.bottom.equalTo(self.sourceLabel.mas_top).offset(-5);
-        make.right.equalTo(self.contentView).offset(-20);
+        make.top.equalTo(self.contentView).offset(10);
+        make.left.equalTo(self.contentView).offset(10);
+        make.centerX.equalTo(self.contentView);
+        make.height.mas_equalTo(21);
+    }];
+    [self.noteContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.noteTitleLabel);
+        make.bottom.equalTo(self.sourceLabel.mas_top).offset(-10);
     }];
     [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.editTimeLabel.mas_top);
-        make.left.equalTo(self.editTimeLabel);
+        make.bottom.equalTo(self.contentView).offset(-10);
+        make.left.equalTo(self.noteTitleLabel);
         make.height.mas_equalTo(15);
     }];
     [self.editTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.subjectBgImageView).offset(10);
-        make.left.equalTo(self.subjectNameImage.mas_right).offset(10);
-        make.height.mas_equalTo(18);
+        make.bottom.equalTo(self.sourceLabel);
+        make.right.equalTo(self.noteTitleLabel);
+        make.height.mas_equalTo(15);
     }];
 }
 
 - (void)configureCellForDataSource:(NoteModel *)dataSource indexPath:(NSIndexPath *)indexPath{
-    NSMutableAttributedString *att = [NoteTools attributedStringByStrings:@[@"来源:",dataSource.ResourceName] colors:@[kLabelColorLightGray,kColorInitWithRGB(0, 153, 255, 1)] fonts:@[@(12),@(12)]];
-    self.sourceLabel.attributedText = att;
-    self.noteTitleLabel.text = dataSource.NoteTitle;
-    self.editTimeLabel.text = [NSString stringWithFormat:@"最近编辑:%@",dataSource.NoteEditTime];
     NSString *subjectName = [NoteTools getSubjectImageNameWithSubjectID:dataSource.SubjectID];
-    self.subjectNameImage.image = [NSBundle lg_imagePathName:subjectName];
-    NSString *imageName = [NoteTools getSubjectBackgroudImageNameWithSubjectName:dataSource.SubjectName];
-    self.subjectBgImageView.image = [NSBundle lg_imagePathName:imageName];
+    [subjectName stringByAppendingString:@" | "];
+    NSMutableAttributedString *att = [NoteTools attributedStringByStrings:@[subjectName,dataSource.ResourceName] colors:@[kLabelColorLightGray,kColorInitWithRGB(0, 153, 255, 1)] fonts:@[@(12),@(12)]];
+    self.sourceLabel.attributedText = att;
+//    self.noteTitleLabel.text = dataSource.NoteTitle;
+    self.editTimeLabel.text = [NSString stringWithFormat:@"%@",dataSource.NoteEditTime];
+    
+    self.noteContentLabel.attributedText = dataSource.NoteContent_Att;
+//    if (dataSource.ResourceID) {
+//        NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:dataSource.NoteTitle];
+//        self.noteTitleLabel.attributedText = att;
+//    } else {
+        NSTextAttachment *attment = [[NSTextAttachment alloc] init];
+        attment.image = [NSBundle lg_imagePathName:@"note_search_selected"];
+        attment.bounds = CGRectMake(5, -3, 15, 15);
+        
+        NSAttributedString *attmentAtt = [NSAttributedString attributedStringWithAttachment:attment];
+        NSMutableAttributedString *att1 = [[NSMutableAttributedString alloc] initWithString:[dataSource.NoteTitle stringByAppendingString:@" "]];
+        [att1 appendAttributedString:attmentAtt];
+        self.noteTitleLabel.attributedText = att1;
+//    }
 }
-
-
 
 
 #pragma mark - lazy
-- (UIImageView *)subjectNameImage{
-    if (!_subjectNameImage) {
-        _subjectNameImage = [[UIImageView alloc] init];
-    }
-    return _subjectNameImage;
-}
-
-
 - (UILabel *)editTimeLabel{
     if (!_editTimeLabel) {
         _editTimeLabel = [[UILabel alloc] init];
-        _editTimeLabel.text = @"最近编辑:8:30~09:19";
+        _editTimeLabel.text = @"8:30~09:19";
         _editTimeLabel.textColor = [UIColor lightGrayColor];
         _editTimeLabel.font = [UIFont systemFontOfSize:10.f];;
     }
     return _editTimeLabel;
 }
 
-- (UIImageView *)subjectBgImageView{
-    if (!_subjectBgImageView) {
-        _subjectBgImageView = [[UIImageView alloc] init];
-        _subjectBgImageView.image = kImage(@"英语");
+- (UILabel *)noteContentLabel{
+    if (!_noteContentLabel) {
+        _noteContentLabel = [[UILabel alloc] init];
+        _noteContentLabel.text = @"荷塘月色内容";
     }
-    return _subjectBgImageView;
+    return _noteContentLabel;
 }
 
 - (UILabel *)noteTitleLabel{

@@ -6,7 +6,7 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "LGNoteBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface NoteFilterViewController : BaseViewController
+@interface NoteFilterViewController : LGNoteBaseViewController
 @property (nonatomic, weak) id <LGFilterViewControllerDelegate> delegate;
 /** 学科 */
 @property (nonatomic, copy) NSArray *subjectArray;

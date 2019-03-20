@@ -48,5 +48,9 @@ static NSString *const kReason         = @"Reason";
 /** 请求结果说明（尾数为“00”时正常，其他为错误） */
 static NSString *const kSuccess        = @"00";
 
+static NSString *const CollectionImageBoardViewID = @"CollectionImageBoardViewID";
+static NSString *const ImageBoardNotification     = @"ImageBoardNotification";
+static NSString *const SendColorAndWidthNotification = @"SendColorAndWidthNotification";
+
 
 #endif /* LGNoteConfigure_h */

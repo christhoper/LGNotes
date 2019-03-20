@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UITextView+LGExtension.h"
+#import "UITextView+Notes.h"
 
 @class LGNoteBaseTextView;
 

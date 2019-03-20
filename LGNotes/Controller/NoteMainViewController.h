@@ -6,7 +6,7 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "LGNoteBaseViewController.h"
 
 typedef NS_ENUM(NSInteger, NoteMainViewControllerStyle) {
     NoteMainViewControllerStyleDefaultNaviBar,    // 默认导航栏
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, NoteMainViewControllerStyle) {
 @class NoteMainTableView,LGNoteBaseTextField;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NoteMainViewController : BaseViewController
+@interface NoteMainViewController : LGNoteBaseViewController
 /** 自定义导航栏 */
 @property (nonatomic, strong) NoteMainTableView *tableView;
 @property (nonatomic, strong) ParamModel *paramModel;

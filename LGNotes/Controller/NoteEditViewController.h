@@ -6,11 +6,11 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "LGNoteBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NoteEditViewController : BaseViewController
+@interface NoteEditViewController : LGNoteBaseViewController
 
 /** 是否是新建b笔记 */
 @property (nonatomic, assign) BOOL isNewNote;

@@ -8,7 +8,7 @@
 
 #import "LGNoteBaseTextView.h"
 #import <objc/runtime.h>
-#import "NSString+EMOEmoji.h"
+#import "NSString+NotesEmoji.h"
 #import "NSBundle+Notes.h"
 
 /** 辅助工具上功能类型 */
@@ -191,7 +191,6 @@ static const void *LGTextViewToolBarStyleKey          = &LGTextViewToolBarStyleK
 }
 
 
-
 #pragma mark LimitAction
 - (BOOL)limitTypeDefaultInRange:(NSRange)range replacementText:(NSString *)text{
     if ([self exceedLimitLengthInRange:range replacementText:text]) {
@@ -335,14 +334,23 @@ static const void *LGTextViewToolBarStyleKey          = &LGTextViewToolBarStyleK
         
         UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         
-        UIBarButtonItem *photo = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_photo"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
-        photo.tag = LGToolBarFuntionTypePhoto;
+        UIButton *phoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [phoBtn setImage:[NSBundle lg_imagePathName:@"note_pho_unselected"] forState:UIControlStateNormal];
+        [phoBtn addTarget:self action:@selector(toolBarEvent:) forControlEvents:UIControlEventTouchUpInside];
+        phoBtn.tag = LGToolBarFuntionTypePhoto;
+        UIBarButtonItem *photo = [[UIBarButtonItem alloc] initWithCustomView:phoBtn];
         
-        UIBarButtonItem *camera = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_camera"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
-        camera.tag = LGToolBarFuntionTypeCamera;
+        UIButton *cameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [cameraBtn setImage:[NSBundle lg_imagePathName:@"note_camera"] forState:UIControlStateNormal];
+        [cameraBtn addTarget:self action:@selector(toolBarEvent:) forControlEvents:UIControlEventTouchUpInside];
+        cameraBtn.tag = LGToolBarFuntionTypeCamera;
+        UIBarButtonItem *camera = [[UIBarButtonItem alloc] initWithCustomView:cameraBtn];
         
-        UIBarButtonItem *drawBoard = [[UIBarButtonItem alloc] initWithImage:[NSBundle lg_imagePathName:@"lg_draw"] style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
-        drawBoard.tag = LGToolBarFuntionTypeDrawBoard;
+        UIButton *drawBoardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [drawBoardBtn setImage:[NSBundle lg_imagePathName:@"note_draw"] forState:UIControlStateNormal];
+        [drawBoardBtn addTarget:self action:@selector(toolBarEvent:) forControlEvents:UIControlEventTouchUpInside];
+        drawBoardBtn.tag = LGToolBarFuntionTypeDrawBoard;
+        UIBarButtonItem *drawBoard = [[UIBarButtonItem alloc] initWithCustomView:drawBoardBtn];
         
         UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(toolBarEvent:)];
         done.tag = LGToolBarFuntionTypeDone;

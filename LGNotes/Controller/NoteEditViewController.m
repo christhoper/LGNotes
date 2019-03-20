@@ -13,9 +13,11 @@
 #import "LGNoteBaseTextView.h"
 #import "LGNoteConfigure.h"
 #import "SubjectModel.h"
-#import "LGImagePickerViewController.h"
-#import "LGDrawBoardViewController.h"
+#import "LGNoteImagePickerViewController.h"
+#import "LGNoteDrawBoardViewController.h"
 #import "NoteEditTextView.h"
+#import "NoteEditView.h"
+
 
 @interface NoteEditViewController ()
 <
@@ -27,19 +29,24 @@ LGSubjectPickerViewDelegate
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) LGNoteBaseTextField *titleTextF;
 @property (nonatomic, strong) UIView *titleBgView;
-@property (nonatomic, strong) UILabel *contentTipLabel;
 @property (nonatomic, strong) NoteEditTextView *contentTextView;
 @property (nonatomic, strong) NoteViewModel *viewModel;
 @property (nonatomic, strong) UILabel *subjectTipLabel;
 @property (nonatomic, strong) UIImageView *subjectChooseTip;
 @property (nonatomic, strong) UIView *subjectBgView;
 @property (nonatomic, strong) UILabel *subjectNameLabel;
+/** 标记/取消重点笔记 */
+@property (nonatomic, strong) UIButton *markBtn;
+/** 来源 */
+@property (nonatomic, strong) UIButton *sourceBtn;
 
 /** 顶部子视图所有高度（计算textView） */
 @property (nonatomic, assign) CGFloat tipTotalHeight;
 
 @property (nonatomic, strong) NoteModel *model;
 @property (nonatomic, assign) NSInteger currentSelectedIndex;
+
+@property (nonatomic, strong) NoteEditView *contentView;
 
 @end
 
@@ -58,30 +65,25 @@ static CGFloat const kTipLabelHeight   = 44;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self lg_commonInit];
+    [self commonInit];
     [self createSubViews];
 }
 
-- (void)lg_commonInit{
-    self.view.backgroundColor = kColorBackgroundGray;
-    self.title                = self.isNewNote ? @"新建笔记":@"编辑笔记";
-    
-    [self addRightNavigationBar];
-    [self addLeftNavigationBar];
-    
+- (void)commonInit{
+    self.title = self.isNewNote ? @"新建笔记":@"编辑笔记";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewKeyBoardDidShowNotification:) name:LGTextViewKeyBoardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewKeyBoardWillHiddenNotification:) name:LGTextViewKeyBoardWillHiddenNotification object:nil];
 
-    if (IsStrEmpty(self.paramModel.NoteBaseUrl)) {
-        [kMBAlert showErrorWithStatus:@"笔记地址为空"];
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
-    
-    if (self.isNewNote) {
-        [kMBAlert showIndeterminateWithStatus:@"正在进行，请稍等..."];
-        [self lg_bindSubjectData];
-    }
+//    if (IsStrEmpty(self.paramModel.NoteBaseUrl)) {
+//        [kMBAlert showErrorWithStatus:@"笔记地址为空"];
+//        [self.navigationController popViewControllerAnimated:YES];
+//        return;
+//    }
+//
+//    if (self.isNewNote) {
+//        [kMBAlert showIndeterminateWithStatus:@"正在进行，请稍等..."];
+//        [self lg_bindSubjectData];
+//    }
 }
 
 - (void)lg_bindSubjectData{
@@ -121,36 +123,44 @@ static CGFloat const kTipLabelHeight   = 44;
 
 - (void)addRightNavigationBar{
     UIButton *rightBtn = [[UIButton alloc] init];
-    NSString *btnTitle = self.isNewNote ? @"添加":@"保存";
+    NSString *btnTitle = @"完成";
     [rightBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [rightBtn setTitle:btnTitle forState:UIControlStateNormal];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
     [rightBtn addTarget:self action:@selector(rightBarButtonItem:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
+    
 }
 
 - (void)addLeftNavigationBar{
-    UIImage *image = [NSBundle lg_imagePathName:@"lg_back"];
+    UIImage *image = [NSBundle lg_imagePathName:@"note_back"];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
 
 - (void)createSubViews{
-    [self.view addSubview:self.titleBgView];
-    [self.titleBgView addSubview:self.titleLabel];
-    [self.titleBgView addSubview:self.titleTextF];
-    [self.view addSubview:self.contentTipLabel];
-    [self.view addSubview:self.contentTextView];
-    
-    if (self.isNewNote) {
-        [self.view addSubview:self.subjectBgView];
-        [self.subjectBgView addSubview:self.subjectTipLabel];
-        [self.subjectBgView addSubview:self.subjectChooseTip];
-        [self.subjectBgView addSubview:self.subjectNameLabel];
-    }
-    
-    [self setupSubViewsContraints];
+    [self addRightNavigationBar];
+    [self addLeftNavigationBar];
+    [self.view addSubview:self.contentView];
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+//    [self.view addSubview:self.titleBgView];
+//    [self.titleBgView addSubview:self.titleLabel];
+//    [self.titleBgView addSubview:self.titleTextF];
+//    [self.view addSubview:self.contentTextView];
+//    [self.view addSubview:self.markBtn];
+//
+//    if (self.isNewNote) {
+//        [self.view addSubview:self.subjectBgView];
+//        [self.subjectBgView addSubview:self.subjectTipLabel];
+//        [self.subjectBgView addSubview:self.subjectChooseTip];
+//        [self.subjectBgView addSubview:self.subjectNameLabel];
+//    }
+//
+//    [self setupSubViewsContraints];
 }
 
 - (void)setupSubViewsContraints{
@@ -168,6 +178,10 @@ static CGFloat const kTipLabelHeight   = 44;
         make.centerY.equalTo(self.titleLabel);
         make.left.equalTo(self.titleLabel.mas_right);
         make.height.equalTo(self.titleLabel.mas_height);
+        make.right.equalTo(self.markBtn).offset(-10);
+    }];
+    [self.markBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.titleBgView);
         make.right.equalTo(self.titleBgView).offset(-15);
     }];
     
@@ -192,21 +206,10 @@ static CGFloat const kTipLabelHeight   = 44;
             make.left.equalTo(self.subjectTipLabel.mas_right).offset(5);
             make.right.equalTo(self.subjectChooseTip.mas_left).offset(-10);
         }];
-        [self.contentTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.subjectBgView.mas_bottom).offset(10);
-            make.left.right.equalTo(self.view);
-            make.height.mas_equalTo(30);
-        }];
         
         // 新增笔记时的高度
         self.tipTotalHeight = 10+kTipLabelHeight*2+0.7+10+30;
     } else {
-        [self.contentTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleTextF.mas_bottom).offset(10);
-            make.left.right.equalTo(self.view);
-            make.height.mas_equalTo(30);
-        }];
-        
         // 编辑笔记时的高度
         self.tipTotalHeight = 10+kTipLabelHeight+10+30;
     }
@@ -214,7 +217,7 @@ static CGFloat const kTipLabelHeight   = 44;
     [self.contentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo((self.view.frame.size.height - self.tipTotalHeight-64));
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.contentTipLabel.mas_bottom);
+        make.top.equalTo(self.subjectBgView.mas_bottom).offset(1);
     }];
 }
 
@@ -304,7 +307,14 @@ static CGFloat const kTipLabelHeight   = 44;
     [pickerView showPickerViewMenuForDataSource:self.pickerArray matchIndex:self.currentSelectedIndex];
 }
 
+- (void)markNoteEvent:(UIButton *)sender{
+    
+}
+
 - (void)pickerView:(SubjectPickerView *)pickerView didSelectedCellIndexPathRow:(NSInteger)row{
+    if (IsArrEmpty(self.pickerArray)) {
+        return;
+    }
     SubjectModel *model = self.pickerArray[row];
     self.subjectNameLabel.text = model.SubjectName;
     self.currentSelectedIndex = row;
@@ -330,22 +340,10 @@ static CGFloat const kTipLabelHeight   = 44;
         _titleTextF.placeholder = @"请输入标题(100字内)...";
         _titleTextF.leftView = nil;
         _titleTextF.lgDelegate = self;
-        _titleTextF.maxLength = 100;
+        _titleTextF.maxLength = 5;
         _titleTextF.limitType = LGTextFiledKeyBoardInputTypeNoneEmoji;
-        _titleTextF.textAlignment = NSTextAlignmentRight;
     }
     return _titleTextF;
-}
-
-- (UILabel *)contentTipLabel{
-    if (!_contentTipLabel) {
-        _contentTipLabel = [[UILabel alloc] init];
-        _contentTipLabel.text = @"  笔记内容:";
-        _contentTipLabel.font = kSYSTEMFONT(13.f);
-        _contentTipLabel.backgroundColor = kColorBackgroundGray;
-        _contentTipLabel.textColor = kLabelColorLightGray;
-    }
-    return _contentTipLabel;
 }
 
 - (NoteEditTextView *)contentTextView{
@@ -422,6 +420,27 @@ static CGFloat const kTipLabelHeight   = 44;
     }
     return _titleBgView;
 }
+
+
+- (UIButton *)markBtn{
+    if (!_markBtn) {
+        _markBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _markBtn.frame = CGRectZero;
+        UIImage *image = [NSBundle lg_imagePathName:@"lg_comin"];
+        [_markBtn setImage:image forState:UIControlStateNormal];
+        [_markBtn addTarget:self action:@selector(markNoteEvent:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _markBtn;
+}
+
+- (NoteEditView *)contentView{
+    if (!_contentView) {
+        _contentView = [[NoteEditView alloc] init];
+        _contentView.ownController = self;
+    }
+    return _contentView;
+}
+
 
 - (NSMutableArray *)pickerArray{
     if (!_pickerArray) {

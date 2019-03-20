@@ -7,12 +7,11 @@
 //
 
 #import "LGNoteBaseTextField.h"
-#import "NSString+EMOEmoji.h"
+#import "NSString+NotesEmoji.h"
 #import "NSBundle+Notes.h"
 
-
 NSString  *const LGTextFieldKeyBoardDidShowNotification    = @"LGTextFieldKeyBoardDidShowNotification";
-NSString  *const LGTextFieldKeyBoardWillHiddenNotification = @"LGTextFieldKeyBoardDidShowNotification";
+NSString  *const LGTextFieldKeyBoardWillHiddenNotification = @"LGTextFieldKeyBoardWillHiddenNotification";
 
 @interface LGNoteBaseTextField ()<UITextFieldDelegate>
 

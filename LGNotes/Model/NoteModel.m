@@ -8,7 +8,7 @@
 
 #import "NoteModel.h"
 #import <TFHpple/TFHpple.h>
-#import "NSString+LGExtention.h"
+#import "NSString+Notes.h"
 
 @implementation NoteModel
 
@@ -94,7 +94,7 @@
             if ([[attrDic2 allKeys] containsObject:@"width"]) {
                 width = attrDic2[@"width"];
                 height = attrDic2[@"height"];
-            }else{
+            } else {
                 width = [NSString stringWithFormat:@"%.f",screenReferW];
                 height = width;
             }

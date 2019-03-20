@@ -14,16 +14,12 @@
 #import "NoteFilterViewController.h"
 #import "NoteEditViewController.h"
 #import "LGNoteConfigure.h"
+#import "SearchToolView.h"
 
-
-@interface NoteMainViewController ()<LGNoteBaseTableViewCustomDelegate,LGFilterViewControllerDelegate>
+@interface NoteMainViewController ()<LGNoteBaseTableViewCustomDelegate,LGFilterViewControllerDelegate,SearchToolViewDelegate>
 
 @property (nonatomic, strong) NoteViewModel *viewModel;
-@property (nonatomic, strong, readwrite) UIView *customNavigationBar;
-@property (nonatomic, strong, readwrite) LGNoteBaseTextField *searchBar;
-@property (nonatomic, strong, readwrite) UIButton *enterSearchBtn;
-@property (nonatomic, strong, readwrite) UIButton *mainBtn;
-@property (nonatomic, strong, readwrite) UIView *searchBgView;
+@property (nonatomic, strong, readwrite) SearchToolView *toolView;
 
 @end
 
@@ -39,19 +35,24 @@
 
 
 - (void)lg_commonInit{
-    self.navigationItem.titleView = self.searchBgView;
     [self addRightNavigationBar];
 }
 
 - (void)creatSubViews{
+    [self.view addSubview:self.toolView];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.mainBtn];
     [self setupSubViewsContraints];
 }
 
 - (void)setupSubViewsContraints{
+    [self.toolView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.centerX.top.equalTo(self.view);
+        make.height.mas_equalTo(60);
+    }];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.toolView.mas_bottom);
     }];
     [self.mainBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view).offset(-40);
@@ -62,7 +63,7 @@
 
 
 - (void)addRightNavigationBar{
-    UIImage *image = [NSBundle lg_imagePathName:@"lg_filter"];
+    UIImage *image = [NSBundle lg_imagePathName:@"note_add"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(rightNavigationBar:)];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
 }
@@ -73,14 +74,16 @@
 }
 
 - (void)rightNavigationBar:(UIBarButtonItem *)sender{
-    NoteFilterViewController *filterController = [[NoteFilterViewController alloc] init];
-    filterController.delegate = self;
-    @weakify(filterController);
-    [RACObserve(self.viewModel, subjectArray) subscribeNext:^(id  _Nullable x) {
-        @strongify(filterController);
-        filterController.subjectArray = x;
+    NoteEditViewController *editController = [[NoteEditViewController alloc] init];
+    editController.isNewNote = YES;
+    editController.paramModel = self.paramModel;
+    editController.updateSubject = [RACSubject subject];
+    [self.navigationController pushViewController:editController animated:YES];
+    @weakify(self);
+    [editController.updateSubject subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
     }];
-    [self.navigationController pushViewController:filterController animated:YES];
 }
 
 #pragma mark - delegate
@@ -102,9 +105,8 @@
     [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
 }
 
-
-#pragma mark - 进入搜索
-- (void)enterSearchBtnClick:(UIButton *)sender{
+#pragma mark - SearchToolDelegate
+- (void)enterSearchEvent{
     NoteSearchViewController *searchVC = [[NoteSearchViewController alloc] init];
     [searchVC configureParam:self.viewModel.paramModel];
     searchVC.backRefreshSubject = [RACSubject subject];
@@ -117,17 +119,23 @@
     }];
 }
 
-- (void)mainBtnClick:(UIButton *)sender{
-    NoteEditViewController *editController = [[NoteEditViewController alloc] init];
-    editController.isNewNote = YES;
-    editController.paramModel = self.paramModel;
-    editController.updateSubject = [RACSubject subject];
-    [self.navigationController pushViewController:editController animated:YES];
-    @weakify(self);
-    [editController.updateSubject subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
+- (void)filterEvent{
+    NoteFilterViewController *filterController = [[NoteFilterViewController alloc] init];
+    filterController.delegate = self;
+    @weakify(filterController);
+    [RACObserve(self.viewModel, subjectArray) subscribeNext:^(id  _Nullable x) {
+        @strongify(filterController);
+        filterController.subjectArray = x;
     }];
+    [self.navigationController pushViewController:filterController animated:YES];
+}
+
+- (void)remarkEvent{
+    
+}
+
+- (void)mainBtnClick:(UIButton *)sender{
+    
 }
 
 #pragma mark - Public Method
@@ -156,51 +164,14 @@
     return _viewModel;
 }
 
-- (UIButton *)enterSearchBtn{
-    if (!_enterSearchBtn) {
-        _enterSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _enterSearchBtn.frame = CGRectZero;
-        [_enterSearchBtn setBackgroundColor:[UIColor clearColor]];
-        [_enterSearchBtn addTarget:self action:@selector(enterSearchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+- (SearchToolView *)toolView{
+    if (!_toolView) {
+        SearchToolViewConfigure *configure = [[SearchToolViewConfigure alloc] init];
+        configure.style = SearchToolViewStyleFilter;
+        _toolView = [[SearchToolView alloc] initWithFrame:CGRectZero configure:configure];
+        _toolView.delegate = self;
     }
-    return _enterSearchBtn;
-}
-
-- (UIButton *)mainBtn{
-    if (!_mainBtn) {
-        _mainBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _mainBtn.frame = CGRectZero;
-        [_mainBtn setImage:[NSBundle lg_imagePathName:@"lg_addNote"] forState:UIControlStateNormal];
-        [_mainBtn addTarget:self action:@selector(mainBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _mainBtn;
-}
-
-- (LGNoteBaseTextField *)searchBar{
-    if (!_searchBar) {
-        _searchBar = [[LGNoteBaseTextField alloc] init];
-        _searchBar.layer.cornerRadius = 15;
-        _searchBar.layer.masksToBounds = YES;
-        _searchBar.borderStyle = UITextBorderStyleNone;
-        _searchBar.placeholder = @"请输入关键字搜索";
-        [_searchBar setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
-        _searchBar.backgroundColor = [UIColor whiteColor];
-        _searchBar.userInteractionEnabled = NO;
-//        _searchBar.leftImageName = @"search_white";
-    }
-    return _searchBar;
-}
-
-- (UIView *)searchBgView{
-    if (!_searchBgView) {
-        _searchBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMain_Screen_Width-65, 30)];
-        _searchBgView.backgroundColor = [UIColor clearColor];
-        [_searchBgView addSubview:self.searchBar];
-        [_searchBgView addSubview:self.enterSearchBtn];
-        _searchBar.frame = CGRectMake(0, 0, _searchBgView.frame.size.width - 40, 30);
-        _enterSearchBtn.frame = CGRectMake(0, 0, _searchBgView.frame.size.width, 30);
-    }
-    return _searchBgView;
+    return _toolView;
 }
 
 

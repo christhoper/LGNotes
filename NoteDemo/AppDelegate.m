@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "LGNoteBaseNavigationViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,9 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self.window makeKeyWindow];
     ViewController *controller = [[ViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
-    [nav.navigationBar setBarTintColor:[UIColor cyanColor]];
-    nav.navigationBar.translucent = NO;
+    LGNoteBaseNavigationViewController *nav = [[LGNoteBaseNavigationViewController alloc] initWithRootViewController:controller];
     self.window.rootViewController = nav;
     
     return YES;
