@@ -16,7 +16,6 @@
 #import "LGNoteDrawBoardViewController.h"
 #import "NoteEditTextView.h"
 #import "UIButton+Notes.h"
-#import <YBImageBrowser/YBImageBrowser.h>
 
 
 @interface NoteEditView ()<LGNoteBaseTextFieldDelegate,LGNoteBaseTextViewDelegate>

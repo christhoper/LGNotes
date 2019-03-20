@@ -8,5 +8,5 @@ pod 'MBProgressHUD'
 pod 'MJExtension'
 pod 'MJRefresh'
 pod 'TFHpple', '~> 2.0.0'
-pod 'YBImageBrowser'
+pod 'MWPhotoBrowser'
 end
