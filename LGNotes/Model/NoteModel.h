@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NoteModel : NSObject
+@interface NoteModel : NSObject 
 
 /** 笔记标题 */
 @property (nonatomic, copy) NSString *NoteTitle;

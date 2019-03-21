@@ -9,21 +9,38 @@
 #import "NoteMainViewController.h"
 #import "NoteMainTableView.h"
 #import "NoteViewModel.h"
-#import "LGNoteBaseTextField.h"
 #import "NoteSearchViewController.h"
 #import "NoteFilterViewController.h"
 #import "NoteEditViewController.h"
 #import "LGNoteConfigure.h"
 #import "SearchToolView.h"
 
-@interface NoteMainViewController ()<LGNoteBaseTableViewCustomDelegate,LGFilterViewControllerDelegate,SearchToolViewDelegate>
+@interface NoteMainViewController ()
+<
+LGNoteBaseTableViewCustomDelegate,
+LGFilterViewControllerDelegate,
+SearchToolViewDelegate
+>
 
 @property (nonatomic, strong) NoteViewModel *viewModel;
-@property (nonatomic, strong, readwrite) SearchToolView *toolView;
+@property (nonatomic, strong) SearchToolView *toolView;
+@property (nonatomic, assign) NoteNaviBarLeftItemStyle style;
+@property (nonatomic, copy)   LeftNaviBarItemBlock leftItemBlock;
 
 @end
 
 @implementation NoteMainViewController
+
+- (instancetype)init{
+    return [self initWithNaviBarLeftItemStyle:NoteMainViewControllerNaviBarStyleBack];
+}
+
+- (instancetype)initWithNaviBarLeftItemStyle:(NoteNaviBarLeftItemStyle)style{
+    if (self = [super init]) {
+        _style = NoteMainViewControllerNaviBarStyleBack;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,12 +53,12 @@
 
 - (void)lg_commonInit{
     [self addRightNavigationBar];
+    [self addLeftNavigationBar];
 }
 
 - (void)creatSubViews{
     [self.view addSubview:self.toolView];
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.mainBtn];
     [self setupSubViewsContraints];
 }
 
@@ -54,11 +71,6 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.equalTo(self.toolView.mas_bottom);
     }];
-    [self.mainBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view).offset(-40);
-        make.right.equalTo(self.view).offset(-30);
-        make.size.mas_equalTo(CGSizeMake(44, 44));
-    }];
 }
 
 
@@ -68,22 +80,49 @@
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
+- (void)addLeftNavigationBar{
+    UIImage *image = [NSBundle lg_imagePathName:@"note_back"];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftNavigationBar:)];
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+}
+
 - (void)lg_bindData{
     self.viewModel.paramModel = self.paramModel;
     [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
 }
 
+#pragma mark - AddNote
 - (void)rightNavigationBar:(UIBarButtonItem *)sender{
     NoteEditViewController *editController = [[NoteEditViewController alloc] init];
     editController.isNewNote = YES;
     editController.paramModel = self.paramModel;
     editController.updateSubject = [RACSubject subject];
     [self.navigationController pushViewController:editController animated:YES];
-    @weakify(self);
+    @weakify(self,editController);
     [editController.updateSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
     }];
+    [RACObserve(self.viewModel, subjectArray) subscribeNext:^(id  _Nullable x) {
+        @strongify(editController);
+        editController.pickerArray = x;
+    }];
+}
+
+- (void)leftNavigationBar:(UIBarButtonItem *)sender{
+    if (_style == NoteMainViewControllerNaviBarStyleBack) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+    if (self.leftItemBlock) {
+        self.leftItemBlock();
+    }
+}
+
+#pragma mark - Block
+- (void)leftNaviBarItemClickEvent:(LeftNaviBarItemBlock)block{
+    _leftItemBlock = block;
 }
 
 #pragma mark - delegate
@@ -100,8 +139,8 @@
     }
 }
 
-- (void)filterViewDidChooseCompleplted:(NSString *)callBackDada{
-    self.viewModel.paramModel.SubjectID = callBackDada;
+- (void)filterViewDidChooseCallBack:(NSString *)subjecID systemID:(NSString *)systemID{
+    self.viewModel.paramModel.SubjectID = subjecID;
     [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
 }
 
@@ -121,6 +160,7 @@
 
 - (void)filterEvent{
     NoteFilterViewController *filterController = [[NoteFilterViewController alloc] init];
+    filterController.filterStyle = FilterStyleCustom;
     filterController.delegate = self;
     @weakify(filterController);
     [RACObserve(self.viewModel, subjectArray) subscribeNext:^(id  _Nullable x) {
@@ -134,16 +174,6 @@
     
 }
 
-- (void)mainBtnClick:(UIButton *)sender{
-    
-}
-
-#pragma mark - Public Method
-- (void)refreshNoteData{
-    self.viewModel.paramModel.PageIndex = 1;
-    self.viewModel.paramModel.PageSize = 10;
-    [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
-}
 
 #pragma mark - lazy
 - (NoteMainTableView *)tableView{

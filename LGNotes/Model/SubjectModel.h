@@ -2,8 +2,8 @@
 //  SubjectModel.h
 //  NoteDemo
 //
-//  Created by hend on 2018/10/10.
-//  Copyright © 2018年 hend. All rights reserved.
+//  Created by hend on 2019/3/20.
+//  Copyright © 2019 hend. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

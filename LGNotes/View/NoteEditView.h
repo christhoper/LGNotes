@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NoteViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NoteEditView : UIView
 
 @property (nonatomic, weak) UIViewController *ownController;
+
+- (void)bindViewModel:(NoteViewModel *)viewModel;
 
 @end
 

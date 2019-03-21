@@ -10,6 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+typedef NS_ENUM(NSInteger, FilterStyle) {
+    FilterStyleDefault,            // 默认(只有学科筛选)
+    FilterStyleCustom              // 自定义(学科和系统)
+};
+
+
 @protocol LGFilterViewControllerDelegate <NSObject>
 @required
 /**
@@ -17,13 +24,16 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param callBackDada <#callBackDada description#>
  */
-- (void)filterViewDidChooseCompleplted:(id)callBackDada;
+- (void)filterViewDidChooseCallBack:(NSString *)subjecID systemID:(NSString *)systemID;
 
 @end
 
 
 @interface NoteFilterViewController : LGNoteBaseViewController
+
 @property (nonatomic, weak) id <LGFilterViewControllerDelegate> delegate;
+/** 筛选类型 */
+@property (nonatomic, assign) FilterStyle filterStyle;
 /** 学科 */
 @property (nonatomic, copy) NSArray *subjectArray;
 /** 传入VM的参数 */

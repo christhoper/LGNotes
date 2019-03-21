@@ -7,7 +7,6 @@
 //
 
 #import "NoteViewModel.h"
-#import "NoteModel.h"
 #import "SubjectModel.h"
 #import "LGNoteNetworkManager.h"
 #import "LGNoteConfigure.h"
@@ -125,7 +124,10 @@
         [kNetwork.setRequestUrl(url).setRequestType(GET).setParameters(params)starSendRequestSuccess:^(id respone) {
             
             if (![respone[kErrorcode] hasSuffix:kSuccess]) {
-                [subscriber sendNext:nil];
+                SubjectModel *addSubjectModel = [[SubjectModel alloc] init];
+                addSubjectModel.SubjectID = @"";
+                addSubjectModel.SubjectName = @"全部";
+                [subscriber sendNext:@[addSubjectModel]];
                 [subscriber sendCompleted];
                 return;
             }

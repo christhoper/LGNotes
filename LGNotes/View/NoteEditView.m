@@ -14,25 +14,33 @@
 #import "LGNoteConfigure.h"
 #import "LGNoteImagePickerViewController.h"
 #import "LGNoteDrawBoardViewController.h"
-#import "NoteEditTextView.h"
 #import "UIButton+Notes.h"
+#import "NSString+Notes.h"
 
+@interface NoteEditView ()
+<
+LGNoteBaseTextFieldDelegate,
+LGNoteBaseTextViewDelegate,
+LGSubjectPickerViewDelegate
+>
 
-@interface NoteEditView ()<LGNoteBaseTextFieldDelegate,LGNoteBaseTextViewDelegate>
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong) LGNoteBaseTextField *titleTextF;
+@property (nonatomic, strong) UIButton *remarkBtn;
+@property (nonatomic, strong) UIButton *sourceBtn;
+@property (nonatomic, strong) UIButton *subjectBtn;
+@property (nonatomic, strong) UIImageView *subjTipImageView;
+@property (nonatomic, strong) UIImageView *sourceTipImageView;
+@property (nonatomic, strong) UIView *line;
+@property (nonatomic, strong) NoteViewModel *viewModel;
 
-@property (nonatomic, strong, readwrite) UIView *headerView;
-@property (nonatomic, strong, readwrite) UIView *bottomView;
-@property (nonatomic, strong, readwrite) LGNoteBaseTextField *titleTextF;
-@property (nonatomic, strong, readwrite) UIButton *remarkBtn;
-@property (nonatomic, strong, readwrite) UIButton *sourceBtn;
-@property (nonatomic, strong, readwrite) UIButton *subjectBtn;
-@property (nonatomic, strong, readwrite) UIImageView *subjTipImageView;
-@property (nonatomic, strong, readwrite) UIView *line;
-@property (nonatomic, strong, readwrite) NoteEditTextView *contentTextView;
+@property (nonatomic, strong) LGNoteBaseTextView *contentTextView;
+@property (nonatomic, strong) NSMutableAttributedString *imgAttr;
+@property (nonatomic, assign) NSInteger currentLocation;
+@property (nonatomic, assign) BOOL isInsert;
 
 @end
-
-static CGFloat const kTipLabelHeight   = 44;
 
 @implementation NoteEditView
 
@@ -64,6 +72,7 @@ static CGFloat const kTipLabelHeight   = 44;
     [self addSubview:self.titleTextF];
     [self addSubview:self.line];
     [self addSubview:self.contentTextView];
+    [self addSubview:self.sourceTipImageView];
     
     [self setupSubviewsContraints];
 }
@@ -84,13 +93,18 @@ static CGFloat const kTipLabelHeight   = 44;
         make.left.equalTo(self.headerView).offset(offsetX);
         make.size.mas_equalTo(CGSizeMake(16, 16));
     }];
+    [self.sourceTipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.headerView);
+        make.right.equalTo(self.headerView).offset(-offsetX);
+        make.size.mas_equalTo(CGSizeMake(6, 8));
+    }];
     [self.subjectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.subjTipImageView.mas_right).offset(5);
         make.centerY.equalTo(self.headerView);
 //        make.size.mas_equalTo(CGSizeMake(60, 30));
     }];
     [self.sourceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.headerView.mas_right).offset(-offsetX);
+        make.right.equalTo(self.sourceTipImageView.mas_left).offset(-5);
         make.centerY.equalTo(self.headerView);
 //        make.size.mas_equalTo(CGSizeMake(60, 30));
     }];
@@ -121,16 +135,101 @@ static CGFloat const kTipLabelHeight   = 44;
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.subjectBtn setImagePosition:LGImagePositionRight spacing:5];
-    [self.sourceBtn setImagePosition:LGImagePositionRight spacing:5];
+}
+
+#pragma mark - API
+- (void)bindViewModel:(NoteViewModel *)viewModel{
+    self.viewModel = viewModel;
+    self.titleTextF.text = viewModel.dataSourceModel.NoteTitle;
+    self.contentTextView.attributedText = viewModel.dataSourceModel.NoteContent_Att;
+}
+
+#pragma mark - TextViewDelegate
+- (void)lg_textViewDidChange:(LGNoteBaseTextView *)textView{
+    if (self.isInsert) {
+        self.contentTextView.selectedRange = NSMakeRange(self.currentLocation + self.imgAttr.length,0);
+    }
+    self.isInsert = NO;
+    [self.viewModel.dataSourceModel updateText:self.contentTextView.attributedText];
+}
+
+- (void)lg_textViewPhotoEvent:(LGNoteBaseTextView *)textView{
+    if (![LGNoteImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"没有打开相册权限"];
+    }
+    LGNoteImagePickerViewController *picker = [[LGNoteImagePickerViewController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    @weakify(self);
+    [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
+        [self.contentTextView addImage:image];
+        [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
+            @strongify(self);
+            if (!x) {
+                [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"上传失败，上传地址为空"];
+                return ;
+            }
+            [self settingImageAttributes:image imageFTPPath:x];
+        }];
+    }];
+    [self.ownController presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)lg_textViewCameraEvent:(LGNoteBaseTextView *)textView{
+    if (![LGNoteImagePickerViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"没有打开照相机权限"];
+    }
+    LGNoteImagePickerViewController *picker = [[LGNoteImagePickerViewController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    @weakify(self);
+    [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
+        @strongify(self);
+        [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
+            @strongify(self);
+            if (!x) {
+                [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"上传失败，上传地址为空"];
+                return ;
+            }
+            [self settingImageAttributes:image imageFTPPath:x];
+        }];
+    }];
+    [self.ownController presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)lg_textViewDrawBoardEvent:(LGNoteBaseTextView *)textView{
+    LGNoteDrawBoardViewController *drawController = [[LGNoteDrawBoardViewController alloc] init];
+    [self.ownController presentViewController:drawController animated:YES completion:nil];
+    
+    [drawController drawBoardDidFinished:^(UIImage * _Nonnull image) {
+        [self.contentTextView addImage:image];
+    }];
+}
+
+- (void)settingImageAttributes:(UIImage *)image imageFTPPath:(NSString *)path{
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    CGFloat scale = width*1.0/height;
+    CGFloat screenReferW = [UIScreen mainScreen].bounds.size.width - kNoteImageOffset;
+    if (width > screenReferW) {
+        width = screenReferW;
+        height = width/scale;
+    }
+    NSString *imgStr = [NSString stringWithFormat:@"<img src=\"%@\" width=\"%.f\" height=\"%.f\"/>",path,width,height];
+    NSMutableAttributedString *currentAttr = [[NSMutableAttributedString alloc] initWithAttributedString:self.contentTextView.attributedText];
+    self.imgAttr = imgStr.lg_changeforMutableAtttrubiteString;
+    [self.imgAttr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} range:NSMakeRange(0, self.imgAttr.length)];
+    
+    [self.viewModel.dataSourceModel updateImageInfo:@{@"src":path,@"width":[NSString stringWithFormat:@"%.f",width],@"height":[NSString stringWithFormat:@"%.f",height]} imageAttr:self.imgAttr];
+    self.currentLocation = [self.contentTextView offsetFromPosition:self.contentTextView.beginningOfDocument toPosition:self.contentTextView.selectedTextRange.start];
+    [currentAttr insertAttributedString:self.imgAttr atIndex:self.currentLocation];
+    [currentAttr insertAttributedString:[[NSAttributedString alloc] initWithString:@"\n"] atIndex:currentAttr.length];
+    self.contentTextView.attributedText = currentAttr;
+    self.isInsert = YES;
+    [self lg_textViewDidChange:self.contentTextView];
+    [self becomeFirstResponder];
 }
 
 #pragma mark - NSNotification action
 - (void)textViewKeyBoardDidShowNotification:(NSNotification *)notification{
-    // 如果还不能编辑，则不能改变约束
-    if (self.contentTextView.toolBar.hidden) {
-        return;
-    }
-    
     [self.contentTextView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.line.mas_bottom);
         make.centerX.equalTo(self);
@@ -149,7 +248,7 @@ static CGFloat const kTipLabelHeight   = 44;
 
 #pragma mark - textFildDelegate
 - (void)lg_textFieldDidChange:(LGNoteBaseTextField *)textField{
-//    self.model.NoteTitle = textField.text;
+    self.viewModel.dataSourceModel.NoteTitle = textField.text;
 }
 
 - (void)lg_textFieldShowMaxTextLengthWarning{
@@ -162,11 +261,11 @@ static CGFloat const kTipLabelHeight   = 44;
 }
 
 - (void)sourceBtnClick:(UIButton *)sender{
-    sender.selected = !sender.selected;
+    sender.selected = YES;
     if (sender.selected) {
-        sender.imageView.transform = CGAffineTransformMakeRotation(M_PI/2);
+        self.sourceTipImageView.transform = CGAffineTransformMakeRotation(M_PI/2);
     } else {
-        sender.imageView.transform = CGAffineTransformMakeRotation(0);
+        self.sourceTipImageView.transform = CGAffineTransformMakeRotation(0);
     }
 }
 
@@ -177,12 +276,33 @@ static CGFloat const kTipLabelHeight   = 44;
     } else {
         sender.imageView.transform = CGAffineTransformMakeRotation(0);
     }
+    
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
+    pickerView.delegate = self;
+    [pickerView showPickerViewMenuForDataSource:self.viewModel.subjectArray matchIndex:0];
 }
 
-- (void)setOwnController:(UIViewController *)ownController{
-    _ownController = ownController;
-    self.contentTextView.ownController = ownController;
+
+- (void)pickerView:(SubjectPickerView *)pickerView didSelectedCellIndexPathRow:(NSInteger)row{
+//    if (IsArrEmpty(self.pickerArray)) {
+//        return;
+//    }
+//    SubjectModel *model = self.pickerArray[row];
+//    self.subjectNameLabel.text = model.SubjectName;
+//    self.currentSelectedIndex = row;
 }
+
+- (void)dissmissPickerView{
+    self.subjectBtn.selected = NO;
+    self.subjectBtn.imageView.transform = CGAffineTransformMakeRotation(0);
+}
+
+#pragma mark - setter
+//- (void)setOwnController:(UIViewController *)ownController{
+//    _ownController = ownController;
+//    self.contentTextView.ownController = ownController;
+//}
 
 #pragma mark - layzy
 - (UIView *)headerView{
@@ -199,6 +319,14 @@ static CGFloat const kTipLabelHeight   = 44;
         _subjTipImageView.image = [NSBundle lg_imagePathName:@"note_subject"];
     }
     return _subjTipImageView;
+}
+
+- (UIImageView *)sourceTipImageView{
+    if (!_sourceTipImageView) {
+        _sourceTipImageView = [[UIImageView alloc] init];
+        _sourceTipImageView.image = [NSBundle lg_imagePathName:@"note_source_unselected"];
+    }
+    return _sourceTipImageView;
 }
 
 - (UIButton *)remarkBtn{
@@ -234,7 +362,6 @@ static CGFloat const kTipLabelHeight   = 44;
         _sourceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _sourceBtn.frame = CGRectZero;
         [_sourceBtn setTitle:@"来源:听句子选择" forState:UIControlStateNormal];
-        [_sourceBtn setImage:[NSBundle lg_imagePathName:@"note_source_unselected"] forState:UIControlStateNormal];
         _sourceBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
         [_sourceBtn setTitleColor:kColorInitWithRGB(249, 102, 2, 1) forState:UIControlStateNormal];
         [_sourceBtn addTarget:self action:@selector(sourceBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -272,14 +399,15 @@ static CGFloat const kTipLabelHeight   = 44;
     return _titleTextF;
 }
 
-- (NoteEditTextView *)contentTextView{
+- (LGNoteBaseTextView *)contentTextView{
     if (!_contentTextView) {
-        _contentTextView = [[NoteEditTextView alloc] initWithFrame:CGRectZero];
+        _contentTextView = [[LGNoteBaseTextView alloc] initWithFrame:CGRectZero];
         _contentTextView.placeholder = @"请输入内容...";
         _contentTextView.inputType = LGTextViewKeyBoardTypeEmojiLimit;
         _contentTextView.toolBarStyle = LGTextViewToolBarStyleDrawBoard;
         _contentTextView.maxLength = 50000;
         _contentTextView.font = [UIFont systemFontOfSize:15];
+        _contentTextView.lgDelegate = self;
         
 //        _contentTextView.imageTextModel = self.model;
 //        _contentTextView.ownController = self.ownController;

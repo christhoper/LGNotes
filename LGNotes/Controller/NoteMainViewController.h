@@ -8,29 +8,29 @@
 
 #import "LGNoteBaseViewController.h"
 
-typedef NS_ENUM(NSInteger, NoteMainViewControllerStyle) {
-    NoteMainViewControllerStyleDefaultNaviBar,    // 默认导航栏
-    NoteMainViewControllerStyleCustomNaviBar      // 自定义导航栏
+@class NoteMainTableView;
+NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSInteger, NoteNaviBarLeftItemStyle) {
+    NoteMainViewControllerNaviBarStyleBack,         // 默认返回
+    NoteMainViewControllerNaviBarStyleUserIcon      // 用户
 };
 
-@class NoteMainTableView,LGNoteBaseTextField;
-NS_ASSUME_NONNULL_BEGIN
+/** 左按钮时间(可能是返回事件/也可能是用户点击事件) */
+typedef void(^LeftNaviBarItemBlock)(void);
 
 @interface NoteMainViewController : LGNoteBaseViewController
 /** 自定义导航栏 */
 @property (nonatomic, strong) NoteMainTableView *tableView;
+/** 左侧导航栏按钮 */
+@property (nonatomic, strong) UIBarButtonItem *leftBarItem;
 @property (nonatomic, strong) ParamModel *paramModel;
-@property (nonatomic, strong, readonly) UIView *customNavigationBar;
-@property (nonatomic, strong, readonly) LGNoteBaseTextField *searchBar;
-@property (nonatomic, strong, readonly) UIButton *enterSearchBtn;
-@property (nonatomic, strong, readonly) UIButton *mainBtn;
-@property (nonatomic, strong, readonly) UIView *searchBgView;
+
+- (instancetype)initWithNaviBarLeftItemStyle:(NoteNaviBarLeftItemStyle)style;
 
 
-/**
- 刷新笔记列表数据（提供给外部自定义导航栏时使用，可以改变param参数后再刷新）
- */
-- (void)refreshNoteData;
+- (void)leftNaviBarItemClickEvent:(LeftNaviBarItemBlock)block;
+
 
 @end
 

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "ParamModel.h"
+#import "NoteModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 参数 */
 @property (nonatomic, strong) ParamModel *paramModel;
 
+/** 刷新 */
 @property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) RACSubject *refreshSubject;
 @property (nonatomic, strong) RACCommand *nextPageCommand;
@@ -37,7 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger totalCount;
 /** 笔记所支持学科 */
 @property (nonatomic, copy)   NSArray *subjectArray;
-
+/** 数据源 */
+@property (nonatomic, strong) NoteModel *dataSourceModel;
 
 /**
  获取学科信息

@@ -15,7 +15,6 @@
 @property (nonatomic, assign) BOOL selectedItem;
 /** 选学生时使用 */
 @property (nonatomic, assign) BOOL stuSelected;
-@property (nonatomic, strong) SubjectModel *dataSourceModel;
-@property (nonatomic, copy)   NSString *subjectName;
+@property (nonatomic, strong) UILabel *contentLabel;
 
 @end

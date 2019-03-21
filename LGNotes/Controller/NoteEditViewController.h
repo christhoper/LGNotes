@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NoteEditViewController : LGNoteBaseViewController
 
-/** 是否是新建b笔记 */
+/** 是否是新建笔记 */
 @property (nonatomic, assign) BOOL isNewNote;
 @property (nonatomic, strong) ParamModel *paramModel;
 @property (nonatomic, strong) RACSubject *updateSubject;
 
-@property (nonatomic, copy)   NSMutableArray *pickerArray;
+@property (nonatomic, copy)   NSArray *pickerArray;
 
 
 /**

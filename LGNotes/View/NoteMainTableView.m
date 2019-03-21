@@ -12,6 +12,39 @@
 #import "NoteViewModel.h"
 #import "NoteModel.h"
 #import "NoteEditViewController.h"
+#import "NoteMainImageTableViewCell.h"
+#import "NoteMoreImageTableViewCell.h"
+
+@interface DateHeaderFooterView : UITableViewHeaderFooterView
+
+@property (nonatomic, strong) UILabel *dateLabel;
+
+@end
+
+@implementation DateHeaderFooterView
+
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        [self.contentView addSubview:self.dateLabel];
+        [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(2, 10, 2, 10));
+        }];
+    }
+    return self;
+    
+}
+
+- (UILabel *)dateLabel{
+    if (!_dateLabel) {
+        _dateLabel = [[UILabel alloc] init];
+        _dateLabel.font = kSYSTEMFONT(12.f);
+        _dateLabel.textColor = kColorWithHex(0x656565);
+    }
+    return _dateLabel;
+}
+@end
+
+
 
 @interface NoteMainTableView () <UITableViewDataSource,UITableViewDelegate>
 
@@ -26,9 +59,12 @@
     if (self = [super initWithFrame:frame style:style]) {
         self.delegate = self;
         self.dataSource = self;
-        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.01)];
-        self.rowHeight = 80;
+        
+        self.rowHeight = 120;
         [self registerClass:[NoteMainTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NoteMainTableViewCell class])];
+        [self registerClass:[NoteMainImageTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NoteMainImageTableViewCell class])];
+        [self registerClass:[NoteMoreImageTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NoteMoreImageTableViewCell class])];
+        [self registerClass:[DateHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"DateHeaderFooterViewID"];
         [self allocInitRefreshHeader:YES allocInitFooter:YES];
     }
     return self;
@@ -80,18 +116,27 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NoteMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([NoteMainTableViewCell class]) forIndexPath:indexPath];
-    NoteModel *model = self.dataArray[indexPath.section];
-    [cell configureCellForDataSource:model indexPath:indexPath];
-    return cell;
+    if (indexPath.section %2 == 0) {
+        NoteMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([NoteMainTableViewCell class]) forIndexPath:indexPath];
+        NoteModel *model = self.dataArray[indexPath.section];
+        [cell configureCellForDataSource:model indexPath:indexPath];
+        return cell;
+    } else {
+        NoteMoreImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([NoteMoreImageTableViewCell class]) forIndexPath:indexPath];
+//        NoteModel *model = self.dataArray[indexPath.section];
+//        [cell configureCellForDataSource:model indexPath:indexPath];
+        return cell;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return nil;
+    DateHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DateHeaderFooterViewID"];
+    headerView.dateLabel.text = @"2019-03-22";
+    return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 12.f;
+    return 30.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

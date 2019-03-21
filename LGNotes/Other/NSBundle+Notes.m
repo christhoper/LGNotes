@@ -13,7 +13,7 @@
 + (instancetype)lg_noteBundle{
     static NSBundle *noteBundle = nil;
     if (!noteBundle) {
-        NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Frameworks/LGNotes.framework/Resoure/LGNote.bundle"];
+        NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"LGNote.bundle"];
         if (![[NSFileManager defaultManager] fileExistsAtPath:bundlePath]) {
             bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"LGNote.bundle"];
         }

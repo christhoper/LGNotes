@@ -106,7 +106,7 @@
     if (!_remarkBtn) {
         _remarkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _remarkBtn.frame = CGRectZero;
-        [_remarkBtn setImage:[NSBundle lg_imagePathName:@"note_search_selected"] forState:UIControlStateNormal];
+        [_remarkBtn setImage:[NSBundle lg_imagePathName:@"note_remark_selected"] forState:UIControlStateNormal];
         [_remarkBtn addTarget:self action:@selector(remarkBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _remarkBtn;
@@ -129,10 +129,10 @@
         _searchBar.layer.masksToBounds = YES;
         _searchBar.borderStyle = UITextBorderStyleNone;
         _searchBar.placeholder = @"请输入关键字搜索";
-        [_searchBar setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
-        _searchBar.backgroundColor = kColorInitWithRGB(201, 201, 201, 1);
+        [_searchBar setValue:kColorWithHex(0x989898) forKeyPath:@"_placeholderLabel.textColor"];
+        _searchBar.backgroundColor = kColorInitWithRGB(242, 242, 242, 1);
         _searchBar.userInteractionEnabled = NO;
-        //        _searchBar.leftImageName = @"search_white";
+        _searchBar.leftImageView.image = [NSBundle lg_imageName:@"lg_search"];
     }
     return _searchBar;
 }

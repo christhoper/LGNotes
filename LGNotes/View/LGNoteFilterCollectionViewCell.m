@@ -7,14 +7,12 @@
 //
 
 #import "LGNoteFilterCollectionViewCell.h"
-#import "SubjectModel.h"
 #import "LGNoteConfigure.h"
 #import <Masonry/Masonry.h>
 
 
 @interface LGNoteFilterCollectionViewCell ()
 
-@property (nonatomic, strong) UILabel *contentLabel;
 
 @end
 
@@ -40,16 +38,6 @@
     }];
 }
 
-- (void)setDataSourceModel:(SubjectModel *)dataSourceModel{
-    _dataSourceModel = dataSourceModel;
-    self.contentLabel.text = dataSourceModel.SubjectName;
-}
-
-- (void)setSubjectName:(NSString *)subjectName{
-    _subjectName = subjectName;
-    self.contentLabel.text = subjectName;
-}
-
 - (void)setSelectedItem:(BOOL)selectedItem{
     _selectedItem = selectedItem;
     [self settingLabelColor:selectedItem];
@@ -66,16 +54,16 @@
     if (selected) {
         self.contentLabel.backgroundColor = kSeletedColor;
         self.contentLabel.textColor = kSeletedLabelTextColor;
-    }else{
+    } else {
         self.contentLabel.backgroundColor = kUnseleterColor;
-        self.contentLabel.textColor = [UIColor darkTextColor];
+        self.contentLabel.textColor = kColorWithHex(0x989898);
     }
 }
 
 - (UILabel *)contentLabel{
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] init];
-        _contentLabel.textColor = [UIColor darkTextColor];;
+        _contentLabel.textColor = kColorWithHex(0x989898);
         _contentLabel.backgroundColor = kUnseleterColor;
         _contentLabel.textAlignment = NSTextAlignmentCenter;
         _contentLabel.font = [UIFont systemFontOfSize:14];
