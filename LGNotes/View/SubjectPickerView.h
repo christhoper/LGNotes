@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id <LGSubjectPickerViewDelegate> delegate;
 
-
 + (SubjectPickerView *)showPickerView;
 
 
@@ -36,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)showPickerViewMenuForDataSource:(NSArray *)dataSource
                              matchIndex:(NSInteger)matchIndex;
+
 
 
 

@@ -25,6 +25,7 @@ SearchToolViewDelegate
 @property (nonatomic, strong) NoteViewModel *viewModel;
 @property (nonatomic, strong) SearchToolView *toolView;
 @property (nonatomic, assign) NoteNaviBarLeftItemStyle style;
+@property (nonatomic, assign) SystemUsedType systemType;
 @property (nonatomic, copy)   LeftNaviBarItemBlock leftItemBlock;
 @property (nonatomic, copy)   CheckNoteBaseUrlAvailableBlock checkBlock;
 
@@ -33,12 +34,13 @@ SearchToolViewDelegate
 @implementation NoteMainViewController
 
 - (instancetype)init{
-    return [self initWithNaviBarLeftItemStyle:NoteMainViewControllerNaviBarStyleBack];
+    return [self initWithNaviBarLeftItemStyle:NoteMainViewControllerNaviBarStyleBack systemType:SystemUsedTypeAssistanter];
 }
 
-- (instancetype)initWithNaviBarLeftItemStyle:(NoteNaviBarLeftItemStyle)style{
+- (instancetype)initWithNaviBarLeftItemStyle:(NoteNaviBarLeftItemStyle)style systemType:(SystemUsedType)type{
     if (self = [super init]) {
-        _style = NoteMainViewControllerNaviBarStyleBack;
+        _style = style;
+        _systemType = type;
     }
     return self;
 }
@@ -99,14 +101,10 @@ SearchToolViewDelegate
     editController.paramModel = self.paramModel;
     editController.updateSubject = [RACSubject subject];
     [self.navigationController pushViewController:editController animated:YES];
-    @weakify(self,editController);
+    @weakify(self);
     [editController.updateSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
-    }];
-    [RACObserve(self.viewModel, subjectArray) subscribeNext:^(id  _Nullable x) {
-        @strongify(editController);
-        editController.pickerArray = x;
     }];
 }
 
@@ -133,7 +131,6 @@ SearchToolViewDelegate
 #pragma mark - delegate
 - (void)baseTableView:(LGNoteBaseTableView *)tableView pullUpRefresh:(BOOL)upRefresh pullDownRefresh:(BOOL)downRefresh{
     if (upRefresh) {
-        self.viewModel.paramModel.Skip = -1;
         self.viewModel.paramModel.PageIndex = 1;
         [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
     }
@@ -177,6 +174,7 @@ SearchToolViewDelegate
 }
 
 - (void)remarkEvent:(BOOL)remark{
+    // 是否是查看重点笔记；1表示查看重点笔记，-1是查看全部笔记
     self.viewModel.paramModel.IsKeyPoint = remark ? @"1":@"-1";
     self.tableView.requestStatus = LGBaseTableViewRequestStatusStartLoading;
     [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
@@ -204,7 +202,7 @@ SearchToolViewDelegate
 - (SearchToolView *)toolView{
     if (!_toolView) {
         SearchToolViewConfigure *configure = [[SearchToolViewConfigure alloc] init];
-        configure.style = SearchToolViewStyleFilter;
+        configure.style = (_systemType == SystemUsedTypeAssistanter) ? SearchToolViewStyleFilter:SearchToolViewStyleDefault;
         _toolView = [[SearchToolView alloc] initWithFrame:CGRectZero configure:configure];
         _toolView.delegate = self;
     }

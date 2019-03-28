@@ -16,11 +16,11 @@ UIKIT_EXTERN NSString  *const LGTextViewKeyBoardWillHiddenNotification;
 
 
 typedef NS_ENUM(NSInteger, LGTextViewKeyBoardType){
-    LGTextViewKeyBoardTypeDefault,       // 不限制
-    LGTextViewKeyBoardTypeNumber,        // 只允许输入数字
-    LGTextViewKeyBoardTypeDecimal,       //  只允许输入实数，包括.
-    LGTextViewKeyBoardTypeCharacter,     // 只允许非中文输入
-    LGTextViewKeyBoardTypeEmojiLimit     // 过滤表情
+    LGTextViewKeyBoardTypeDefault,         // 不限制
+    LGTextViewKeyBoardTypeNumber,          // 只允许输入数字
+    LGTextViewKeyBoardTypeDecimal,         //  只允许输入实数，包括.
+    LGTextViewKeyBoardTypeCharacter,       // 只允许非中文输入
+    LGTextViewKeyBoardTypeEmojiLimit       // 过滤表情
 };
 
 /** 键盘上方工具条风格 */
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, LGTextViewToolBarStyle) {
 - (void)lg_textViewDidBeginEditing:(LGNoteBaseTextView *)textView;
 /** 结束编辑 */
 - (void)lg_textViewDidEndEditing:(LGNoteBaseTextView *)textView;
-
+/** 获取图片点击事件 */
 - (BOOL)lg_textViewShouldInteractWithTextAttachment:(LGNoteBaseTextView *)textView;
 
 @end

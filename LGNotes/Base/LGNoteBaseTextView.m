@@ -380,7 +380,6 @@ static const void *LGTextViewToolBarStyleKey          = &LGTextViewToolBarStyleK
             default:
                 break;
         }
-        //        [_toolBar setItems:@[clear,space,done]];
     }
     return _toolBar;
 }

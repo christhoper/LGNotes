@@ -7,13 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NoteViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@class NoteViewModel;
+
+/** 编辑页头部样式使用 */
+typedef NS_ENUM(NSInteger, NoteEditViewHeaderStyle) {
+    NoteEditViewHeaderStyleDefault,           // 都不隐藏
+    NoteEditViewHeaderStyleHideSource,        // 隐藏来源选项
+    NoteEditViewHeaderStyleHideSubject,       // 隐藏学科选项
+    NoteEditViewHeaderStyleHideAll            // 隐藏全部
+};
 
 @interface NoteEditView : UIView
 
 @property (nonatomic, weak) UIViewController *ownController;
+
+
+/**
+ 初始化
+
+ @param frame <#frame description#>
+ @param style <#style description#>
+ @return <#return value description#>
+ */
+- (instancetype)initWithFrame:(CGRect)frame
+              headerViewStyle:(NoteEditViewHeaderStyle)style;
 
 - (void)bindViewModel:(NoteViewModel *)viewModel;
 

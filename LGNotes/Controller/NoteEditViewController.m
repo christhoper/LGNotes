@@ -35,26 +35,10 @@
 
 - (void)commonInit{
     self.title = self.isNewNote ? @"新建笔记":@"编辑笔记";
-
-//    if (IsStrEmpty(self.paramModel.NoteBaseUrl)) {
-//        [kMBAlert showErrorWithStatus:@"笔记地址为空"];
-//        [self.navigationController popViewControllerAnimated:YES];
-//        return;
-//    }
-//
-//    if (self.isNewNote) {
-//        [kMBAlert showIndeterminateWithStatus:@"正在进行，请稍等..."];
-//        [self lg_bindSubjectData];
-//    }
 }
-
 
 - (void)editNoteWithDataSource:(NoteModel *)dataSource{
     self.sourceModel = dataSource;
-    self.sourceModel.UserID = self.viewModel.paramModel.UserID;
-    self.sourceModel.SchoolID = self.viewModel.paramModel.SchoolID;
-//    self.titleTextF.text = self.model.NoteTitle;
-//    self.contentTextView.attributedText = self.model.NoteContent_Att;
 }
 
 - (void)addRightNavigationBar{
@@ -69,7 +53,6 @@
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
-
 - (void)createSubViews{
     [self addRightNavigationBar];
     [self addLeftNavigationBar];
@@ -81,14 +64,7 @@
 
 #pragma mark - 导航栏右按钮触发事件
 - (void)rightBarButtonItem:(UIBarButtonItem *)sender{
-    if (self.isNewNote) {
-        self.sourceModel.OperateFlag = 1;
-        self.viewModel.paramModel.Skip = 1;
-    } else {
-        self.sourceModel.OperateFlag = 0;
-        self.viewModel.paramModel.Skip = 0;
-    }
-    
+    self.sourceModel.OperateFlag = self.isNewNote ? 1:0;
     [self operatedNote];
 }
 
@@ -124,21 +100,11 @@
     }];
 }
 
-//- (void)pickerView:(SubjectPickerView *)pickerView didSelectedCellIndexPathRow:(NSInteger)row{
-//    if (IsArrEmpty(self.pickerArray)) {
-//        return;
-//    }
-//    SubjectModel *model = self.pickerArray[row];
-//    self.subjectNameLabel.text = model.SubjectName;
-//    self.currentSelectedIndex = row;
-//}
-
 #pragma mark - lazy
 - (NoteViewModel *)viewModel{
     if (!_viewModel) {
         _viewModel = [[NoteViewModel alloc] init];
         _viewModel.paramModel = self.paramModel;
-//        _viewModel.subjectArray = self.pickerArray;
         _viewModel.dataSourceModel = self.sourceModel;
     }
     return _viewModel;
@@ -146,7 +112,7 @@
 
 - (NoteEditView *)contentView{
     if (!_contentView) {
-        _contentView = [[NoteEditView alloc] init];
+        _contentView = [[NoteEditView alloc] initWithFrame:CGRectZero headerViewStyle:NoteEditViewHeaderStyleDefault];
         _contentView.ownController = self;
         [_contentView bindViewModel:self.viewModel];
     }
@@ -161,7 +127,7 @@
         _sourceModel.UserID = self.paramModel.UserID;
         _sourceModel.UserName = self.paramModel.UserName;
         _sourceModel.ResourceName = self.paramModel.ResourceName;
-        _sourceModel.ResourceID = self.paramModel.SystemID;
+        _sourceModel.ResourceID = self.paramModel.ResourceID;
         _sourceModel.SchoolID = self.paramModel.SchoolID;
     }
     return _sourceModel;

@@ -17,11 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) ParamModel *paramModel;
 @property (nonatomic, strong) RACSubject *updateSubject;
 
-@property (nonatomic, copy)   NSArray *pickerArray;
-
-
 /**
- 编辑笔记
+ 编辑笔记时传入的数据模型
 
  @param dataSource <#dataSource description#>
  */

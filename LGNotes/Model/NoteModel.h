@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *IsKeyPoint;
 
 @property (nonatomic, copy) NSString *MaterialID;
-@property (nonatomic, copy) NSString *MaterialIndex;
+@property (nonatomic, assign) NSInteger MaterialIndex;
 @property (nonatomic, copy) NSString *StartTime;
 @property (nonatomic, copy) NSString *EndTime;
 

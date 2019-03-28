@@ -16,6 +16,12 @@ typedef NS_ENUM(NSInteger, NoteNaviBarLeftItemStyle) {
     NoteMainViewControllerNaviBarStyleUserIcon      // 用户
 };
 
+/** 使用的系统类型 */
+typedef NS_ENUM(NSInteger, SystemUsedType) {
+    SystemUsedTypeAssistanter,       // 小助手/基础平台系统使用
+    SystemUsedTypeOther              // 其他平台使用
+};
+
 /** 左按钮时间(可能是返回事件/也可能是用户点击事件) */
 typedef void(^LeftNaviBarItemBlock)(void);
 
@@ -34,11 +40,11 @@ typedef void(^CheckNoteBaseUrlAvailableBlock)(BOOL available);
 /**
  初始化
 
- @param style <#style description#>
+ @param style 左导航栏使用类型
+ @param type 系统使用类型
  @return <#return value description#>
  */
-- (instancetype)initWithNaviBarLeftItemStyle:(NoteNaviBarLeftItemStyle)style;
-
+- (instancetype)initWithNaviBarLeftItemStyle:(NoteNaviBarLeftItemStyle)style systemType:(SystemUsedType)type;
 
 /**
  检查笔记库网址是否可用

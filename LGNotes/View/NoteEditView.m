@@ -12,8 +12,6 @@
 #import "LGNoteBaseTextField.h"
 #import "LGNoteBaseTextView.h"
 #import "LGNoteConfigure.h"
-#import "UIButton+Notes.h"
-#import "NSString+Notes.h"
 #import <YBImageBrowser/YBImageBrowser.h>
 #import "LGNoteImagePickerViewController.h"
 #import "LGNoteDrawBoardViewController.h"
@@ -27,12 +25,14 @@ LGSubjectPickerViewDelegate
 >
 
 @property (nonatomic, strong) UIView *headerView;
+/** 灰线(10高度) */
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) UIButton *remarkBtn;
 @property (nonatomic, strong) UIButton *sourceBtn;
 @property (nonatomic, strong) UIButton *subjectBtn;
 @property (nonatomic, strong) UIImageView *subjTipImageView;
 @property (nonatomic, strong) UIImageView *sourceTipImageView;
+/** 标题下的线(0.7高度) */
 @property (nonatomic, strong) UIView *line;
 
 @property (nonatomic, strong) LGNoteBaseTextField *titleTextF;
@@ -40,9 +40,20 @@ LGSubjectPickerViewDelegate
 @property (nonatomic, strong) NSMutableAttributedString *imgAttr;
 @property (nonatomic, assign) NSInteger currentLocation;
 @property (nonatomic, assign) BOOL isInsert;
+
 /** 当前选中的学科下标 */
 @property (nonatomic, assign) NSInteger currentSelectedSubjectIndex;
+@property (nonatomic, assign) NSInteger currentSelectedTopicIndex;
+
+/** 头部视图的风格 */
+@property (nonatomic, assign) NoteEditViewHeaderStyle style;
+/** 题目筛选picker数据源 */
+@property (nonatomic, copy)   NSArray *materialArray;
+/** 学科筛选picker数据源 */
+@property (nonatomic, copy)   NSArray *subjectArray;
+
 @property (nonatomic, strong) NoteViewModel *viewModel;
+
 @end
 
 @implementation NoteEditView
@@ -52,7 +63,12 @@ LGSubjectPickerViewDelegate
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithFrame:frame headerViewStyle:NoteEditViewHeaderStyleDefault];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame headerViewStyle:(NoteEditViewHeaderStyle)style{
     if (self = [super initWithFrame:frame]) {
+        _style = style;
         self.backgroundColor = [UIColor whiteColor];
         [self registNotifications];
         [self createSubviews];
@@ -67,11 +83,22 @@ LGSubjectPickerViewDelegate
 }
 
 - (void)createSubviews{
-    [self addSubview:self.headerView];
-    [self.headerView addSubview:self.subjectBtn];
-    [self.headerView addSubview:self.sourceBtn];
-    [self.headerView addSubview:self.subjTipImageView];
-    [self addSubview:self.bottomView];
+    switch (_style) {
+        case NoteEditViewHeaderStyleDefault:
+        case NoteEditViewHeaderStyleHideSubject:
+        case NoteEditViewHeaderStyleHideSource:{
+            [self addSubview:self.headerView];
+            [self.headerView addSubview:self.subjectBtn];
+            [self.headerView addSubview:self.sourceBtn];
+            [self.headerView addSubview:self.subjTipImageView];
+            [self addSubview:self.bottomView];
+            self.subjectBtn.hidden = (_style == NoteEditViewHeaderStyleHideSubject) ? YES:NO;
+            self.sourceBtn.hidden  = (_style == NoteEditViewHeaderStyleHideSource) ? YES:NO;
+        }
+            break;
+        case NoteEditViewHeaderStyleHideAll: break;
+    }
+    
     [self addSubview:self.remarkBtn];
     [self addSubview:self.titleTextF];
     [self addSubview:self.line];
@@ -83,51 +110,67 @@ LGSubjectPickerViewDelegate
 
 - (void)setupSubviewsContraints{
     CGFloat offsetX = 15.f;
-    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self);
-        make.height.mas_equalTo(40);
-    }];
-    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.headerView.mas_bottom);
-        make.left.right.equalTo(self);
-        make.height.mas_equalTo(10);
-    }];
-    [self.subjTipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.headerView);
-        make.left.equalTo(self.headerView).offset(offsetX);
-        make.size.mas_equalTo(CGSizeMake(16, 16));
-    }];
-    [self.sourceTipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.headerView);
-        make.right.equalTo(self.headerView).offset(-offsetX);
-        make.size.mas_equalTo(CGSizeMake(6, 8));
-    }];
-    [self.subjectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.subjTipImageView.mas_right).offset(5);
-        make.centerY.equalTo(self.headerView);
-//        make.size.mas_equalTo(CGSizeMake(60, 30));
-    }];
-    [self.sourceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.sourceTipImageView.mas_left).offset(-5);
-        make.centerY.equalTo(self.headerView);
-//        make.size.mas_equalTo(CGSizeMake(60, 30));
-    }];
+    
+    switch (_style) {
+        case NoteEditViewHeaderStyleDefault:
+        case NoteEditViewHeaderStyleHideSubject:
+        case NoteEditViewHeaderStyleHideSource:{
+            [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.top.equalTo(self);
+                make.height.mas_equalTo(40);
+            }];
+            [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.headerView.mas_bottom);
+                make.left.right.equalTo(self);
+                make.height.mas_equalTo(10);
+            }];
+            [self.subjTipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.headerView);
+                make.left.equalTo(self.headerView).offset(offsetX);
+                make.size.mas_equalTo(CGSizeMake(16, 16));
+            }];
+            [self.sourceTipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.headerView);
+                make.right.equalTo(self.headerView).offset(-offsetX);
+                make.size.mas_equalTo(CGSizeMake(6, 8));
+            }];
+            [self.subjectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.subjTipImageView.mas_right).offset(5);
+                make.centerY.equalTo(self.headerView);
+            }];
+            [self.sourceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.sourceTipImageView.mas_left).offset(-5);
+                make.centerY.equalTo(self.headerView);
+            }];
+            [self.titleTextF mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.bottomView.mas_bottom);
+                make.left.equalTo(self).offset(offsetX);
+                make.right.equalTo(self.remarkBtn.mas_left).offset(-10);
+                make.height.mas_equalTo(50);
+            }];
+        }
+            break;
+        case NoteEditViewHeaderStyleHideAll:{
+            [self.titleTextF mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self);
+                make.left.equalTo(self).offset(offsetX);
+                make.right.equalTo(self.remarkBtn.mas_left).offset(-10);
+                make.height.mas_equalTo(50);
+            }];
+        }
+            break;
+    }
+    
     [self.remarkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.titleTextF);
         make.right.equalTo(self).offset(-offsetX);
         make.size.mas_equalTo(CGSizeMake(16, 16));
     }];
-    [self.titleTextF mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.bottomView.mas_bottom);
-        make.left.equalTo(self).offset(offsetX);
-        make.right.equalTo(self.remarkBtn.mas_left).offset(-10);
-        make.height.mas_equalTo(50);
-    }];
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleTextF);
         make.right.equalTo(self.remarkBtn);
         make.top.equalTo(self.titleTextF.mas_bottom);
-        make.height.mas_equalTo(0.8);
+        make.height.mas_equalTo(0.7);
     }];
     [self.contentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.line.mas_bottom);
@@ -146,6 +189,28 @@ LGSubjectPickerViewDelegate
     self.viewModel = viewModel;
     self.titleTextF.text = viewModel.dataSourceModel.NoteTitle;
     self.contentTextView.attributedText = viewModel.dataSourceModel.NoteContent_Att;
+    self.remarkBtn.selected = [viewModel.dataSourceModel.IsKeyPoint isEqualToString:@"1"] ? YES:NO;
+    self.materialArray = [self configureMaterialPickerDataSource];
+    self.subjectArray = [self configureSubjectPickerDataSource];
+}
+
+
+- (NSArray *)configureMaterialPickerDataSource{
+    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:self.viewModel.paramModel.MaterialCount];
+    for (int i = 0; i < self.viewModel.paramModel.MaterialCount; i ++) {
+        NSString *topicTitle = [NSString stringWithFormat:@"第%d大题",i+1];
+        [resultArray addObject:topicTitle];
+    }
+    return resultArray;
+}
+
+- (NSArray *)configureSubjectPickerDataSource{
+    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:self.viewModel.subjectArray.count];
+    for (int i = 0; i < self.viewModel.subjectArray.count; i ++) {
+        SubjectModel *model = self.viewModel.subjectArray[i];
+        [resultArray addObject:model.SubjectName];
+    }
+    return resultArray;
 }
 
 #pragma mark - TextViewDelegate
@@ -280,7 +345,6 @@ LGSubjectPickerViewDelegate
     } else {
         self.viewModel.dataSourceModel.IsKeyPoint = @"0";
     }
-    
 }
 
 - (void)sourceBtnClick:(UIButton *)sender{
@@ -290,6 +354,11 @@ LGSubjectPickerViewDelegate
     } else {
         self.sourceTipImageView.transform = CGAffineTransformMakeRotation(0);
     }
+    
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
+    pickerView.delegate = self;
+    [pickerView showPickerViewMenuForDataSource:self.materialArray matchIndex:self.currentSelectedTopicIndex];
 }
 
 - (void)subjectBtnClick:(UIButton *)sender{
@@ -303,22 +372,36 @@ LGSubjectPickerViewDelegate
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
     SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
     pickerView.delegate = self;
-    [pickerView showPickerViewMenuForDataSource:self.viewModel.subjectArray matchIndex:self.currentSelectedSubjectIndex];
+    [pickerView showPickerViewMenuForDataSource:self.subjectArray matchIndex:self.currentSelectedSubjectIndex];
 }
 
-
+#pragma mark - pickerDelegate
 - (void)pickerView:(SubjectPickerView *)pickerView didSelectedCellIndexPathRow:(NSInteger)row{
-//    if (IsArrEmpty(self.pickerArray)) {
+//    if (IsArrEmpty(self.subjectArray) || IsArrEmpty(self.materialArray)) {
 //        return;
 //    }
-//    SubjectModel *model = self.pickerArray[row];
-//    self.subjectNameLabel.text = model.SubjectName;
-    self.currentSelectedSubjectIndex = row;
+    
+    if (self.subjectBtn.selected) {
+        SubjectModel *model = self.viewModel.subjectArray[row];
+        [self.subjectBtn setTitle:model.SubjectName forState:UIControlStateNormal];
+        self.currentSelectedSubjectIndex = row;
+        self.viewModel.dataSourceModel.SubjectID = model.SubjectID;
+        self.viewModel.dataSourceModel.SubjectName = model.SubjectName;
+    }
+    
+    if (self.sourceBtn.selected) {
+        NSString *string = self.materialArray[row];
+        [self.sourceBtn setTitle:string forState:UIControlStateNormal];
+        self.currentSelectedTopicIndex = row;
+        self.viewModel.dataSourceModel.MaterialIndex = row+1;
+    }
 }
 
 - (void)dissmissPickerView{
     self.subjectBtn.selected = NO;
+    self.sourceBtn.selected = NO;
     self.subjectBtn.imageView.transform = CGAffineTransformMakeRotation(0);
+    self.sourceTipImageView.transform = CGAffineTransformMakeRotation(0);
 }
 
 #pragma mark - layzy
@@ -352,6 +435,7 @@ LGSubjectPickerViewDelegate
         _remarkBtn.frame = CGRectZero;
         [_remarkBtn setImage:[NSBundle lg_imagePathName:@"note_remark_unselected"] forState:UIControlStateNormal];
         [_remarkBtn setImage:[NSBundle lg_imagePathName:@"note_remark_selected"] forState:UIControlStateSelected];
+        
         [_remarkBtn setTitleColor:kColorWithHex(0x0099ff) forState:UIControlStateNormal];
         [_remarkBtn addTarget:self action:@selector(remarkBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_remarkBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
@@ -407,7 +491,7 @@ LGSubjectPickerViewDelegate
         _titleTextF = [[LGNoteBaseTextField alloc] init];
         _titleTextF.borderStyle = UITextBorderStyleNone;
         _titleTextF.backgroundColor = [UIColor whiteColor];
-        _titleTextF.placeholder = @"请输入标题(100字内)...";
+        _titleTextF.placeholder = @"请输入标题(100字内)";
         _titleTextF.leftView = nil;
         _titleTextF.lgDelegate = self;
         _titleTextF.maxLength = 100;
@@ -426,10 +510,6 @@ LGSubjectPickerViewDelegate
         _contentTextView.maxLength = 50000;
         _contentTextView.font = [UIFont systemFontOfSize:15];
         _contentTextView.lgDelegate = self;
-        
-//        _contentTextView.imageTextModel = self.model;
-//        _contentTextView.ownController = self.ownController;
-//        _contentTextView.viewModel = self.viewModel;
         [_contentTextView showMaxTextLengthWarn:^{
             [[LGNoteMBAlert shareMBAlert] showRemindStatus:@"字数已达限制"];
         }];

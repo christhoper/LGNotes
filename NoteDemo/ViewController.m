@@ -27,7 +27,7 @@
 
 
 - (void)enterNoteViewController:(UIButton *)sender {
-    NoteMainViewController *noteController = [[NoteMainViewController alloc] init];
+    NoteMainViewController *noteController = [[NoteMainViewController alloc] initWithNaviBarLeftItemStyle:NoteMainViewControllerNaviBarStyleBack systemType:SystemUsedTypeAssistanter];
     // 配置笔记首页所需参数
     noteController.paramModel = [self configureParams];
     
@@ -48,7 +48,8 @@
     params.ResourceID = @"";
     params.UserID = @"zxstu1";
     params.UserType = 2;
-    
+    params.CPBaseUrl = @"http://192.168.3.155:10102";
+    params.MaterialCount = 10;
     return params;
 }
 

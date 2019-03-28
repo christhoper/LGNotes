@@ -15,37 +15,6 @@
 #import "NoteMainImageTableViewCell.h"
 #import "NoteMoreImageTableViewCell.h"
 
-@interface DateHeaderFooterView : UITableViewHeaderFooterView
-
-@property (nonatomic, strong) UILabel *dateLabel;
-
-@end
-
-@implementation DateHeaderFooterView
-
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        [self.contentView addSubview:self.dateLabel];
-        [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(2, 10, 2, 10));
-        }];
-    }
-    return self;
-    
-}
-
-- (UILabel *)dateLabel{
-    if (!_dateLabel) {
-        _dateLabel = [[UILabel alloc] init];
-        _dateLabel.font = kSYSTEMFONT(12.f);
-        _dateLabel.textColor = kColorWithHex(0x656565);
-    }
-    return _dateLabel;
-}
-@end
-
-
-
 @interface NoteMainTableView () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
@@ -63,7 +32,6 @@
         [self registerClass:[NoteMainTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NoteMainTableViewCell class])];
         [self registerClass:[NoteMainImageTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NoteMainImageTableViewCell class])];
         [self registerClass:[NoteMoreImageTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NoteMoreImageTableViewCell class])];
-//        [self registerClass:[DateHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"DateHeaderFooterViewID"];
         [self allocInitRefreshHeader:YES allocInitFooter:YES];
     }
     return self;

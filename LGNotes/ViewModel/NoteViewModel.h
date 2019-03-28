@@ -10,14 +10,13 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "ParamModel.h"
 #import "NoteModel.h"
+#import "SubjectModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 UIKIT_EXTERN NSString *const CheckNoteBaseUrlKey;
 
 @interface NoteViewModel : NSObject
-
-@property (nonatomic, copy, readonly) NSString *baseUrl;
 /** 参数 */
 @property (nonatomic, strong) ParamModel *paramModel;
 
@@ -40,9 +39,9 @@ UIKIT_EXTERN NSString *const CheckNoteBaseUrlKey;
 /** 数据总数 */
 @property (nonatomic, assign) NSInteger totalCount;
 /** 笔记所支持学科 */
-@property (nonatomic, copy, readonly)   NSArray *subjectArray;
+@property (nonatomic, copy, readonly) NSArray *subjectArray;
 /** 获取支持的系统 */
-@property (nonatomic, copy, readonly)   NSArray *systemArray;
+@property (nonatomic, copy, readonly) NSArray *systemArray;
 /** 数据源 */
 @property (nonatomic, strong) NoteModel *dataSourceModel;
 
@@ -83,10 +82,11 @@ UIKIT_EXTERN NSString *const CheckNoteBaseUrlKey;
  */
 - (RACSignal *)uploadImages:(NSArray <UIImage *> *)images;
 
+
 /**
- 长传笔记相关联来源详细信息
- 
- @param sourceInfo 
+  长传笔记相关联来源详细信息
+
+ @param sourceInfo <#sourceInfo description#>
  @return <#return value description#>
  */
 - (RACSignal *)uploadNoteSourceInfo:(id)sourceInfo;

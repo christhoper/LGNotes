@@ -19,5 +19,7 @@
 #import "ParamModel.h"
 #import "NoteModel.h"
 #import "ParamModel.h"
+#import "UIButton+Notes.h"
+#import "NSString+Notes.h"
 
 #endif /* Configure_h */

@@ -7,7 +7,6 @@
 //
 
 #import "NoteViewModel.h"
-#import "SubjectModel.h"
 #import "LGNoteNetworkManager.h"
 #import "LGNoteConfigure.h"
 #import "LGNoteMBAlert.h"
@@ -156,7 +155,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
 
 - (RACSignal *)checkNoteBaseUrl{
     return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        NSString *url = [@"http://192.168.3.155:10102" stringByAppendingFormat:@"/Base/WS/Service_Basic.asmx/WS_G_GetSubSystemServerInfo?sysID=%@&subjectID=",@"S22"];
+        NSString *url = [self.paramModel.CPBaseUrl stringByAppendingFormat:@"/Base/WS/Service_Basic.asmx/WS_G_GetSubSystemServerInfo?sysID=%@&subjectID=",@"S22"];
         [kNetwork.setRequestUrl(url).setRequestType(GETXML)starSendRequestSuccess:^(id respone) {
             NSDictionary *dic = [NSDictionary dictionaryWithXMLString:respone];
             // 配置笔记工具Uurl
@@ -377,14 +376,14 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
         [kNetwork.setRequestUrl(url).setRequestType(POST).setParameters(params)starSendRequestSuccess:^(id respone) {
         
             if (![respone[kErrorcode] hasSuffix:kSuccess]) {
-                NSString *message = self.paramModel.Skip == 1 ? @"添加失败":@"保存失败";
+                NSString *message = self.paramModel.OperateFlag == 1 ? @"添加失败":@"保存失败";
                 [kMBAlert showErrorWithStatus:message];
                 [subscriber sendNext:nil];
                 [subscriber sendCompleted];
                 return;
             }
             
-            NSString *message = self.paramModel.Skip == 1 ? @"添加成功":@"保存成功";
+            NSString *message = self.paramModel.OperateFlag == 1 ? @"添加成功":@"保存成功";
             [kMBAlert showSuccessWithStatus:message afterDelay:1 completetion:^{
                 [subscriber sendNext:message];
                 [subscriber sendCompleted];

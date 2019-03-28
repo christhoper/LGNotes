@@ -81,7 +81,6 @@
     NSString *subjectName = [NSString stringWithFormat:@"%@ | ",[NoteTools getSubjectImageNameWithSubjectID:dataSource.SubjectID]];
     NSMutableAttributedString *att = [NoteTools attributedStringByStrings:@[subjectName,dataSource.ResourceName] colors:@[kColorInitWithRGB(0, 153, 255, 1),kColorInitWithRGB(0, 153, 255, 1)] fonts:@[@(12),@(12)]];
     self.sourceLabel.attributedText = att;
-    //    self.noteTitleLabel.text = dataSource.NoteTitle;
     self.editTimeLabel.text = [NSString stringWithFormat:@"%@",dataSource.NoteEditTime];
     
     NSMutableString *contentString = dataSource.NoteContent_Att.mutableString;
@@ -89,7 +88,7 @@
     self.noteContentLabel.text = contentString;
     
     NSString *imageUrl = [dataSource.imgaeUrls objectAtIndex:0];
-    [self.noteImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
+    [self.noteImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[NSBundle lg_imageName:@"lg_empty"] options:SDWebImageRefreshCached];
     
     if ([dataSource.IsKeyPoint isEqualToString:@"1"]) {
         NSTextAttachment *attment = [[NSTextAttachment alloc] init];

@@ -8,7 +8,6 @@
 
 #import "SubjectPickerView.h"
 #import "LGNoteConfigure.h"
-#import "SubjectModel.h"
 
 @interface SubjectPickerView () <UIPickerViewDataSource,UIPickerViewDelegate>
 
@@ -83,12 +82,12 @@
     
     UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 44)];
     contentLabel.textAlignment = NSTextAlignmentCenter;
-    SubjectModel *model = self.pickerArray[row];
-    contentLabel.text = model.SubjectName;
+
+    contentLabel.text = self.pickerArray[row];
     [view addSubview:contentLabel];
     
-    //    [self.pickerView.subviews objectAtIndex:1].backgroundColor = [UIColor lightGrayColor];
-    //    [self.pickerView.subviews objectAtIndex:2].backgroundColor = [UIColor lightGrayColor];
+    [self.pickerView.subviews objectAtIndex:1].backgroundColor = [UIColor lightGrayColor];
+    [self.pickerView.subviews objectAtIndex:2].backgroundColor = [UIColor lightGrayColor];
     return view;
 }
 

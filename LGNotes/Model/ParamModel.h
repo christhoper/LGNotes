@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ParamModel : NSObject
+/** 基础平台地址 */
+@property (nonatomic, copy) NSString *CPBaseUrl;
 /** 笔记库的url ：各个系统在登录成功时获取，同获取各个系统url一样，笔记库SystemID为:S22 */
 @property (nonatomic, copy) NSString *NoteBaseUrl;
 /** 笔记ID */
@@ -37,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *ResourceID;
 /** 用于取某个资料下的所有笔记 与学习任务相关的学习资料ID((对应任务里面多份资料)) */
 @property (nonatomic, copy) NSString *MaterialID;
+/** 题目大题数量 */
+@property (nonatomic, assign) NSInteger MaterialCount;
 /** 1 重点   0 非重点   -1所有 */
 @property (nonatomic, copy) NSString *IsKeyPoint;
 @property (nonatomic, copy) NSString *StartTime;
@@ -48,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger PageIndex;
 /** 每页容量 */
 @property (nonatomic, assign) NSInteger PageSize;
+/** 跳过某种操作 */
 @property (nonatomic, assign) NSInteger Skip;
 /** 操作标志 */
 @property (nonatomic, assign) NSInteger OperateFlag;
