@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ParamModel : NSObject
 /** 笔记库的url ：各个系统在登录成功时获取，同获取各个系统url一样，笔记库SystemID为:S22 */
 @property (nonatomic, copy) NSString *NoteBaseUrl;
+/** 笔记ID */
+@property (nonatomic, copy) NSString *NoteID;
 /** 用户名 */
 @property (nonatomic, copy) NSString *UserName;
 /** 用户ID */
@@ -33,6 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *ResourceName;
 /** 笔记来源ID */
 @property (nonatomic, copy) NSString *ResourceID;
+/** 用于取某个资料下的所有笔记 与学习任务相关的学习资料ID((对应任务里面多份资料)) */
+@property (nonatomic, copy) NSString *MaterialID;
+/** 1 重点   0 非重点   -1所有 */
+@property (nonatomic, copy) NSString *IsKeyPoint;
+@property (nonatomic, copy) NSString *StartTime;
+@property (nonatomic, copy) NSString *EndTime;
+
 /** 用户类型 */
 @property (nonatomic, assign) NSInteger UserType;
 /** 页码（获取全部数据传值 （pageindex:0 pageSize:0）） */

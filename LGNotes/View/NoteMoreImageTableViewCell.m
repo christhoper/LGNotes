@@ -20,7 +20,7 @@
 @property (nonatomic, strong) UILabel *editTimeLabel;
 @property (nonatomic, strong) UILabel *sourceLabel;
 
-/** 简单粗暴，不使用集合视图了 */
+/** 为了性能，不卡顿，不使用集合视图了 */
 @property (nonatomic, strong) UIImageView *imageViewLeft;
 @property (nonatomic, strong) UIImageView *imageViewCenter;
 @property (nonatomic, strong) UIImageView *imageViewRight;
@@ -31,6 +31,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self lg_addSubViews];
     }
     return self;
@@ -57,13 +58,13 @@
         make.height.mas_equalTo(21);
     }];
     [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.contentView).offset(-10);
-        make.left.equalTo(self.noteTitleLabel);
+        make.bottom.equalTo(self.editTimeLabel);
+        make.left.equalTo(self.editTimeLabel.mas_right).offset(20);
         make.height.mas_equalTo(15);
     }];
     [self.editTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.sourceLabel);
-        make.left.equalTo(self.sourceLabel.mas_right).offset(20);
+        make.bottom.equalTo(self.contentView).offset(-10);
+        make.left.equalTo(self.noteTitleLabel);
         make.height.mas_equalTo(15);
     }];
     [self.imageViewLeft mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,28 +90,56 @@
 }
 
 - (void)configureCellForDataSource:(NoteModel *)dataSource indexPath:(NSIndexPath *)indexPath{
-    NSString *subjectName = [NoteTools getSubjectImageNameWithSubjectID:dataSource.SubjectID];
-    [subjectName stringByAppendingString:@" | "];
-    NSMutableAttributedString *att = [NoteTools attributedStringByStrings:@[subjectName,dataSource.ResourceName] colors:@[kLabelColorLightGray,kColorInitWithRGB(0, 153, 255, 1)] fonts:@[@(12),@(12)]];
+    NSString *subjectName = [NSString stringWithFormat:@"%@ | ",[NoteTools getSubjectImageNameWithSubjectID:dataSource.SubjectID]];
+    NSMutableAttributedString *att = [NoteTools attributedStringByStrings:@[subjectName,dataSource.ResourceName] colors:@[kColorInitWithRGB(0, 153, 255, 1),kColorInitWithRGB(0, 153, 255, 1)] fonts:@[@(12),@(12)]];
     self.sourceLabel.attributedText = att;
-    //    self.noteTitleLabel.text = dataSource.NoteTitle;
     self.editTimeLabel.text = [NSString stringWithFormat:@"%@",dataSource.NoteEditTime];
     
-    //    if (dataSource.ResourceID) {
-    //        NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:dataSource.NoteTitle];
-    //        self.noteTitleLabel.attributedText = att;
-    //    } else {
-    NSTextAttachment *attment = [[NSTextAttachment alloc] init];
-    attment.image = [NSBundle lg_imagePathName:@"note_remark_selected"];
-    attment.bounds = CGRectMake(5, -3, 15, 15);
+    if ([dataSource.IsKeyPoint isEqualToString:@"1"]) {
+        NSTextAttachment *attment = [[NSTextAttachment alloc] init];
+        attment.image = [NSBundle lg_imagePathName:@"note_remark_selected"];
+        attment.bounds = CGRectMake(5, -3, 15, 15);
+        
+        NSAttributedString *attmentAtt = [NSAttributedString attributedStringWithAttachment:attment];
+        NSMutableAttributedString *att1 = [[NSMutableAttributedString alloc] initWithString:[dataSource.NoteTitle stringByAppendingString:@" "]];
+        [att1 appendAttributedString:attmentAtt];
+        self.noteTitleLabel.attributedText = att1;
+    } else {
+        NSMutableAttributedString *att1 = [[NSMutableAttributedString alloc] initWithString:dataSource.NoteTitle];
+        self.noteTitleLabel.attributedText = att1;
+    }
     
-    NSAttributedString *attmentAtt = [NSAttributedString attributedStringWithAttachment:attment];
-    NSMutableAttributedString *att1 = [[NSMutableAttributedString alloc] initWithString:[dataSource.NoteTitle stringByAppendingString:@" "]];
-    [att1 appendAttributedString:attmentAtt];
-    self.noteTitleLabel.attributedText = att1;
-    //    }
+    [self loadImageViewWithImageUrls:dataSource.imgaeUrls];
 }
 
+- (void)loadImageViewWithImageUrls:(NSArray *)imageUrls{
+    if (imageUrls.count == 3) {
+        NSString *url1 = [imageUrls objectAtIndex:0];
+        NSString *url2 = [imageUrls objectAtIndex:1];
+        NSString *url3 = [imageUrls objectAtIndex:2];
+        [self.imageViewLeft sd_setImageWithURL:[NSURL URLWithString:url1] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
+        [self.imageViewCenter sd_setImageWithURL:[NSURL URLWithString:url2] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
+        [self.imageViewRight sd_setImageWithURL:[NSURL URLWithString:url3] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
+        [self showLeftImage:YES showCenterImage:YES showRightImage:YES];
+        
+    } else if (imageUrls.count == 2) {
+        NSString *url1 = [imageUrls objectAtIndex:0];
+        NSString *url2 = [imageUrls objectAtIndex:1];
+        [self.imageViewLeft sd_setImageWithURL:[NSURL URLWithString:url1] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
+        [self.imageViewCenter sd_setImageWithURL:[NSURL URLWithString:url2] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
+        [self showLeftImage:YES showCenterImage:YES showRightImage:NO];
+    } else {
+        NSString *url1 = [imageUrls objectAtIndex:0];
+        [self.imageViewLeft sd_setImageWithURL:[NSURL URLWithString:url1] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
+        [self showLeftImage:YES showCenterImage:NO showRightImage:NO];
+    }
+}
+
+- (void)showLeftImage:(BOOL)showLeft showCenterImage:(BOOL)showCenter showRightImage:(BOOL)showRight{
+    self.imageViewLeft.hidden = !showLeft;
+    self.imageViewCenter.hidden = !showCenter;
+    self.imageViewRight.hidden = !showRight;
+}
 
 #pragma mark - lazy
 - (UILabel *)editTimeLabel{

@@ -66,25 +66,25 @@
 + (NSString *)getSubjectImageNameWithSubjectID:(NSString *)subjectID{
     NSString *resultStr;
     if ([subjectID hasSuffix:@"Biology"]) {
-        resultStr = @"lg_subjetName_bio";
+        resultStr = @"生物";
     } else if ([subjectID hasSuffix:@"Chemistry"]){
-        resultStr = @"lg_subjetName_che";
+        resultStr = @"化学";
     } else if ([subjectID hasSuffix:@"Chinese"]){
-        resultStr = @"lg_subjetName_chi";
+        resultStr = @"语文";
     } else if ([subjectID hasSuffix:@"English"]) {
-        resultStr = @"lg_subjetName_eng";
+        resultStr = @"英语";
     } else if ([subjectID hasSuffix:@"Geography"]) {
-        resultStr = @"lg_subjetName_geo";
+        resultStr = @"地理";
     } else if ([subjectID hasSuffix:@"History"]) {
-        resultStr = @"lg_subjetName_his";
+        resultStr = @"历史";
     } else if ([subjectID hasSuffix:@"Maths"]) {
-        resultStr = @"lg_subjetName_math";
+        resultStr = @"数学";
     } else if ([subjectID hasSuffix:@"Physics"]) {
-        resultStr = @"lg_subjetName_phy";
+        resultStr = @"物理";
     } else if ([subjectID hasSuffix:@"Politics"]) {
-        resultStr = @"lg_subjetName_pol";
+        resultStr = @"社会";
     } else {
-        resultStr = @"lg_subjetName_other";
+        resultStr = @"其他";
     }
     return resultStr;
 }

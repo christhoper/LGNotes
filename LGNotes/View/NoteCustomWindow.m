@@ -6,15 +6,15 @@
 //  Copyright © 2019 hend. All rights reserved.
 //
 
-#import "LGNoteCustomWindow.h"
+#import "NoteCustomWindow.h"
 
-@interface LGNoteCustomWindow ()
+@interface NoteCustomWindow ()
 
 @property (nonatomic, weak) UIView *animationView;
 
 @end
 
-@implementation LGNoteCustomWindow
+@implementation NoteCustomWindow
 
 - (void)dealloc{
     NSLog(@"释放了LGCustomWindow");

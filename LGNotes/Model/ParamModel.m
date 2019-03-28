@@ -74,4 +74,25 @@
     return _Secret;
 }
 
+- (NSString *)StartTime{
+    if (!_StartTime) {
+        _StartTime = @"";
+    }
+    return _StartTime;
+}
+
+- (NSString *)EndTime{
+    if (!_EndTime) {
+        _EndTime = @"";
+    }
+    return _EndTime;
+}
+
+- (NSString *)MaterialID{
+    if (!_MaterialID) {
+        _MaterialID = @"";
+    }
+    return _MaterialID;
+}
+
 @end

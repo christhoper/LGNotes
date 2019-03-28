@@ -13,9 +13,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+UIKIT_EXTERN NSString *const CheckNoteBaseUrlKey;
+
 @interface NoteViewModel : NSObject
 
-@property (nonatomic, copy) NSString *baseUrl;
+@property (nonatomic, copy, readonly) NSString *baseUrl;
 /** 参数 */
 @property (nonatomic, strong) ParamModel *paramModel;
 
@@ -38,16 +40,40 @@ NS_ASSUME_NONNULL_BEGIN
 /** 数据总数 */
 @property (nonatomic, assign) NSInteger totalCount;
 /** 笔记所支持学科 */
-@property (nonatomic, copy)   NSArray *subjectArray;
+@property (nonatomic, copy, readonly)   NSArray *subjectArray;
+/** 获取支持的系统 */
+@property (nonatomic, copy, readonly)   NSArray *systemArray;
 /** 数据源 */
 @property (nonatomic, strong) NoteModel *dataSourceModel;
 
+
 /**
- 获取学科信息
+ 检查url的可用性
 
  @return <#return value description#>
  */
-- (RACSignal *)getSystemAllSubject;
+- (RACSignal *)checkNoteBaseUrl;
+
+/**
+ 获取筛选支持的学科信息
+
+ @return <#return value description#>
+ */
+- (RACSignal *)getAllSubjectInfo;
+
+/**
+ 获取所有支持的系统信息
+
+ @return <#return value description#>
+ */
+- (RACSignal *)getAllSystemInfo;
+
+/**
+ 获取某一条笔记的详情信息
+
+ @return <#return value description#>
+ */
+- (RACSignal *)getOneNoteInfo;
 
 /**
  上传图片
@@ -56,6 +82,15 @@ NS_ASSUME_NONNULL_BEGIN
  @return <#return value description#>
  */
 - (RACSignal *)uploadImages:(NSArray <UIImage *> *)images;
+
+/**
+ 长传笔记相关联来源详细信息
+ 
+ @param sourceInfo 
+ @return <#return value description#>
+ */
+- (RACSignal *)uploadNoteSourceInfo:(id)sourceInfo;
+
 
 
 /**

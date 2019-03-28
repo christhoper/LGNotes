@@ -28,6 +28,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self lg_addSubViews];
     }
     return self;
@@ -54,48 +55,56 @@
     }];
     [self.noteContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.noteTitleLabel);
-        make.top.equalTo(self.noteImageView);
-        make.right.equalTo(self.noteImageView.mas_left).offset(10);
+        make.top.height.equalTo(self.noteImageView);
+        make.right.equalTo(self.noteImageView.mas_left).offset(-10);
+        
     }];
     [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.editTimeLabel);
+        make.left.equalTo(self.editTimeLabel.mas_right).offset(20);
+        make.height.mas_equalTo(15);
+    }];
+    [self.editTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView).offset(-10);
         make.left.equalTo(self.noteTitleLabel);
         make.height.mas_equalTo(15);
     }];
-    [self.editTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.sourceLabel);
-        make.left.equalTo(self.sourceLabel.mas_right).offset(20);
-        make.height.mas_equalTo(15);
-    }];
+    CGFloat imageWidth = (kMain_Screen_Width - 30)/3;
     [self.noteImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
-        make.size.mas_equalTo(CGSizeMake(120, 60));
+        make.size.mas_equalTo(CGSizeMake(imageWidth, 60));
         make.right.equalTo(self.contentView).offset(-10);
     }];
 }
 
 - (void)configureCellForDataSource:(NoteModel *)dataSource indexPath:(NSIndexPath *)indexPath{
-    NSString *subjectName = [NoteTools getSubjectImageNameWithSubjectID:dataSource.SubjectID];
-    [subjectName stringByAppendingString:@" | "];
-    NSMutableAttributedString *att = [NoteTools attributedStringByStrings:@[subjectName,dataSource.ResourceName] colors:@[kLabelColorLightGray,kColorInitWithRGB(0, 153, 255, 1)] fonts:@[@(12),@(12)]];
+    NSString *subjectName = [NSString stringWithFormat:@"%@ | ",[NoteTools getSubjectImageNameWithSubjectID:dataSource.SubjectID]];
+    NSMutableAttributedString *att = [NoteTools attributedStringByStrings:@[subjectName,dataSource.ResourceName] colors:@[kColorInitWithRGB(0, 153, 255, 1),kColorInitWithRGB(0, 153, 255, 1)] fonts:@[@(12),@(12)]];
     self.sourceLabel.attributedText = att;
     //    self.noteTitleLabel.text = dataSource.NoteTitle;
     self.editTimeLabel.text = [NSString stringWithFormat:@"%@",dataSource.NoteEditTime];
     
-    self.noteContentLabel.attributedText = dataSource.NoteContent_Att;
-    //    if (dataSource.ResourceID) {
-    //        NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:dataSource.NoteTitle];
-    //        self.noteTitleLabel.attributedText = att;
-    //    } else {
-    NSTextAttachment *attment = [[NSTextAttachment alloc] init];
-    attment.image = [NSBundle lg_imagePathName:@"note_remark_selected"];
-    attment.bounds = CGRectMake(5, -3, 15, 15);
+    NSMutableString *contentString = dataSource.NoteContent_Att.mutableString;
+    [contentString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.noteContentLabel.text = contentString;
     
-    NSAttributedString *attmentAtt = [NSAttributedString attributedStringWithAttachment:attment];
-    NSMutableAttributedString *att1 = [[NSMutableAttributedString alloc] initWithString:[dataSource.NoteTitle stringByAppendingString:@" "]];
-    [att1 appendAttributedString:attmentAtt];
-    self.noteTitleLabel.attributedText = att1;
-    //    }
+    NSString *imageUrl = [dataSource.imgaeUrls objectAtIndex:0];
+    [self.noteImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
+    
+    if ([dataSource.IsKeyPoint isEqualToString:@"1"]) {
+        NSTextAttachment *attment = [[NSTextAttachment alloc] init];
+        attment.image = [NSBundle lg_imagePathName:@"note_remark_selected"];
+        attment.bounds = CGRectMake(5, -3, 15, 15);
+        
+        NSAttributedString *attmentAtt = [NSAttributedString attributedStringWithAttachment:attment];
+        NSMutableAttributedString *att1 = [[NSMutableAttributedString alloc] initWithString:[dataSource.NoteTitle stringByAppendingString:@" "]];
+        [att1 appendAttributedString:attmentAtt];
+        self.noteTitleLabel.attributedText = att1;
+    } else {
+        NSMutableAttributedString *att1 = [[NSMutableAttributedString alloc] initWithString:dataSource.NoteTitle];
+        self.noteTitleLabel.attributedText = att1;
+    }
+    
 }
 
 
@@ -114,7 +123,8 @@
     if (!_noteContentLabel) {
         _noteContentLabel = [[UILabel alloc] init];
         _noteContentLabel.text = @"荷塘月色内容";
-        _noteTitleLabel.numberOfLines = 3;
+        _noteContentLabel.font = kSYSTEMFONT(14.f);
+        _noteContentLabel.numberOfLines = 0;
     }
     return _noteContentLabel;
 }

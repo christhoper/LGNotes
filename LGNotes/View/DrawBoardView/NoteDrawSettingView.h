@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class NoteDrawSettingView;
 
 @protocol NoteDrawSettingViewDelegate <NSObject>
-
 @optional
 
 /** 选择画线功能 */
@@ -41,6 +40,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id <NoteDrawSettingViewDelegate> delegate;
 
+
+/**
+ 控制显示
+
+ @param showFont 是否显示画笔粗细
+ @param showColor 是否显示画笔颜色
+ @param showBoard 是否显示画板背景
+ @param tag 选择的按钮tag值
+ */
 - (void)showPenFont:(BOOL)showFont
        showPenColor:(BOOL)showColor
       showBoardView:(BOOL)showBoard

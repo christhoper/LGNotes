@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LGNoteFilterCollectionReusableViewHeader : UICollectionReusableView
+@interface NoteFilterCollectionReusableViewHeader : UICollectionReusableView
 /** 展示内容 */
 @property (copy, nonatomic) NSString *reusableContent;
 /** 头部或尾部标题 */

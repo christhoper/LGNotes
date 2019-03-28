@@ -80,8 +80,9 @@
 }
 
 - (void)remarkBtnClick:(UIButton *)sender{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(remarkEvent)]) {
-        [self.delegate remarkEvent];
+    sender.selected = !sender.selected;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(remarkEvent:)]) {
+        [self.delegate remarkEvent:sender.selected];
     }
 }
 
@@ -106,7 +107,8 @@
     if (!_remarkBtn) {
         _remarkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _remarkBtn.frame = CGRectZero;
-        [_remarkBtn setImage:[NSBundle lg_imagePathName:@"note_remark_selected"] forState:UIControlStateNormal];
+        [_remarkBtn setImage:[NSBundle lg_imagePathName:@"note_remark_unselected"] forState:UIControlStateNormal];
+        [_remarkBtn setImage:[NSBundle lg_imagePathName:@"note_remark_selected"] forState:UIControlStateSelected];
         [_remarkBtn addTarget:self action:@selector(remarkBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _remarkBtn;

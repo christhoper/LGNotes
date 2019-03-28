@@ -18,4 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface SystemModel : NSObject
+
+/** 系统ID */
+@property (nonatomic, copy) NSString *SystemID;
+@property (nonatomic, copy) NSString *SystemName;
+
+@end
+
 NS_ASSUME_NONNULL_END

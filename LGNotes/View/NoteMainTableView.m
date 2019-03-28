@@ -59,12 +59,11 @@
     if (self = [super initWithFrame:frame style:style]) {
         self.delegate = self;
         self.dataSource = self;
-        
-        self.rowHeight = 120;
+        self.rowHeight = 140;
         [self registerClass:[NoteMainTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NoteMainTableViewCell class])];
         [self registerClass:[NoteMainImageTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NoteMainImageTableViewCell class])];
         [self registerClass:[NoteMoreImageTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NoteMoreImageTableViewCell class])];
-        [self registerClass:[DateHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"DateHeaderFooterViewID"];
+//        [self registerClass:[DateHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"DateHeaderFooterViewID"];
         [self allocInitRefreshHeader:YES allocInitFooter:YES];
     }
     return self;
@@ -116,27 +115,29 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section %2 == 0) {
+    NoteModel *model = self.dataArray[indexPath.section];
+    // 判断是不是图文混排类型
+    if (model.imgaeUrls.count <= 0) {
         NoteMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([NoteMainTableViewCell class]) forIndexPath:indexPath];
-        NoteModel *model = self.dataArray[indexPath.section];
+        [cell configureCellForDataSource:model indexPath:indexPath];
+        return cell;
+    } else if (model.mixTextImage) {
+        NoteMainImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([NoteMainImageTableViewCell class]) forIndexPath:indexPath];
         [cell configureCellForDataSource:model indexPath:indexPath];
         return cell;
     } else {
         NoteMoreImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([NoteMoreImageTableViewCell class]) forIndexPath:indexPath];
-//        NoteModel *model = self.dataArray[indexPath.section];
-//        [cell configureCellForDataSource:model indexPath:indexPath];
+        [cell configureCellForDataSource:model indexPath:indexPath];
         return cell;
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    DateHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DateHeaderFooterViewID"];
-    headerView.dateLabel.text = @"2019-03-22";
-    return headerView;
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30.f;
+    return section == 0 ? 2:12;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -160,14 +161,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NoteModel *model = self.dataArray[indexPath.section];
         @weakify(self);
         [kMBAlert showAlertControllerOn:self.ownerController title:@"提示:" message:@"您确定要删除该条笔记数据吗?" oneTitle:@"确定" oneHandle:^(UIAlertAction * _Nonnull one) {
             @strongify(self);
-            self.viewModel.paramModel.SystemID = model.SystemID;
-            self.viewModel.paramModel.SubjectID = model.SubjectID;
-            [self.viewModel.deletedCommand execute:model.NoteID];
+            [self.viewModel.deletedCommand execute:model];
         } twoTitle:@"取消" twoHandle:^(UIAlertAction * _Nonnull two) {
             
         } completion:^{

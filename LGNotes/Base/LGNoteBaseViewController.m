@@ -22,8 +22,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
 }
 
+- (void)dismissTopViewController:(BOOL)isDismissTopViewController{
+    UIViewController *presentVC = self.presentingViewController;
+    UIViewController *topViewController;
+    if (isDismissTopViewController) {
+        while (presentVC) {
+            topViewController = presentVC;
+            presentVC = presentVC.presentingViewController;
+        }
+        [topViewController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
 
 @end

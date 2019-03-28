@@ -7,28 +7,26 @@
 //
 
 #import "LGNoteDrawBoardViewController.h"
-#import "LSDrawView.h"
+#import "NoteDrawView.h"
 #import "LGNoteConfigure.h"
 #import "NSBundle+Notes.h"
-#import "LGNoteImagePickerViewController.h"
-#import "LGNoteCustomWindow.h"
+#import "NoteCustomWindow.h"
 #import "NoteDrawSettingView.h"
 #import "NoteDrawSettingButtonView.h"
+#import "LGNoteImagePickerViewController.h"
+#import "LGNoteCutImageViewController.h"
 
 @interface LGNoteDrawBoardViewController ()<NoteDrawSettingViewDelegate,NoteDrawSettingButtonViewDelegate>
 
-@property (nonatomic, strong) LSDrawView *drawView;
+@property (nonatomic, strong) NoteDrawView *drawView;
 @property (nonatomic, strong) UIImageView *bgImageView;
 /** 取消 */
 @property (nonatomic, strong) UIButton *cancelBtn;
 /** 重做 */
 @property (nonatomic, strong) UIButton *redoBtn;
-/** 完成绘画回调 */
-@property (nonatomic, copy)   DrawCompletionBlock drawCompletion;
-@property (nonatomic, strong) LGNoteCustomWindow *drawSettingWindow;
+@property (nonatomic, strong) NoteCustomWindow *drawSettingWindow;
 @property (nonatomic, strong) NoteDrawSettingView *drawToolView;
 @property (nonatomic, strong) NoteDrawSettingButtonView *buttonView;
-
 
 @end
 
@@ -83,13 +81,6 @@
     }];
 }
 
-
-#pragma mark - Block Method
-- (void)drawBoardDidFinished:(DrawCompletionBlock)completion{
-    _drawCompletion = completion;
-}
-
-
 #pragma mark - NoteDrawSettingViewDelegate
 - (void)drawSettingViewSelectedPenFontButton:(NSInteger)buttonTag{
     [self.buttonView penFontButtonSeleted];
@@ -114,10 +105,7 @@
 }
 
 - (void)drawSettingViewSelectedFinishButton:(NSInteger)buttonTag{
-    [self.drawSettingWindow hiddenAnimationWithDurationTime:0.25];
-    if (self.drawCompletion) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    [self chooseFinishForButtonTag:MAXFLOAT];
 }
 
 - (void)drawSettingViewSelectedColorHex:(NSString *)colorHex{
@@ -128,7 +116,7 @@
     self.drawView.brushWidth = font;
 }
 
-- (void)drawSettingViewSelectedBackgroudImage:(NSString *)imageName{
+- (void)drawSettingViewChangeBackgroudImage:(NSString *)imageName{
     if ([imageName isEqualToString:@"BoardBgChoosePickerImageKey"]) {
         [self.drawSettingWindow hiddenAnimationWithDurationTime:0.25];
         [self oppenedPicker];
@@ -165,8 +153,12 @@
 }
 
 - (void)chooseBoardBackgroudImageForButtonTag:(NSInteger)butonTag{
-    [self.drawToolView showPenFont:NO showPenColor:NO showBoardView:YES buttonTag:butonTag];
-    [self.drawSettingWindow showAnimationWithDurationTime:0.25];
+    if (self.style == LGNoteDrawBoardViewControllerStyleDefault) {
+        
+    } else {
+        [self.drawToolView showPenFont:NO showPenColor:NO showBoardView:YES buttonTag:butonTag];
+        [self.drawSettingWindow showAnimationWithDurationTime:0.25];
+    }
 }
 
 - (void)chooseUndoForButtonTag:(NSInteger)butonTag{
@@ -179,15 +171,22 @@
 
 - (void)chooseFinishForButtonTag:(NSInteger)butonTag{
     [self.drawSettingWindow hiddenAnimationWithDurationTime:0.25];
-    if (self.drawCompletion) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+    if (self.style == LGNoteDrawBoardViewControllerStyleDraw) {
+        [self.drawView saveCompletion:^(UIImage * _Nonnull image, NSString * _Nonnull msg) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:LGNoteDrawBoardViewControllerFinishedDrawNotification object:nil userInfo:@{@"a":image}];
+        }];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:LGNoteDrawBoardViewControllerFinishedDrawNotification object:nil userInfo:@{@"a":self.drawBgImage}];
     }
+    
+    [self dismissTopViewController:YES];
+    
 }
 
 #pragma mark - layzy
-- (LGNoteCustomWindow *)drawSettingWindow{
+- (NoteCustomWindow *)drawSettingWindow{
     if (!_drawSettingWindow) {
-        _drawSettingWindow = [[LGNoteCustomWindow alloc] initWithAnmationContentView:self.drawToolView];
+        _drawSettingWindow = [[NoteCustomWindow alloc] initWithAnmationContentView:self.drawToolView];
     }
     return _drawSettingWindow;
 }
@@ -235,18 +234,21 @@
     return _redoBtn;
 }
 
-- (LSDrawView *)drawView{
+- (NoteDrawView *)drawView{
     if (!_drawView) {
         UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44, kMain_Screen_Width, kMain_Screen_Height-50-64)];
         bgImgView.image = [NSBundle lg_imagePathName:@"note_board_2"];
         
-        _drawView = [[LSDrawView alloc] init];
+        _drawView = [[NoteDrawView alloc] init];
         _drawView.brushColor = [UIColor redColor];
         _drawView.brushWidth = 2.4;
-        _drawView.shapeType = LSShapeCurve;
-        _drawView.backgroundImage = bgImgView.image;
+        _drawView.shapeType = DrawBoardShapeCurve;
+        _drawView.backgroundImage = (self.style == LGNoteDrawBoardViewControllerStyleDefault) ? self.drawBgImage:bgImgView.image;
     }
     return _drawView;
 }
+
+
+
 
 @end

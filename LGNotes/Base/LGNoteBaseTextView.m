@@ -190,6 +190,12 @@ static const void *LGTextViewToolBarStyleKey          = &LGTextViewToolBarStyleK
     }
 }
 
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction{
+    if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewShouldInteractWithTextAttachment:)]) {
+       return [self.lgDelegate lg_textViewShouldInteractWithTextAttachment:self];
+    }
+    return NO;
+}
 
 #pragma mark LimitAction
 - (BOOL)limitTypeDefaultInRange:(NSRange)range replacementText:(NSString *)text{

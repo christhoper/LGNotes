@@ -6,10 +6,10 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "LGNoteFilterCollectionReusableViewHeader.h"
+#import "NoteFilterCollectionReusableViewHeader.h"
 #import <Masonry/Masonry.h>
 
-@interface LGNoteFilterCollectionReusableViewHeader ()
+@interface NoteFilterCollectionReusableViewHeader ()
 /** 头/尾 */
 @property (strong, nonatomic) UILabel *reusableLabel;
 /** 内容 */
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation LGNoteFilterCollectionReusableViewHeader
+@implementation NoteFilterCollectionReusableViewHeader
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {

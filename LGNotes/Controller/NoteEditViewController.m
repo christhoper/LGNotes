@@ -94,9 +94,9 @@
 
 
 - (void)back:(UIBarButtonItem *)sender{
-    if (self.updateSubject && !self.isNewNote) {
-        [self.updateSubject sendNext:@"update"];
-    }
+//    if (self.updateSubject && !self.isNewNote) {
+//        [self.updateSubject sendNext:@"update"];
+//    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -138,7 +138,7 @@
     if (!_viewModel) {
         _viewModel = [[NoteViewModel alloc] init];
         _viewModel.paramModel = self.paramModel;
-        _viewModel.subjectArray = self.pickerArray;
+//        _viewModel.subjectArray = self.pickerArray;
         _viewModel.dataSourceModel = self.sourceModel;
     }
     return _viewModel;
@@ -149,9 +149,6 @@
         _contentView = [[NoteEditView alloc] init];
         _contentView.ownController = self;
         [_contentView bindViewModel:self.viewModel];
-//        [[self.viewModel getSystemAllSubject] subscribeNext:^(id  _Nullable x) {
-//
-//        }];
     }
     return _contentView;
 }

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class SubjectModel;
-@interface LGNoteFilterCollectionViewCell : UICollectionViewCell
+@interface NoteFilterCollectionViewCell : UICollectionViewCell
 
 /** 是否选中 */
 @property (nonatomic, assign) BOOL selectedItem;

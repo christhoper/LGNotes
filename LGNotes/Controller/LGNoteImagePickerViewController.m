@@ -20,20 +20,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
+//    self.allowsEditing = YES;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
+    
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
-        NSLog(@"图片信息:%@",info);
-        UIImage *image = info[@"UIImagePickerControllerOriginalImage"];
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [picker dismissViewControllerAnimated:YES completion:nil];
         if (self.pickerPhotoBlock) {
             self.pickerPhotoBlock(image);
         }
         if (self.pickerCameraBlock) {
             self.pickerCameraBlock(image);
         }
-        [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -44,6 +45,7 @@
 - (void)pickerCameraCompletion:(LGImagePickerPhotoCompledBlock)completion{
     _pickerCameraBlock = completion;
 }
+
 
 
 @end

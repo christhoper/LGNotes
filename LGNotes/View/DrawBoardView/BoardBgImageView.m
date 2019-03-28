@@ -48,9 +48,10 @@ NSString *const BoardBgPostNotificationKey = @"BoardBgPostNotificationKey";
     BoardBgCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
     cell.bgImageView.image = [NSBundle lg_imageName:self.array[indexPath.row]];
     
-    if (indexPath.item == 0 && !_lastIndexPath) {
+    if (indexPath.item == 1 && !_lastIndexPath) {
         _lastIndexPath = indexPath;
-        cell.layer.borderColor = [UIColor purpleColor].CGColor;
+        UIColor *color = [UIColor colorWithRed:31/255.0 green:156/255.0 blue:255/255.0 alpha:1];
+        cell.layer.borderColor = color.CGColor;
     }
     return cell;
 }
@@ -63,7 +64,8 @@ NSString *const BoardBgPostNotificationKey = @"BoardBgPostNotificationKey";
     _lastIndexPath = indexPath;
     
     BoardBgCollectionViewCell *cell = (BoardBgCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.layer.borderColor = [UIColor purpleColor].CGColor;
+    UIColor *color = [UIColor colorWithRed:31/255.0 green:156/255.0 blue:255/255.0 alpha:1];
+    cell.layer.borderColor = color.CGColor;
     
     NSString *imageName = self.array[indexPath.row];
     if (indexPath.row == 0) {

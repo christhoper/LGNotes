@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LGNoteCustomWindow : UIWindow
+@interface NoteCustomWindow : UIWindow
 
 @property (nonatomic, assign) NSTimeInterval animationTime;
 

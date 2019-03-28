@@ -6,17 +6,17 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import "LGNoteFilterCollectionViewCell.h"
+#import "NoteFilterCollectionViewCell.h"
 #import "LGNoteConfigure.h"
 #import <Masonry/Masonry.h>
 
 
-@interface LGNoteFilterCollectionViewCell ()
+@interface NoteFilterCollectionViewCell ()
 
 
 @end
 
-@implementation LGNoteFilterCollectionViewCell
+@implementation NoteFilterCollectionViewCell
 
 
 

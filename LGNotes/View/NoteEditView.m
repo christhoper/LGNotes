@@ -12,10 +12,12 @@
 #import "LGNoteBaseTextField.h"
 #import "LGNoteBaseTextView.h"
 #import "LGNoteConfigure.h"
-#import "LGNoteImagePickerViewController.h"
-#import "LGNoteDrawBoardViewController.h"
 #import "UIButton+Notes.h"
 #import "NSString+Notes.h"
+#import <YBImageBrowser/YBImageBrowser.h>
+#import "LGNoteImagePickerViewController.h"
+#import "LGNoteDrawBoardViewController.h"
+#import "LGNoteCutImageViewController.h"
 
 @interface NoteEditView ()
 <
@@ -26,20 +28,21 @@ LGSubjectPickerViewDelegate
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *bottomView;
-@property (nonatomic, strong) LGNoteBaseTextField *titleTextF;
 @property (nonatomic, strong) UIButton *remarkBtn;
 @property (nonatomic, strong) UIButton *sourceBtn;
 @property (nonatomic, strong) UIButton *subjectBtn;
 @property (nonatomic, strong) UIImageView *subjTipImageView;
 @property (nonatomic, strong) UIImageView *sourceTipImageView;
 @property (nonatomic, strong) UIView *line;
-@property (nonatomic, strong) NoteViewModel *viewModel;
 
+@property (nonatomic, strong) LGNoteBaseTextField *titleTextF;
 @property (nonatomic, strong) LGNoteBaseTextView *contentTextView;
 @property (nonatomic, strong) NSMutableAttributedString *imgAttr;
 @property (nonatomic, assign) NSInteger currentLocation;
 @property (nonatomic, assign) BOOL isInsert;
-
+/** 当前选中的学科下标 */
+@property (nonatomic, assign) NSInteger currentSelectedSubjectIndex;
+@property (nonatomic, strong) NoteViewModel *viewModel;
 @end
 
 @implementation NoteEditView
@@ -60,6 +63,7 @@ LGSubjectPickerViewDelegate
 - (void)registNotifications{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewKeyBoardDidShowNotification:) name:LGTextViewKeyBoardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewKeyBoardWillHiddenNotification:) name:LGTextViewKeyBoardWillHiddenNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postImageView:) name:LGNoteDrawBoardViewControllerFinishedDrawNotification object:nil];
 }
 
 - (void)createSubviews{
@@ -150,7 +154,19 @@ LGSubjectPickerViewDelegate
         self.contentTextView.selectedRange = NSMakeRange(self.currentLocation + self.imgAttr.length,0);
     }
     self.isInsert = NO;
+    
     [self.viewModel.dataSourceModel updateText:self.contentTextView.attributedText];
+}
+
+- (BOOL)lg_textViewShouldInteractWithTextAttachment:(LGNoteBaseTextView *)textView{
+    YBImageBrowseCellData *data = [YBImageBrowseCellData new];
+    data.url = self.viewModel.dataSourceModel.imgaeUrls[0];
+    YBImageBrowser *browser = [YBImageBrowser new];
+    browser.dataSourceArray = @[data];
+    browser.currentIndex = 0;
+    [browser show];
+    
+    return YES;
 }
 
 - (void)lg_textViewPhotoEvent:(LGNoteBaseTextView *)textView{
@@ -161,15 +177,10 @@ LGSubjectPickerViewDelegate
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     @weakify(self);
     [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
-        [self.contentTextView addImage:image];
-        [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
-            @strongify(self);
-            if (!x) {
-                [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"上传失败，上传地址为空"];
-                return ;
-            }
-            [self settingImageAttributes:image imageFTPPath:x];
-        }];
+        @strongify(self);
+        LGNoteCutImageViewController *cutController = [[LGNoteCutImageViewController alloc] init];
+        cutController.image = image;
+        [self.ownController presentViewController:cutController animated:YES completion:nil];
     }];
     [self.ownController presentViewController:picker animated:YES completion:nil];
 }
@@ -183,25 +194,17 @@ LGSubjectPickerViewDelegate
     @weakify(self);
     [picker pickerPhotoCompletion:^(UIImage * _Nonnull image) {
         @strongify(self);
-        [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
-            @strongify(self);
-            if (!x) {
-                [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"上传失败，上传地址为空"];
-                return ;
-            }
-            [self settingImageAttributes:image imageFTPPath:x];
-        }];
+        LGNoteCutImageViewController *cutController = [[LGNoteCutImageViewController alloc] init];
+        cutController.image = image;
+        [self.ownController presentViewController:cutController animated:YES completion:nil];
     }];
     [self.ownController presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)lg_textViewDrawBoardEvent:(LGNoteBaseTextView *)textView{
     LGNoteDrawBoardViewController *drawController = [[LGNoteDrawBoardViewController alloc] init];
+    drawController.style = LGNoteDrawBoardViewControllerStyleDraw;
     [self.ownController presentViewController:drawController animated:YES completion:nil];
-    
-    [drawController drawBoardDidFinished:^(UIImage * _Nonnull image) {
-        [self.contentTextView addImage:image];
-    }];
 }
 
 - (void)settingImageAttributes:(UIImage *)image imageFTPPath:(NSString *)path{
@@ -221,7 +224,7 @@ LGSubjectPickerViewDelegate
     [self.viewModel.dataSourceModel updateImageInfo:@{@"src":path,@"width":[NSString stringWithFormat:@"%.f",width],@"height":[NSString stringWithFormat:@"%.f",height]} imageAttr:self.imgAttr];
     self.currentLocation = [self.contentTextView offsetFromPosition:self.contentTextView.beginningOfDocument toPosition:self.contentTextView.selectedTextRange.start];
     [currentAttr insertAttributedString:self.imgAttr atIndex:self.currentLocation];
-    [currentAttr insertAttributedString:[[NSAttributedString alloc] initWithString:@"\n"] atIndex:currentAttr.length];
+//    [currentAttr insertAttributedString:[[NSAttributedString alloc] initWithString:@"\n"] atIndex:currentAttr.length];
     self.contentTextView.attributedText = currentAttr;
     self.isInsert = YES;
     [self lg_textViewDidChange:self.contentTextView];
@@ -246,6 +249,20 @@ LGSubjectPickerViewDelegate
     }];
 }
 
+- (void)postImageView:(NSNotification *)notification{
+    UIImage *image = notification.userInfo[@"a"];
+    @weakify(self);
+    [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        if (!x) {
+            [[LGNoteMBAlert shareMBAlert] showErrorWithStatus:@"上传失败，上传地址为空"];
+            return ;
+        }
+        [self settingImageAttributes:image imageFTPPath:x];
+    }];
+    
+}
+
 #pragma mark - textFildDelegate
 - (void)lg_textFieldDidChange:(LGNoteBaseTextField *)textField{
     self.viewModel.dataSourceModel.NoteTitle = textField.text;
@@ -258,10 +275,16 @@ LGSubjectPickerViewDelegate
 #pragma mark - buttonClick
 - (void)remarkBtnClick:(UIButton *)sender{
     sender.selected = !sender.selected;
+    if (sender.selected) {
+        self.viewModel.dataSourceModel.IsKeyPoint = @"1";
+    } else {
+        self.viewModel.dataSourceModel.IsKeyPoint = @"0";
+    }
+    
 }
 
 - (void)sourceBtnClick:(UIButton *)sender{
-    sender.selected = YES;
+    sender.selected = !sender.selected;
     if (sender.selected) {
         self.sourceTipImageView.transform = CGAffineTransformMakeRotation(M_PI/2);
     } else {
@@ -280,7 +303,7 @@ LGSubjectPickerViewDelegate
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
     SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
     pickerView.delegate = self;
-    [pickerView showPickerViewMenuForDataSource:self.viewModel.subjectArray matchIndex:0];
+    [pickerView showPickerViewMenuForDataSource:self.viewModel.subjectArray matchIndex:self.currentSelectedSubjectIndex];
 }
 
 
@@ -290,19 +313,13 @@ LGSubjectPickerViewDelegate
 //    }
 //    SubjectModel *model = self.pickerArray[row];
 //    self.subjectNameLabel.text = model.SubjectName;
-//    self.currentSelectedIndex = row;
+    self.currentSelectedSubjectIndex = row;
 }
 
 - (void)dissmissPickerView{
     self.subjectBtn.selected = NO;
     self.subjectBtn.imageView.transform = CGAffineTransformMakeRotation(0);
 }
-
-#pragma mark - setter
-//- (void)setOwnController:(UIViewController *)ownController{
-//    _ownController = ownController;
-//    self.contentTextView.ownController = ownController;
-//}
 
 #pragma mark - layzy
 - (UIView *)headerView{
@@ -337,6 +354,7 @@ LGSubjectPickerViewDelegate
         [_remarkBtn setImage:[NSBundle lg_imagePathName:@"note_remark_selected"] forState:UIControlStateSelected];
         [_remarkBtn setTitleColor:kColorWithHex(0x0099ff) forState:UIControlStateNormal];
         [_remarkBtn addTarget:self action:@selector(remarkBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_remarkBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     }
     return _remarkBtn;
 }

@@ -1,31 +1,26 @@
 //
-//  LSDrawView.m
-//  LSDrawTest
+//  NoteDrawView.m
+//  NoteDemo
 //
-//  Created by linyoulu on 2017/2/7.
-//  Copyright © 2017年 linyoulu. All rights reserved.
+//  Created by hend on 2019/3/25.
+//  Copyright © 2019 hend. All rights reserved.
 //
 
-#import "LSDrawView.h"
-
-#import "LJBaseModel.h"
+#import "NoteDrawView.h"
+#import "DrawBoardModel.h"
 
 /////////////////////////////////////////////////////////////////////////////////////
-@implementation LSBrush
-
-
+@implementation DrawBoardBrush
 @end
 
 /////////////////////////////////////////////////////////////////////////////////////
-@implementation LSCanvas
+@implementation DrawBoardCanvas
 
-+ (Class)layerClass
-{
++ (Class)layerClass{
     return ([CAShapeLayer class]);
 }
 
-- (void)setBrush:(LSBrush *)brush
-{
+- (void)setBrush:(DrawBoardBrush *)brush{
     CAShapeLayer *shapeLayer = (CAShapeLayer *)self.layer;
     
     shapeLayer.strokeColor = brush.brushColor.CGColor;
@@ -34,62 +29,51 @@
     shapeLayer.lineCap = kCALineCapRound;
     shapeLayer.lineWidth = brush.brushWidth;
     
-    if (!brush.isEraser)
-    {
+    if (!brush.isEraser){
         ((CAShapeLayer *)self.layer).path = brush.bezierPath.CGPath;
     }
-   
+    
 }
 
 @end
 
-/////////////////////////////////////////////////////////////////////////////////////
 
-@interface LSDrawView()
-{
+@interface NoteDrawView(){
     CGPoint pts[5];
     uint ctr;
 }
 
-//背景View
+/** 背景View */
 @property (nonatomic, strong) UIImageView *bgImgView;
-//画板View
-@property (nonatomic, strong) LSCanvas *canvasView;
-//合成View
+/** 画板View */
+@property (nonatomic, strong) DrawBoardCanvas *canvasView;
+/** 合成View */
 @property (nonatomic, strong) UIImageView *composeView;
-//画笔容器
+/** 画笔容器 */
 @property (nonatomic, strong) NSMutableArray *brushArray;
-//撤销容器
+/** 撤销容器 */
 @property (nonatomic, strong) NSMutableArray *undoArray;
-//重做容器
+/** 重做容器 */
 @property (nonatomic, strong) NSMutableArray *redoArray;
-//绘画事件
+/** 绘画事件 */
 @property (nonatomic, copy) DrawViewActionCompletionBlock block;
 
 //linyl
-//记录脚本用
-@property (nonatomic, strong) LSDrawFile *dwawFile;
-
-//每次touchsbegin的时间，后续为计算偏移量用
+/** 记录脚本用 */
+@property (nonatomic, strong) DrawBoardFile *dwawFile;
+/** 每次touchsbegin的时间，后续为计算偏移量用 */
 @property (nonatomic, strong) NSDate *beginDate;
-
-//绘制脚本用
+/** 绘制脚本用 */
 @property (nonatomic, strong) NSMutableArray *recPackageArray;
-
-@property (nonatomic, strong, readwrite) UIImage *drawCallBackImage;
-
 
 @end
 
-@implementation LSDrawView
+@implementation NoteDrawView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self){
         self.backgroundColor = [UIColor clearColor];
-        
         _brushArray = [NSMutableArray new];
         _undoArray = [NSMutableArray new];
         _redoArray = [NSMutableArray new];
@@ -100,10 +84,10 @@
         
         _composeView = [UIImageView new];
         _composeView.frame = self.bounds;
-//        _composeView.image = [self getAlphaImg];
+        //        _composeView.image = [self getAlphaImg];
         [self addSubview:_composeView];
         
-        _canvasView = [LSCanvas new];
+        _canvasView = [DrawBoardCanvas new];
         _canvasView.frame = _composeView.bounds;
         
         [_composeView addSubview:_canvasView];
@@ -114,18 +98,17 @@
         _shapeType = LSDEF_BRUSH_SHAPE;
         
         //linyl
-        _dwawFile = [LSDrawFile new];
+        _dwawFile = [DrawBoardFile new];
         _dwawFile.packageArray = [NSMutableArray new];
-
+        
     }
     return self;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     CGPoint point = [[touches anyObject] locationInView:self];
     
-    LSBrush *brush = [LSBrush new];
+    DrawBoardBrush *brush = [DrawBoardBrush new];
     brush.brushColor = _brushColor;
     brush.brushWidth = _brushWidth;
     brush.isEraser = _isEraser;
@@ -148,32 +131,30 @@
     //linyl
     _beginDate = [NSDate date];
     
-    LSBrushModel *brushModel = [LSBrushModel new];
+    DrawBoardBrushModel *brushModel = [DrawBoardBrushModel new];
     brushModel.brushColor = _brushColor;
     brushModel.brushWidth = _brushWidth;
     brushModel.shapeType = _shapeType;
     brushModel.isEraser = _isEraser;
-    brushModel.beginPoint = [LSPointModel new];
+    brushModel.beginPoint = [DrawBoardPointModel new];
     brushModel.beginPoint.xPoint = point.x;
     brushModel.beginPoint.yPoint = point.y;
     brushModel.beginPoint.timeOffset = 0;
     
-
     [self addModelToPackage:brushModel];
     //linyl
-
+    
 }
 
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     CGPoint point = [[touches anyObject] locationInView:self];
     
-    LSBrush *brush = [_brushArray lastObject];
+    DrawBoardBrush *brush = [_brushArray lastObject];
     
     //linyl
-    LSDrawPackage *drawPackage = [_dwawFile.packageArray lastObject];
+    DrawBoardPackage *drawPackage = [_dwawFile.packageArray lastObject];
     
-    LSPointModel *pointModel = [LSPointModel new];
+    DrawBoardPointModel *pointModel = [DrawBoardPointModel new];
     pointModel.xPoint = point.x;
     pointModel.yPoint = point.y;
     pointModel.timeOffset = fabs(_beginDate.timeIntervalSinceNow);
@@ -181,44 +162,39 @@
     [drawPackage.pointOrBrushArray addObject:pointModel];
     //linyl
     
-    if (_isEraser)
-    {
+    if (_isEraser){
         [brush.bezierPath addLineToPoint:point];
         [self setEraserMode:brush];
-    }
-    else
-    {
-        switch (_shapeType)
-        {
-            case LSShapeCurve:
-//                [brush.bezierPath addLineToPoint:point];
-            
+    } else {
+        switch (_shapeType){
+            case DrawBoardShapeCurve:
+                //                [brush.bezierPath addLineToPoint:point];
+                
                 ctr++;
                 pts[ctr] = point;
-                if (ctr == 4)
-                {
+                if (ctr == 4){
                     pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0, (pts[2].y + pts[4].y)/2.0);
                     
                     [brush.bezierPath moveToPoint:pts[0]];
                     [brush.bezierPath addCurveToPoint:pts[3] controlPoint1:pts[1] controlPoint2:pts[2]];
-                    pts[0] = pts[3]; 
-                    pts[1] = pts[4]; 
+                    pts[0] = pts[3];
+                    pts[1] = pts[4];
                     ctr = 1;
                 }
                 
                 break;
                 
-            case LSShapeLine:
+            case DrawBoardShapeLine:
                 [brush.bezierPath removeAllPoints];
                 [brush.bezierPath moveToPoint:brush.beginPoint];
                 [brush.bezierPath addLineToPoint:point];
                 break;
                 
-                case LSShapeEllipse:
+            case DrawBoardShapeEllipse:
                 brush.bezierPath = [UIBezierPath bezierPathWithOvalInRect:[self getRectWithStartPoint:brush.beginPoint endPoint:point]];
                 break;
                 
-            case LSShapeRect:
+            case DrawBoardShapeRect:
                 
                 brush.bezierPath = [UIBezierPath bezierPathWithRect:[self getRectWithStartPoint:brush.beginPoint endPoint:point]];
                 break;
@@ -232,28 +208,24 @@
     [_canvasView setBrush:brush];
 }
 
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     uint count = ctr;
-    if (count <= 4 && _shapeType == LSShapeCurve)
-    {
-        for (int i = 4; i > count; i--)
-        {
+    if (count <= 4 && _shapeType == DrawBoardShapeCurve){
+        for (int i = 4; i > count; i--){
             [self touchesMoved:touches withEvent:event];
         }
         ctr = 0;
-    }
-    else
-    {
+    } else {
         [self touchesMoved:touches withEvent:event];
     }
     
-//    CGPoint point = [[touches anyObject] locationInView:self];
-//    LSBrush *brush = [_brushArray lastObject];
-//    brush.endPoint = point;
+    //    CGPoint point = [[touches anyObject] locationInView:self];
+    //    LSBrush *brush = [_brushArray lastObject];
+    //    brush.endPoint = point;
     
     //画布view与合成view 合成为一张图（使用融合卡）
     UIImage *img = [self composeBrushToImage];
+    _drawCallBackImage = img;
     //清空画布
     [_canvasView setBrush:nil];
     //保存到存储，撤销用。
@@ -263,33 +235,27 @@
     //linyl
     CGPoint point = [[touches anyObject] locationInView:self];
     
-    LSBrushModel *brushModel = [LSBrushModel new];
+    DrawBoardBrushModel *brushModel = [DrawBoardBrushModel new];
     brushModel.brushColor = _brushColor;
     brushModel.brushWidth = _brushWidth;
     brushModel.shapeType = _shapeType;
     brushModel.isEraser = _isEraser;
-    brushModel.endPoint = [LSPointModel new];
+    brushModel.endPoint = [DrawBoardPointModel new];
     brushModel.endPoint.xPoint = point.x;
     brushModel.endPoint.yPoint = point.y;
     brushModel.endPoint.timeOffset = fabs(_beginDate.timeIntervalSinceNow);;
-   
-    LSDrawPackage *drawPackage = [_dwawFile.packageArray lastObject];
+    
+    DrawBoardPackage *drawPackage = [_dwawFile.packageArray lastObject];
     
     [drawPackage.pointOrBrushArray addObject:brushModel];
-    
-//    NSLog(@"end-offset:%f",brushModel.endPoint.timeOffset);
-    //linyl
-    
-    
+
 }
 
-- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self touchesEnded:touches withEvent:event];
 }
 
-- (CGRect)getRectWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
-{
+- (CGRect)getRectWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint{
     CGFloat x = startPoint.x <= endPoint.x ? startPoint.x: endPoint.x;
     CGFloat y = startPoint.y <= endPoint.y ? startPoint.y : endPoint.y;
     CGFloat width = fabs(startPoint.x - endPoint.x);
@@ -298,8 +264,7 @@
     return CGRectMake(x , y , width, height);
 }
 
-- (UIImage *)composeBrushToImage
-{
+- (UIImage *)composeBrushToImage{
     UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, 0.0);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -314,8 +279,7 @@
     
 }
 
-- (void)saveCompletion:(DrawViewActionCompletionBlock)completion
-{
+- (void)saveCompletion:(DrawViewActionCompletionBlock)completion{
     _block = completion;
     UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, 0.0);
     
@@ -325,21 +289,20 @@
     
     UIImage *getImage = UIGraphicsGetImageFromCurrentImageContext();
     
-//    UIImageWriteToSavedPhotosAlbum(getImage, nil, nil, nil);
+    //    UIImageWriteToSavedPhotosAlbum(getImage, nil, nil, nil);
     UIImageWriteToSavedPhotosAlbum(getImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     UIGraphicsEndImageContext();
     
     //linyl
-    LSActionModel *actionModel = [LSActionModel new];
-    actionModel.ActionType = LSDrawActionSave;
+    DrawBoardActionModel *actionModel = [DrawBoardActionModel new];
+    actionModel.ActionType = DrawActionSave;
     
     [self addModelToPackage:actionModel];
     
     //linyl
 }
 
-- (void)setEraserMode:(LSBrush*)brush
-{
+- (void)setEraserMode:(DrawBoardBrush*)brush{
     UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0);
     
     [_composeView.image drawInRect:self.bounds];
@@ -356,11 +319,7 @@
     UIGraphicsEndImageContext();
 }
 
-
-
-
-- (void)clean
-{
+- (void)clean{
     _composeView.image = nil;
     
     [_brushArray removeAllObjects];
@@ -369,22 +328,18 @@
     [self cleanUndoArray];
     [self cleanRedoArray];
     
-    
     //linyl
-    LSActionModel *actionModel = [LSActionModel new];
-    actionModel.ActionType = LSDrawActionClean;
+    DrawBoardActionModel *actionModel = [DrawBoardActionModel new];
+    actionModel.ActionType = DrawActionClean;
     
     [self addModelToPackage:actionModel];
     //linyl
 }
 
-- (void)saveTempPic:(UIImage*)img
-{
-    if (img)
-    {
+- (void)saveTempPic:(UIImage*)img{
+    if (img){
         //这里切换线程处理
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
             NSDate *date = [NSDate date];
             NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
             [dateformatter setDateFormat:@"HHmmssSSS"];
@@ -397,29 +352,22 @@
             NSData *imgData = UIImagePNGRepresentation(img);
             
             
-            if (imgData)
-            {
+            if (imgData){
                 bSucc = [imgData writeToFile:picPath atomically:YES];
             }
             
-            
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                if (bSucc)
-                {
+                if (bSucc){
                     [_undoArray addObject:picPath];
                 }
                 
             });
         });
     }
-    
 }
 
-- (void)unDo
-{
-    if (_undoArray.count > 0)
-    {
+- (void)unDo{
+    if (_undoArray.count > 0){
         NSString *lastPath = [_undoArray lastObject];
         
         [_undoArray removeLastObject];
@@ -427,38 +375,32 @@
         [_redoArray addObject:lastPath];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-           
+            
             UIImage *unDoImage = nil;
-            if (_undoArray.count > 0)
-            {
+            if (_undoArray.count > 0){
                 NSString *unDoPicStr = [_undoArray lastObject];
                 NSData *imgData = [NSData dataWithContentsOfFile:unDoPicStr];
-                if (imgData)
-                {
+                if (imgData){
                     unDoImage = [UIImage imageWithData:imgData];
                 }
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
                 _composeView.image = unDoImage;
-                
             });
         });
         
         //linyl
-        LSActionModel *actionModel = [LSActionModel new];
-        actionModel.ActionType = LSDrawActionUndo;
+        DrawBoardActionModel *actionModel = [DrawBoardActionModel new];
+        actionModel.ActionType = DrawActionUndo;
         
         [self addModelToPackage:actionModel];
         //linyl
     }
 }
 
-- (void)reDo
-{
-    if (_redoArray.count > 0)
-    {
+- (void)reDo{
+    if (_redoArray.count > 0){
         NSString *lastPath = [_redoArray lastObject];
         [_redoArray removeLastObject];
         
@@ -468,15 +410,12 @@
             
             UIImage *unDoImage = nil;
             NSData *imgData = [NSData dataWithContentsOfFile:lastPath];
-            if (imgData)
-            {
+            if (imgData){
                 unDoImage = [UIImage imageWithData:imgData];
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                if (unDoImage)
-                {
+                if (unDoImage){
                     _composeView.image = unDoImage;
                 }
             });
@@ -484,179 +423,133 @@
         });
         
         //linyl
-        LSActionModel *actionModel = [LSActionModel new];
-        actionModel.ActionType = LSDrawActionRedo;
+        DrawBoardActionModel *actionModel = [DrawBoardActionModel new];
+        actionModel.ActionType = DrawActionRedo;
         
         [self addModelToPackage:actionModel];
         //linyl
     }
 }
 
-- (void)deleteTempPic:(NSString *)picPath
-{
+- (void)deleteTempPic:(NSString *)picPath{
     NSFileManager* fileManager=[NSFileManager defaultManager];
-     [fileManager removeItemAtPath:picPath error:nil];
+    [fileManager removeItemAtPath:picPath error:nil];
 }
 
-- (void)cleanUndoArray
-{
-    for(NSString *picPath in _undoArray)
-    {
+- (void)cleanUndoArray{
+    for(NSString *picPath in _undoArray){
         [self deleteTempPic:picPath];
     }
     
     [_undoArray removeAllObjects];
 }
 
-- (void)cleanRedoArray
-{
-    for(NSString *picPath in _redoArray)
-    {
+- (void)cleanRedoArray{
+    for(NSString *picPath in _redoArray){
         [self deleteTempPic:picPath];
     }
     
     [_redoArray removeAllObjects];
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
     [self clean];
 }
 
-- (void)setBackgroundImage:(UIImage *)backgroundImage
-{
-    if (backgroundImage)
-    {
+- (void)setBackgroundImage:(UIImage *)backgroundImage{
+    if (backgroundImage){
         _bgImgView.image = backgroundImage;
-        self.drawCallBackImage = backgroundImage;
+//        _drawCallBackImage = backgroundImage;
     }
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews{
     _bgImgView.frame = self.bounds;
     _composeView.frame = self.bounds;
     _canvasView.frame = self.bounds;
 }
 
-
-
-//linyl
-- (void)drawNextPackage
-{
-    if(!_recPackageArray)
-    {
+- (void)drawNextPackage{
+    if(!_recPackageArray){
         NSString *filePath = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(), @"drawFile"];
-        LSDrawFile *drawFile = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-        if (drawFile)
-        {
+        DrawBoardFile *drawFile = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+        if (drawFile){
             _recPackageArray = drawFile.packageArray;
         }
     }
     
-    if (_recPackageArray.count > 0)
-    {
-        LSDrawPackage *pack = [_recPackageArray firstObject];
+    if (_recPackageArray.count > 0){
+        DrawBoardPackage *pack = [_recPackageArray firstObject];
         [_recPackageArray removeObjectAtIndex:0];
         
-        for (LSDrawModel *drawModel in pack.pointOrBrushArray)
-        {
-            if (drawModel)
-            {
-                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-                
-                    double packageOffset = 0.0;
-                    if ([drawModel isKindOfClass:[LSPointModel class]])
-                    {
-                        LSPointModel *pointModel = (LSPointModel *)drawModel;
-                        [self performSelector:@selector(drawWithPointModel:) withObject:drawModel afterDelay:pointModel.timeOffset];
+        for (DrawBoardModel *drawModel in pack.pointOrBrushArray){
+            if (drawModel){
+                double packageOffset = 0.0;
+                if ([drawModel isKindOfClass:[DrawBoardPointModel class]]){
+                    DrawBoardPointModel *pointModel = (DrawBoardPointModel *)drawModel;
+                    [self performSelector:@selector(drawWithPointModel:) withObject:drawModel afterDelay:pointModel.timeOffset];
+                } else if ([drawModel isKindOfClass:[DrawBoardBrushModel class]]){
+                    DrawBoardBrushModel *brushModel = (DrawBoardBrushModel*)drawModel;
+                    if (brushModel.beginPoint){
+                        packageOffset = brushModel.beginPoint.timeOffset;
+                    } else {
+                        packageOffset = brushModel.endPoint.timeOffset;
                     }
-                    else if([drawModel isKindOfClass:[LSBrushModel class]])
-                    {
-                        LSBrushModel *brushModel = (LSBrushModel*)drawModel;
-                        
-                        if (brushModel.beginPoint)
-                        {
-                            packageOffset = brushModel.beginPoint.timeOffset;
-                        }
-                        else
-                        {
-                            packageOffset = brushModel.endPoint.timeOffset;
-                        }
-                        [self performSelector:@selector(drawWithBrushModel:) withObject:drawModel afterDelay:packageOffset];
+                    [self performSelector:@selector(drawWithBrushModel:) withObject:drawModel afterDelay:packageOffset];
+                } else if ([drawModel isKindOfClass:[DrawBoardActionModel class]]){
+                    DrawBoardActionModel *actionModel = (DrawBoardActionModel*)drawModel;
+                    switch (actionModel.ActionType){
+                        case DrawActionRedo:
+                            [self performSelector:@selector(actionReDo) withObject:nil afterDelay:0.5];
+                            break;
+                            
+                        case DrawActionUndo:
+                            [self performSelector:@selector(actionUnDo) withObject:nil afterDelay:0.5];
+                            break;
+                        case DrawActionSave:
+                            [self performSelector:@selector(actionSave) withObject:nil afterDelay:0.5];
+                            break;
+                        case DrawActionClean:
+                            [self performSelector:@selector(actionClean) withObject:nil afterDelay:0.5];
+                            break;
+                            
+                        default:
+                            break;
                     }
-                    else if([drawModel isKindOfClass:[LSActionModel class]])
-                    {
-                        LSActionModel *actionModel = (LSActionModel*)drawModel;
-                        switch (actionModel.ActionType)
-                        {
-                            case LSDrawActionRedo:
-                                [self performSelector:@selector(actionReDo) withObject:nil afterDelay:0.5];
-                                break;
-                                
-                            case LSDrawActionUndo:
-                                [self performSelector:@selector(actionUnDo) withObject:nil afterDelay:0.5];
-                                break;
-                            case LSDrawActionSave:
-                                [self performSelector:@selector(actionSave) withObject:nil afterDelay:0.5];
-                                break;
-                            case LSDrawActionClean:
-                                [self performSelector:@selector(actionClean) withObject:nil afterDelay:0.5];
-                                break;
-                                
-                            default:
-                                break;
-                        }
-                    }
-                    
-                
-//                });
-                
-                
+                }
             }
         }
     }
 }
 
-- (void)drawWithBrushModel:(LSDrawModel*)drawModel
-{
-    LSBrushModel *brushModel = (LSBrushModel*)drawModel;
-    if (brushModel.beginPoint)
-    {
+- (void)drawWithBrushModel:(DrawBoardModel*)drawModel{
+    DrawBoardBrushModel *brushModel = (DrawBoardBrushModel*)drawModel;
+    if (brushModel.beginPoint){
         [self setDrawingBrush:brushModel];
         [self drawBeginPoint:CGPointMake(brushModel.beginPoint.xPoint, brushModel.beginPoint.yPoint)];
-    }
-    else
-    {
+    } else {
         [self drawEndPoint:CGPointMake(brushModel.endPoint.xPoint, brushModel.endPoint.yPoint)];
     }
 }
 
 
-- (void)drawWithPointModel:(LSDrawModel*)drawModel
-{
-    LSPointModel *pointModel = (LSPointModel*)drawModel;
+- (void)drawWithPointModel:(DrawBoardModel*)drawModel{
+    DrawBoardPointModel *pointModel = (DrawBoardPointModel*)drawModel;
     [self drawMovePoint:CGPointMake(pointModel.xPoint, pointModel.yPoint)];
 }
 
-- (void)setDrawingBrush:(LSBrushModel*) brushModel
-{
-
-    if (brushModel)
-    {
+- (void)setDrawingBrush:(DrawBoardBrushModel*) brushModel{
+    if (brushModel){
         _brushColor = brushModel.brushColor;
         _brushWidth = brushModel.brushWidth;
         _shapeType  = brushModel.shapeType;
         _isEraser   = brushModel.isEraser;
     }
-
 }
 
-- (void)drawBeginPoint:(CGPoint) point
-{
-//    NSLog(@"drawBeginPoint");
-    LSBrush *brush = [LSBrush new];
+- (void)drawBeginPoint:(CGPoint) point{
+    //    NSLog(@"drawBeginPoint");
+    DrawBoardBrush *brush = [DrawBoardBrush new];
     brush.brushColor = _brushColor;
     brush.brushWidth = _brushWidth;
     brush.isEraser = _isEraser;
@@ -666,37 +559,26 @@
     brush.bezierPath = [UIBezierPath new];
     [brush.bezierPath moveToPoint:point];
     
-    
     [_brushArray addObject:brush];
     
     //每次画线前，都清除重做列表。
-//    [self cleanRedoArray];
+    //    [self cleanRedoArray];
     
     ctr = 0;
     pts[0] = point;
-    
-    
 }
 
-- (void)drawMovePoint:(CGPoint) point
-{
-    LSBrush *brush = [_brushArray lastObject];
-    
-    if (_isEraser)
-    {
+- (void)drawMovePoint:(CGPoint) point{
+    DrawBoardBrush *brush = [_brushArray lastObject];
+    if (_isEraser) {
         [brush.bezierPath addLineToPoint:point];
         [self setEraserMode:brush];
-    }
-    else
-    {
-        switch (_shapeType)
-        {
-            case LSShapeCurve:
-                
+    } else {
+        switch (_shapeType){
+            case DrawBoardShapeCurve:
                 ctr++;
                 pts[ctr] = point;
-                if (ctr == 4)
-                {
+                if (ctr == 4){
                     pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0, (pts[2].y + pts[4].y)/2.0);
                     
                     [brush.bezierPath moveToPoint:pts[0]];
@@ -708,17 +590,17 @@
                 
                 break;
                 
-            case LSShapeLine:
+            case DrawBoardShapeLine:
                 [brush.bezierPath removeAllPoints];
                 [brush.bezierPath moveToPoint:brush.beginPoint];
                 [brush.bezierPath addLineToPoint:point];
                 break;
                 
-            case LSShapeEllipse:
+            case DrawBoardShapeEllipse:
                 brush.bezierPath = [UIBezierPath bezierPathWithOvalInRect:[self getRectWithStartPoint:brush.beginPoint endPoint:point]];
                 break;
                 
-            case LSShapeRect:
+            case DrawBoardShapeRect:
                 
                 brush.bezierPath = [UIBezierPath bezierPathWithRect:[self getRectWithStartPoint:brush.beginPoint endPoint:point]];
                 break;
@@ -732,20 +614,14 @@
     [_canvasView setBrush:brush];
 }
 
-- (void)drawEndPoint:(CGPoint) point
-{
-    
+- (void)drawEndPoint:(CGPoint) point{
     uint count = ctr;
-    if (count <= 4 && _shapeType == LSShapeCurve)
-    {
-        for (int i = 4; i > count; i--)
-        {
+    if (count <= 4 && _shapeType == DrawBoardShapeCurve){
+        for (int i = 4; i > count; i--){
             [self drawMovePoint:point];
         }
         ctr = 0;
-    }
-    else
-    {
+    } else {
         [self drawMovePoint:point];
     }
     
@@ -760,40 +636,34 @@
 }
 
 //录制脚本
-- (void)testRecToFile
-{
+- (void)testRecToFile{
     NSString *filePath = [NSString stringWithFormat:@"%@%@",NSTemporaryDirectory(), @"drawFile"];
     
     NSLog(@"drawfile:%@",filePath);
     
     BOOL bRet = [NSKeyedArchiver archiveRootObject:_dwawFile toFile:filePath];
     
-    if (bRet)
-    {
+    if (bRet){
         NSLog(@"archive Succ");
     }
-
+    
 }
 //绘制脚本
-- (void)testPlayFromFile
-{
-//    [self drawFileTest];
+- (void)testPlayFromFile{
+    //    [self drawFileTest];
     [self drawNextPackage];
 }
 
-- (void)addModelToPackage:(LSDrawModel*)drawModel
-{
-    LSDrawPackage *drawPackage = [LSDrawPackage new];
+- (void)addModelToPackage:(DrawBoardModel*)drawModel{
+    DrawBoardPackage *drawPackage = [DrawBoardPackage new];
     drawPackage.pointOrBrushArray = [NSMutableArray new];
     
     [drawPackage.pointOrBrushArray addObject:drawModel];
     [_dwawFile.packageArray addObject:drawPackage];
 }
 
-- (void)actionUnDo
-{
-    if (_undoArray.count > 0)
-    {
+- (void)actionUnDo{
+    if (_undoArray.count > 0){
         NSString *lastPath = [_undoArray lastObject];
         
         [_undoArray removeLastObject];
@@ -801,22 +671,17 @@
         [_redoArray addObject:lastPath];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
             UIImage *unDoImage = nil;
-            if (_undoArray.count > 0)
-            {
+            if (_undoArray.count > 0){
                 NSString *unDoPicStr = [_undoArray lastObject];
                 NSData *imgData = [NSData dataWithContentsOfFile:unDoPicStr];
-                if (imgData)
-                {
+                if (imgData){
                     unDoImage = [UIImage imageWithData:imgData];
                 }
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
                 _composeView.image = unDoImage;
-                
             });
         });
         
@@ -824,40 +689,32 @@
     }
 }
 
-- (void)actionReDo
-{
-    if (_redoArray.count > 0)
-    {
+- (void)actionReDo{
+    if (_redoArray.count > 0){
         NSString *lastPath = [_redoArray lastObject];
         [_redoArray removeLastObject];
         
         [_undoArray addObject:lastPath];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
             UIImage *unDoImage = nil;
             NSData *imgData = [NSData dataWithContentsOfFile:lastPath];
-            if (imgData)
-            {
+            if (imgData){
                 unDoImage = [UIImage imageWithData:imgData];
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                if (unDoImage)
-                {
+                if (unDoImage){
                     _composeView.image = unDoImage;
                 }
             });
-            
         });
-        
         
         [self drawNextPackage];
     }
 }
-- (void)actionSave
-{
+
+- (void)actionSave{
     UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, 0.0);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -872,8 +729,7 @@
     [self drawNextPackage];
 }
 
-- (void)actionClean
-{
+- (void)actionClean{
     _composeView.image = nil;
     
     [_brushArray removeAllObjects];
@@ -882,7 +738,6 @@
     [self cleanUndoArray];
     [self cleanRedoArray];
     
-    
     //linyl
     [self drawNextPackage];
     
@@ -890,8 +745,8 @@
 
 
 #pragma mark -- <保存到相册>
--(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
-    self.drawCallBackImage = image;
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    _drawCallBackImage = image;
     NSString *msg = nil ;
     if(error){
         msg = @"保存图片失败" ;
@@ -899,29 +754,9 @@
         msg = @"保存图片成功" ;
     }
     if (self.block) {
-        self.block(msg);
+        self.block(image,msg);
     }
 }
 
-- (UIImage *)drawCallBackImage{
-    if (!_drawCallBackImage) {
-        _drawCallBackImage = [[UIImage alloc] init];
-    }
-    return _drawCallBackImage;
-}
-
-
-//- (UIImage*)getAlphaImg
-//{
-//    UIColor *colorAlpha = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-//    CGRect rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-//    UIGraphicsBeginImageContext(rect.size);
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGContextSetFillColorWithColor(context, [colorAlpha CGColor]);
-//    CGContextFillRect(context, rect);
-//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return img;
-//}
 
 @end

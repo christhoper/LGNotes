@@ -13,13 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @protocol SearchToolViewDelegate <NSObject>
+@optional
 
+/** 进入搜索 */
 - (void)enterSearchEvent;
-
+/** 进入s筛选 */
 - (void)filterEvent;
-
-- (void)remarkEvent;
-
+/** 选择查看标记笔记 */
+- (void)remarkEvent:(BOOL)remark;
 
 @end
 
@@ -27,6 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id <SearchToolViewDelegate> delegate;
 
+
+/**
+ 初始化
+
+ @param frame frame
+ @param configure 配置信息
+ @return <#return value description#>
+ */
 - (instancetype)initWithFrame:(CGRect)frame
                     configure:(SearchToolViewConfigure *)configure;
 

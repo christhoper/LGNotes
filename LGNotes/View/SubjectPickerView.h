@@ -6,7 +6,7 @@
 //  Copyright © 2018年 hend. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>\
+#import <UIKit/UIKit.h>
 
 @class SubjectPickerView;
 NS_ASSUME_NONNULL_BEGIN

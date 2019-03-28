@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class NoteModel;
 
 @interface NoteMoreImageTableViewCell : UITableViewCell
+
+- (void)configureCellForDataSource:(NoteModel *)dataSource indexPath:(NSIndexPath *)indexPath;
 
 @end
 

@@ -11,3 +11,7 @@
 @implementation SubjectModel
 
 @end
+
+@implementation SystemModel
+
+@end

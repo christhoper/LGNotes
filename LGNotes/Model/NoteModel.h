@@ -41,18 +41,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *ResourceName;
 /** 笔记来源内容 */
 @property (nonatomic, copy) NSString *ResourceContent;
-@property (nonatomic, copy) NSString *ResourcePCLink;
-@property (nonatomic, copy) NSString *ResourceIOSLink;
-@property (nonatomic, copy) NSString *ResourceAndroidLink;
+/** 是否是重难点 */
+@property (nonatomic, copy) NSString *IsKeyPoint;
+
+@property (nonatomic, copy) NSString *MaterialID;
+@property (nonatomic, copy) NSString *MaterialIndex;
+@property (nonatomic, copy) NSString *StartTime;
+@property (nonatomic, copy) NSString *EndTime;
 
 /** 0编辑笔记、1新增笔记 */
 @property (nonatomic, assign) NSInteger OperateFlag;
 @property (nonatomic, copy) NSString *UserID;
 @property (nonatomic, copy) NSString *UserName;
 @property (nonatomic, copy) NSString *SchoolID;
-
 /** 自定义：笔记数据总数 */
 @property (nonatomic, assign) NSInteger TotalCount;
+/** 图片网址数组，最多只存三个地址 */
+@property (nonatomic, copy) NSArray *imgaeUrls;
+/** 是否是图文混排 */
+@property (nonatomic, assign) BOOL mixTextImage;
 
 
 @property (nonatomic, strong) NSMutableDictionary *imageInfo;

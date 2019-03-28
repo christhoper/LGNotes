@@ -27,7 +27,7 @@
 {
      NSIndexPath *_lastIndexPath;
 }
-/** 画笔颜色 */
+/** 画笔颜色集合 */
 @property (nonatomic, strong) UICollectionView *penColorCollectionView;
 /** 底部工具条 */
 @property (nonatomic, strong) NoteDrawSettingButtonView *buttonView;
@@ -217,7 +217,6 @@ static CGFloat const penColorHeight = 30.f;
 #pragma mark - SliderView
 - (void)changePenFont:(UISlider *)sender{
     self.penFontView.ballSize = sender.value;
-    NSLog(@"球的宽度:%f",self.penFontView.lineWidth);
     CGFloat drawLineWidth = self.penFontView.lineWidth;
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawSettingViewChanegPenFont:)]) {
         [self.delegate drawSettingViewChanegPenFont:drawLineWidth];

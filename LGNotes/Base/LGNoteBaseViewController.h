@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LGNoteBaseViewController : UIViewController
 
+/** 是否返回第一个present控制器 */
+- (void)dismissTopViewController:(BOOL)isDismissTopViewController;
+
 @end
 
 NS_ASSUME_NONNULL_END

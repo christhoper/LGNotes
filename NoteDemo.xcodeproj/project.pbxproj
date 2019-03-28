@@ -9,14 +9,8 @@
 /* Begin PBXBuildFile section */
 		320D4E8F224372EA0013872A /* NoteMoreImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D4E8E224372EA0013872A /* NoteMoreImageTableViewCell.m */; };
 		321156F3223637900000A054 /* NoteEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 321156F2223637900000A054 /* NoteEditView.m */; };
-		3211BA73222D0D6F004B3929 /* UIView+LGNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211BA72222D0D6F004B3929 /* UIView+LGNote.m */; };
-		321932B72241CFC20019AA64 /* NSString+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932B62241CFC20019AA64 /* NSString+Notes.m */; };
-		321932BA2241D0EA0019AA64 /* UIColor+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932B92241D0EA0019AA64 /* UIColor+Notes.m */; };
-		321932BD2241D1800019AA64 /* NSString+NotesEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932BC2241D1800019AA64 /* NSString+NotesEmoji.m */; };
-		321932C02241D2070019AA64 /* UITextView+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932BF2241D2070019AA64 /* UITextView+Notes.m */; };
 		321932C6224263400019AA64 /* NoteMainImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C5224263400019AA64 /* NoteMainImageTableViewCell.m */; };
 		321932C9224274D90019AA64 /* SubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C8224274D90019AA64 /* SubjectModel.m */; };
-		3229F56D2178889E00B101AF /* LGNoteImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3229F56C2178889E00B101AF /* LGNoteImagePickerViewController.m */; };
 		32326422216D9006005CC784 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326421216D9006005CC784 /* AppDelegate.m */; };
 		32326425216D9006005CC784 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326424216D9006005CC784 /* ViewController.m */; };
 		32326428216D9006005CC784 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32326426216D9006005CC784 /* Main.storyboard */; };
@@ -43,24 +37,34 @@
 		3232649A216E3B35005CC784 /* LGNoteBaseTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326498216E3B35005CC784 /* LGNoteBaseTextView.m */; };
 		3246AD03222FC8E200940E2D /* SearchToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3246AD02222FC8E200940E2D /* SearchToolView.m */; };
 		3246AD06222FC97200940E2D /* SearchToolViewConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 3246AD05222FC97200940E2D /* SearchToolViewConfigure.m */; };
-		324FF7B92228C3BD008EF565 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FF7B42228C3BD008EF565 /* YYClassInfo.m */; };
-		324FF7BA2228C3BD008EF565 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FF7B82228C3BD008EF565 /* NSObject+YYModel.m */; };
-		324FF7BD22290FEF008EF565 /* LGNoteCustomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FF7BC22290FEF008EF565 /* LGNoteCustomWindow.m */; };
+		324FF7BD22290FEF008EF565 /* NoteCustomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FF7BC22290FEF008EF565 /* NoteCustomWindow.m */; };
 		325BC3A1216EE2EB00D077F5 /* LGNote.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3A0216EE2EB00D077F5 /* LGNote.bundle */; };
-		325BC3A4216EE39F00D077F5 /* NSBundle+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A3216EE39F00D077F5 /* NSBundle+Notes.m */; };
 		325BC3A7216EF2E600D077F5 /* NoteFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A6216EF2E600D077F5 /* NoteFilterViewController.m */; };
-		325BC3AE216EF7B800D077F5 /* LGNoteFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A8216EF7B700D077F5 /* LGNoteFilterCollectionViewCell.m */; };
-		325BC3B0216EF7B800D077F5 /* LGNoteFilterCollectionReusableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3AD216EF7B800D077F5 /* LGNoteFilterCollectionReusableViewHeader.m */; };
-		32656A162179F76500DA1465 /* LGNoteDrawBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A152179F76500DA1465 /* LGNoteDrawBoardViewController.m */; };
-		32656A21217A03DF00DA1465 /* LJBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A19217A03DF00DA1465 /* LJBaseModel.m */; };
-		32656A24217A03DF00DA1465 /* LSDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32656A1F217A03DF00DA1465 /* LSDrawView.m */; };
-		327D785422388D2A007B3088 /* NoteDrawSettingButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 327D785322388D2A007B3088 /* NoteDrawSettingButtonView.m */; };
-		327D785A2238AB57007B3088 /* BoardBgCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 327D78592238AB57007B3088 /* BoardBgCollectionViewCell.m */; };
-		327D785D2238ADB2007B3088 /* BoardBgImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 327D785C2238ADB2007B3088 /* BoardBgImageView.m */; };
-		327D786022392FF2007B3088 /* PenFontBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 327D785F22392FF2007B3088 /* PenFontBallView.m */; };
-		32B6B9D922408FDA00D109B5 /* UIButton+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6B9D822408FDA00D109B5 /* UIButton+Notes.m */; };
+		325BC3AE216EF7B800D077F5 /* NoteFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A8216EF7B700D077F5 /* NoteFilterCollectionViewCell.m */; };
+		325BC3B0216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3AD216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m */; };
+		32B6BE6022485BD0001F9E10 /* NoteDrawSettingButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5822485BD0001F9E10 /* NoteDrawSettingButtonView.m */; };
+		32B6BE6122485BD0001F9E10 /* BoardBgCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5922485BD0001F9E10 /* BoardBgCollectionViewCell.m */; };
+		32B6BE6222485BD0001F9E10 /* PenFontBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5B22485BD0001F9E10 /* PenFontBallView.m */; };
+		32B6BE6322485BD0001F9E10 /* BoardBgImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5C22485BD0001F9E10 /* BoardBgImageView.m */; };
+		32B6BE6422485BD0001F9E10 /* NoteDrawSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5F22485BD0001F9E10 /* NoteDrawSettingView.m */; };
+		32B6BE6722485C09001F9E10 /* NoteDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE6622485C09001F9E10 /* NoteDrawView.m */; };
+		32B6BE6A22485E4A001F9E10 /* LGNoteBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE6922485E4A001F9E10 /* LGNoteBaseModel.m */; };
+		32B6BE6D22485F2C001F9E10 /* DrawBoardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE6C22485F2C001F9E10 /* DrawBoardModel.m */; };
+		32B6BE7322487EBF001F9E10 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7022487EBE001F9E10 /* YYClassInfo.m */; };
+		32B6BE7422487EBF001F9E10 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7222487EBF001F9E10 /* NSObject+YYModel.m */; };
+		32B6BE8422488002001F9E10 /* NSString+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7722488002001F9E10 /* NSString+Notes.m */; };
+		32B6BE8522488002001F9E10 /* UITextView+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7922488002001F9E10 /* UITextView+Notes.m */; };
+		32B6BE8622488002001F9E10 /* UIButton+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7A22488002001F9E10 /* UIButton+Notes.m */; };
+		32B6BE8722488002001F9E10 /* NSBundle+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7E22488002001F9E10 /* NSBundle+Notes.m */; };
+		32B6BE8822488002001F9E10 /* NSString+NotesEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8122488002001F9E10 /* NSString+NotesEmoji.m */; };
+		32B6BE8922488002001F9E10 /* UIView+LGNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8222488002001F9E10 /* UIView+LGNote.m */; };
+		32B6BE8A22488002001F9E10 /* UIColor+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8322488002001F9E10 /* UIColor+Notes.m */; };
+		32B6BE8F224880FE001F9E10 /* LGNoteDrawBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8B224880FD001F9E10 /* LGNoteDrawBoardViewController.m */; };
+		32B6BE90224880FE001F9E10 /* LGNoteImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8D224880FE001F9E10 /* LGNoteImagePickerViewController.m */; };
+		32D72A9F2249B03B00FFB9B4 /* TKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72A9E2249B03A00FFB9B4 /* TKImageView.m */; };
+		32D72AA22249B9FC00FFB9B4 /* LGNoteCutImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72AA12249B9FC00FFB9B4 /* LGNoteCutImageViewController.m */; };
+		32D72AA6224A43B200FFB9B4 /* NoteXMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72AA5224A43B200FFB9B4 /* NoteXMLDictionary.m */; };
 		32D8CEFD2237D199000BD642 /* LGNoteBaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D8CEFC2237D199000BD642 /* LGNoteBaseNavigationViewController.m */; };
-		32D8CF002237E3EE000BD642 /* NoteDrawSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D8CEFF2237E3EE000BD642 /* NoteDrawSettingView.m */; };
 		C089BECC87C865CAFC5664C8 /* Pods_NoteDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69574B6C56DF4CDE82A6315 /* Pods_NoteDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,22 +91,10 @@
 		320D4E8E224372EA0013872A /* NoteMoreImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMoreImageTableViewCell.m; sourceTree = "<group>"; };
 		321156F1223637900000A054 /* NoteEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteEditView.h; sourceTree = "<group>"; };
 		321156F2223637900000A054 /* NoteEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteEditView.m; sourceTree = "<group>"; };
-		3211BA71222D0D6F004B3929 /* UIView+LGNote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LGNote.h"; sourceTree = "<group>"; };
-		3211BA72222D0D6F004B3929 /* UIView+LGNote.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGNote.m"; sourceTree = "<group>"; };
-		321932B52241CFC20019AA64 /* NSString+Notes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Notes.h"; sourceTree = "<group>"; };
-		321932B62241CFC20019AA64 /* NSString+Notes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Notes.m"; sourceTree = "<group>"; };
-		321932B82241D0EA0019AA64 /* UIColor+Notes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Notes.h"; sourceTree = "<group>"; };
-		321932B92241D0EA0019AA64 /* UIColor+Notes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Notes.m"; sourceTree = "<group>"; };
-		321932BB2241D1800019AA64 /* NSString+NotesEmoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+NotesEmoji.h"; sourceTree = "<group>"; };
-		321932BC2241D1800019AA64 /* NSString+NotesEmoji.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+NotesEmoji.m"; sourceTree = "<group>"; };
-		321932BE2241D2070019AA64 /* UITextView+Notes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+Notes.h"; sourceTree = "<group>"; };
-		321932BF2241D2070019AA64 /* UITextView+Notes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Notes.m"; sourceTree = "<group>"; };
 		321932C4224263400019AA64 /* NoteMainImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteMainImageTableViewCell.h; sourceTree = "<group>"; };
 		321932C5224263400019AA64 /* NoteMainImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMainImageTableViewCell.m; sourceTree = "<group>"; };
 		321932C7224274D90019AA64 /* SubjectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubjectModel.h; sourceTree = "<group>"; };
 		321932C8224274D90019AA64 /* SubjectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubjectModel.m; sourceTree = "<group>"; };
-		3229F56B2178889E00B101AF /* LGNoteImagePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteImagePickerViewController.h; sourceTree = "<group>"; };
-		3229F56C2178889E00B101AF /* LGNoteImagePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteImagePickerViewController.m; sourceTree = "<group>"; };
 		3232641D216D9006005CC784 /* NoteDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32326420216D9006005CC784 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32326421216D9006005CC784 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -156,43 +148,63 @@
 		3246AD02222FC8E200940E2D /* SearchToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchToolView.m; sourceTree = "<group>"; };
 		3246AD04222FC97200940E2D /* SearchToolViewConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchToolViewConfigure.h; sourceTree = "<group>"; };
 		3246AD05222FC97200940E2D /* SearchToolViewConfigure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchToolViewConfigure.m; sourceTree = "<group>"; };
-		324FF7B42228C3BD008EF565 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
-		324FF7B52228C3BD008EF565 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
-		324FF7B62228C3BD008EF565 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
-		324FF7B72228C3BD008EF565 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
-		324FF7B82228C3BD008EF565 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
-		324FF7BB22290FEF008EF565 /* LGNoteCustomWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteCustomWindow.h; sourceTree = "<group>"; };
-		324FF7BC22290FEF008EF565 /* LGNoteCustomWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteCustomWindow.m; sourceTree = "<group>"; };
+		324FF7BB22290FEF008EF565 /* NoteCustomWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteCustomWindow.h; sourceTree = "<group>"; };
+		324FF7BC22290FEF008EF565 /* NoteCustomWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteCustomWindow.m; sourceTree = "<group>"; };
 		325BC3A0216EE2EB00D077F5 /* LGNote.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LGNote.bundle; sourceTree = "<group>"; };
-		325BC3A2216EE39F00D077F5 /* NSBundle+Notes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Notes.h"; sourceTree = "<group>"; };
-		325BC3A3216EE39F00D077F5 /* NSBundle+Notes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Notes.m"; sourceTree = "<group>"; };
 		325BC3A5216EF2E600D077F5 /* NoteFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteFilterViewController.h; sourceTree = "<group>"; };
 		325BC3A6216EF2E600D077F5 /* NoteFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteFilterViewController.m; sourceTree = "<group>"; };
-		325BC3A8216EF7B700D077F5 /* LGNoteFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteFilterCollectionViewCell.m; sourceTree = "<group>"; };
-		325BC3A9216EF7B700D077F5 /* LGNoteFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteFilterCollectionViewCell.h; sourceTree = "<group>"; };
-		325BC3AA216EF7B700D077F5 /* LGNoteFilterCollectionReusableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteFilterCollectionReusableViewHeader.h; sourceTree = "<group>"; };
-		325BC3AD216EF7B800D077F5 /* LGNoteFilterCollectionReusableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteFilterCollectionReusableViewHeader.m; sourceTree = "<group>"; };
-		32656A142179F76500DA1465 /* LGNoteDrawBoardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteDrawBoardViewController.h; sourceTree = "<group>"; };
-		32656A152179F76500DA1465 /* LGNoteDrawBoardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteDrawBoardViewController.m; sourceTree = "<group>"; };
-		32656A19217A03DF00DA1465 /* LJBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJBaseModel.m; sourceTree = "<group>"; };
-		32656A1B217A03DF00DA1465 /* LSDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDrawView.h; sourceTree = "<group>"; };
-		32656A1E217A03DF00DA1465 /* LJBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJBaseModel.h; sourceTree = "<group>"; };
-		32656A1F217A03DF00DA1465 /* LSDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDrawView.m; sourceTree = "<group>"; };
+		325BC3A8216EF7B700D077F5 /* NoteFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilterCollectionViewCell.m; sourceTree = "<group>"; };
+		325BC3A9216EF7B700D077F5 /* NoteFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilterCollectionViewCell.h; sourceTree = "<group>"; };
+		325BC3AA216EF7B700D077F5 /* NoteFilterCollectionReusableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilterCollectionReusableViewHeader.h; sourceTree = "<group>"; };
+		325BC3AD216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilterCollectionReusableViewHeader.m; sourceTree = "<group>"; };
 		3267FD6E2170372700CCBCEF /* LGNoteConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteConfigure.h; sourceTree = "<group>"; };
-		327D785222388D2A007B3088 /* NoteDrawSettingButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDrawSettingButtonView.h; sourceTree = "<group>"; };
-		327D785322388D2A007B3088 /* NoteDrawSettingButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDrawSettingButtonView.m; sourceTree = "<group>"; };
-		327D78582238AB57007B3088 /* BoardBgCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardBgCollectionViewCell.h; sourceTree = "<group>"; };
-		327D78592238AB57007B3088 /* BoardBgCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoardBgCollectionViewCell.m; sourceTree = "<group>"; };
-		327D785B2238ADB2007B3088 /* BoardBgImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardBgImageView.h; sourceTree = "<group>"; };
-		327D785C2238ADB2007B3088 /* BoardBgImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoardBgImageView.m; sourceTree = "<group>"; };
-		327D785E22392FF2007B3088 /* PenFontBallView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PenFontBallView.h; sourceTree = "<group>"; };
-		327D785F22392FF2007B3088 /* PenFontBallView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PenFontBallView.m; sourceTree = "<group>"; };
-		32B6B9D722408FDA00D109B5 /* UIButton+Notes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Notes.h"; sourceTree = "<group>"; };
-		32B6B9D822408FDA00D109B5 /* UIButton+Notes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Notes.m"; sourceTree = "<group>"; };
+		32B6BE5622485BD0001F9E10 /* NoteDrawSettingButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDrawSettingButtonView.h; sourceTree = "<group>"; };
+		32B6BE5722485BD0001F9E10 /* BoardBgImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardBgImageView.h; sourceTree = "<group>"; };
+		32B6BE5822485BD0001F9E10 /* NoteDrawSettingButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDrawSettingButtonView.m; sourceTree = "<group>"; };
+		32B6BE5922485BD0001F9E10 /* BoardBgCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardBgCollectionViewCell.m; sourceTree = "<group>"; };
+		32B6BE5A22485BD0001F9E10 /* PenFontBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenFontBallView.h; sourceTree = "<group>"; };
+		32B6BE5B22485BD0001F9E10 /* PenFontBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenFontBallView.m; sourceTree = "<group>"; };
+		32B6BE5C22485BD0001F9E10 /* BoardBgImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardBgImageView.m; sourceTree = "<group>"; };
+		32B6BE5D22485BD0001F9E10 /* BoardBgCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardBgCollectionViewCell.h; sourceTree = "<group>"; };
+		32B6BE5E22485BD0001F9E10 /* NoteDrawSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDrawSettingView.h; sourceTree = "<group>"; };
+		32B6BE5F22485BD0001F9E10 /* NoteDrawSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDrawSettingView.m; sourceTree = "<group>"; };
+		32B6BE6522485C09001F9E10 /* NoteDrawView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDrawView.h; sourceTree = "<group>"; };
+		32B6BE6622485C09001F9E10 /* NoteDrawView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDrawView.m; sourceTree = "<group>"; };
+		32B6BE6822485E4A001F9E10 /* LGNoteBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteBaseModel.h; sourceTree = "<group>"; };
+		32B6BE6922485E4A001F9E10 /* LGNoteBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteBaseModel.m; sourceTree = "<group>"; };
+		32B6BE6B22485F2C001F9E10 /* DrawBoardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawBoardModel.h; sourceTree = "<group>"; };
+		32B6BE6C22485F2C001F9E10 /* DrawBoardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawBoardModel.m; sourceTree = "<group>"; };
+		32B6BE6E22487EBE001F9E10 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		32B6BE6F22487EBE001F9E10 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
+		32B6BE7022487EBE001F9E10 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
+		32B6BE7122487EBF001F9E10 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
+		32B6BE7222487EBF001F9E10 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		32B6BE7622488002001F9E10 /* NSBundle+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Notes.h"; sourceTree = "<group>"; };
+		32B6BE7722488002001F9E10 /* NSString+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Notes.m"; sourceTree = "<group>"; };
+		32B6BE7822488002001F9E10 /* NSString+NotesEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NotesEmoji.h"; sourceTree = "<group>"; };
+		32B6BE7922488002001F9E10 /* UITextView+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Notes.m"; sourceTree = "<group>"; };
+		32B6BE7A22488002001F9E10 /* UIButton+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Notes.m"; sourceTree = "<group>"; };
+		32B6BE7B22488002001F9E10 /* UIColor+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Notes.h"; sourceTree = "<group>"; };
+		32B6BE7C22488002001F9E10 /* UIView+LGNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LGNote.h"; sourceTree = "<group>"; };
+		32B6BE7D22488002001F9E10 /* NSString+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Notes.h"; sourceTree = "<group>"; };
+		32B6BE7E22488002001F9E10 /* NSBundle+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Notes.m"; sourceTree = "<group>"; };
+		32B6BE7F22488002001F9E10 /* UIButton+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Notes.h"; sourceTree = "<group>"; };
+		32B6BE8022488002001F9E10 /* UITextView+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Notes.h"; sourceTree = "<group>"; };
+		32B6BE8122488002001F9E10 /* NSString+NotesEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NotesEmoji.m"; sourceTree = "<group>"; };
+		32B6BE8222488002001F9E10 /* UIView+LGNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGNote.m"; sourceTree = "<group>"; };
+		32B6BE8322488002001F9E10 /* UIColor+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Notes.m"; sourceTree = "<group>"; };
+		32B6BE8B224880FD001F9E10 /* LGNoteDrawBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteDrawBoardViewController.m; sourceTree = "<group>"; };
+		32B6BE8C224880FE001F9E10 /* LGNoteImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteImagePickerViewController.h; sourceTree = "<group>"; };
+		32B6BE8D224880FE001F9E10 /* LGNoteImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteImagePickerViewController.m; sourceTree = "<group>"; };
+		32B6BE8E224880FE001F9E10 /* LGNoteDrawBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteDrawBoardViewController.h; sourceTree = "<group>"; };
+		32D72A9D2249B03A00FFB9B4 /* TKImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKImageView.h; sourceTree = "<group>"; };
+		32D72A9E2249B03A00FFB9B4 /* TKImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKImageView.m; sourceTree = "<group>"; };
+		32D72AA02249B9FC00FFB9B4 /* LGNoteCutImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteCutImageViewController.h; sourceTree = "<group>"; };
+		32D72AA12249B9FC00FFB9B4 /* LGNoteCutImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteCutImageViewController.m; sourceTree = "<group>"; };
+		32D72AA4224A43B200FFB9B4 /* NoteXMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteXMLDictionary.h; sourceTree = "<group>"; };
+		32D72AA5224A43B200FFB9B4 /* NoteXMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteXMLDictionary.m; sourceTree = "<group>"; };
 		32D8CEFB2237D199000BD642 /* LGNoteBaseNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteBaseNavigationViewController.h; sourceTree = "<group>"; };
 		32D8CEFC2237D199000BD642 /* LGNoteBaseNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteBaseNavigationViewController.m; sourceTree = "<group>"; };
-		32D8CEFE2237E3EE000BD642 /* NoteDrawSettingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDrawSettingView.h; sourceTree = "<group>"; };
-		32D8CEFF2237E3EE000BD642 /* NoteDrawSettingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDrawSettingView.m; sourceTree = "<group>"; };
 		598743329030DF392A5BCC27 /* Pods-NoteDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteDemo.debug.xcconfig"; path = "Target Support Files/Pods-NoteDemo/Pods-NoteDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F69574B6C56DF4CDE82A6315 /* Pods_NoteDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoteDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -230,23 +242,6 @@
 				1327CF5CEE302EAC89AC964E /* Pods-NoteDemo.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		3211BA60222D0C85004B3929 /* drawSettingView */ = {
-			isa = PBXGroup;
-			children = (
-				32D8CEFE2237E3EE000BD642 /* NoteDrawSettingView.h */,
-				32D8CEFF2237E3EE000BD642 /* NoteDrawSettingView.m */,
-				327D785222388D2A007B3088 /* NoteDrawSettingButtonView.h */,
-				327D785322388D2A007B3088 /* NoteDrawSettingButtonView.m */,
-				327D78582238AB57007B3088 /* BoardBgCollectionViewCell.h */,
-				327D78592238AB57007B3088 /* BoardBgCollectionViewCell.m */,
-				327D785B2238ADB2007B3088 /* BoardBgImageView.h */,
-				327D785C2238ADB2007B3088 /* BoardBgImageView.m */,
-				327D785E22392FF2007B3088 /* PenFontBallView.h */,
-				327D785F22392FF2007B3088 /* PenFontBallView.m */,
-			);
-			path = drawSettingView;
 			sourceTree = "<group>";
 		};
 		32326414216D9006005CC784 = {
@@ -309,13 +304,14 @@
 		32326452216D9059005CC784 /* LGNotes */ = {
 			isa = PBXGroup;
 			children = (
-				325BC39F216EE2EB00D077F5 /* Resource */,
 				32326488216E2C94005CC784 /* Base */,
-				32326470216DF01E005CC784 /* Other */,
-				32326458216DE809005CC784 /* Controller */,
+				32326453216D9398005CC784 /* Model */,
 				32326459216DE809005CC784 /* View */,
 				32326457216DE809005CC784 /* ViewModel */,
-				32326453216D9398005CC784 /* Model */,
+				32326458216DE809005CC784 /* Controller */,
+				32B6BE7522488002001F9E10 /* Category */,
+				325BC39F216EE2EB00D077F5 /* Resource */,
+				32326470216DF01E005CC784 /* Other */,
 			);
 			path = LGNotes;
 			sourceTree = "<group>";
@@ -353,6 +349,12 @@
 				32326461216DE923005CC784 /* NoteSearchViewController.m */,
 				325BC3A5216EF2E600D077F5 /* NoteFilterViewController.h */,
 				325BC3A6216EF2E600D077F5 /* NoteFilterViewController.m */,
+				32B6BE8E224880FE001F9E10 /* LGNoteDrawBoardViewController.h */,
+				32B6BE8B224880FD001F9E10 /* LGNoteDrawBoardViewController.m */,
+				32B6BE8C224880FE001F9E10 /* LGNoteImagePickerViewController.h */,
+				32B6BE8D224880FE001F9E10 /* LGNoteImagePickerViewController.m */,
+				32D72AA02249B9FC00FFB9B4 /* LGNoteCutImageViewController.h */,
+				32D72AA12249B9FC00FFB9B4 /* LGNoteCutImageViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -360,6 +362,8 @@
 		32326459216DE809005CC784 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				32D72A9C2249B03A00FFB9B4 /* CutImageView */,
+				32B6BE5522485B8C001F9E10 /* DrawBoardView */,
 				32326466216DED2D005CC784 /* NoteMainTableViewCell.h */,
 				32326467216DED2D005CC784 /* NoteMainTableViewCell.m */,
 				321932C4224263400019AA64 /* NoteMainImageTableViewCell.h */,
@@ -370,12 +374,12 @@
 				32326476216DF5D0005CC784 /* NoteMainTableView.m */,
 				3232648F216E3796005CC784 /* SubjectPickerView.h */,
 				32326490216E3796005CC784 /* SubjectPickerView.m */,
-				325BC3AA216EF7B700D077F5 /* LGNoteFilterCollectionReusableViewHeader.h */,
-				325BC3AD216EF7B800D077F5 /* LGNoteFilterCollectionReusableViewHeader.m */,
-				325BC3A9216EF7B700D077F5 /* LGNoteFilterCollectionViewCell.h */,
-				325BC3A8216EF7B700D077F5 /* LGNoteFilterCollectionViewCell.m */,
-				324FF7BB22290FEF008EF565 /* LGNoteCustomWindow.h */,
-				324FF7BC22290FEF008EF565 /* LGNoteCustomWindow.m */,
+				325BC3AA216EF7B700D077F5 /* NoteFilterCollectionReusableViewHeader.h */,
+				325BC3AD216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m */,
+				325BC3A9216EF7B700D077F5 /* NoteFilterCollectionViewCell.h */,
+				325BC3A8216EF7B700D077F5 /* NoteFilterCollectionViewCell.m */,
+				324FF7BB22290FEF008EF565 /* NoteCustomWindow.h */,
+				324FF7BC22290FEF008EF565 /* NoteCustomWindow.m */,
 				3246AD01222FC8E200940E2D /* SearchToolView.h */,
 				3246AD02222FC8E200940E2D /* SearchToolView.m */,
 				3246AD04222FC97200940E2D /* SearchToolViewConfigure.h */,
@@ -389,10 +393,7 @@
 		32326470216DF01E005CC784 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				321932B82241D0EA0019AA64 /* UIColor+Notes.h */,
-				321932B92241D0EA0019AA64 /* UIColor+Notes.m */,
-				3211BA71222D0D6F004B3929 /* UIView+LGNote.h */,
-				3211BA72222D0D6F004B3929 /* UIView+LGNote.m */,
+				32D72AA3224A43B200FFB9B4 /* XMLDictionary */,
 				32326485216E2C87005CC784 /* LGNoteNetworkManager.h */,
 				32326486216E2C87005CC784 /* LGNoteNetworkManager.m */,
 				32326471216DF03A005CC784 /* Configure.h */,
@@ -401,18 +402,6 @@
 				32326473216DF420005CC784 /* NoteTools.m */,
 				3232647F216E265D005CC784 /* LGNoteMBAlert.h */,
 				32326480216E265D005CC784 /* LGNoteMBAlert.m */,
-				325BC3A2216EE39F00D077F5 /* NSBundle+Notes.h */,
-				325BC3A3216EE39F00D077F5 /* NSBundle+Notes.m */,
-				321932BE2241D2070019AA64 /* UITextView+Notes.h */,
-				321932BF2241D2070019AA64 /* UITextView+Notes.m */,
-				321932B52241CFC20019AA64 /* NSString+Notes.h */,
-				321932B62241CFC20019AA64 /* NSString+Notes.m */,
-				32B6B9D722408FDA00D109B5 /* UIButton+Notes.h */,
-				32B6B9D822408FDA00D109B5 /* UIButton+Notes.m */,
-				321932BB2241D1800019AA64 /* NSString+NotesEmoji.h */,
-				321932BC2241D1800019AA64 /* NSString+NotesEmoji.m */,
-				3211BA60222D0C85004B3929 /* drawSettingView */,
-				32656A17217A03DF00DA1465 /* DrawView */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -428,12 +417,10 @@
 				32326493216E398C005CC784 /* LGNoteBaseTextField.m */,
 				32326499216E3B35005CC784 /* LGNoteBaseTextView.h */,
 				32326498216E3B35005CC784 /* LGNoteBaseTextView.m */,
-				3229F56B2178889E00B101AF /* LGNoteImagePickerViewController.h */,
-				3229F56C2178889E00B101AF /* LGNoteImagePickerViewController.m */,
-				32656A142179F76500DA1465 /* LGNoteDrawBoardViewController.h */,
-				32656A152179F76500DA1465 /* LGNoteDrawBoardViewController.m */,
 				32D8CEFB2237D199000BD642 /* LGNoteBaseNavigationViewController.h */,
 				32D8CEFC2237D199000BD642 /* LGNoteBaseNavigationViewController.m */,
+				32B6BE6822485E4A001F9E10 /* LGNoteBaseModel.h */,
+				32B6BE6922485E4A001F9E10 /* LGNoteBaseModel.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -446,20 +433,69 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		32656A17217A03DF00DA1465 /* DrawView */ = {
+		32B6BE5522485B8C001F9E10 /* DrawBoardView */ = {
 			isa = PBXGroup;
 			children = (
-				324FF7B72228C3BD008EF565 /* NSObject+YYModel.h */,
-				324FF7B82228C3BD008EF565 /* NSObject+YYModel.m */,
-				324FF7B62228C3BD008EF565 /* YYClassInfo.h */,
-				324FF7B42228C3BD008EF565 /* YYClassInfo.m */,
-				324FF7B52228C3BD008EF565 /* YYModel.h */,
-				32656A1E217A03DF00DA1465 /* LJBaseModel.h */,
-				32656A19217A03DF00DA1465 /* LJBaseModel.m */,
-				32656A1B217A03DF00DA1465 /* LSDrawView.h */,
-				32656A1F217A03DF00DA1465 /* LSDrawView.m */,
+				32B6BE6F22487EBE001F9E10 /* NSObject+YYModel.h */,
+				32B6BE7222487EBF001F9E10 /* NSObject+YYModel.m */,
+				32B6BE6E22487EBE001F9E10 /* YYClassInfo.h */,
+				32B6BE7022487EBE001F9E10 /* YYClassInfo.m */,
+				32B6BE7122487EBF001F9E10 /* YYModel.h */,
+				32B6BE5D22485BD0001F9E10 /* BoardBgCollectionViewCell.h */,
+				32B6BE5922485BD0001F9E10 /* BoardBgCollectionViewCell.m */,
+				32B6BE5722485BD0001F9E10 /* BoardBgImageView.h */,
+				32B6BE5C22485BD0001F9E10 /* BoardBgImageView.m */,
+				32B6BE5622485BD0001F9E10 /* NoteDrawSettingButtonView.h */,
+				32B6BE5822485BD0001F9E10 /* NoteDrawSettingButtonView.m */,
+				32B6BE5E22485BD0001F9E10 /* NoteDrawSettingView.h */,
+				32B6BE5F22485BD0001F9E10 /* NoteDrawSettingView.m */,
+				32B6BE5A22485BD0001F9E10 /* PenFontBallView.h */,
+				32B6BE5B22485BD0001F9E10 /* PenFontBallView.m */,
+				32B6BE6522485C09001F9E10 /* NoteDrawView.h */,
+				32B6BE6622485C09001F9E10 /* NoteDrawView.m */,
+				32B6BE6B22485F2C001F9E10 /* DrawBoardModel.h */,
+				32B6BE6C22485F2C001F9E10 /* DrawBoardModel.m */,
 			);
-			path = DrawView;
+			path = DrawBoardView;
+			sourceTree = "<group>";
+		};
+		32B6BE7522488002001F9E10 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				32B6BE7622488002001F9E10 /* NSBundle+Notes.h */,
+				32B6BE7E22488002001F9E10 /* NSBundle+Notes.m */,
+				32B6BE7D22488002001F9E10 /* NSString+Notes.h */,
+				32B6BE7722488002001F9E10 /* NSString+Notes.m */,
+				32B6BE7822488002001F9E10 /* NSString+NotesEmoji.h */,
+				32B6BE8122488002001F9E10 /* NSString+NotesEmoji.m */,
+				32B6BE7F22488002001F9E10 /* UIButton+Notes.h */,
+				32B6BE7A22488002001F9E10 /* UIButton+Notes.m */,
+				32B6BE7B22488002001F9E10 /* UIColor+Notes.h */,
+				32B6BE8322488002001F9E10 /* UIColor+Notes.m */,
+				32B6BE8022488002001F9E10 /* UITextView+Notes.h */,
+				32B6BE7922488002001F9E10 /* UITextView+Notes.m */,
+				32B6BE7C22488002001F9E10 /* UIView+LGNote.h */,
+				32B6BE8222488002001F9E10 /* UIView+LGNote.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		32D72A9C2249B03A00FFB9B4 /* CutImageView */ = {
+			isa = PBXGroup;
+			children = (
+				32D72A9D2249B03A00FFB9B4 /* TKImageView.h */,
+				32D72A9E2249B03A00FFB9B4 /* TKImageView.m */,
+			);
+			path = CutImageView;
+			sourceTree = "<group>";
+		};
+		32D72AA3224A43B200FFB9B4 /* XMLDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				32D72AA4224A43B200FFB9B4 /* NoteXMLDictionary.h */,
+				32D72AA5224A43B200FFB9B4 /* NoteXMLDictionary.m */,
+			);
+			path = XMLDictionary;
 			sourceTree = "<group>";
 		};
 		CB317818D090F1B714C2CE6F /* Frameworks */ = {
@@ -668,54 +704,58 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				327D786022392FF2007B3088 /* PenFontBallView.m in Sources */,
 				32326481216E265D005CC784 /* LGNoteMBAlert.m in Sources */,
-				325BC3B0216EF7B800D077F5 /* LGNoteFilterCollectionReusableViewHeader.m in Sources */,
+				325BC3B0216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m in Sources */,
 				32326425216D9006005CC784 /* ViewController.m in Sources */,
-				3229F56D2178889E00B101AF /* LGNoteImagePickerViewController.m in Sources */,
-				321932B72241CFC20019AA64 /* NSString+Notes.m in Sources */,
+				32B6BE6322485BD0001F9E10 /* BoardBgImageView.m in Sources */,
+				32B6BE8422488002001F9E10 /* NSString+Notes.m in Sources */,
 				32326494216E398C005CC784 /* LGNoteBaseTextField.m in Sources */,
 				32326477216DF5D0005CC784 /* NoteMainTableView.m in Sources */,
+				32B6BE6722485C09001F9E10 /* NoteDrawView.m in Sources */,
 				3232647B216E2142005CC784 /* ParamModel.m in Sources */,
-				325BC3A4216EE39F00D077F5 /* NSBundle+Notes.m in Sources */,
 				3246AD03222FC8E200940E2D /* SearchToolView.m in Sources */,
-				32656A21217A03DF00DA1465 /* LJBaseModel.m in Sources */,
 				321932C6224263400019AA64 /* NoteMainImageTableViewCell.m in Sources */,
-				321932BA2241D0EA0019AA64 /* UIColor+Notes.m in Sources */,
 				32D8CEFD2237D199000BD642 /* LGNoteBaseNavigationViewController.m in Sources */,
 				32326456216D93A9005CC784 /* NoteModel.m in Sources */,
+				32D72AA6224A43B200FFB9B4 /* NoteXMLDictionary.m in Sources */,
+				32B6BE6A22485E4A001F9E10 /* LGNoteBaseModel.m in Sources */,
+				32B6BE8A22488002001F9E10 /* UIColor+Notes.m in Sources */,
 				320D4E8F224372EA0013872A /* NoteMoreImageTableViewCell.m in Sources */,
 				32326468216DED2D005CC784 /* NoteMainTableViewCell.m in Sources */,
-				32656A162179F76500DA1465 /* LGNoteDrawBoardViewController.m in Sources */,
-				324FF7BA2228C3BD008EF565 /* NSObject+YYModel.m in Sources */,
 				3246AD06222FC97200940E2D /* SearchToolViewConfigure.m in Sources */,
-				324FF7B92228C3BD008EF565 /* YYClassInfo.m in Sources */,
+				32B6BE8522488002001F9E10 /* UITextView+Notes.m in Sources */,
 				3232645F216DE8F8005CC784 /* NoteEditViewController.m in Sources */,
 				325BC3A7216EF2E600D077F5 /* NoteFilterViewController.m in Sources */,
+				32B6BE6122485BD0001F9E10 /* BoardBgCollectionViewCell.m in Sources */,
 				3232649A216E3B35005CC784 /* LGNoteBaseTextView.m in Sources */,
+				32B6BE8722488002001F9E10 /* NSBundle+Notes.m in Sources */,
+				32B6BE8822488002001F9E10 /* NSString+NotesEmoji.m in Sources */,
+				32B6BE7422487EBF001F9E10 /* NSObject+YYModel.m in Sources */,
 				321156F3223637900000A054 /* NoteEditView.m in Sources */,
-				327D785A2238AB57007B3088 /* BoardBgCollectionViewCell.m in Sources */,
-				327D785D2238ADB2007B3088 /* BoardBgImageView.m in Sources */,
+				32B6BE8622488002001F9E10 /* UIButton+Notes.m in Sources */,
 				32326487216E2C87005CC784 /* LGNoteNetworkManager.m in Sources */,
 				3232648D216E2C94005CC784 /* LGNoteBaseViewController.m in Sources */,
+				32D72AA22249B9FC00FFB9B4 /* LGNoteCutImageViewController.m in Sources */,
+				32B6BE6222485BD0001F9E10 /* PenFontBallView.m in Sources */,
 				32326430216D9007005CC784 /* main.m in Sources */,
 				321932C9224274D90019AA64 /* SubjectModel.m in Sources */,
-				321932BD2241D1800019AA64 /* NSString+NotesEmoji.m in Sources */,
+				32B6BE6D22485F2C001F9E10 /* DrawBoardModel.m in Sources */,
+				32B6BE90224880FE001F9E10 /* LGNoteImagePickerViewController.m in Sources */,
 				32326465216DE963005CC784 /* NoteViewModel.m in Sources */,
-				321932C02241D2070019AA64 /* UITextView+Notes.m in Sources */,
 				3232648E216E2C94005CC784 /* LGNoteBaseTableView.m in Sources */,
-				32D8CF002237E3EE000BD642 /* NoteDrawSettingView.m in Sources */,
 				32326422216D9006005CC784 /* AppDelegate.m in Sources */,
-				32656A24217A03DF00DA1465 /* LSDrawView.m in Sources */,
 				3232645C216DE8E2005CC784 /* NoteMainViewController.m in Sources */,
-				327D785422388D2A007B3088 /* NoteDrawSettingButtonView.m in Sources */,
+				32B6BE8922488002001F9E10 /* UIView+LGNote.m in Sources */,
 				32326474216DF420005CC784 /* NoteTools.m in Sources */,
-				32B6B9D922408FDA00D109B5 /* UIButton+Notes.m in Sources */,
-				3211BA73222D0D6F004B3929 /* UIView+LGNote.m in Sources */,
+				32B6BE8F224880FE001F9E10 /* LGNoteDrawBoardViewController.m in Sources */,
+				32B6BE6422485BD0001F9E10 /* NoteDrawSettingView.m in Sources */,
 				32326462216DE923005CC784 /* NoteSearchViewController.m in Sources */,
 				32326491216E3796005CC784 /* SubjectPickerView.m in Sources */,
-				324FF7BD22290FEF008EF565 /* LGNoteCustomWindow.m in Sources */,
-				325BC3AE216EF7B800D077F5 /* LGNoteFilterCollectionViewCell.m in Sources */,
+				32B6BE7322487EBF001F9E10 /* YYClassInfo.m in Sources */,
+				324FF7BD22290FEF008EF565 /* NoteCustomWindow.m in Sources */,
+				32B6BE6022485BD0001F9E10 /* NoteDrawSettingButtonView.m in Sources */,
+				325BC3AE216EF7B800D077F5 /* NoteFilterCollectionViewCell.m in Sources */,
+				32D72A9F2249B03B00FFB9B4 /* TKImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

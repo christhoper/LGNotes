@@ -26,6 +26,7 @@ SearchToolViewDelegate
 @property (nonatomic, strong) SearchToolView *toolView;
 @property (nonatomic, assign) NoteNaviBarLeftItemStyle style;
 @property (nonatomic, copy)   LeftNaviBarItemBlock leftItemBlock;
+@property (nonatomic, copy)   CheckNoteBaseUrlAvailableBlock checkBlock;
 
 @end
 
@@ -125,6 +126,10 @@ SearchToolViewDelegate
     _leftItemBlock = block;
 }
 
+- (void)checkNoteBaseUrlAvailableCompletion:(CheckNoteBaseUrlAvailableBlock)completion{
+    
+}
+
 #pragma mark - delegate
 - (void)baseTableView:(LGNoteBaseTableView *)tableView pullUpRefresh:(BOOL)upRefresh pullDownRefresh:(BOOL)downRefresh{
     if (upRefresh) {
@@ -141,6 +146,7 @@ SearchToolViewDelegate
 
 - (void)filterViewDidChooseCallBack:(NSString *)subjecID systemID:(NSString *)systemID{
     self.viewModel.paramModel.SubjectID = subjecID;
+    self.viewModel.paramModel.SystemID = systemID;
     [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
 }
 
@@ -170,10 +176,11 @@ SearchToolViewDelegate
     [self.navigationController pushViewController:filterController animated:YES];
 }
 
-- (void)remarkEvent{
-    
+- (void)remarkEvent:(BOOL)remark{
+    self.viewModel.paramModel.IsKeyPoint = remark ? @"1":@"-1";
+    self.tableView.requestStatus = LGBaseTableViewRequestStatusStartLoading;
+    [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
 }
-
 
 #pragma mark - lazy
 - (NoteMainTableView *)tableView{
