@@ -31,7 +31,7 @@
     self.backgroundColor = kColorInitWithRGB(102, 102, 102, 0.7);
     
     [UIView animateWithDuration:0.3 animations:^(void) {
-        self.transform = CGAffineTransformMakeTranslation(0, 0);
+        self.pickerView.transform = CGAffineTransformMakeTranslation(0, -200);
     }];
 }
 
@@ -43,7 +43,7 @@
     self.pickerArray = dataSource;
     self.currentRow = matchIndex;
     
-    self.pickerView.frame = CGRectMake(0, self.frame.size.height - 200, self.frame.size.width, 200);
+    self.pickerView.frame = CGRectMake(0, self.frame.size.height-200, self.frame.size.width, 200);
     [self addSubview:self.pickerView];
     
     if (!IsArrEmpty(dataSource)) {

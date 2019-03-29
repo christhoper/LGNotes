@@ -55,6 +55,20 @@ NS_ASSUME_NONNULL_BEGIN
           buttonTag:(NSInteger)tag;
 
 
+
+/**
+ 关闭某一个功能
+
+ @param closePenFont <#closePenFont description#>
+ @param closeColor <#closeColor description#>
+ @param closeBoard <#closeBoard description#>
+ */
+- (void)closePenFont:(BOOL)closePenFont
+       closePenColor:(BOOL)closeColor
+      closeBoardView:(BOOL)closeBoard;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

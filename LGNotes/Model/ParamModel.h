@@ -10,7 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/** 各个项目系统类型 */
+typedef NS_ENUM(NSInteger, SystemType) {
+    SystemType_HOME,             // 课后
+    SystemType_ASSISTANTER,      // 小助手
+    SystemType_KQ,               // 课前
+    SystemType_CP,               // 基础平台
+    SystemType_KT                // 课堂
+};
+
 @interface ParamModel : NSObject
+
+/** 系统类型，集成时赋值 */
+@property (nonatomic, assign) SystemType SystemType;
 /** 基础平台地址 */
 @property (nonatomic, copy) NSString *CPBaseUrl;
 /** 笔记库的url ：各个系统在登录成功时获取，同获取各个系统url一样，笔记库SystemID为:S22 */

@@ -70,9 +70,10 @@ UIKIT_EXTERN NSString *const CheckNoteBaseUrlKey;
 /**
  获取某一条笔记的详情信息
 
+ @param noteID <#noteID description#>
  @return <#return value description#>
  */
-- (RACSignal *)getOneNoteInfo;
+- (RACSignal *)getOneNoteInfoWithNoteID:(NSString *)noteID;
 
 /**
  上传图片
@@ -84,7 +85,7 @@ UIKIT_EXTERN NSString *const CheckNoteBaseUrlKey;
 
 
 /**
-  长传笔记相关联来源详细信息
+  上传笔记相关联来源详细信息
 
  @param sourceInfo <#sourceInfo description#>
  @return <#return value description#>

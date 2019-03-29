@@ -12,6 +12,7 @@
 #import "LGNoteBaseTextField.h"
 #import "LGNoteBaseTextView.h"
 #import "LGNoteConfigure.h"
+#import "NoteSourceDetailView.h"
 #import <YBImageBrowser/YBImageBrowser.h>
 #import "LGNoteImagePickerViewController.h"
 #import "LGNoteDrawBoardViewController.h"
@@ -63,7 +64,7 @@ LGSubjectPickerViewDelegate
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
-    return [self initWithFrame:frame headerViewStyle:NoteEditViewHeaderStyleDefault];
+    return [self initWithFrame:frame headerViewStyle:NoteEditViewHeaderStyleNoHidden];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame headerViewStyle:(NoteEditViewHeaderStyle)style{
@@ -84,7 +85,7 @@ LGSubjectPickerViewDelegate
 
 - (void)createSubviews{
     switch (_style) {
-        case NoteEditViewHeaderStyleDefault:
+        case NoteEditViewHeaderStyleNoHidden:
         case NoteEditViewHeaderStyleHideSubject:
         case NoteEditViewHeaderStyleHideSource:{
             [self addSubview:self.headerView];
@@ -94,6 +95,7 @@ LGSubjectPickerViewDelegate
             [self addSubview:self.bottomView];
             self.subjectBtn.hidden = (_style == NoteEditViewHeaderStyleHideSubject) ? YES:NO;
             self.sourceBtn.hidden  = (_style == NoteEditViewHeaderStyleHideSource) ? YES:NO;
+            self.sourceTipImageView.hidden = self.sourceBtn.hidden;
         }
             break;
         case NoteEditViewHeaderStyleHideAll: break;
@@ -112,7 +114,7 @@ LGSubjectPickerViewDelegate
     CGFloat offsetX = 15.f;
     
     switch (_style) {
-        case NoteEditViewHeaderStyleDefault:
+        case NoteEditViewHeaderStyleNoHidden:
         case NoteEditViewHeaderStyleHideSubject:
         case NoteEditViewHeaderStyleHideSource:{
             [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -315,7 +317,7 @@ LGSubjectPickerViewDelegate
 }
 
 - (void)postImageView:(NSNotification *)notification{
-    UIImage *image = notification.userInfo[@"a"];
+    UIImage *image = notification.userInfo[@"image"];
     @weakify(self);
     [[self.viewModel uploadImages:@[image]] subscribeNext:^(id  _Nullable x) {
         @strongify(self);
@@ -325,7 +327,6 @@ LGSubjectPickerViewDelegate
         }
         [self settingImageAttributes:image imageFTPPath:x];
     }];
-    
 }
 
 #pragma mark - textFildDelegate
@@ -356,9 +357,16 @@ LGSubjectPickerViewDelegate
     }
     
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
-    SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
-    pickerView.delegate = self;
-    [pickerView showPickerViewMenuForDataSource:self.materialArray matchIndex:self.currentSelectedTopicIndex];
+    @weakify(self);
+    [[NoteSourceDetailView showSourceDatailView] loadDataWithUrl:@"https://www.baidu.com/" didShowCompletion:^{
+        @strongify(self);
+        self.sourceBtn.selected = NO;
+        self.sourceTipImageView.transform = CGAffineTransformMakeRotation(0);
+    }];
+    
+//    SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
+//    pickerView.delegate = self;
+//    [pickerView showPickerViewMenuForDataSource:self.materialArray matchIndex:self.currentSelectedTopicIndex];
 }
 
 - (void)subjectBtnClick:(UIButton *)sender{

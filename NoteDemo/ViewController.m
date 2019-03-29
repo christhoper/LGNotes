@@ -36,7 +36,7 @@
 
 - (ParamModel *)configureParams{
     ParamModel *params = [[ParamModel alloc] init];
-    params.SystemID = @"";
+    params.SystemID = @"All";
     params.SubjectID = @"";
     params.PageSize = 10;
     params.PageIndex = 1;
@@ -50,6 +50,8 @@
     params.UserType = 2;
     params.CPBaseUrl = @"http://192.168.3.155:10102";
     params.MaterialCount = 10;
+    params.SystemType = SystemType_ASSISTANTER;
+    
     return params;
 }
 

@@ -19,10 +19,12 @@ typedef NS_ENUM(NSInteger, FilterStyle) {
 
 @protocol LGFilterViewControllerDelegate <NSObject>
 @required
+
 /**
  确定筛选后，返回筛选数据
- 
- @param callBackDada <#callBackDada description#>
+
+ @param subjecID <#subjecID description#>
+ @param systemID <#systemID description#>
  */
 - (void)filterViewDidChooseCallBack:(NSString *)subjecID systemID:(NSString *)systemID;
 
@@ -36,6 +38,8 @@ typedef NS_ENUM(NSInteger, FilterStyle) {
 @property (nonatomic, assign) FilterStyle filterStyle;
 /** 学科 */
 @property (nonatomic, copy) NSArray *subjectArray;
+@property (nonatomic, copy) NSArray *systemArray;
+
 /** 传入VM的参数 */
 - (void)bindViewModelParam:(id)param;
 

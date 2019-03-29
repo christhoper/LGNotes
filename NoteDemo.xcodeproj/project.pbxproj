@@ -65,6 +65,7 @@
 		32D72AA22249B9FC00FFB9B4 /* LGNoteCutImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72AA12249B9FC00FFB9B4 /* LGNoteCutImageViewController.m */; };
 		32D72AA6224A43B200FFB9B4 /* NoteXMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72AA5224A43B200FFB9B4 /* NoteXMLDictionary.m */; };
 		32D8CEFD2237D199000BD642 /* LGNoteBaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D8CEFC2237D199000BD642 /* LGNoteBaseNavigationViewController.m */; };
+		32DA50BC224DC4450064787C /* NoteSourceDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA50BB224DC4450064787C /* NoteSourceDetailView.m */; };
 		C089BECC87C865CAFC5664C8 /* Pods_NoteDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69574B6C56DF4CDE82A6315 /* Pods_NoteDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +206,8 @@
 		32D72AA5224A43B200FFB9B4 /* NoteXMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteXMLDictionary.m; sourceTree = "<group>"; };
 		32D8CEFB2237D199000BD642 /* LGNoteBaseNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteBaseNavigationViewController.h; sourceTree = "<group>"; };
 		32D8CEFC2237D199000BD642 /* LGNoteBaseNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteBaseNavigationViewController.m; sourceTree = "<group>"; };
+		32DA50BA224DC4450064787C /* NoteSourceDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteSourceDetailView.h; sourceTree = "<group>"; };
+		32DA50BB224DC4450064787C /* NoteSourceDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteSourceDetailView.m; sourceTree = "<group>"; };
 		598743329030DF392A5BCC27 /* Pods-NoteDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteDemo.debug.xcconfig"; path = "Target Support Files/Pods-NoteDemo/Pods-NoteDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F69574B6C56DF4CDE82A6315 /* Pods_NoteDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoteDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -386,6 +389,8 @@
 				3246AD05222FC97200940E2D /* SearchToolViewConfigure.m */,
 				321156F1223637900000A054 /* NoteEditView.h */,
 				321156F2223637900000A054 /* NoteEditView.m */,
+				32DA50BA224DC4450064787C /* NoteSourceDetailView.h */,
+				32DA50BB224DC4450064787C /* NoteSourceDetailView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -748,6 +753,7 @@
 				32B6BE8922488002001F9E10 /* UIView+LGNote.m in Sources */,
 				32326474216DF420005CC784 /* NoteTools.m in Sources */,
 				32B6BE8F224880FE001F9E10 /* LGNoteDrawBoardViewController.m in Sources */,
+				32DA50BC224DC4450064787C /* NoteSourceDetailView.m in Sources */,
 				32B6BE6422485BD0001F9E10 /* NoteDrawSettingView.m in Sources */,
 				32326462216DE923005CC784 /* NoteSearchViewController.m in Sources */,
 				32326491216E3796005CC784 /* SubjectPickerView.m in Sources */,

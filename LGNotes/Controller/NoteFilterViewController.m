@@ -26,7 +26,6 @@ UICollectionViewDelegateFlowLayout
 @property (nonatomic, strong) NSIndexPath *selectedSystemPath;
 @property (nonatomic, copy)   NSString *currentSubjectID;
 @property (nonatomic, copy)   NSString *currenSystemID;
-@property (nonatomic, copy)   NSArray *systemDataArray;
 
 @end
 
@@ -44,9 +43,6 @@ UICollectionViewDelegateFlowLayout
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"筛选";
-    if (self.filterStyle) {
-        self.systemDataArray = @[@"全部",@"课前预习",@"云网络智慧教师",@"课后作业",@"多媒体云课堂",@"自由学习",@"学习小助手"];
-    }
     [self AddLeftBar];
     [self creatSubviews];
 }
@@ -56,8 +52,9 @@ UICollectionViewDelegateFlowLayout
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
 }
 
-- (void)bindViewModelParam:(NSString *)param{
-    self.currentSubjectID = param;
+- (void)bindViewModelParam:(NSArray *)param{
+    self.currentSubjectID = [param firstObject];
+    self.currenSystemID = [param lastObject];
 }
 
 - (void)creatSubviews{
@@ -89,7 +86,7 @@ UICollectionViewDelegateFlowLayout
     if (self.filterStyle == FilterStyleDefault) {
         return self.subjectArray.count;
     }
-    return section == 0 ? self.systemDataArray.count:self.subjectArray.count;
+    return section == 0 ? self.systemArray.count:self.subjectArray.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -116,9 +113,9 @@ UICollectionViewDelegateFlowLayout
             cell.selectedItem = NO;
         }
     } else {
-        NSString *systemName = self.systemDataArray[indexPath.row];
-        cell.contentLabel.text = systemName;
-        if (self.selectedSystemPath == indexPath  || [systemName isEqualToString:self.currentSubjectID]) {
+        SystemModel *systemModel = self.systemArray[indexPath.row];
+        cell.contentLabel.text = systemModel.SystemName;
+        if (self.selectedSystemPath == indexPath  || [systemModel.SystemID isEqualToString:self.currenSystemID]) {
             cell.selectedItem = YES;
         } else {
             cell.selectedItem = NO;
@@ -155,8 +152,8 @@ UICollectionViewDelegateFlowLayout
 }
 
 - (void)configureSystemFilterForCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath{
-    NSString *systemName = self.systemDataArray[indexPath.row];
-    self.currenSystemID = systemName;
+    SystemModel *systemModel = self.systemArray[indexPath.row];
+    self.currenSystemID = systemModel.SystemID;
     NoteFilterCollectionViewCell *celled = (NoteFilterCollectionViewCell *)[collectionView cellForItemAtIndexPath:self.selectedSystemPath];
     celled.selectedItem = NO;
     

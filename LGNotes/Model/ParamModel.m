@@ -95,4 +95,11 @@
     return _MaterialID;
 }
 
+//- (SystemType)SystemType{
+//    if (!_SystemType) {
+//        _SystemType = SystemType_ASSISTANTER;
+//    }
+//    return _SystemType;
+//}
+
 @end

@@ -112,7 +112,13 @@
 
 - (NoteEditView *)contentView{
     if (!_contentView) {
-        _contentView = [[NoteEditView alloc] initWithFrame:CGRectZero headerViewStyle:NoteEditViewHeaderStyleDefault];
+        NSInteger style = NoteEditViewHeaderStyleNoHidden;
+        if (self.paramModel.SystemType == SystemType_ASSISTANTER | self.paramModel.SystemType == SystemType_CP) {
+            style = NoteEditViewHeaderStyleHideSource;
+        } else {
+            style = NoteEditViewHeaderStyleNoHidden;
+        }
+        _contentView = [[NoteEditView alloc] initWithFrame:CGRectZero headerViewStyle:style];
         _contentView.ownController = self;
         [_contentView bindViewModel:self.viewModel];
     }

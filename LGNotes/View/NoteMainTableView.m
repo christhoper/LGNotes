@@ -153,6 +153,9 @@
     editVC.paramModel = [ParamModel mj_objectWithKeyValues:param];
     editVC.isNewNote = NO;
     [editVC editNoteWithDataSource:model];
+    [[self.viewModel getOneNoteInfoWithNoteID:model.NoteID] subscribeNext:^(id  _Nullable x) {
+        
+    }];
     [self.ownerController.navigationController pushViewController:editVC animated:YES];
     @weakify(self);
     [editVC.updateSubject subscribeNext:^(id  _Nullable x) {

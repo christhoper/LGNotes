@@ -91,6 +91,9 @@
 }
 
 - (void)drawSettingViewSelectedDrawBackgroudButton:(NSInteger)buttonTag{
+    if (self.style == LGNoteDrawBoardViewControllerStyleDefault) {
+        [self.drawSettingWindow hiddenAnimationWithDurationTime:0.25];
+    }
     [self.buttonView drawBackgroudButtonSeleted];
 }
 
@@ -154,7 +157,8 @@
 
 - (void)chooseBoardBackgroudImageForButtonTag:(NSInteger)butonTag{
     if (self.style == LGNoteDrawBoardViewControllerStyleDefault) {
-        
+        [kMBAlert showRemindStatus:@"该模式下暂不支持切换图片该功能"];
+        [self.drawToolView closePenFont:NO closePenColor:NO closeBoardView:YES];
     } else {
         [self.drawToolView showPenFont:NO showPenColor:NO showBoardView:YES buttonTag:butonTag];
         [self.drawSettingWindow showAnimationWithDurationTime:0.25];
@@ -171,14 +175,14 @@
 
 - (void)chooseFinishForButtonTag:(NSInteger)butonTag{
     [self.drawSettingWindow hiddenAnimationWithDurationTime:0.25];
-    if (self.style == LGNoteDrawBoardViewControllerStyleDraw) {
-        [self.drawView saveCompletion:^(UIImage * _Nonnull image, NSString * _Nonnull msg) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:LGNoteDrawBoardViewControllerFinishedDrawNotification object:nil userInfo:@{@"a":image}];
-        }];
-    } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:LGNoteDrawBoardViewControllerFinishedDrawNotification object:nil userInfo:@{@"a":self.drawBgImage}];
-    }
+//    if (self.style == LGNoteDrawBoardViewControllerStyleDraw) {
+//    } else {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:LGNoteDrawBoardViewControllerFinishedDrawNotification object:nil userInfo:@{@"a":self.drawBgImage}];
+//    }
     
+    [self.drawView saveCompletion:^(UIImage * _Nonnull image, NSString * _Nonnull msg) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:LGNoteDrawBoardViewControllerFinishedDrawNotification object:nil userInfo:@{@"image":image}];
+    }];
     [self dismissTopViewController:YES];
     
 }
@@ -215,7 +219,7 @@
         @weakify(self);
         [[_cancelBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             @strongify(self);
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissTopViewController:YES];
         }];
     }
     return _cancelBtn;

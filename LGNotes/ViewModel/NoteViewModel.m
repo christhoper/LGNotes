@@ -253,12 +253,13 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
     }];
 }
 
-- (RACSignal *)getOneNoteInfo{
+- (RACSignal *)getOneNoteInfoWithNoteID:(NSString *)noteID{
     return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        NSString *url = [self.paramModel.NoteBaseUrl stringByAppendingString:@"api/V2/Notes/GetSystemInfo"];
+        NSString *url = [self.paramModel.NoteBaseUrl stringByAppendingString:@"api/V2/Notes/GetNoteInfoByID"];
         NSDictionary *params = @{
                                  @"UserID":self.paramModel.UserID,
-                                 @"NoteID":self.paramModel.NoteID,
+                                 @"UserType":@(self.paramModel.UserType),
+                                 @"NoteID":noteID,
                                  @"SecretKey":self.paramModel.Secret,
                                  @"BackUpOne":@"",
                                  @"BackUpTwo":@""
@@ -266,27 +267,13 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
         [kNetwork.setRequestUrl(url).setRequestType(POST).setParameters(params)starSendRequestSuccess:^(id respone) {
             
             if (![respone[kErrorcode] hasSuffix:kSuccess]) {
-                SubjectModel *addSubjectModel = [[SubjectModel alloc] init];
-                addSubjectModel.SubjectID = @"";
-                addSubjectModel.SubjectName = @"全部";
-                [subscriber sendNext:@[addSubjectModel]];
+                [subscriber sendNext:nil];
                 [subscriber sendCompleted];
                 return;
             }
+            NoteModel *model = [NoteModel mj_objectWithKeyValues:respone];
             
-            NSArray *dataArray = respone[kResult];
-            dataArray = [[dataArray.rac_sequence map:^id _Nullable(id  _Nullable value) {
-                SubjectModel *model = [SubjectModel mj_objectWithKeyValues:value];
-                return model;
-            }] array];
-            NSMutableArray *allSubjectArray = [NSMutableArray array];
-            // 自行添加一个“全部”学科选项
-            SubjectModel *addSubjectModel = [[SubjectModel alloc] init];
-            addSubjectModel.SubjectID = @"";
-            addSubjectModel.SubjectName = @"全部";
-            [allSubjectArray addObject:addSubjectModel];
-            [allSubjectArray addObjectsFromArray:dataArray];
-            [subscriber sendNext:allSubjectArray];
+            [subscriber sendNext:model];
             [subscriber sendCompleted];
             
         } failure:^(NSError *error) {
@@ -441,7 +428,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
 
 - (RACSignal *)uploadImages:(NSArray<UIImage *> *)images{
     return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        NSString *url = @"http://192.168.3.158:1314/api/V2/Notes/UploadImg";
+        NSString *url = [self.paramModel.NoteBaseUrl stringByAppendingString:@"api/V2/Notes/UploadImg"];
         NSArray *uploadDatas = [images.rac_sequence map:^id _Nullable(UIImage * _Nullable value) {
             return [self LGUIImageJPEGRepresentationImage:value];
         }].array;

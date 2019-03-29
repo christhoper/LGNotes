@@ -27,7 +27,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
 - (void)navigationLeft_button_event:(id)sender{
@@ -76,7 +76,6 @@
     self.tableView.requestStatus = LGBaseTableViewRequestStatusStartLoading;
     [self.viewModel.searchCommand execute:self.viewModel.paramModel];
 }
-
 
 #pragma mark - lazy
 - (LGNoteBaseTextField *)searchBar{

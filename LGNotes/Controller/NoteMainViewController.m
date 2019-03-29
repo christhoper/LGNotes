@@ -128,7 +128,7 @@ SearchToolViewDelegate
     
 }
 
-#pragma mark - delegate
+#pragma mark - TableViewdelegate
 - (void)baseTableView:(LGNoteBaseTableView *)tableView pullUpRefresh:(BOOL)upRefresh pullDownRefresh:(BOOL)downRefresh{
     if (upRefresh) {
         self.viewModel.paramModel.PageIndex = 1;
@@ -141,6 +141,8 @@ SearchToolViewDelegate
     }
 }
 
+
+#pragma mark - FilterDelegate
 - (void)filterViewDidChooseCallBack:(NSString *)subjecID systemID:(NSString *)systemID{
     self.viewModel.paramModel.SubjectID = subjecID;
     self.viewModel.paramModel.SystemID = systemID;
@@ -165,10 +167,15 @@ SearchToolViewDelegate
     NoteFilterViewController *filterController = [[NoteFilterViewController alloc] init];
     filterController.filterStyle = FilterStyleCustom;
     filterController.delegate = self;
+    [filterController bindViewModelParam:@[self.viewModel.paramModel.SubjectID,self.viewModel.paramModel.SystemID]];
     @weakify(filterController);
     [RACObserve(self.viewModel, subjectArray) subscribeNext:^(id  _Nullable x) {
         @strongify(filterController);
         filterController.subjectArray = x;
+    }];
+    [RACObserve(self.viewModel, systemArray) subscribeNext:^(id  _Nullable x) {
+        @strongify(filterController);
+        filterController.systemArray = x;
     }];
     [self.navigationController pushViewController:filterController animated:YES];
 }

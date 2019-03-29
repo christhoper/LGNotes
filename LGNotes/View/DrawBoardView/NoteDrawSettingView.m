@@ -38,8 +38,10 @@
 @property (nonatomic, strong) UISlider *sliderView;
 /** 中间的容器 */
 @property (nonatomic, strong) UIView *centerView;
-@property (nonatomic, copy) NSArray *colors;
-@property (nonatomic, copy) NSArray *colorSelectModels;
+@property (nonatomic, copy)   NSArray *colors;
+@property (nonatomic, copy)   NSArray *colorSelectModels;
+/** 关闭切换改变背景图片功能 */
+@property (nonatomic, assign) BOOL isCloseChangeBgImage;
 
 @end
 
@@ -167,7 +169,11 @@ static CGFloat const penColorHeight = 30.f;
 }
 
 - (void)chooseBoardBackgroudImageForButtonTag:(NSInteger)butonTag{
-    [self showPenFont:NO showPenColor:NO showBoardView:YES buttonTag:0];
+    if (self.isCloseChangeBgImage) {
+        [self showPenFont:NO showPenColor:NO showBoardView:NO buttonTag:0];
+    } else {
+        [self showPenFont:NO showPenColor:NO showBoardView:YES buttonTag:0];
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawSettingViewSelectedDrawBackgroudButton:)]) {
         [self.delegate drawSettingViewSelectedDrawBackgroudButton:butonTag];
     }
@@ -212,6 +218,10 @@ static CGFloat const penColorHeight = 30.f;
     } else if (tag == 104) {
         [self.buttonView nextButtonSeleted];
     }
+}
+
+- (void)closePenFont:(BOOL)closePenFont closePenColor:(BOOL)closeColor closeBoardView:(BOOL)closeBoard{
+    self.isCloseChangeBgImage = closeBoard;
 }
 
 #pragma mark - SliderView
