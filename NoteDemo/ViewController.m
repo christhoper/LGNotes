@@ -37,7 +37,7 @@
 - (ParamModel *)configureParams{
     ParamModel *params = [[ParamModel alloc] init];
     params.SystemID = @"All";
-    params.SubjectID = @"";
+    params.SubjectID = @"S2_English";
     params.PageSize = 10;
     params.PageIndex = 1;
     params.SubjectName = @"英语";

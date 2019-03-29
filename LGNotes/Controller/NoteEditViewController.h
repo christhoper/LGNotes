@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 是否是新建笔记 */
 @property (nonatomic, assign) BOOL isNewNote;
+/** 参数类 */
 @property (nonatomic, strong) ParamModel *paramModel;
 @property (nonatomic, strong) RACSubject *updateSubject;
 

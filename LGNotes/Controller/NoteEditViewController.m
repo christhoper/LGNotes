@@ -39,6 +39,10 @@
 
 - (void)editNoteWithDataSource:(NoteModel *)dataSource{
     self.sourceModel = dataSource;
+    self.sourceModel.UserID = self.paramModel.UserID;
+    self.sourceModel.SystemID = self.paramModel.SystemID;
+    self.sourceModel.UserName = self.paramModel.UserName;
+    self.sourceModel.SchoolID = self.paramModel.SchoolID;
 }
 
 - (void)addRightNavigationBar{
@@ -64,6 +68,7 @@
 
 #pragma mark - 导航栏右按钮触发事件
 - (void)rightBarButtonItem:(UIBarButtonItem *)sender{
+    self.paramModel.OperateFlag = self.isNewNote ? 1:0;
     self.sourceModel.OperateFlag = self.isNewNote ? 1:0;
     [self operatedNote];
 }
@@ -89,7 +94,7 @@
 
     [kMBAlert showIndeterminateWithStatus:@"正在进行，请稍等..."];
     [self.viewModel.operateCommand execute:[self.sourceModel mj_keyValues]];
-    
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
     @weakify(self);
     [self.viewModel.operateSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
