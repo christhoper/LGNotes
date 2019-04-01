@@ -393,7 +393,9 @@ LGSubjectPickerViewDelegate
 //    }
     
     if (self.subjectBtn.selected) {
-        SubjectModel *model = self.subjectArray[row];
+        if (IsArrEmpty(self.subjectArray)) return;
+        // 因为处理过数据源了
+        SubjectModel *model = self.viewModel.subjectArray[row+1];
         [self.subjectBtn setTitle:model.SubjectName forState:UIControlStateNormal];
         self.currentSelectedSubjectIndex = row;
         self.viewModel.dataSourceModel.SubjectID = model.SubjectID;
@@ -401,6 +403,8 @@ LGSubjectPickerViewDelegate
     }
     
     if (self.sourceBtn.selected) {
+        if(IsArrEmpty(self.materialArray)) return;
+        
         NSString *string = self.materialArray[row];
         [self.sourceBtn setTitle:string forState:UIControlStateNormal];
         self.currentSelectedTopicIndex = row;
