@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 学科ID */
 @property (nonatomic, copy) NSString *SubjectID;
 @property (nonatomic, copy) NSString *SubjectName;
+/** 暂时无用字段 */
+@property (nonatomic, copy) NSString *Grades;
 
 @end
 

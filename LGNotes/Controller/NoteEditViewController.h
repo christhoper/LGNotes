@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isNewNote;
 /** 参数类 */
 @property (nonatomic, strong) ParamModel *paramModel;
+@property (nonatomic, copy)   NSArray *subjectArray;
 @property (nonatomic, strong) RACSubject *updateSubject;
 
 /**

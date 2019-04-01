@@ -89,11 +89,26 @@ NSString  *const LGTextFieldKeyBoardWillHiddenNotification = @"LGTextFieldKeyBoa
     }
 }
 
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+//    NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]componentsJoinedByString:@""];
+//    if (![string isEqualToString:tem]) {
+//        return NO;
+//
+//    } return YES;
+//
+//}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     if (string.length == 0) {
         return YES;
     }
+    
+    NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsJoinedByString:@""];
+    if (![string isEqualToString:tem]) {
+        return NO;
+    }
+    
     //获取高亮部分
     UITextRange *selectedRange = [textField markedTextRange];
     UITextPosition *pos = [textField positionFromPosition:selectedRange.start offset:0];

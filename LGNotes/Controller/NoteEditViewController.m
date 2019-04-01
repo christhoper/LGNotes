@@ -111,6 +111,7 @@
         _viewModel = [[NoteViewModel alloc] init];
         _viewModel.paramModel = self.paramModel;
         _viewModel.dataSourceModel = self.sourceModel;
+        _viewModel.subjectArray = self.subjectArray;
     }
     return _viewModel;
 }

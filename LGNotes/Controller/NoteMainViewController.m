@@ -89,6 +89,12 @@ SearchToolViewDelegate
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
+- (void)setLeftBarItem:(UIBarButtonItem *)leftBarItem{
+    _leftBarItem = leftBarItem;
+    self.navigationItem.leftBarButtonItem = leftBarItem;
+}
+
+
 - (void)lg_bindData{
     self.viewModel.paramModel = self.paramModel;
     [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
@@ -101,10 +107,16 @@ SearchToolViewDelegate
     editController.paramModel = self.paramModel;
     editController.updateSubject = [RACSubject subject];
     [self.navigationController pushViewController:editController animated:YES];
-    @weakify(self);
+    @weakify(self,editController);
     [editController.updateSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
+        self.tableView.requestStatus = LGBaseTableViewRequestStatusStartLoading;
         [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
+    }];
+    
+    [RACObserve(self.viewModel, subjectArray) subscribeNext:^(id  _Nullable x) {
+        @strongify(editController);
+        editController.subjectArray = x;
     }];
 }
 

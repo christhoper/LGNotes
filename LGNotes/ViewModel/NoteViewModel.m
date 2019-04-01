@@ -186,10 +186,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
         [kNetwork.setRequestUrl(url).setRequestType(POST).setParameters(params)starSendRequestSuccess:^(id respone) {
             
             if (![respone[kErrorcode] hasSuffix:kSuccess]) {
-                SubjectModel *addSubjectModel = [[SubjectModel alloc] init];
-                addSubjectModel.SubjectID = @"";
-                addSubjectModel.SubjectName = @"全部";
-                [subscriber sendNext:@[addSubjectModel]];
+                [subscriber sendNext:nil];
                 [subscriber sendCompleted];
                 return;
             }
@@ -199,14 +196,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
                 SubjectModel *model = [SubjectModel mj_objectWithKeyValues:value];
                 return model;
             }] array];
-            NSMutableArray *allSubjectArray = [NSMutableArray array];
-            // 自行添加一个“全部”学科选项
-            SubjectModel *addSubjectModel = [[SubjectModel alloc] init];
-            addSubjectModel.SubjectID = @"";
-            addSubjectModel.SubjectName = @"全部";
-            [allSubjectArray addObject:addSubjectModel];
-            [allSubjectArray addObjectsFromArray:dataArray];
-            [subscriber sendNext:allSubjectArray];
+            [subscriber sendNext:dataArray];
             [subscriber sendCompleted];
             
         } failure:^(NSError *error) {
@@ -335,8 +325,10 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
                 }
                 
                 // 判断是否是图文混排
-                NSMutableString *contentString = model.NoteContent_Att.mutableString;
-                [contentString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                NSString *contentString = model.NoteContent_Att.string;
+                contentString = [contentString stringByReplacingOccurrencesOfString:@" " withString:@""];
+                contentString = [contentString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                contentString = [contentString stringByReplacingOccurrencesOfString:@"\uFFFC" withString:@""];
                 if (!IsArrEmpty(imageUrls) && !IsStrEmpty(contentString)) {
                     model.mixTextImage = YES;
                 } else {

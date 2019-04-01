@@ -29,7 +29,6 @@ typedef void(^LeftNaviBarItemBlock)(void);
 typedef void(^CheckNoteBaseUrlAvailableBlock)(BOOL available);
 
 @interface NoteMainViewController : LGNoteBaseViewController
-/** 自定义导航栏 */
 @property (nonatomic, strong) NoteMainTableView *tableView;
 /** 左侧导航栏按钮 */
 @property (nonatomic, strong) UIBarButtonItem *leftBarItem;

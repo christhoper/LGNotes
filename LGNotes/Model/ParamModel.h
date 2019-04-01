@@ -12,11 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 各个项目系统类型 */
 typedef NS_ENUM(NSInteger, SystemType) {
+    SystemType_ALL,              // 全部
     SystemType_HOME,             // 课后
     SystemType_ASSISTANTER,      // 小助手
     SystemType_KQ,               // 课前
     SystemType_CP,               // 基础平台
     SystemType_KT                // 课堂
+    
 };
 
 @interface ParamModel : NSObject
@@ -70,6 +72,9 @@ typedef NS_ENUM(NSInteger, SystemType) {
 @property (nonatomic, assign) NSInteger OperateFlag;
 /** 关键字搜索 */
 @property (nonatomic, copy)   NSString *SearchKeycon;
+
+/** 存放学科数组 */
+@property (nonatomic, copy)   NSArray *SubjectArray;
 
 @end
 

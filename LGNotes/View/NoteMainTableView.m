@@ -89,7 +89,7 @@
         NoteMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([NoteMainTableViewCell class]) forIndexPath:indexPath];
         [cell configureCellForDataSource:model indexPath:indexPath];
         return cell;
-    } else if (model.mixTextImage) {
+    } else if (model.imgaeUrls > 0 && model.mixTextImage) {
         NoteMainImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([NoteMainImageTableViewCell class]) forIndexPath:indexPath];
         [cell configureCellForDataSource:model indexPath:indexPath];
         return cell;
@@ -117,7 +117,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
+    return self.viewModel.isSearchOperation ? NO:YES;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -152,7 +152,9 @@
     NSDictionary *param = [self.viewModel.paramModel mj_keyValues];
     editVC.paramModel = [ParamModel mj_objectWithKeyValues:param];
     editVC.isNewNote = NO;
+    editVC.subjectArray = self.viewModel.subjectArray;
     [editVC editNoteWithDataSource:model];
+    
     [[self.viewModel getOneNoteInfoWithNoteID:model.NoteID] subscribeNext:^(id  _Nullable x) {
         
     }];

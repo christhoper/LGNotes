@@ -59,12 +59,13 @@
     [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.editTimeLabel);
         make.left.equalTo(self.editTimeLabel.mas_right).offset(20);
+        make.right.equalTo(self.contentView).offset(-10);
         make.height.mas_equalTo(15);
     }];
     [self.editTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView).offset(-10);
         make.left.equalTo(self.noteTitleLabel);
-        make.height.mas_equalTo(15);
+        make.size.mas_equalTo(CGSizeMake(100, 15));
     }];
 }
 

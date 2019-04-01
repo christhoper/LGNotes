@@ -60,12 +60,13 @@
     [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.editTimeLabel);
         make.left.equalTo(self.editTimeLabel.mas_right).offset(20);
+        make.right.equalTo(self.contentView).offset(-10);
         make.height.mas_equalTo(15);
     }];
     [self.editTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView).offset(-10);
         make.left.equalTo(self.noteTitleLabel);
-        make.height.mas_equalTo(15);
+        make.size.mas_equalTo(CGSizeMake(100, 15));
     }];
     [self.imageViewLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
@@ -173,6 +174,8 @@
 - (UIImageView *)imageViewLeft{
     if (!_imageViewLeft) {
         _imageViewLeft = [[UIImageView alloc] init];
+        _imageViewLeft.layer.cornerRadius = 5;
+        _imageViewLeft.clipsToBounds = YES;
         [_imageViewLeft sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
     }
     return _imageViewLeft;
@@ -181,6 +184,8 @@
 - (UIImageView *)imageViewCenter{
     if (!_imageViewCenter) {
         _imageViewCenter = [[UIImageView alloc] init];
+        _imageViewCenter.layer.cornerRadius = 5;
+        _imageViewCenter.clipsToBounds = YES;
         [_imageViewCenter sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
     }
     return _imageViewCenter;
@@ -189,6 +194,8 @@
 - (UIImageView *)imageViewRight{
     if (!_imageViewRight) {
         _imageViewRight = [[UIImageView alloc] init];
+        _imageViewRight.layer.cornerRadius = 5;
+        _imageViewRight.clipsToBounds = YES;
         [_imageViewRight sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
     }
     return _imageViewRight;

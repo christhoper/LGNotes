@@ -30,17 +30,25 @@
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
-- (void)navigationLeft_button_event:(id)sender{
-    if (self.backRefreshSubject) {
-        [self.backRefreshSubject sendNext:@"back"];
-    }
+- (void)leftNavigationBar:(id)sender{
+//    if (self.backRefreshSubject) {
+//        [self.backRefreshSubject sendNext:@"back"];
+//    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = self.searchBgView;
+    [self addLeftItem];
+    
     [self createSubViews];
+}
+
+- (void)addLeftItem{
+    UIImage *image = [NSBundle lg_imagePathName:@"note_back"];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftNavigationBar:)];
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
 - (void)createSubViews{
@@ -122,6 +130,7 @@
         _tableView.ownerController = self;
         _tableView.errorImageView.image = kImage(@"NoSearchResult");
         _tableView.errorInfoLabel.text = @"未搜索到结果";
+        self.viewModel.isSearchOperation = YES;
         [_tableView lg_bindViewModel:self.viewModel];
         _tableView.requestStatus = LGBaseTableViewRequestStatusNoData;
     }

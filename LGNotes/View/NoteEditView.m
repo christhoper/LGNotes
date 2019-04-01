@@ -209,8 +209,11 @@ LGSubjectPickerViewDelegate
 - (NSArray *)configureSubjectPickerDataSource{
     NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:self.viewModel.subjectArray.count];
     for (int i = 0; i < self.viewModel.subjectArray.count; i ++) {
-        SubjectModel *model = self.viewModel.subjectArray[i];
-        [resultArray addObject:model.SubjectName];
+        // 去除第一个“全部”选项的学科
+        if (i != 0) {
+            SubjectModel *model = self.viewModel.subjectArray[i];
+            [resultArray addObject:model.SubjectName];
+        }
     }
     return resultArray;
 }
@@ -277,12 +280,12 @@ LGSubjectPickerViewDelegate
 - (void)settingImageAttributes:(UIImage *)image imageFTPPath:(NSString *)path{
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
-    CGFloat scale = width*1.0/height;
-    CGFloat screenReferW = [UIScreen mainScreen].bounds.size.width - kNoteImageOffset;
-    if (width > screenReferW) {
-        width = screenReferW;
-        height = width/scale;
-    }
+    CGFloat screenW = [UIScreen mainScreen].bounds.size.width - kNoteImageOffset;
+    // 固定宽度
+    width = width > screenW ? screenW:width;
+   // 固定高度
+    height = height >= 220 ? 220:height;
+    
     NSString *imgStr = [NSString stringWithFormat:@"<img src=\"%@\" width=\"%.f\" height=\"%.f\"/>",path,width,height];
     NSMutableAttributedString *currentAttr = [[NSMutableAttributedString alloc] initWithAttributedString:self.contentTextView.attributedText];
     self.imgAttr = imgStr.lg_changeforMutableAtttrubiteString;
@@ -390,7 +393,7 @@ LGSubjectPickerViewDelegate
 //    }
     
     if (self.subjectBtn.selected) {
-        SubjectModel *model = self.viewModel.subjectArray[row];
+        SubjectModel *model = self.subjectArray[row];
         [self.subjectBtn setTitle:model.SubjectName forState:UIControlStateNormal];
         self.currentSelectedSubjectIndex = row;
         self.viewModel.dataSourceModel.SubjectID = model.SubjectID;
@@ -483,7 +486,7 @@ LGSubjectPickerViewDelegate
     if (!_subjectBtn) {
         _subjectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _subjectBtn.frame = CGRectZero;
-        [_subjectBtn setTitle:@"英语学科" forState:UIControlStateNormal];
+        [_subjectBtn setTitle:@"英语" forState:UIControlStateNormal];
         [_subjectBtn setImage:[NSBundle lg_imageName:@"note_subject_unselected"] forState:UIControlStateNormal];
         _subjectBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
         [_subjectBtn setTitleColor:kColorWithHex(0x0099ff) forState:UIControlStateNormal];
@@ -504,7 +507,6 @@ LGSubjectPickerViewDelegate
         _titleTextF.lgDelegate = self;
         _titleTextF.maxLength = 100;
         _titleTextF.limitType = LGTextFiledKeyBoardInputTypeNoneEmoji;
-        [_titleTextF becomeFirstResponder];
     }
     return _titleTextF;
 }

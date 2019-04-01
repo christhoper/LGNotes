@@ -62,12 +62,13 @@
     [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.editTimeLabel);
         make.left.equalTo(self.editTimeLabel.mas_right).offset(20);
+        make.right.equalTo(self.contentView).offset(-10);
         make.height.mas_equalTo(15);
     }];
     [self.editTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView).offset(-10);
         make.left.equalTo(self.noteTitleLabel);
-        make.height.mas_equalTo(15);
+        make.size.mas_equalTo(CGSizeMake(100, 15));
     }];
     CGFloat imageWidth = (kMain_Screen_Width - 30)/3;
     [self.noteImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -149,6 +150,8 @@
 - (UIImageView *)noteImageView{
     if (!_noteImageView) {
         _noteImageView = [[UIImageView alloc] init];
+        _noteImageView.layer.cornerRadius = 5;
+        _noteImageView.clipsToBounds = YES;
         [_noteImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[NSBundle lg_imageName:@"lg_empty"]];
     }
     return _noteImageView;
