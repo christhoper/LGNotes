@@ -85,15 +85,12 @@ SearchToolViewDelegate
 
 - (void)addLeftNavigationBar{
     UIImage *image = [NSBundle lg_imagePathName:@"note_back"];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftNavigationBar:)];
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+    _leftBarItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftNavigationBar:)];
+    if (_style != NoteMainViewControllerNaviBarStyleUserIcon) {
+        [_leftBarItem setTintColor:[UIColor whiteColor]];
+        self.navigationItem.leftBarButtonItem = _leftBarItem;
+    }
 }
-
-- (void)setLeftBarItem:(UIBarButtonItem *)leftBarItem{
-    _leftBarItem = leftBarItem;
-    self.navigationItem.leftBarButtonItem = leftBarItem;
-}
-
 
 - (void)lg_bindData{
     self.viewModel.paramModel = self.paramModel;
@@ -209,6 +206,12 @@ SearchToolViewDelegate
         self.viewModel.paramModel.IsKeyPoint = @"-1";
         [self.toolView reSettingRemarkButtonUnSelected];
     }
+}
+
+#pragma mark - setter
+- (void)setLeftBarItem:(UIBarButtonItem *)leftBarItem{
+    _leftBarItem = leftBarItem;
+    self.navigationItem.leftBarButtonItem = leftBarItem;
 }
 
 #pragma mark - lazy

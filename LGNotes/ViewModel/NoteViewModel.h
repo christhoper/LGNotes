@@ -40,14 +40,15 @@ UIKIT_EXTERN NSString *const CheckNoteBaseUrlKey;
 /** 数据总数 */
 @property (nonatomic, assign) NSInteger totalCount;
 /** 笔记所支持学科 */
-@property (nonatomic, copy) NSArray *subjectArray;
+@property (nonatomic, copy)   NSArray *subjectArray;
 /** 获取支持的系统 */
-@property (nonatomic, copy) NSArray *systemArray;
+@property (nonatomic, copy)   NSArray *systemArray;
 /** 数据源 */
 @property (nonatomic, strong) NoteModel *dataSourceModel;
-
 /** 是否是搜索操作，是的话会屏蔽删除操作 */
 @property (nonatomic, assign) BOOL isSearchOperation;
+/** 是否是添加操作 */
+@property (nonatomic, assign) BOOL isAddNoteOperation;
 
 /**
  检查url的可用性

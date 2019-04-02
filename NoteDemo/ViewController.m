@@ -37,15 +37,16 @@
 - (ParamModel *)configureParams{
     ParamModel *params = [[ParamModel alloc] init];
     // 系统ID，传All表示获取全部系统的数据
-    params.SystemID = @"All";
+    params.SystemID = @"S21";
     // 学科ID，传All表示获取全部学科数据
     params.SubjectID = @"All";
+    params.C_SystemID = @"All";
     // 学科名
     params.SubjectName = @"英语";
     // 学校ID
     params.SchoolID = @"S0-S508158-813E";
     // token值，需要必须传，不然学科信息获取不到
-    params.Token = @"C17C58F9-091B-4354-B5DD-723335CA766D";
+    params.Token = @"2AFA49C8-39AD-4545-A758-8D0A77347795";
     // 每页数据容量
     params.PageSize = 10;
     // 页面

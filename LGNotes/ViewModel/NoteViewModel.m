@@ -510,25 +510,21 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
 - (RACSignal *)getSubjectIDAndPickerSelectedForSubjectArray:(NSArray *)subjectArray subjectName:(NSString *)subjectName{
     return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         if (IsArrEmpty(subjectArray)) {
-            SubjectModel *model = [[SubjectModel alloc] init];
-            model.SubjectID = [self.paramModel.SchoolLevel isEqualToString:@"S2"] ? @"S2-English":@"S1-English";
-            model.SubjectName = @"英语";
-            [subscriber sendNext:@[model.SubjectID,@(0)]];
+            [subscriber sendNext:@(0)];
             [subscriber sendCompleted];
             return nil;
         }
         
         for (int i = 0; i < subjectArray.count; i ++) {
-            SubjectModel *model = [subjectArray objectAtIndex:i];
-            if ([model.SubjectName isEqualToString:subjectName]) {
-                [subscriber sendNext:@[model.SubjectID,@(i)]];
+            NSString *subjectN = [subjectArray objectAtIndex:i];
+            if ([subjectN isEqualToString:subjectName]) {
+                [subscriber sendNext:@(i)];
                 [subscriber sendCompleted];
             }
         }
         return nil;
     }];
 }
-
 
 
 - (NSMutableArray *)filterImageUrlWithHtml:(NSString *)html{

@@ -191,9 +191,17 @@ LGSubjectPickerViewDelegate
     self.viewModel = viewModel;
     self.titleTextF.text = viewModel.dataSourceModel.NoteTitle;
     self.contentTextView.attributedText = viewModel.dataSourceModel.NoteContent_Att;
+    viewModel.dataSourceModel.SubjectName = viewModel.isAddNoteOperation ? @"英语":viewModel.dataSourceModel.SubjectName;
+    [self.subjectBtn setTitle:viewModel.dataSourceModel.SubjectName forState:UIControlStateNormal];
     self.remarkBtn.selected = [viewModel.dataSourceModel.IsKeyPoint isEqualToString:@"1"] ? YES:NO;
     self.materialArray = [self configureMaterialPickerDataSource];
     self.subjectArray = [self configureSubjectPickerDataSource];
+    
+    @weakify(self)
+    [[self.viewModel getSubjectIDAndPickerSelectedForSubjectArray:self.subjectArray subjectName:viewModel.dataSourceModel.SubjectName] subscribeNext:^(NSString * _Nullable subjectSelectedData) {
+        @strongify(self);
+        self.currentSelectedSubjectIndex = [subjectSelectedData integerValue];
+    }];
 }
 
 
@@ -382,17 +390,20 @@ LGSubjectPickerViewDelegate
         self.sourceTipImageView.transform = CGAffineTransformMakeRotation(0);
     }
     
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
-    @weakify(self);
-    [[NoteSourceDetailView showSourceDatailView] loadDataWithUrl:@"https://www.baidu.com/" didShowCompletion:^{
-        @strongify(self);
-        self.sourceBtn.selected = NO;
-        self.sourceTipImageView.transform = CGAffineTransformMakeRotation(0);
-    }];
-    
-//    SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
-//    pickerView.delegate = self;
-//    [pickerView showPickerViewMenuForDataSource:self.materialArray matchIndex:self.currentSelectedTopicIndex];
+    // 如果是添加操作的话，给出选择题目，否则直接查看详情
+    if (self.viewModel.isAddNoteOperation) {
+        SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
+        pickerView.delegate = self;
+        [pickerView showPickerViewMenuForDataSource:self.materialArray matchIndex:self.currentSelectedTopicIndex];
+    } else {
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        @weakify(self);
+        [[NoteSourceDetailView showSourceDatailView] loadDataWithUrl:@"https://www.baidu.com/" didShowCompletion:^{
+            @strongify(self);
+            self.sourceBtn.selected = NO;
+            self.sourceTipImageView.transform = CGAffineTransformMakeRotation(0);
+        }];
+    }
 }
 
 - (void)subjectBtnClick:(UIButton *)sender{

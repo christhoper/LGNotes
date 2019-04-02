@@ -109,6 +109,7 @@
 - (NoteViewModel *)viewModel{
     if (!_viewModel) {
         _viewModel = [[NoteViewModel alloc] init];
+        _viewModel.isAddNoteOperation = self.isNewNote;
         _viewModel.paramModel = self.paramModel;
         _viewModel.dataSourceModel = self.sourceModel;
         _viewModel.subjectArray = self.subjectArray;
