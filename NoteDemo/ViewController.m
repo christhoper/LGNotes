@@ -39,7 +39,7 @@
     // 系统ID，传All表示获取全部系统的数据
     params.SystemID = @"All";
     // 学科ID，传All表示获取全部学科数据
-    params.SubjectID = @"S2_English";
+    params.SubjectID = @"All";
     // 学科名
     params.SubjectName = @"英语";
     // 学校ID

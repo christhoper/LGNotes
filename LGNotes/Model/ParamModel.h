@@ -73,8 +73,12 @@ typedef NS_ENUM(NSInteger, SystemType) {
 /** 关键字搜索 */
 @property (nonatomic, copy)   NSString *SearchKeycon;
 
-/** 存放学科数组 */
+/** 自定义：存放学科数组 */
 @property (nonatomic, copy)   NSArray *SubjectArray;
+/** 备用的学科ID */
+@property (nonatomic, copy) NSString *C_SubjectID;
+/** 备用的系统ID */
+@property (nonatomic, copy) NSString *C_SystemID;
 
 @end
 

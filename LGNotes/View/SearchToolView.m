@@ -92,6 +92,11 @@
     }
 }
 
+#pragma mark - API
+- (void)reSettingRemarkButtonUnSelected{
+    self.remarkBtn.selected = NO;
+}
+
 #pragma mark - layzy
 - (UIButton *)enterSearchBtn{
     if (!_enterSearchBtn) {

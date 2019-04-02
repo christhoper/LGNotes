@@ -39,19 +39,12 @@
     return _SchoolID;
 }
 
-- (NSString *)SubjectID{
-    if (!_SubjectID) {
-        _SubjectID = @"";
-    }
-    return _SubjectID;
-}
-
-- (NSString *)SystemID{
-    if (!_SystemID) {
-        _SubjectID = @"S21";
-    }
-    return _SystemID;
-}
+//- (NSString *)SubjectID{
+//    if (!_SubjectID) {
+//        _SubjectID = @"";
+//    }
+//    return _SubjectID;
+//}
 
 - (NSString *)SearchKeycon{
     if (!_SearchKeycon) {
@@ -94,6 +87,33 @@
     }
     return _MaterialID;
 }
+
+
+//- (NSString *)SystemID{
+//    if (!_SystemID) {
+//        _SubjectID = @"S21";
+//    }
+//    return _SystemID;
+//}
+
+- (void)setSystemID:(NSString *)SystemID{
+    _SystemID = SystemID;
+    self.C_SystemID = SystemID;
+}
+
+- (void)setC_SystemID:(NSString *)C_SystemID{
+    _C_SystemID = C_SystemID;
+}
+
+- (void)setSubjectID:(NSString *)SubjectID{
+    _SubjectID = SubjectID;
+    self.C_SubjectID = SubjectID;
+}
+
+- (void)setC_SubjectID:(NSString *)C_SubjectID{
+    _C_SubjectID = C_SubjectID;
+}
+
 
 //- (SystemType)SystemType{
 //    if (!_SystemType) {

@@ -49,6 +49,8 @@ typedef NS_ENUM(NSInteger, LGTextViewToolBarStyle) {
 - (void)lg_textViewDidEndEditing:(LGNoteBaseTextView *)textView;
 /** 获取图片点击事件 */
 - (BOOL)lg_textViewShouldInteractWithTextAttachment:(LGNoteBaseTextView *)textView;
+/** 清空 */
+- (void)lg_textViewClear:(LGNoteBaseTextView *)textView;
 
 @end
 

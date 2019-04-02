@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id <SearchToolViewDelegate> delegate;
 
-
 /**
  初始化
 
@@ -39,6 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFrame:(CGRect)frame
                     configure:(SearchToolViewConfigure *)configure;
 
+
+/**
+ 重置标记按钮状态
+ */
+- (void)reSettingRemarkButtonUnSelected;
 
 @end
 

@@ -219,6 +219,21 @@ LGSubjectPickerViewDelegate
 }
 
 #pragma mark - TextViewDelegate
+- (void)lg_textViewClear:(LGNoteBaseTextView *)textView{
+    if(self.contentTextView.text.length == 0)  return;
+    
+    @weakify(self);
+    [kMBAlert showAlertControllerOn:self.ownController title:@"提示:" message:@"您确定要清空吗?" oneTitle:@"确定" oneHandle:^(UIAlertAction * _Nonnull one) {
+        @strongify(self);
+        self.contentTextView.text = @"";
+        [self lg_textViewDidChange:self.contentTextView];
+    } twoTitle:@"取消" twoHandle:^(UIAlertAction * _Nonnull two) {
+        
+    } completion:^{
+        
+    }];
+}
+
 - (void)lg_textViewDidChange:(LGNoteBaseTextView *)textView{
     if (self.isInsert) {
         self.contentTextView.selectedRange = NSMakeRange(self.currentLocation + self.imgAttr.length,0);
@@ -229,14 +244,22 @@ LGSubjectPickerViewDelegate
 }
 
 - (BOOL)lg_textViewShouldInteractWithTextAttachment:(LGNoteBaseTextView *)textView{
-    YBImageBrowseCellData *data = [YBImageBrowseCellData new];
-    data.url = self.viewModel.dataSourceModel.imgaeUrls[0];
     YBImageBrowser *browser = [YBImageBrowser new];
-    browser.dataSourceArray = @[data];
+    browser.dataSourceArray = [self configureUrls];
     browser.currentIndex = 0;
     [browser show];
     
     return YES;
+}
+
+- (NSArray *)configureUrls{
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.viewModel.dataSourceModel.imgaeUrls.count];
+    for (int i = 0; i < self.viewModel.dataSourceModel.imgaeUrls.count; i ++) {
+        YBImageBrowseCellData *data = [YBImageBrowseCellData new];
+        data.url = self.viewModel.dataSourceModel.imgaeUrls[i];
+        [result addObject:data];
+    }
+    return result;
 }
 
 - (void)lg_textViewPhotoEvent:(LGNoteBaseTextView *)textView{

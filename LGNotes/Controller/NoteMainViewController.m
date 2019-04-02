@@ -47,7 +47,7 @@ SearchToolViewDelegate
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"笔记首页";
+    self.title = @"我的笔记";
     [self lg_commonInit];
     [self creatSubViews];
     [self lg_bindData];
@@ -110,6 +110,7 @@ SearchToolViewDelegate
     @weakify(self,editController);
     [editController.updateSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
+        [self reSettingParams];
         self.tableView.requestStatus = LGBaseTableViewRequestStatusStartLoading;
         [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
     }];
@@ -153,14 +154,6 @@ SearchToolViewDelegate
     }
 }
 
-
-#pragma mark - FilterDelegate
-- (void)filterViewDidChooseCallBack:(NSString *)subjecID systemID:(NSString *)systemID{
-    self.viewModel.paramModel.SubjectID = subjecID;
-    self.viewModel.paramModel.SystemID = systemID;
-    [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
-}
-
 #pragma mark - SearchToolDelegate
 - (void)enterSearchEvent{
     NoteSearchViewController *searchVC = [[NoteSearchViewController alloc] init];
@@ -171,6 +164,7 @@ SearchToolViewDelegate
     [searchVC.backRefreshSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         self.viewModel.paramModel.PageIndex = 1;
+        [self reSettingParams];
         [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
     }];
 }
@@ -179,7 +173,7 @@ SearchToolViewDelegate
     NoteFilterViewController *filterController = [[NoteFilterViewController alloc] init];
     filterController.filterStyle = FilterStyleCustom;
     filterController.delegate = self;
-    [filterController bindViewModelParam:@[self.viewModel.paramModel.SubjectID,self.viewModel.paramModel.SystemID]];
+    [filterController bindViewModelParam:@[self.viewModel.paramModel.C_SubjectID,self.viewModel.paramModel.C_SystemID]];
     @weakify(filterController);
     [RACObserve(self.viewModel, subjectArray) subscribeNext:^(id  _Nullable x) {
         @strongify(filterController);
@@ -192,11 +186,29 @@ SearchToolViewDelegate
     [self.navigationController pushViewController:filterController animated:YES];
 }
 
+
+#pragma mark - FilterDelegate
+- (void)filterViewDidChooseCallBack:(NSString *)subjecID systemID:(NSString *)systemID{
+    self.viewModel.paramModel.SubjectID = subjecID;
+    self.viewModel.paramModel.SystemID = systemID;
+    [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
+}
+
 - (void)remarkEvent:(BOOL)remark{
     // 是否是查看重点笔记；1表示查看重点笔记，-1是查看全部笔记
     self.viewModel.paramModel.IsKeyPoint = remark ? @"1":@"-1";
     self.tableView.requestStatus = LGBaseTableViewRequestStatusStartLoading;
     [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
+}
+
+// 重置参数（添加笔记之后的操作）
+- (void)reSettingParams{
+    if (self.systemType == SystemUsedTypeAssistanter) {
+        self.viewModel.paramModel.C_SubjectID = @"All";
+        self.viewModel.paramModel.C_SystemID = @"All";
+        self.viewModel.paramModel.IsKeyPoint = @"-1";
+        [self.toolView reSettingRemarkButtonUnSelected];
+    }
 }
 
 #pragma mark - lazy

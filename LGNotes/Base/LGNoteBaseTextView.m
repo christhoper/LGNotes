@@ -77,10 +77,14 @@ static const void *LGTextViewToolBarStyleKey          = &LGTextViewToolBarStyleK
 - (void)toolBarEvent:(UIBarButtonItem *)sender{
     switch (sender.tag) {
             case LGToolBarFuntionTypeClear:{
-                self.text = @"";
-                if (self.delegate &&
-                    [self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
-                    [self.delegate textViewDidChange:self];
+//                self.text = @"";
+//                if (self.delegate &&
+//                    [self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+//                    [self.delegate textViewDidChange:self];
+//                }
+                
+                if (self.lgDelegate && [self.lgDelegate respondsToSelector:@selector(lg_textViewClear:)]) {
+                    [self.lgDelegate lg_textViewClear:self];
                 }
             }
             break;

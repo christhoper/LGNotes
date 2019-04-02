@@ -61,7 +61,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
     
     self.nextPageCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
         @strongify(self);
-        RACSignal *mainSignal = [self getNotesWithUserID:self.paramModel.UserID systemID:self.paramModel.SystemID subjectID:self.paramModel.SubjectID schoolID:self.paramModel.SchoolID pageIndex:self.paramModel.PageIndex pageSize:self.paramModel.PageSize keycon:self.paramModel.SearchKeycon];
+        RACSignal *mainSignal = [self getNotesWithUserID:self.paramModel.UserID systemID:self.paramModel.C_SystemID subjectID:self.paramModel.C_SubjectID schoolID:self.paramModel.SchoolID pageIndex:self.paramModel.PageIndex pageSize:self.paramModel.PageSize keycon:self.paramModel.SearchKeycon];
         
         [mainSignal subscribeNext:^(id  _Nullable x) {
             @strongify(self);
@@ -99,7 +99,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
     self.searchSubject = [RACSubject subject];
     self.searchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
         @strongify(self);
-        RACSignal *mainSignal = [self getNotesWithUserID:self.paramModel.UserID systemID:self.paramModel.SystemID subjectID:self.paramModel.SubjectID schoolID:self.paramModel.SchoolID pageIndex:0 pageSize:0 keycon:self.paramModel.SearchKeycon];
+        RACSignal *mainSignal = [self getNotesWithUserID:self.paramModel.UserID systemID:self.paramModel.C_SystemID subjectID:self.paramModel.C_SubjectID schoolID:self.paramModel.SchoolID pageIndex:0 pageSize:0 keycon:self.paramModel.SearchKeycon];
         
         [mainSignal subscribeNext:^(id  _Nullable x) {
             @strongify(self);
@@ -111,7 +111,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
 }
 
 - (void)p_getData{
-    RACSignal *mainSignal = [self getNotesWithUserID:self.paramModel.UserID systemID:self.paramModel.SystemID subjectID:self.paramModel.SubjectID schoolID:self.paramModel.SchoolID pageIndex:self.paramModel.PageIndex pageSize:self.paramModel.PageSize keycon:self.paramModel.SearchKeycon];
+    RACSignal *mainSignal = [self getNotesWithUserID:self.paramModel.UserID systemID:self.paramModel.C_SystemID subjectID:self.paramModel.C_SubjectID schoolID:self.paramModel.SchoolID pageIndex:self.paramModel.PageIndex pageSize:self.paramModel.PageSize keycon:self.paramModel.SearchKeycon];
     RACSignal *subjectSignal = [self getAllSubjectInfo];
     RACSignal *getSystemSigal = [self getAllSystemInfo];
     
@@ -284,7 +284,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
                                  @"ResourceID":self.paramModel.ResourceID,
                                  @"SubjectID":subjectID,
                                  @"SecretKey":self.paramModel.Secret,
-                                 @"SchoolID":self.paramModel.SchoolID,
+                                 @"SchoolID":schoolID,
                                  @"MaterialID":self.paramModel.MaterialID,
                                  @"IsKeyPoint":self.paramModel.IsKeyPoint,
                                  @"SysID":systemID,
