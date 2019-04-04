@@ -61,29 +61,6 @@
 		32B6BE8A22488002001F9E10 /* UIColor+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8322488002001F9E10 /* UIColor+Notes.m */; };
 		32B6BE8F224880FE001F9E10 /* LGNoteDrawBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8B224880FD001F9E10 /* LGNoteDrawBoardViewController.m */; };
 		32B6BE90224880FE001F9E10 /* LGNoteImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8D224880FE001F9E10 /* LGNoteImagePickerViewController.m */; };
-		32CB76F8225590F900CC9AC1 /* YBImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76BC225590F900CC9AC1 /* YBImageBrowser.m */; };
-		32CB76F9225590F900CC9AC1 /* YBVideoBrowseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76C5225590F900CC9AC1 /* YBVideoBrowseCell.m */; };
-		32CB76FA225590F900CC9AC1 /* YBVideoBrowseActionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76C7225590F900CC9AC1 /* YBVideoBrowseActionBar.m */; };
-		32CB76FB225590F900CC9AC1 /* YBVideoBrowseTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76CB225590F900CC9AC1 /* YBVideoBrowseTopBar.m */; };
-		32CB76FC225590F900CC9AC1 /* YBVideoBrowseCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76CC225590F900CC9AC1 /* YBVideoBrowseCellData.m */; };
-		32CB76FD225590F900CC9AC1 /* YBImageBrowserProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76CF225590F900CC9AC1 /* YBImageBrowserProgressView.m */; };
-		32CB76FE225590F900CC9AC1 /* YBImageBrowserToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76D0225590F900CC9AC1 /* YBImageBrowserToolBar.m */; };
-		32CB76FF225590F900CC9AC1 /* YBImageBrowserTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76D4225590F900CC9AC1 /* YBImageBrowserTipView.m */; };
-		32CB7700225590F900CC9AC1 /* YBImageBrowserSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76D6225590F900CC9AC1 /* YBImageBrowserSheetView.m */; };
-		32CB7701225590F900CC9AC1 /* YBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76D8225590F900CC9AC1 /* YBImage.m */; };
-		32CB7702225590F900CC9AC1 /* YBImageBrowseCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76D9225590F900CC9AC1 /* YBImageBrowseCellData.m */; };
-		32CB7703225590F900CC9AC1 /* YBImageBrowseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76DE225590F900CC9AC1 /* YBImageBrowseCell.m */; };
-		32CB7704225590F900CC9AC1 /* YBIBWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76E4225590F900CC9AC1 /* YBIBWebImageManager.m */; };
-		32CB7705225590F900CC9AC1 /* YBIBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76E8225590F900CC9AC1 /* YBIBFileManager.m */; };
-		32CB7706225590F900CC9AC1 /* YBIBCopywriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76E9225590F900CC9AC1 /* YBIBCopywriter.m */; };
-		32CB7707225590F900CC9AC1 /* YBIBUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76EA225590F900CC9AC1 /* YBIBUtilities.m */; };
-		32CB7708225590F900CC9AC1 /* YBIBLayoutDirectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76EB225590F900CC9AC1 /* YBIBLayoutDirectionManager.m */; };
-		32CB7709225590F900CC9AC1 /* YBIBPhotoAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76EC225590F900CC9AC1 /* YBIBPhotoAlbumManager.m */; };
-		32CB770A225590F900CC9AC1 /* YBIBTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76EE225590F900CC9AC1 /* YBIBTransitionManager.m */; };
-		32CB770B225590F900CC9AC1 /* YBIBGestureInteractionProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76EF225590F900CC9AC1 /* YBIBGestureInteractionProfile.m */; };
-		32CB770C225590F900CC9AC1 /* YBImageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76F1225590F900CC9AC1 /* YBImageBrowserView.m */; };
-		32CB770D225590F900CC9AC1 /* YBImageBrowserViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CB76F5225590F900CC9AC1 /* YBImageBrowserViewLayout.m */; };
-		32CB770E225590F900CC9AC1 /* YBImageBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 32CB76F7225590F900CC9AC1 /* YBImageBrowser.bundle */; };
 		32D72A9F2249B03B00FFB9B4 /* TKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72A9E2249B03A00FFB9B4 /* TKImageView.m */; };
 		32D72AA22249B9FC00FFB9B4 /* LGNoteCutImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72AA12249B9FC00FFB9B4 /* LGNoteCutImageViewController.m */; };
 		32D72AA6224A43B200FFB9B4 /* NoteXMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72AA5224A43B200FFB9B4 /* NoteXMLDictionary.m */; };
@@ -221,60 +198,6 @@
 		32B6BE8C224880FE001F9E10 /* LGNoteImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteImagePickerViewController.h; sourceTree = "<group>"; };
 		32B6BE8D224880FE001F9E10 /* LGNoteImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteImagePickerViewController.m; sourceTree = "<group>"; };
 		32B6BE8E224880FE001F9E10 /* LGNoteDrawBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteDrawBoardViewController.h; sourceTree = "<group>"; };
-		32CB76BC225590F900CC9AC1 /* YBImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowser.m; sourceTree = "<group>"; };
-		32CB76BE225590F900CC9AC1 /* YBImageBrowserSheetViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserSheetViewProtocol.h; sourceTree = "<group>"; };
-		32CB76BF225590F900CC9AC1 /* YBImageBrowserCellDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserCellDataProtocol.h; sourceTree = "<group>"; };
-		32CB76C0225590F900CC9AC1 /* YBImageBrowserToolBarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserToolBarProtocol.h; sourceTree = "<group>"; };
-		32CB76C1225590F900CC9AC1 /* YBImageBrowserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserDataSource.h; sourceTree = "<group>"; };
-		32CB76C2225590F900CC9AC1 /* YBImageBrowserCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserCellProtocol.h; sourceTree = "<group>"; };
-		32CB76C3225590F900CC9AC1 /* YBImageBrowserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserDelegate.h; sourceTree = "<group>"; };
-		32CB76C5225590F900CC9AC1 /* YBVideoBrowseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBVideoBrowseCell.m; sourceTree = "<group>"; };
-		32CB76C6225590F900CC9AC1 /* YBVideoBrowseCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBVideoBrowseCellData.h; sourceTree = "<group>"; };
-		32CB76C7225590F900CC9AC1 /* YBVideoBrowseActionBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBVideoBrowseActionBar.m; sourceTree = "<group>"; };
-		32CB76C8225590F900CC9AC1 /* YBVideoBrowseTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBVideoBrowseTopBar.h; sourceTree = "<group>"; };
-		32CB76C9225590F900CC9AC1 /* YBVideoBrowseCellData+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YBVideoBrowseCellData+Internal.h"; sourceTree = "<group>"; };
-		32CB76CA225590F900CC9AC1 /* YBVideoBrowseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBVideoBrowseCell.h; sourceTree = "<group>"; };
-		32CB76CB225590F900CC9AC1 /* YBVideoBrowseTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBVideoBrowseTopBar.m; sourceTree = "<group>"; };
-		32CB76CC225590F900CC9AC1 /* YBVideoBrowseCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBVideoBrowseCellData.m; sourceTree = "<group>"; };
-		32CB76CD225590F900CC9AC1 /* YBVideoBrowseActionBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBVideoBrowseActionBar.h; sourceTree = "<group>"; };
-		32CB76CF225590F900CC9AC1 /* YBImageBrowserProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserProgressView.m; sourceTree = "<group>"; };
-		32CB76D0225590F900CC9AC1 /* YBImageBrowserToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserToolBar.m; sourceTree = "<group>"; };
-		32CB76D1225590F900CC9AC1 /* YBImageBrowserTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserTipView.h; sourceTree = "<group>"; };
-		32CB76D2225590F900CC9AC1 /* YBImageBrowserSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserSheetView.h; sourceTree = "<group>"; };
-		32CB76D3225590F900CC9AC1 /* YBImageBrowserProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserProgressView.h; sourceTree = "<group>"; };
-		32CB76D4225590F900CC9AC1 /* YBImageBrowserTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserTipView.m; sourceTree = "<group>"; };
-		32CB76D5225590F900CC9AC1 /* YBImageBrowserToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserToolBar.h; sourceTree = "<group>"; };
-		32CB76D6225590F900CC9AC1 /* YBImageBrowserSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserSheetView.m; sourceTree = "<group>"; };
-		32CB76D8225590F900CC9AC1 /* YBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImage.m; sourceTree = "<group>"; };
-		32CB76D9225590F900CC9AC1 /* YBImageBrowseCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowseCellData.m; sourceTree = "<group>"; };
-		32CB76DA225590F900CC9AC1 /* YBImageBrowseCellData+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YBImageBrowseCellData+Internal.h"; sourceTree = "<group>"; };
-		32CB76DB225590F900CC9AC1 /* YBImageBrowseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowseCell.h; sourceTree = "<group>"; };
-		32CB76DC225590F900CC9AC1 /* YBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImage.h; sourceTree = "<group>"; };
-		32CB76DD225590F900CC9AC1 /* YBImageBrowseCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowseCellData.h; sourceTree = "<group>"; };
-		32CB76DE225590F900CC9AC1 /* YBImageBrowseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowseCell.m; sourceTree = "<group>"; };
-		32CB76E0225590F900CC9AC1 /* YBIBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBFileManager.h; sourceTree = "<group>"; };
-		32CB76E1225590F900CC9AC1 /* YBIBLayoutDirectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBLayoutDirectionManager.h; sourceTree = "<group>"; };
-		32CB76E2225590F900CC9AC1 /* YBIBCopywriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBCopywriter.h; sourceTree = "<group>"; };
-		32CB76E3225590F900CC9AC1 /* YBIBUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBUtilities.h; sourceTree = "<group>"; };
-		32CB76E4225590F900CC9AC1 /* YBIBWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBWebImageManager.m; sourceTree = "<group>"; };
-		32CB76E5225590F900CC9AC1 /* YBIBPhotoAlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBPhotoAlbumManager.h; sourceTree = "<group>"; };
-		32CB76E6225590F900CC9AC1 /* YBIBTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBTransitionManager.h; sourceTree = "<group>"; };
-		32CB76E7225590F900CC9AC1 /* YBIBGestureInteractionProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBGestureInteractionProfile.h; sourceTree = "<group>"; };
-		32CB76E8225590F900CC9AC1 /* YBIBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBFileManager.m; sourceTree = "<group>"; };
-		32CB76E9225590F900CC9AC1 /* YBIBCopywriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBCopywriter.m; sourceTree = "<group>"; };
-		32CB76EA225590F900CC9AC1 /* YBIBUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBUtilities.m; sourceTree = "<group>"; };
-		32CB76EB225590F900CC9AC1 /* YBIBLayoutDirectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBLayoutDirectionManager.m; sourceTree = "<group>"; };
-		32CB76EC225590F900CC9AC1 /* YBIBPhotoAlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBPhotoAlbumManager.m; sourceTree = "<group>"; };
-		32CB76ED225590F900CC9AC1 /* YBIBWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBWebImageManager.h; sourceTree = "<group>"; };
-		32CB76EE225590F900CC9AC1 /* YBIBTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBTransitionManager.m; sourceTree = "<group>"; };
-		32CB76EF225590F900CC9AC1 /* YBIBGestureInteractionProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBGestureInteractionProfile.m; sourceTree = "<group>"; };
-		32CB76F1225590F900CC9AC1 /* YBImageBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserView.m; sourceTree = "<group>"; };
-		32CB76F2225590F900CC9AC1 /* YBImageBrowser+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YBImageBrowser+Internal.h"; sourceTree = "<group>"; };
-		32CB76F3225590F900CC9AC1 /* YBImageBrowserViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserViewLayout.h; sourceTree = "<group>"; };
-		32CB76F4225590F900CC9AC1 /* YBImageBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserView.h; sourceTree = "<group>"; };
-		32CB76F5225590F900CC9AC1 /* YBImageBrowserViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserViewLayout.m; sourceTree = "<group>"; };
-		32CB76F6225590F900CC9AC1 /* YBImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowser.h; sourceTree = "<group>"; };
-		32CB76F7225590F900CC9AC1 /* YBImageBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = YBImageBrowser.bundle; sourceTree = "<group>"; };
 		32D72A9D2249B03A00FFB9B4 /* TKImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKImageView.h; sourceTree = "<group>"; };
 		32D72A9E2249B03A00FFB9B4 /* TKImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKImageView.m; sourceTree = "<group>"; };
 		32D72AA02249B9FC00FFB9B4 /* LGNoteCutImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteCutImageViewController.h; sourceTree = "<group>"; };
@@ -475,7 +398,6 @@
 		32326470216DF01E005CC784 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				32CB76BB225590F900CC9AC1 /* YBImageBrowser */,
 				32D72AA3224A43B200FFB9B4 /* XMLDictionary */,
 				32326485216E2C87005CC784 /* LGNoteNetworkManager.h */,
 				32326486216E2C87005CC784 /* LGNoteNetworkManager.m */,
@@ -561,115 +483,6 @@
 				32B6BE8222488002001F9E10 /* UIView+LGNote.m */,
 			);
 			path = Category;
-			sourceTree = "<group>";
-		};
-		32CB76BB225590F900CC9AC1 /* YBImageBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				32CB76BC225590F900CC9AC1 /* YBImageBrowser.m */,
-				32CB76BD225590F900CC9AC1 /* Protocol */,
-				32CB76C4225590F900CC9AC1 /* VideoBrowse */,
-				32CB76CE225590F900CC9AC1 /* AuxiliaryView */,
-				32CB76D7225590F900CC9AC1 /* ImageBrowse */,
-				32CB76DF225590F900CC9AC1 /* Helper */,
-				32CB76F0225590F900CC9AC1 /* Base */,
-				32CB76F6225590F900CC9AC1 /* YBImageBrowser.h */,
-				32CB76F7225590F900CC9AC1 /* YBImageBrowser.bundle */,
-			);
-			path = YBImageBrowser;
-			sourceTree = "<group>";
-		};
-		32CB76BD225590F900CC9AC1 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				32CB76BE225590F900CC9AC1 /* YBImageBrowserSheetViewProtocol.h */,
-				32CB76BF225590F900CC9AC1 /* YBImageBrowserCellDataProtocol.h */,
-				32CB76C0225590F900CC9AC1 /* YBImageBrowserToolBarProtocol.h */,
-				32CB76C1225590F900CC9AC1 /* YBImageBrowserDataSource.h */,
-				32CB76C2225590F900CC9AC1 /* YBImageBrowserCellProtocol.h */,
-				32CB76C3225590F900CC9AC1 /* YBImageBrowserDelegate.h */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		32CB76C4225590F900CC9AC1 /* VideoBrowse */ = {
-			isa = PBXGroup;
-			children = (
-				32CB76CD225590F900CC9AC1 /* YBVideoBrowseActionBar.h */,
-				32CB76C7225590F900CC9AC1 /* YBVideoBrowseActionBar.m */,
-				32CB76CA225590F900CC9AC1 /* YBVideoBrowseCell.h */,
-				32CB76C5225590F900CC9AC1 /* YBVideoBrowseCell.m */,
-				32CB76C6225590F900CC9AC1 /* YBVideoBrowseCellData.h */,
-				32CB76CC225590F900CC9AC1 /* YBVideoBrowseCellData.m */,
-				32CB76C9225590F900CC9AC1 /* YBVideoBrowseCellData+Internal.h */,
-				32CB76C8225590F900CC9AC1 /* YBVideoBrowseTopBar.h */,
-				32CB76CB225590F900CC9AC1 /* YBVideoBrowseTopBar.m */,
-			);
-			path = VideoBrowse;
-			sourceTree = "<group>";
-		};
-		32CB76CE225590F900CC9AC1 /* AuxiliaryView */ = {
-			isa = PBXGroup;
-			children = (
-				32CB76D3225590F900CC9AC1 /* YBImageBrowserProgressView.h */,
-				32CB76CF225590F900CC9AC1 /* YBImageBrowserProgressView.m */,
-				32CB76D2225590F900CC9AC1 /* YBImageBrowserSheetView.h */,
-				32CB76D6225590F900CC9AC1 /* YBImageBrowserSheetView.m */,
-				32CB76D1225590F900CC9AC1 /* YBImageBrowserTipView.h */,
-				32CB76D4225590F900CC9AC1 /* YBImageBrowserTipView.m */,
-				32CB76D5225590F900CC9AC1 /* YBImageBrowserToolBar.h */,
-				32CB76D0225590F900CC9AC1 /* YBImageBrowserToolBar.m */,
-			);
-			path = AuxiliaryView;
-			sourceTree = "<group>";
-		};
-		32CB76D7225590F900CC9AC1 /* ImageBrowse */ = {
-			isa = PBXGroup;
-			children = (
-				32CB76DC225590F900CC9AC1 /* YBImage.h */,
-				32CB76D8225590F900CC9AC1 /* YBImage.m */,
-				32CB76DB225590F900CC9AC1 /* YBImageBrowseCell.h */,
-				32CB76DE225590F900CC9AC1 /* YBImageBrowseCell.m */,
-				32CB76DD225590F900CC9AC1 /* YBImageBrowseCellData.h */,
-				32CB76D9225590F900CC9AC1 /* YBImageBrowseCellData.m */,
-				32CB76DA225590F900CC9AC1 /* YBImageBrowseCellData+Internal.h */,
-			);
-			path = ImageBrowse;
-			sourceTree = "<group>";
-		};
-		32CB76DF225590F900CC9AC1 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				32CB76E2225590F900CC9AC1 /* YBIBCopywriter.h */,
-				32CB76E9225590F900CC9AC1 /* YBIBCopywriter.m */,
-				32CB76E0225590F900CC9AC1 /* YBIBFileManager.h */,
-				32CB76E8225590F900CC9AC1 /* YBIBFileManager.m */,
-				32CB76E7225590F900CC9AC1 /* YBIBGestureInteractionProfile.h */,
-				32CB76EF225590F900CC9AC1 /* YBIBGestureInteractionProfile.m */,
-				32CB76E1225590F900CC9AC1 /* YBIBLayoutDirectionManager.h */,
-				32CB76EB225590F900CC9AC1 /* YBIBLayoutDirectionManager.m */,
-				32CB76E5225590F900CC9AC1 /* YBIBPhotoAlbumManager.h */,
-				32CB76EC225590F900CC9AC1 /* YBIBPhotoAlbumManager.m */,
-				32CB76E6225590F900CC9AC1 /* YBIBTransitionManager.h */,
-				32CB76EE225590F900CC9AC1 /* YBIBTransitionManager.m */,
-				32CB76E3225590F900CC9AC1 /* YBIBUtilities.h */,
-				32CB76EA225590F900CC9AC1 /* YBIBUtilities.m */,
-				32CB76ED225590F900CC9AC1 /* YBIBWebImageManager.h */,
-				32CB76E4225590F900CC9AC1 /* YBIBWebImageManager.m */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
-		32CB76F0225590F900CC9AC1 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				32CB76F2225590F900CC9AC1 /* YBImageBrowser+Internal.h */,
-				32CB76F4225590F900CC9AC1 /* YBImageBrowserView.h */,
-				32CB76F1225590F900CC9AC1 /* YBImageBrowserView.m */,
-				32CB76F3225590F900CC9AC1 /* YBImageBrowserViewLayout.h */,
-				32CB76F5225590F900CC9AC1 /* YBImageBrowserViewLayout.m */,
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		32D72A9C2249B03A00FFB9B4 /* CutImageView */ = {
@@ -807,7 +620,6 @@
 				3232642A216D9007005CC784 /* Assets.xcassets in Resources */,
 				325BC3A1216EE2EB00D077F5 /* LGNote.bundle in Resources */,
 				32326428216D9006005CC784 /* Main.storyboard in Resources */,
-				32CB770E225590F900CC9AC1 /* YBImageBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +657,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework",
+				"${BUILT_PRODUCTS_DIR}/YBImageBrowser/YBImageBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -859,6 +672,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TFHpple.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YBImageBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -896,16 +710,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				32326481216E265D005CC784 /* LGNoteMBAlert.m in Sources */,
-				32CB76F8225590F900CC9AC1 /* YBImageBrowser.m in Sources */,
 				325BC3B0216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m in Sources */,
 				32326425216D9006005CC784 /* ViewController.m in Sources */,
 				32B6BE6322485BD0001F9E10 /* BoardBgImageView.m in Sources */,
 				32B6BE8422488002001F9E10 /* NSString+Notes.m in Sources */,
-				32CB770C225590F900CC9AC1 /* YBImageBrowserView.m in Sources */,
-				32CB770A225590F900CC9AC1 /* YBIBTransitionManager.m in Sources */,
 				32326494216E398C005CC784 /* LGNoteBaseTextField.m in Sources */,
 				32326477216DF5D0005CC784 /* NoteMainTableView.m in Sources */,
-				32CB76F9225590F900CC9AC1 /* YBVideoBrowseCell.m in Sources */,
 				32B6BE6722485C09001F9E10 /* NoteDrawView.m in Sources */,
 				3232647B216E2142005CC784 /* ParamModel.m in Sources */,
 				3246AD03222FC8E200940E2D /* SearchToolView.m in Sources */,
@@ -914,11 +724,8 @@
 				32326456216D93A9005CC784 /* NoteModel.m in Sources */,
 				32D72AA6224A43B200FFB9B4 /* NoteXMLDictionary.m in Sources */,
 				32B6BE6A22485E4A001F9E10 /* LGNoteBaseModel.m in Sources */,
-				32CB76FD225590F900CC9AC1 /* YBImageBrowserProgressView.m in Sources */,
 				32B6BE8A22488002001F9E10 /* UIColor+Notes.m in Sources */,
 				320D4E8F224372EA0013872A /* NoteMoreImageTableViewCell.m in Sources */,
-				32CB7709225590F900CC9AC1 /* YBIBPhotoAlbumManager.m in Sources */,
-				32CB7700225590F900CC9AC1 /* YBImageBrowserSheetView.m in Sources */,
 				32326468216DED2D005CC784 /* NoteMainTableViewCell.m in Sources */,
 				3246AD06222FC97200940E2D /* SearchToolViewConfigure.m in Sources */,
 				32B6BE8522488002001F9E10 /* UITextView+Notes.m in Sources */,
@@ -926,34 +733,20 @@
 				325BC3A7216EF2E600D077F5 /* NoteFilterViewController.m in Sources */,
 				32B6BE6122485BD0001F9E10 /* BoardBgCollectionViewCell.m in Sources */,
 				3232649A216E3B35005CC784 /* LGNoteBaseTextView.m in Sources */,
-				32CB7702225590F900CC9AC1 /* YBImageBrowseCellData.m in Sources */,
-				32CB76FA225590F900CC9AC1 /* YBVideoBrowseActionBar.m in Sources */,
-				32CB7704225590F900CC9AC1 /* YBIBWebImageManager.m in Sources */,
 				32B6BE8722488002001F9E10 /* NSBundle+Notes.m in Sources */,
 				32B6BE8822488002001F9E10 /* NSString+NotesEmoji.m in Sources */,
-				32CB770D225590F900CC9AC1 /* YBImageBrowserViewLayout.m in Sources */,
 				32B6BE7422487EBF001F9E10 /* NSObject+YYModel.m in Sources */,
 				321156F3223637900000A054 /* NoteEditView.m in Sources */,
-				32CB7708225590F900CC9AC1 /* YBIBLayoutDirectionManager.m in Sources */,
 				32B6BE8622488002001F9E10 /* UIButton+Notes.m in Sources */,
-				32CB76FC225590F900CC9AC1 /* YBVideoBrowseCellData.m in Sources */,
 				32326487216E2C87005CC784 /* LGNoteNetworkManager.m in Sources */,
 				3232648D216E2C94005CC784 /* LGNoteBaseViewController.m in Sources */,
 				32D72AA22249B9FC00FFB9B4 /* LGNoteCutImageViewController.m in Sources */,
 				32B6BE6222485BD0001F9E10 /* PenFontBallView.m in Sources */,
 				32326430216D9007005CC784 /* main.m in Sources */,
-				32CB76FE225590F900CC9AC1 /* YBImageBrowserToolBar.m in Sources */,
-				32CB7701225590F900CC9AC1 /* YBImage.m in Sources */,
-				32CB770B225590F900CC9AC1 /* YBIBGestureInteractionProfile.m in Sources */,
 				321932C9224274D90019AA64 /* SubjectModel.m in Sources */,
-				32CB7705225590F900CC9AC1 /* YBIBFileManager.m in Sources */,
 				32B6BE6D22485F2C001F9E10 /* DrawBoardModel.m in Sources */,
-				32CB76FB225590F900CC9AC1 /* YBVideoBrowseTopBar.m in Sources */,
 				32B6BE90224880FE001F9E10 /* LGNoteImagePickerViewController.m in Sources */,
-				32CB7706225590F900CC9AC1 /* YBIBCopywriter.m in Sources */,
 				32326465216DE963005CC784 /* NoteViewModel.m in Sources */,
-				32CB76FF225590F900CC9AC1 /* YBImageBrowserTipView.m in Sources */,
-				32CB7703225590F900CC9AC1 /* YBImageBrowseCell.m in Sources */,
 				3232648E216E2C94005CC784 /* LGNoteBaseTableView.m in Sources */,
 				32326422216D9006005CC784 /* AppDelegate.m in Sources */,
 				3232645C216DE8E2005CC784 /* NoteMainViewController.m in Sources */,
@@ -967,7 +760,6 @@
 				32B6BE7322487EBF001F9E10 /* YYClassInfo.m in Sources */,
 				324FF7BD22290FEF008EF565 /* NoteCustomWindow.m in Sources */,
 				32B6BE6022485BD0001F9E10 /* NoteDrawSettingButtonView.m in Sources */,
-				32CB7707225590F900CC9AC1 /* YBIBUtilities.m in Sources */,
 				325BC3AE216EF7B800D077F5 /* NoteFilterCollectionViewCell.m in Sources */,
 				32D72A9F2249B03B00FFB9B4 /* TKImageView.m in Sources */,
 			);
