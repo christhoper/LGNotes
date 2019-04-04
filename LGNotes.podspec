@@ -44,6 +44,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'TFHpple'
   spec.dependency 'YBImageBrowser'
   spec.dependency 'SDWebImage'
+  spec.dependency 'YYImage'
 
 
 end
