@@ -161,6 +161,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YBImageBrowser/YBImageBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -172,6 +173,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YBImageBrowser/YBImageBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
