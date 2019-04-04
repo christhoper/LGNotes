@@ -13,7 +13,7 @@
 #import "LGNoteBaseTextView.h"
 #import "LGNoteConfigure.h"
 #import "NoteSourceDetailView.h"
-#import <YBImageBrowser/YBImageBrowser.h>
+#import "YBImageBrowser.h"
 #import "LGNoteImagePickerViewController.h"
 #import "LGNoteDrawBoardViewController.h"
 #import "LGNoteCutImageViewController.h"

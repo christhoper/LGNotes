@@ -9,5 +9,5 @@ pod 'MJExtension'
 pod 'MJRefresh'
 pod 'TFHpple', '~> 2.0.0'
 pod 'SDWebImage' ,'~> 4.4.6'
-pod 'YBImageBrowser'
+pod 'YYImage'
 end

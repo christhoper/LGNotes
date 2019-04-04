@@ -9,6 +9,29 @@
 /* Begin PBXBuildFile section */
 		320D4E8F224372EA0013872A /* NoteMoreImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D4E8E224372EA0013872A /* NoteMoreImageTableViewCell.m */; };
 		321156F3223637900000A054 /* NoteEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 321156F2223637900000A054 /* NoteEditView.m */; };
+		3213D4912255F2DF009FC886 /* YBImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4552255F2DF009FC886 /* YBImageBrowser.m */; };
+		3213D4922255F2DF009FC886 /* YBVideoBrowseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D45E2255F2DF009FC886 /* YBVideoBrowseCell.m */; };
+		3213D4932255F2DF009FC886 /* YBVideoBrowseActionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4602255F2DF009FC886 /* YBVideoBrowseActionBar.m */; };
+		3213D4942255F2DF009FC886 /* YBVideoBrowseTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4642255F2DF009FC886 /* YBVideoBrowseTopBar.m */; };
+		3213D4952255F2DF009FC886 /* YBVideoBrowseCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4652255F2DF009FC886 /* YBVideoBrowseCellData.m */; };
+		3213D4962255F2DF009FC886 /* YBImageBrowserProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4682255F2DF009FC886 /* YBImageBrowserProgressView.m */; };
+		3213D4972255F2DF009FC886 /* YBImageBrowserToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4692255F2DF009FC886 /* YBImageBrowserToolBar.m */; };
+		3213D4982255F2DF009FC886 /* YBImageBrowserTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D46D2255F2DF009FC886 /* YBImageBrowserTipView.m */; };
+		3213D4992255F2DF009FC886 /* YBImageBrowserSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D46F2255F2DF009FC886 /* YBImageBrowserSheetView.m */; };
+		3213D49A2255F2DF009FC886 /* YBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4712255F2DF009FC886 /* YBImage.m */; };
+		3213D49B2255F2DF009FC886 /* YBImageBrowseCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4722255F2DF009FC886 /* YBImageBrowseCellData.m */; };
+		3213D49C2255F2DF009FC886 /* YBImageBrowseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4772255F2DF009FC886 /* YBImageBrowseCell.m */; };
+		3213D49D2255F2DF009FC886 /* YBIBWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D47D2255F2DF009FC886 /* YBIBWebImageManager.m */; };
+		3213D49E2255F2DF009FC886 /* YBIBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4812255F2DF009FC886 /* YBIBFileManager.m */; };
+		3213D49F2255F2DF009FC886 /* YBIBCopywriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4822255F2DF009FC886 /* YBIBCopywriter.m */; };
+		3213D4A02255F2DF009FC886 /* YBIBUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4832255F2DF009FC886 /* YBIBUtilities.m */; };
+		3213D4A12255F2DF009FC886 /* YBIBLayoutDirectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4842255F2DF009FC886 /* YBIBLayoutDirectionManager.m */; };
+		3213D4A22255F2DF009FC886 /* YBIBPhotoAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4852255F2DF009FC886 /* YBIBPhotoAlbumManager.m */; };
+		3213D4A32255F2DF009FC886 /* YBIBTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4872255F2DF009FC886 /* YBIBTransitionManager.m */; };
+		3213D4A42255F2DF009FC886 /* YBIBGestureInteractionProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D4882255F2DF009FC886 /* YBIBGestureInteractionProfile.m */; };
+		3213D4A52255F2DF009FC886 /* YBImageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D48A2255F2DF009FC886 /* YBImageBrowserView.m */; };
+		3213D4A62255F2DF009FC886 /* YBImageBrowserViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213D48E2255F2DF009FC886 /* YBImageBrowserViewLayout.m */; };
+		3213D4A72255F2DF009FC886 /* YBImageBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3213D4902255F2DF009FC886 /* YBImageBrowser.bundle */; };
 		321932C6224263400019AA64 /* NoteMainImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C5224263400019AA64 /* NoteMainImageTableViewCell.m */; };
 		321932C9224274D90019AA64 /* SubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C8224274D90019AA64 /* SubjectModel.m */; };
 		32326422216D9006005CC784 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326421216D9006005CC784 /* AppDelegate.m */; };
@@ -92,6 +115,60 @@
 		320D4E8E224372EA0013872A /* NoteMoreImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMoreImageTableViewCell.m; sourceTree = "<group>"; };
 		321156F1223637900000A054 /* NoteEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteEditView.h; sourceTree = "<group>"; };
 		321156F2223637900000A054 /* NoteEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteEditView.m; sourceTree = "<group>"; };
+		3213D4552255F2DF009FC886 /* YBImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowser.m; sourceTree = "<group>"; };
+		3213D4572255F2DF009FC886 /* YBImageBrowserSheetViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserSheetViewProtocol.h; sourceTree = "<group>"; };
+		3213D4582255F2DF009FC886 /* YBImageBrowserCellDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserCellDataProtocol.h; sourceTree = "<group>"; };
+		3213D4592255F2DF009FC886 /* YBImageBrowserToolBarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserToolBarProtocol.h; sourceTree = "<group>"; };
+		3213D45A2255F2DF009FC886 /* YBImageBrowserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserDataSource.h; sourceTree = "<group>"; };
+		3213D45B2255F2DF009FC886 /* YBImageBrowserCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserCellProtocol.h; sourceTree = "<group>"; };
+		3213D45C2255F2DF009FC886 /* YBImageBrowserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserDelegate.h; sourceTree = "<group>"; };
+		3213D45E2255F2DF009FC886 /* YBVideoBrowseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBVideoBrowseCell.m; sourceTree = "<group>"; };
+		3213D45F2255F2DF009FC886 /* YBVideoBrowseCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBVideoBrowseCellData.h; sourceTree = "<group>"; };
+		3213D4602255F2DF009FC886 /* YBVideoBrowseActionBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBVideoBrowseActionBar.m; sourceTree = "<group>"; };
+		3213D4612255F2DF009FC886 /* YBVideoBrowseTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBVideoBrowseTopBar.h; sourceTree = "<group>"; };
+		3213D4622255F2DF009FC886 /* YBVideoBrowseCellData+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YBVideoBrowseCellData+Internal.h"; sourceTree = "<group>"; };
+		3213D4632255F2DF009FC886 /* YBVideoBrowseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBVideoBrowseCell.h; sourceTree = "<group>"; };
+		3213D4642255F2DF009FC886 /* YBVideoBrowseTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBVideoBrowseTopBar.m; sourceTree = "<group>"; };
+		3213D4652255F2DF009FC886 /* YBVideoBrowseCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBVideoBrowseCellData.m; sourceTree = "<group>"; };
+		3213D4662255F2DF009FC886 /* YBVideoBrowseActionBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBVideoBrowseActionBar.h; sourceTree = "<group>"; };
+		3213D4682255F2DF009FC886 /* YBImageBrowserProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserProgressView.m; sourceTree = "<group>"; };
+		3213D4692255F2DF009FC886 /* YBImageBrowserToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserToolBar.m; sourceTree = "<group>"; };
+		3213D46A2255F2DF009FC886 /* YBImageBrowserTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserTipView.h; sourceTree = "<group>"; };
+		3213D46B2255F2DF009FC886 /* YBImageBrowserSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserSheetView.h; sourceTree = "<group>"; };
+		3213D46C2255F2DF009FC886 /* YBImageBrowserProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserProgressView.h; sourceTree = "<group>"; };
+		3213D46D2255F2DF009FC886 /* YBImageBrowserTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserTipView.m; sourceTree = "<group>"; };
+		3213D46E2255F2DF009FC886 /* YBImageBrowserToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserToolBar.h; sourceTree = "<group>"; };
+		3213D46F2255F2DF009FC886 /* YBImageBrowserSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserSheetView.m; sourceTree = "<group>"; };
+		3213D4712255F2DF009FC886 /* YBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImage.m; sourceTree = "<group>"; };
+		3213D4722255F2DF009FC886 /* YBImageBrowseCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowseCellData.m; sourceTree = "<group>"; };
+		3213D4732255F2DF009FC886 /* YBImageBrowseCellData+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YBImageBrowseCellData+Internal.h"; sourceTree = "<group>"; };
+		3213D4742255F2DF009FC886 /* YBImageBrowseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowseCell.h; sourceTree = "<group>"; };
+		3213D4752255F2DF009FC886 /* YBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImage.h; sourceTree = "<group>"; };
+		3213D4762255F2DF009FC886 /* YBImageBrowseCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowseCellData.h; sourceTree = "<group>"; };
+		3213D4772255F2DF009FC886 /* YBImageBrowseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowseCell.m; sourceTree = "<group>"; };
+		3213D4792255F2DF009FC886 /* YBIBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBFileManager.h; sourceTree = "<group>"; };
+		3213D47A2255F2DF009FC886 /* YBIBLayoutDirectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBLayoutDirectionManager.h; sourceTree = "<group>"; };
+		3213D47B2255F2DF009FC886 /* YBIBCopywriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBCopywriter.h; sourceTree = "<group>"; };
+		3213D47C2255F2DF009FC886 /* YBIBUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBUtilities.h; sourceTree = "<group>"; };
+		3213D47D2255F2DF009FC886 /* YBIBWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBWebImageManager.m; sourceTree = "<group>"; };
+		3213D47E2255F2DF009FC886 /* YBIBPhotoAlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBPhotoAlbumManager.h; sourceTree = "<group>"; };
+		3213D47F2255F2DF009FC886 /* YBIBTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBTransitionManager.h; sourceTree = "<group>"; };
+		3213D4802255F2DF009FC886 /* YBIBGestureInteractionProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBGestureInteractionProfile.h; sourceTree = "<group>"; };
+		3213D4812255F2DF009FC886 /* YBIBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBFileManager.m; sourceTree = "<group>"; };
+		3213D4822255F2DF009FC886 /* YBIBCopywriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBCopywriter.m; sourceTree = "<group>"; };
+		3213D4832255F2DF009FC886 /* YBIBUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBUtilities.m; sourceTree = "<group>"; };
+		3213D4842255F2DF009FC886 /* YBIBLayoutDirectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBLayoutDirectionManager.m; sourceTree = "<group>"; };
+		3213D4852255F2DF009FC886 /* YBIBPhotoAlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBPhotoAlbumManager.m; sourceTree = "<group>"; };
+		3213D4862255F2DF009FC886 /* YBIBWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIBWebImageManager.h; sourceTree = "<group>"; };
+		3213D4872255F2DF009FC886 /* YBIBTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBTransitionManager.m; sourceTree = "<group>"; };
+		3213D4882255F2DF009FC886 /* YBIBGestureInteractionProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIBGestureInteractionProfile.m; sourceTree = "<group>"; };
+		3213D48A2255F2DF009FC886 /* YBImageBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserView.m; sourceTree = "<group>"; };
+		3213D48B2255F2DF009FC886 /* YBImageBrowser+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YBImageBrowser+Internal.h"; sourceTree = "<group>"; };
+		3213D48C2255F2DF009FC886 /* YBImageBrowserViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserViewLayout.h; sourceTree = "<group>"; };
+		3213D48D2255F2DF009FC886 /* YBImageBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserView.h; sourceTree = "<group>"; };
+		3213D48E2255F2DF009FC886 /* YBImageBrowserViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserViewLayout.m; sourceTree = "<group>"; };
+		3213D48F2255F2DF009FC886 /* YBImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowser.h; sourceTree = "<group>"; };
+		3213D4902255F2DF009FC886 /* YBImageBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = YBImageBrowser.bundle; sourceTree = "<group>"; };
 		321932C4224263400019AA64 /* NoteMainImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteMainImageTableViewCell.h; sourceTree = "<group>"; };
 		321932C5224263400019AA64 /* NoteMainImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMainImageTableViewCell.m; sourceTree = "<group>"; };
 		321932C7224274D90019AA64 /* SubjectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubjectModel.h; sourceTree = "<group>"; };
@@ -247,6 +324,115 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		3213D4542255F2DF009FC886 /* YBImageBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				3213D4552255F2DF009FC886 /* YBImageBrowser.m */,
+				3213D4562255F2DF009FC886 /* Protocol */,
+				3213D45D2255F2DF009FC886 /* VideoBrowse */,
+				3213D4672255F2DF009FC886 /* AuxiliaryView */,
+				3213D4702255F2DF009FC886 /* ImageBrowse */,
+				3213D4782255F2DF009FC886 /* Helper */,
+				3213D4892255F2DF009FC886 /* Base */,
+				3213D48F2255F2DF009FC886 /* YBImageBrowser.h */,
+				3213D4902255F2DF009FC886 /* YBImageBrowser.bundle */,
+			);
+			path = YBImageBrowser;
+			sourceTree = "<group>";
+		};
+		3213D4562255F2DF009FC886 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3213D4572255F2DF009FC886 /* YBImageBrowserSheetViewProtocol.h */,
+				3213D4582255F2DF009FC886 /* YBImageBrowserCellDataProtocol.h */,
+				3213D4592255F2DF009FC886 /* YBImageBrowserToolBarProtocol.h */,
+				3213D45A2255F2DF009FC886 /* YBImageBrowserDataSource.h */,
+				3213D45B2255F2DF009FC886 /* YBImageBrowserCellProtocol.h */,
+				3213D45C2255F2DF009FC886 /* YBImageBrowserDelegate.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		3213D45D2255F2DF009FC886 /* VideoBrowse */ = {
+			isa = PBXGroup;
+			children = (
+				3213D45E2255F2DF009FC886 /* YBVideoBrowseCell.m */,
+				3213D45F2255F2DF009FC886 /* YBVideoBrowseCellData.h */,
+				3213D4602255F2DF009FC886 /* YBVideoBrowseActionBar.m */,
+				3213D4612255F2DF009FC886 /* YBVideoBrowseTopBar.h */,
+				3213D4622255F2DF009FC886 /* YBVideoBrowseCellData+Internal.h */,
+				3213D4632255F2DF009FC886 /* YBVideoBrowseCell.h */,
+				3213D4642255F2DF009FC886 /* YBVideoBrowseTopBar.m */,
+				3213D4652255F2DF009FC886 /* YBVideoBrowseCellData.m */,
+				3213D4662255F2DF009FC886 /* YBVideoBrowseActionBar.h */,
+			);
+			path = VideoBrowse;
+			sourceTree = "<group>";
+		};
+		3213D4672255F2DF009FC886 /* AuxiliaryView */ = {
+			isa = PBXGroup;
+			children = (
+				3213D4682255F2DF009FC886 /* YBImageBrowserProgressView.m */,
+				3213D4692255F2DF009FC886 /* YBImageBrowserToolBar.m */,
+				3213D46A2255F2DF009FC886 /* YBImageBrowserTipView.h */,
+				3213D46B2255F2DF009FC886 /* YBImageBrowserSheetView.h */,
+				3213D46C2255F2DF009FC886 /* YBImageBrowserProgressView.h */,
+				3213D46D2255F2DF009FC886 /* YBImageBrowserTipView.m */,
+				3213D46E2255F2DF009FC886 /* YBImageBrowserToolBar.h */,
+				3213D46F2255F2DF009FC886 /* YBImageBrowserSheetView.m */,
+			);
+			path = AuxiliaryView;
+			sourceTree = "<group>";
+		};
+		3213D4702255F2DF009FC886 /* ImageBrowse */ = {
+			isa = PBXGroup;
+			children = (
+				3213D4712255F2DF009FC886 /* YBImage.m */,
+				3213D4722255F2DF009FC886 /* YBImageBrowseCellData.m */,
+				3213D4732255F2DF009FC886 /* YBImageBrowseCellData+Internal.h */,
+				3213D4742255F2DF009FC886 /* YBImageBrowseCell.h */,
+				3213D4752255F2DF009FC886 /* YBImage.h */,
+				3213D4762255F2DF009FC886 /* YBImageBrowseCellData.h */,
+				3213D4772255F2DF009FC886 /* YBImageBrowseCell.m */,
+			);
+			path = ImageBrowse;
+			sourceTree = "<group>";
+		};
+		3213D4782255F2DF009FC886 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				3213D4792255F2DF009FC886 /* YBIBFileManager.h */,
+				3213D47A2255F2DF009FC886 /* YBIBLayoutDirectionManager.h */,
+				3213D47B2255F2DF009FC886 /* YBIBCopywriter.h */,
+				3213D47C2255F2DF009FC886 /* YBIBUtilities.h */,
+				3213D47D2255F2DF009FC886 /* YBIBWebImageManager.m */,
+				3213D47E2255F2DF009FC886 /* YBIBPhotoAlbumManager.h */,
+				3213D47F2255F2DF009FC886 /* YBIBTransitionManager.h */,
+				3213D4802255F2DF009FC886 /* YBIBGestureInteractionProfile.h */,
+				3213D4812255F2DF009FC886 /* YBIBFileManager.m */,
+				3213D4822255F2DF009FC886 /* YBIBCopywriter.m */,
+				3213D4832255F2DF009FC886 /* YBIBUtilities.m */,
+				3213D4842255F2DF009FC886 /* YBIBLayoutDirectionManager.m */,
+				3213D4852255F2DF009FC886 /* YBIBPhotoAlbumManager.m */,
+				3213D4862255F2DF009FC886 /* YBIBWebImageManager.h */,
+				3213D4872255F2DF009FC886 /* YBIBTransitionManager.m */,
+				3213D4882255F2DF009FC886 /* YBIBGestureInteractionProfile.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		3213D4892255F2DF009FC886 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3213D48A2255F2DF009FC886 /* YBImageBrowserView.m */,
+				3213D48B2255F2DF009FC886 /* YBImageBrowser+Internal.h */,
+				3213D48C2255F2DF009FC886 /* YBImageBrowserViewLayout.h */,
+				3213D48D2255F2DF009FC886 /* YBImageBrowserView.h */,
+				3213D48E2255F2DF009FC886 /* YBImageBrowserViewLayout.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		32326414216D9006005CC784 = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +584,7 @@
 		32326470216DF01E005CC784 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				3213D4542255F2DF009FC886 /* YBImageBrowser */,
 				32D72AA3224A43B200FFB9B4 /* XMLDictionary */,
 				32326485216E2C87005CC784 /* LGNoteNetworkManager.h */,
 				32326486216E2C87005CC784 /* LGNoteNetworkManager.m */,
@@ -620,6 +807,7 @@
 				3232642A216D9007005CC784 /* Assets.xcassets in Resources */,
 				325BC3A1216EE2EB00D077F5 /* LGNote.bundle in Resources */,
 				32326428216D9006005CC784 /* Main.storyboard in Resources */,
+				3213D4A72255F2DF009FC886 /* YBImageBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +845,6 @@
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework",
-				"${BUILT_PRODUCTS_DIR}/YBImageBrowser/YBImageBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -672,7 +859,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TFHpple.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YBImageBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -710,12 +896,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				32326481216E265D005CC784 /* LGNoteMBAlert.m in Sources */,
+				3213D4912255F2DF009FC886 /* YBImageBrowser.m in Sources */,
 				325BC3B0216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m in Sources */,
 				32326425216D9006005CC784 /* ViewController.m in Sources */,
 				32B6BE6322485BD0001F9E10 /* BoardBgImageView.m in Sources */,
 				32B6BE8422488002001F9E10 /* NSString+Notes.m in Sources */,
+				3213D4A52255F2DF009FC886 /* YBImageBrowserView.m in Sources */,
+				3213D4A32255F2DF009FC886 /* YBIBTransitionManager.m in Sources */,
 				32326494216E398C005CC784 /* LGNoteBaseTextField.m in Sources */,
 				32326477216DF5D0005CC784 /* NoteMainTableView.m in Sources */,
+				3213D4922255F2DF009FC886 /* YBVideoBrowseCell.m in Sources */,
 				32B6BE6722485C09001F9E10 /* NoteDrawView.m in Sources */,
 				3232647B216E2142005CC784 /* ParamModel.m in Sources */,
 				3246AD03222FC8E200940E2D /* SearchToolView.m in Sources */,
@@ -724,8 +914,11 @@
 				32326456216D93A9005CC784 /* NoteModel.m in Sources */,
 				32D72AA6224A43B200FFB9B4 /* NoteXMLDictionary.m in Sources */,
 				32B6BE6A22485E4A001F9E10 /* LGNoteBaseModel.m in Sources */,
+				3213D4962255F2DF009FC886 /* YBImageBrowserProgressView.m in Sources */,
 				32B6BE8A22488002001F9E10 /* UIColor+Notes.m in Sources */,
 				320D4E8F224372EA0013872A /* NoteMoreImageTableViewCell.m in Sources */,
+				3213D4A22255F2DF009FC886 /* YBIBPhotoAlbumManager.m in Sources */,
+				3213D4992255F2DF009FC886 /* YBImageBrowserSheetView.m in Sources */,
 				32326468216DED2D005CC784 /* NoteMainTableViewCell.m in Sources */,
 				3246AD06222FC97200940E2D /* SearchToolViewConfigure.m in Sources */,
 				32B6BE8522488002001F9E10 /* UITextView+Notes.m in Sources */,
@@ -733,20 +926,34 @@
 				325BC3A7216EF2E600D077F5 /* NoteFilterViewController.m in Sources */,
 				32B6BE6122485BD0001F9E10 /* BoardBgCollectionViewCell.m in Sources */,
 				3232649A216E3B35005CC784 /* LGNoteBaseTextView.m in Sources */,
+				3213D49B2255F2DF009FC886 /* YBImageBrowseCellData.m in Sources */,
+				3213D4932255F2DF009FC886 /* YBVideoBrowseActionBar.m in Sources */,
+				3213D49D2255F2DF009FC886 /* YBIBWebImageManager.m in Sources */,
 				32B6BE8722488002001F9E10 /* NSBundle+Notes.m in Sources */,
 				32B6BE8822488002001F9E10 /* NSString+NotesEmoji.m in Sources */,
+				3213D4A62255F2DF009FC886 /* YBImageBrowserViewLayout.m in Sources */,
 				32B6BE7422487EBF001F9E10 /* NSObject+YYModel.m in Sources */,
 				321156F3223637900000A054 /* NoteEditView.m in Sources */,
+				3213D4A12255F2DF009FC886 /* YBIBLayoutDirectionManager.m in Sources */,
 				32B6BE8622488002001F9E10 /* UIButton+Notes.m in Sources */,
+				3213D4952255F2DF009FC886 /* YBVideoBrowseCellData.m in Sources */,
 				32326487216E2C87005CC784 /* LGNoteNetworkManager.m in Sources */,
 				3232648D216E2C94005CC784 /* LGNoteBaseViewController.m in Sources */,
 				32D72AA22249B9FC00FFB9B4 /* LGNoteCutImageViewController.m in Sources */,
 				32B6BE6222485BD0001F9E10 /* PenFontBallView.m in Sources */,
 				32326430216D9007005CC784 /* main.m in Sources */,
+				3213D4972255F2DF009FC886 /* YBImageBrowserToolBar.m in Sources */,
+				3213D49A2255F2DF009FC886 /* YBImage.m in Sources */,
+				3213D4A42255F2DF009FC886 /* YBIBGestureInteractionProfile.m in Sources */,
 				321932C9224274D90019AA64 /* SubjectModel.m in Sources */,
+				3213D49E2255F2DF009FC886 /* YBIBFileManager.m in Sources */,
 				32B6BE6D22485F2C001F9E10 /* DrawBoardModel.m in Sources */,
+				3213D4942255F2DF009FC886 /* YBVideoBrowseTopBar.m in Sources */,
 				32B6BE90224880FE001F9E10 /* LGNoteImagePickerViewController.m in Sources */,
+				3213D49F2255F2DF009FC886 /* YBIBCopywriter.m in Sources */,
 				32326465216DE963005CC784 /* NoteViewModel.m in Sources */,
+				3213D4982255F2DF009FC886 /* YBImageBrowserTipView.m in Sources */,
+				3213D49C2255F2DF009FC886 /* YBImageBrowseCell.m in Sources */,
 				3232648E216E2C94005CC784 /* LGNoteBaseTableView.m in Sources */,
 				32326422216D9006005CC784 /* AppDelegate.m in Sources */,
 				3232645C216DE8E2005CC784 /* NoteMainViewController.m in Sources */,
@@ -760,6 +967,7 @@
 				32B6BE7322487EBF001F9E10 /* YYClassInfo.m in Sources */,
 				324FF7BD22290FEF008EF565 /* NoteCustomWindow.m in Sources */,
 				32B6BE6022485BD0001F9E10 /* NoteDrawSettingButtonView.m in Sources */,
+				3213D4A02255F2DF009FC886 /* YBIBUtilities.m in Sources */,
 				325BC3AE216EF7B800D077F5 /* NoteFilterCollectionViewCell.m in Sources */,
 				32D72A9F2249B03B00FFB9B4 /* TKImageView.m in Sources */,
 			);
