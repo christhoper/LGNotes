@@ -595,15 +595,15 @@
 		32CB76C4225590F900CC9AC1 /* VideoBrowse */ = {
 			isa = PBXGroup;
 			children = (
+				32CB76CD225590F900CC9AC1 /* YBVideoBrowseActionBar.h */,
+				32CB76C7225590F900CC9AC1 /* YBVideoBrowseActionBar.m */,
+				32CB76CA225590F900CC9AC1 /* YBVideoBrowseCell.h */,
 				32CB76C5225590F900CC9AC1 /* YBVideoBrowseCell.m */,
 				32CB76C6225590F900CC9AC1 /* YBVideoBrowseCellData.h */,
-				32CB76C7225590F900CC9AC1 /* YBVideoBrowseActionBar.m */,
-				32CB76C8225590F900CC9AC1 /* YBVideoBrowseTopBar.h */,
-				32CB76C9225590F900CC9AC1 /* YBVideoBrowseCellData+Internal.h */,
-				32CB76CA225590F900CC9AC1 /* YBVideoBrowseCell.h */,
-				32CB76CB225590F900CC9AC1 /* YBVideoBrowseTopBar.m */,
 				32CB76CC225590F900CC9AC1 /* YBVideoBrowseCellData.m */,
-				32CB76CD225590F900CC9AC1 /* YBVideoBrowseActionBar.h */,
+				32CB76C9225590F900CC9AC1 /* YBVideoBrowseCellData+Internal.h */,
+				32CB76C8225590F900CC9AC1 /* YBVideoBrowseTopBar.h */,
+				32CB76CB225590F900CC9AC1 /* YBVideoBrowseTopBar.m */,
 			);
 			path = VideoBrowse;
 			sourceTree = "<group>";
@@ -611,14 +611,14 @@
 		32CB76CE225590F900CC9AC1 /* AuxiliaryView */ = {
 			isa = PBXGroup;
 			children = (
-				32CB76CF225590F900CC9AC1 /* YBImageBrowserProgressView.m */,
-				32CB76D0225590F900CC9AC1 /* YBImageBrowserToolBar.m */,
-				32CB76D1225590F900CC9AC1 /* YBImageBrowserTipView.h */,
-				32CB76D2225590F900CC9AC1 /* YBImageBrowserSheetView.h */,
 				32CB76D3225590F900CC9AC1 /* YBImageBrowserProgressView.h */,
+				32CB76CF225590F900CC9AC1 /* YBImageBrowserProgressView.m */,
+				32CB76D2225590F900CC9AC1 /* YBImageBrowserSheetView.h */,
+				32CB76D6225590F900CC9AC1 /* YBImageBrowserSheetView.m */,
+				32CB76D1225590F900CC9AC1 /* YBImageBrowserTipView.h */,
 				32CB76D4225590F900CC9AC1 /* YBImageBrowserTipView.m */,
 				32CB76D5225590F900CC9AC1 /* YBImageBrowserToolBar.h */,
-				32CB76D6225590F900CC9AC1 /* YBImageBrowserSheetView.m */,
+				32CB76D0225590F900CC9AC1 /* YBImageBrowserToolBar.m */,
 			);
 			path = AuxiliaryView;
 			sourceTree = "<group>";
@@ -626,13 +626,13 @@
 		32CB76D7225590F900CC9AC1 /* ImageBrowse */ = {
 			isa = PBXGroup;
 			children = (
+				32CB76DC225590F900CC9AC1 /* YBImage.h */,
 				32CB76D8225590F900CC9AC1 /* YBImage.m */,
+				32CB76DB225590F900CC9AC1 /* YBImageBrowseCell.h */,
+				32CB76DE225590F900CC9AC1 /* YBImageBrowseCell.m */,
+				32CB76DD225590F900CC9AC1 /* YBImageBrowseCellData.h */,
 				32CB76D9225590F900CC9AC1 /* YBImageBrowseCellData.m */,
 				32CB76DA225590F900CC9AC1 /* YBImageBrowseCellData+Internal.h */,
-				32CB76DB225590F900CC9AC1 /* YBImageBrowseCell.h */,
-				32CB76DC225590F900CC9AC1 /* YBImage.h */,
-				32CB76DD225590F900CC9AC1 /* YBImageBrowseCellData.h */,
-				32CB76DE225590F900CC9AC1 /* YBImageBrowseCell.m */,
 			);
 			path = ImageBrowse;
 			sourceTree = "<group>";
@@ -640,22 +640,22 @@
 		32CB76DF225590F900CC9AC1 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				32CB76E0225590F900CC9AC1 /* YBIBFileManager.h */,
-				32CB76E1225590F900CC9AC1 /* YBIBLayoutDirectionManager.h */,
 				32CB76E2225590F900CC9AC1 /* YBIBCopywriter.h */,
-				32CB76E3225590F900CC9AC1 /* YBIBUtilities.h */,
-				32CB76E4225590F900CC9AC1 /* YBIBWebImageManager.m */,
-				32CB76E5225590F900CC9AC1 /* YBIBPhotoAlbumManager.h */,
-				32CB76E6225590F900CC9AC1 /* YBIBTransitionManager.h */,
-				32CB76E7225590F900CC9AC1 /* YBIBGestureInteractionProfile.h */,
-				32CB76E8225590F900CC9AC1 /* YBIBFileManager.m */,
 				32CB76E9225590F900CC9AC1 /* YBIBCopywriter.m */,
-				32CB76EA225590F900CC9AC1 /* YBIBUtilities.m */,
-				32CB76EB225590F900CC9AC1 /* YBIBLayoutDirectionManager.m */,
-				32CB76EC225590F900CC9AC1 /* YBIBPhotoAlbumManager.m */,
-				32CB76ED225590F900CC9AC1 /* YBIBWebImageManager.h */,
-				32CB76EE225590F900CC9AC1 /* YBIBTransitionManager.m */,
+				32CB76E0225590F900CC9AC1 /* YBIBFileManager.h */,
+				32CB76E8225590F900CC9AC1 /* YBIBFileManager.m */,
+				32CB76E7225590F900CC9AC1 /* YBIBGestureInteractionProfile.h */,
 				32CB76EF225590F900CC9AC1 /* YBIBGestureInteractionProfile.m */,
+				32CB76E1225590F900CC9AC1 /* YBIBLayoutDirectionManager.h */,
+				32CB76EB225590F900CC9AC1 /* YBIBLayoutDirectionManager.m */,
+				32CB76E5225590F900CC9AC1 /* YBIBPhotoAlbumManager.h */,
+				32CB76EC225590F900CC9AC1 /* YBIBPhotoAlbumManager.m */,
+				32CB76E6225590F900CC9AC1 /* YBIBTransitionManager.h */,
+				32CB76EE225590F900CC9AC1 /* YBIBTransitionManager.m */,
+				32CB76E3225590F900CC9AC1 /* YBIBUtilities.h */,
+				32CB76EA225590F900CC9AC1 /* YBIBUtilities.m */,
+				32CB76ED225590F900CC9AC1 /* YBIBWebImageManager.h */,
+				32CB76E4225590F900CC9AC1 /* YBIBWebImageManager.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -663,10 +663,10 @@
 		32CB76F0225590F900CC9AC1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				32CB76F1225590F900CC9AC1 /* YBImageBrowserView.m */,
 				32CB76F2225590F900CC9AC1 /* YBImageBrowser+Internal.h */,
-				32CB76F3225590F900CC9AC1 /* YBImageBrowserViewLayout.h */,
 				32CB76F4225590F900CC9AC1 /* YBImageBrowserView.h */,
+				32CB76F1225590F900CC9AC1 /* YBImageBrowserView.m */,
+				32CB76F3225590F900CC9AC1 /* YBImageBrowserViewLayout.h */,
 				32CB76F5225590F900CC9AC1 /* YBImageBrowserViewLayout.m */,
 			);
 			path = Base;
