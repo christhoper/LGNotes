@@ -7,11 +7,8 @@
 //
 
 #import "YBIBWebImageManager.h"
-#if __has_include(<SDWebImage/SDWebImageManager.h>)
 #import <SDWebImage/SDWebImageManager.h>
-#else
-#import "SDWebImageManager.h"
-#endif
+
 
 static BOOL _downloaderShouldDecompressImages;
 static BOOL _cacheShouldDecompressImages;

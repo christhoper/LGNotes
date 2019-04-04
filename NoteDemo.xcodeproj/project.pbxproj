@@ -327,6 +327,7 @@
 		3213D4542255F2DF009FC886 /* YBImageBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				3213D48F2255F2DF009FC886 /* YBImageBrowser.h */,
 				3213D4552255F2DF009FC886 /* YBImageBrowser.m */,
 				3213D4562255F2DF009FC886 /* Protocol */,
 				3213D45D2255F2DF009FC886 /* VideoBrowse */,
@@ -334,7 +335,6 @@
 				3213D4702255F2DF009FC886 /* ImageBrowse */,
 				3213D4782255F2DF009FC886 /* Helper */,
 				3213D4892255F2DF009FC886 /* Base */,
-				3213D48F2255F2DF009FC886 /* YBImageBrowser.h */,
 				3213D4902255F2DF009FC886 /* YBImageBrowser.bundle */,
 			);
 			path = YBImageBrowser;
@@ -401,22 +401,22 @@
 		3213D4782255F2DF009FC886 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				3213D4792255F2DF009FC886 /* YBIBFileManager.h */,
-				3213D47A2255F2DF009FC886 /* YBIBLayoutDirectionManager.h */,
 				3213D47B2255F2DF009FC886 /* YBIBCopywriter.h */,
-				3213D47C2255F2DF009FC886 /* YBIBUtilities.h */,
-				3213D47D2255F2DF009FC886 /* YBIBWebImageManager.m */,
-				3213D47E2255F2DF009FC886 /* YBIBPhotoAlbumManager.h */,
-				3213D47F2255F2DF009FC886 /* YBIBTransitionManager.h */,
-				3213D4802255F2DF009FC886 /* YBIBGestureInteractionProfile.h */,
-				3213D4812255F2DF009FC886 /* YBIBFileManager.m */,
 				3213D4822255F2DF009FC886 /* YBIBCopywriter.m */,
-				3213D4832255F2DF009FC886 /* YBIBUtilities.m */,
-				3213D4842255F2DF009FC886 /* YBIBLayoutDirectionManager.m */,
-				3213D4852255F2DF009FC886 /* YBIBPhotoAlbumManager.m */,
-				3213D4862255F2DF009FC886 /* YBIBWebImageManager.h */,
-				3213D4872255F2DF009FC886 /* YBIBTransitionManager.m */,
+				3213D4792255F2DF009FC886 /* YBIBFileManager.h */,
+				3213D4812255F2DF009FC886 /* YBIBFileManager.m */,
+				3213D4802255F2DF009FC886 /* YBIBGestureInteractionProfile.h */,
 				3213D4882255F2DF009FC886 /* YBIBGestureInteractionProfile.m */,
+				3213D47A2255F2DF009FC886 /* YBIBLayoutDirectionManager.h */,
+				3213D4842255F2DF009FC886 /* YBIBLayoutDirectionManager.m */,
+				3213D47E2255F2DF009FC886 /* YBIBPhotoAlbumManager.h */,
+				3213D4852255F2DF009FC886 /* YBIBPhotoAlbumManager.m */,
+				3213D47F2255F2DF009FC886 /* YBIBTransitionManager.h */,
+				3213D4872255F2DF009FC886 /* YBIBTransitionManager.m */,
+				3213D47C2255F2DF009FC886 /* YBIBUtilities.h */,
+				3213D4832255F2DF009FC886 /* YBIBUtilities.m */,
+				3213D4862255F2DF009FC886 /* YBIBWebImageManager.h */,
+				3213D47D2255F2DF009FC886 /* YBIBWebImageManager.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
