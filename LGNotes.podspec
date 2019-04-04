@@ -42,8 +42,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'AFNetworking'
   spec.dependency 'MJRefresh'
   spec.dependency 'TFHpple'
-  spec.dependency 'SDWebImage'
-  spec.dependency 'YYImage'
+  spec.dependency 'YBImageBrowser'
 
 
 end
