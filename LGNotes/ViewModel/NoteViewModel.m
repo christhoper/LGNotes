@@ -510,15 +510,16 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
 - (RACSignal *)getSubjectIDAndPickerSelectedForSubjectArray:(NSArray *)subjectArray subjectName:(NSString *)subjectName{
     return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         if (IsArrEmpty(subjectArray)) {
-            [subscriber sendNext:@(0)];
+            [subscriber sendNext:@[@"0",@"S2_English"]];
             [subscriber sendCompleted];
             return nil;
         }
         
         for (int i = 0; i < subjectArray.count; i ++) {
-            NSString *subjectN = [subjectArray objectAtIndex:i];
-            if ([subjectN isEqualToString:subjectName]) {
-                [subscriber sendNext:@(i)];
+            SubjectModel *subjectN = [subjectArray objectAtIndex:i];
+            if ([subjectN.SubjectName isEqualToString:subjectName]) {
+                // 第0个学科是"全部"，所以下标需-1
+                [subscriber sendNext:@[@(i-1),subjectN.SubjectID]];
                 [subscriber sendCompleted];
             }
         }
@@ -551,6 +552,29 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
     }
     return resultArray;
 }
+
+
+- (NSArray *)configureMaterialPickerDataSource{
+    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:self.paramModel.MaterialCount];
+    for (int i = 0; i < self.paramModel.MaterialCount; i ++) {
+        NSString *topicTitle = [NSString stringWithFormat:@"第%d大题",i+1];
+        [resultArray addObject:topicTitle];
+    }
+    return resultArray;
+}
+
+- (NSArray *)configureSubjectPickerDataSource{
+    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:self.subjectArray.count];
+    for (int i = 0; i < self.subjectArray.count; i ++) {
+        // 去除第一个“全部”选项的学科
+        if (i != 0) {
+            SubjectModel *model = self.subjectArray[i];
+            [resultArray addObject:model.SubjectName];
+        }
+    }
+    return resultArray;
+}
+
 
 
 @end

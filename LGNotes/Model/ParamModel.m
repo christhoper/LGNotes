@@ -99,10 +99,14 @@
 - (void)setSystemID:(NSString *)SystemID{
     _SystemID = SystemID;
     self.C_SystemID = SystemID;
+    if ([SystemID isEqualToString:@"S21"] || [SystemID isEqualToString:@"101"]) {
+        self.C_SystemID = @"All";
+    }
 }
 
 - (void)setC_SystemID:(NSString *)C_SystemID{
     _C_SystemID = C_SystemID;
+    
 }
 
 - (void)setSubjectID:(NSString *)SubjectID{

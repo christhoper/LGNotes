@@ -82,7 +82,8 @@
 }
 
 - (void)operatedNote{
-    if (IsStrEmpty(self.sourceModel.NoteTitle)) {
+    NSString *noteTitle = [self.sourceModel.NoteTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if (IsStrEmpty(self.sourceModel.NoteTitle) || IsStrEmpty(noteTitle)) {
         [kMBAlert showRemindStatus:@"标题不能为空!"];
         return;
     }

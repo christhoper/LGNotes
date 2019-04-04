@@ -186,8 +186,9 @@ SearchToolViewDelegate
 
 #pragma mark - FilterDelegate
 - (void)filterViewDidChooseCallBack:(NSString *)subjecID systemID:(NSString *)systemID{
-    self.viewModel.paramModel.SubjectID = subjecID;
-    self.viewModel.paramModel.SystemID = systemID;
+    self.viewModel.paramModel.C_SubjectID = subjecID;
+    self.viewModel.paramModel.C_SystemID = systemID;
+    self.tableView.requestStatus = LGBaseTableViewRequestStatusStartLoading;
     [self.viewModel.refreshCommand execute:self.viewModel.paramModel];
 }
 
@@ -203,9 +204,11 @@ SearchToolViewDelegate
     if (self.systemType == SystemUsedTypeAssistanter) {
         self.viewModel.paramModel.C_SubjectID = @"All";
         self.viewModel.paramModel.C_SystemID = @"All";
-        self.viewModel.paramModel.IsKeyPoint = @"-1";
-        [self.toolView reSettingRemarkButtonUnSelected];
+    } else {
+        self.viewModel.paramModel.C_SystemID = self.viewModel.paramModel.SystemID;
     }
+    self.viewModel.paramModel.IsKeyPoint = @"-1";
+    [self.toolView reSettingRemarkButtonUnSelected];
 }
 
 #pragma mark - setter

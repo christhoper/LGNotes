@@ -108,6 +108,10 @@ UIKIT_EXTERN NSString *const CheckNoteBaseUrlKey;
                                                 subjectName:(NSString *)subjectName;
 
 
+- (NSArray *)configureMaterialPickerDataSource;
+
+- (NSArray *)configureSubjectPickerDataSource;
+
 @end
 
 NS_ASSUME_NONNULL_END

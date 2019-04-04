@@ -72,8 +72,8 @@
         if (bodyArray && bodyArray.count > 0) {
             TFHppleElement *hppleElement = bodyArray.firstObject;
             html = hppleElement.raw;
-            html = [html stringByReplacingOccurrencesOfString:@"<body>" withString:@""];
-            html = [html stringByReplacingOccurrencesOfString:@"</body>" withString:@""];
+            html = [html stringByReplacingOccurrencesOfString:@"<body>\n" withString:@""];
+            html = [html stringByReplacingOccurrencesOfString:@"\n</body>" withString:@""];
         }
     }
     return html;

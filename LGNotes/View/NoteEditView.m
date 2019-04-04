@@ -13,7 +13,7 @@
 #import "LGNoteBaseTextView.h"
 #import "LGNoteConfigure.h"
 #import "NoteSourceDetailView.h"
-#import <YBImageBrowser/YBImageBrowser.h>
+#import "YBImageBrowser.h"
 #import "LGNoteImagePickerViewController.h"
 #import "LGNoteDrawBoardViewController.h"
 #import "LGNoteCutImageViewController.h"
@@ -194,36 +194,15 @@ LGSubjectPickerViewDelegate
     viewModel.dataSourceModel.SubjectName = viewModel.isAddNoteOperation ? @"英语":viewModel.dataSourceModel.SubjectName;
     [self.subjectBtn setTitle:viewModel.dataSourceModel.SubjectName forState:UIControlStateNormal];
     self.remarkBtn.selected = [viewModel.dataSourceModel.IsKeyPoint isEqualToString:@"1"] ? YES:NO;
-    self.materialArray = [self configureMaterialPickerDataSource];
-    self.subjectArray = [self configureSubjectPickerDataSource];
+    self.materialArray = [self.viewModel configureMaterialPickerDataSource];
+    self.subjectArray = [self.viewModel configureSubjectPickerDataSource];
     
     @weakify(self)
-    [[self.viewModel getSubjectIDAndPickerSelectedForSubjectArray:self.subjectArray subjectName:viewModel.dataSourceModel.SubjectName] subscribeNext:^(NSString * _Nullable subjectSelectedData) {
+    [[self.viewModel getSubjectIDAndPickerSelectedForSubjectArray:viewModel.subjectArray subjectName:viewModel.dataSourceModel.SubjectName] subscribeNext:^(NSArray * _Nullable subjectSelectedData) {
         @strongify(self);
-        self.currentSelectedSubjectIndex = [subjectSelectedData integerValue];
+        self.currentSelectedSubjectIndex = [[subjectSelectedData firstObject] integerValue];
+        self.viewModel.dataSourceModel.SubjectID = [subjectSelectedData lastObject];
     }];
-}
-
-
-- (NSArray *)configureMaterialPickerDataSource{
-    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:self.viewModel.paramModel.MaterialCount];
-    for (int i = 0; i < self.viewModel.paramModel.MaterialCount; i ++) {
-        NSString *topicTitle = [NSString stringWithFormat:@"第%d大题",i+1];
-        [resultArray addObject:topicTitle];
-    }
-    return resultArray;
-}
-
-- (NSArray *)configureSubjectPickerDataSource{
-    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:self.viewModel.subjectArray.count];
-    for (int i = 0; i < self.viewModel.subjectArray.count; i ++) {
-        // 去除第一个“全部”选项的学科
-        if (i != 0) {
-            SubjectModel *model = self.viewModel.subjectArray[i];
-            [resultArray addObject:model.SubjectName];
-        }
-    }
-    return resultArray;
 }
 
 #pragma mark - TextViewDelegate
@@ -390,13 +369,13 @@ LGSubjectPickerViewDelegate
         self.sourceTipImageView.transform = CGAffineTransformMakeRotation(0);
     }
     
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
     // 如果是添加操作的话，给出选择题目，否则直接查看详情
     if (self.viewModel.isAddNoteOperation) {
         SubjectPickerView *pickerView = [SubjectPickerView showPickerView];
         pickerView.delegate = self;
         [pickerView showPickerViewMenuForDataSource:self.materialArray matchIndex:self.currentSelectedTopicIndex];
     } else {
-        [[UIApplication sharedApplication].keyWindow endEditing:YES];
         @weakify(self);
         [[NoteSourceDetailView showSourceDatailView] loadDataWithUrl:@"https://www.baidu.com/" didShowCompletion:^{
             @strongify(self);

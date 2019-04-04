@@ -103,11 +103,11 @@ NSString  *const LGTextFieldKeyBoardWillHiddenNotification = @"LGTextFieldKeyBoa
     if (string.length == 0) {
         return YES;
     }
-    
-    NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsJoinedByString:@""];
-    if (![string isEqualToString:tem]) {
-        return NO;
-    }
+//    // 禁止输入空格
+//    NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsJoinedByString:@""];
+//    if (![string isEqualToString:tem]) {
+//        return NO;
+//    }
     
     //获取高亮部分
     UITextRange *selectedRange = [textField markedTextRange];
