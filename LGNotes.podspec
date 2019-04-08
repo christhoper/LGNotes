@@ -3,7 +3,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "LGNotes"
-  spec.version      = "1.0.3.0"
+  spec.version      = "1.0.3.1"
   spec.summary      = "本公司笔记公共工具"
 
   spec.homepage     = "https://github.com/christhoper/LGNotes"
@@ -23,7 +23,7 @@ Pod::Spec.new do |spec|
 
 
 
-  spec.source       = { :git => "https://github.com/christhoper/LGNotes.git", :tag => "1.0.3.0" }
+  spec.source       = { :git => "https://github.com/christhoper/LGNotes.git", :tag => "1.0.3.1" }
 
 
   spec.source_files  = "LGNotes", "LGNotes/**/*.{h,m}"
@@ -43,6 +43,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'MJRefresh'
   spec.dependency 'TFHpple'
   spec.dependency 'YBImageBrowser'
-  spec.dependency 'SDWebImage','< 5.0'
+  spec.dependency 'SDWebImage'
 
 end
