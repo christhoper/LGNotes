@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, RequestType) {
     GETXML,
     POST,
     POSTSYSTEM,
+    POSTENCRY,        // 加密
     GETSYSTEM,
     UPLOAD            // 上传
 };
@@ -81,7 +82,7 @@ typedef NS_ENUM(NSInteger, LGNoteUploadType) {
 /**
  请求参数
  */
--(LGNoteNetworkManager *(^)(id parameters))setParameters;
+- (LGNoteNetworkManager *(^)(id parameters))setParameters;
 
 /**
  请求头
@@ -98,7 +99,6 @@ typedef NS_ENUM(NSInteger, LGNoteUploadType) {
  */
 - (LGNoteNetworkManager *(^)(ResponseSerializer Responerializer))setResponerializer;
 
-
 /**
  上传的数据
  */
@@ -108,6 +108,16 @@ typedef NS_ENUM(NSInteger, LGNoteUploadType) {
  图片上传方式
  */
 - (LGNoteNetworkManager *(^)(LGNoteUploadType uploadType))setUploadType;
+
+/**
+ 加密key
+ */
+- (LGNoteNetworkManager *(^)(NSString* encryKey))setEncryKey;
+
+/**
+ 加密key
+ */
+- (LGNoteNetworkManager *(^)(NSString* token))setToken;
 
 
 /**

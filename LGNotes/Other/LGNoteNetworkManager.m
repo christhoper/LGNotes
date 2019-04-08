@@ -7,6 +7,7 @@
 //
 
 #import "LGNoteNetworkManager.h"
+#import "LGNoteSafeTool.h"
 
 @interface LGNoteNetworkManager ()
 /** 网络请求超时时长 */
@@ -23,7 +24,7 @@
 @property (strong, nonatomic) NSDictionary *HTTPHeaderDic;
 /** 数据发送类型 */
 @property (assign, nonatomic) RequestSerializer serializer;
-
+/** 相应 */
 @property (assign, nonatomic) ResponseSerializer respone;
 /** 验证token */
 @property (nonatomic,assign) BOOL verifyTokenEnable;
@@ -31,6 +32,10 @@
 @property (nonatomic, copy) NSArray *uploadDatas;
 /** 上传方式(图片/视频) */
 @property (nonatomic, copy) NSString *uploadTypeString;
+/** 加密key */
+@property (nonatomic, copy) NSString *encryKey;
+/** token值 */
+@property (nonatomic, copy) NSString *token;
 
 @end
 
@@ -132,6 +137,20 @@
 - (LGNoteNetworkManager *(^)(NSArray<NSData *> *))setUploadDatas{
     return ^LGNoteNetworkManager *(NSArray <NSData *> *uploadDatas){
         self.uploadDatas = uploadDatas;
+        return self;
+    };
+}
+
+- (LGNoteNetworkManager *(^)(NSString *))setEncryKey{
+    return ^LGNoteNetworkManager *(NSString *key){
+        self.encryKey = key;
+        return self;
+    };
+}
+
+- (LGNoteNetworkManager *(^)(NSString *))setToken{
+    return ^LGNoteNetworkManager *(NSString *token){
+        self.token = token;
         return self;
     };
 }
@@ -386,6 +405,47 @@
                 }else{
                     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                     dispatch_async(dispatch_get_main_queue(), ^{
+                        success(dic);
+                    });
+                }
+            }];
+            [dataTask resume];
+        }
+            break;
+        case POSTENCRY:{
+            NSURL *requestUrl = [NSURL URLWithString:url];
+            // POST请求
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestUrl];
+            request.HTTPMethod = @"POST";
+            
+            NSString *totalDataStr = [LGNoteSafeTool base64EncodedDictionary:self.parameters encryKey:self.encryKey];
+            NSString *md5String = [NSString stringWithFormat:@"%@%@%@",self.encryKey,self.token,totalDataStr];
+            NSString *sign = [LGNoteSafeTool md5HashOfString:md5String];
+            
+            // 设置请求头
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            
+            request.allHTTPHeaderFields = @{
+                                            @"platform":self.encryKey,
+                                            @"sign":sign,
+                                            @"timestamp":self.token
+                                            };
+            request.timeoutInterval = self.timeout;
+            //设置请求体
+            request.HTTPBody = [totalDataStr dataUsingEncoding:NSUTF8StringEncoding];
+            // 异步连接
+            NSURLSession *session = [NSURLSession sharedSession];
+            NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                if (error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // -1001 表示请求超时了
+//                        _requstError = error.code == -1001 ? RequestErrorTimeOut:RequestErrorNone;
+                        failure(error);
+                    });
+                } else {
+                    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        _requstError = RequestErrorNone;
                         success(dic);
                     });
                 }

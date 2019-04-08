@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		320D4E8F224372EA0013872A /* NoteMoreImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D4E8E224372EA0013872A /* NoteMoreImageTableViewCell.m */; };
 		321156F3223637900000A054 /* NoteEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 321156F2223637900000A054 /* NoteEditView.m */; };
+		3213BBF9225B23660065E2DD /* LGNoteSafeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213BBF8225B23660065E2DD /* LGNoteSafeTool.m */; };
+		3213BBFC225B24CF0065E2DD /* NSData+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213BBFB225B24CF0065E2DD /* NSData+Notes.m */; };
 		321932C6224263400019AA64 /* NoteMainImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C5224263400019AA64 /* NoteMainImageTableViewCell.m */; };
 		321932C9224274D90019AA64 /* SubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C8224274D90019AA64 /* SubjectModel.m */; };
 		32326422216D9006005CC784 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326421216D9006005CC784 /* AppDelegate.m */; };
@@ -92,6 +94,10 @@
 		320D4E8E224372EA0013872A /* NoteMoreImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMoreImageTableViewCell.m; sourceTree = "<group>"; };
 		321156F1223637900000A054 /* NoteEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteEditView.h; sourceTree = "<group>"; };
 		321156F2223637900000A054 /* NoteEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteEditView.m; sourceTree = "<group>"; };
+		3213BBF7225B23660065E2DD /* LGNoteSafeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteSafeTool.h; sourceTree = "<group>"; };
+		3213BBF8225B23660065E2DD /* LGNoteSafeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteSafeTool.m; sourceTree = "<group>"; };
+		3213BBFA225B24CF0065E2DD /* NSData+Notes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Notes.h"; sourceTree = "<group>"; };
+		3213BBFB225B24CF0065E2DD /* NSData+Notes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Notes.m"; sourceTree = "<group>"; };
 		321932C4224263400019AA64 /* NoteMainImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteMainImageTableViewCell.h; sourceTree = "<group>"; };
 		321932C5224263400019AA64 /* NoteMainImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMainImageTableViewCell.m; sourceTree = "<group>"; };
 		321932C7224274D90019AA64 /* SubjectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubjectModel.h; sourceTree = "<group>"; };
@@ -407,6 +413,8 @@
 				32326473216DF420005CC784 /* NoteTools.m */,
 				3232647F216E265D005CC784 /* LGNoteMBAlert.h */,
 				32326480216E265D005CC784 /* LGNoteMBAlert.m */,
+				3213BBF7225B23660065E2DD /* LGNoteSafeTool.h */,
+				3213BBF8225B23660065E2DD /* LGNoteSafeTool.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -481,6 +489,8 @@
 				32B6BE7922488002001F9E10 /* UITextView+Notes.m */,
 				32B6BE7C22488002001F9E10 /* UIView+LGNote.h */,
 				32B6BE8222488002001F9E10 /* UIView+LGNote.m */,
+				3213BBFA225B24CF0065E2DD /* NSData+Notes.h */,
+				3213BBFB225B24CF0065E2DD /* NSData+Notes.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -738,6 +748,8 @@
 				32B6BE7422487EBF001F9E10 /* NSObject+YYModel.m in Sources */,
 				321156F3223637900000A054 /* NoteEditView.m in Sources */,
 				32B6BE8622488002001F9E10 /* UIButton+Notes.m in Sources */,
+				3213BBF9225B23660065E2DD /* LGNoteSafeTool.m in Sources */,
+				3213BBFC225B24CF0065E2DD /* NSData+Notes.m in Sources */,
 				32326487216E2C87005CC784 /* LGNoteNetworkManager.m in Sources */,
 				3232648D216E2C94005CC784 /* LGNoteBaseViewController.m in Sources */,
 				32D72AA22249B9FC00FFB9B4 /* LGNoteCutImageViewController.m in Sources */,
