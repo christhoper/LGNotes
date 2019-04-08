@@ -29,7 +29,7 @@ Pod::Spec.new do |spec|
 
   spec.source_files  = "LGNotes", "LGNotes/**/*.{h,m}"
   #spec.exclude_files = "Classes/Exclude"
-  s.public_header_files = 'Helper/YBIBUtilities.h'
+  spec.public_header_files = "Helper/YBIBUtilities.h"
 
   # spec.public_header_files = "Classes/**/*.h"
 
