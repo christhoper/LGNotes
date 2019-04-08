@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
 
   spec.license      = "MIT"
   # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-
+  spec.frameworks =  "Foundation","UIKit"
 
 
   spec.author             = { "hend" => "309875551@qq.com" }
