@@ -16,6 +16,7 @@ Pod::Spec.new do |spec|
 
 
   spec.author             = { "hend" => "309875551@qq.com" }
+
   
 
   spec.platform     = :ios,"9.0"
@@ -28,6 +29,7 @@ Pod::Spec.new do |spec|
 
   spec.source_files  = "LGNotes", "LGNotes/**/*.{h,m}"
   #spec.exclude_files = "Classes/Exclude"
+  s.public_header_files = 'Helper/YBIBUtilities.h'
 
   # spec.public_header_files = "Classes/**/*.h"
 
@@ -42,7 +44,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'AFNetworking'
   spec.dependency 'MJRefresh'
   spec.dependency 'TFHpple'
-  spec.dependency 'YBImageBrowser'
   spec.dependency 'SDWebImage'
+  spec.dependency 'YYImage'
 
 end
