@@ -23,9 +23,6 @@ PODS:
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
   - TFHpple (2.0.0)
-  - YBImageBrowser (2.1.5):
-    - SDWebImage
-    - YYImage
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
   - YYImage/Core (1.0.4)
@@ -37,9 +34,9 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - ReactiveObjC (~> 3.0.0)
-  - SDWebImage (<= 4.4.6)
+  - SDWebImage (~> 4.4.6)
   - TFHpple (~> 2.0.0)
-  - YBImageBrowser
+  - YYImage (~> 1.0.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -51,7 +48,6 @@ SPEC REPOS:
     - ReactiveObjC
     - SDWebImage
     - TFHpple
-    - YBImageBrowser
     - YYImage
 
 SPEC CHECKSUMS:
@@ -63,9 +59,8 @@ SPEC CHECKSUMS:
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
-  YBImageBrowser: 549bc0f8bc7df723381e1516db240d827ded3673
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 70583aeb151343de78715efe1fff4229417ec0c8
+PODFILE CHECKSUM: b653dda570a7fd8fec519894314a24baccadeb96
 
 COCOAPODS: 1.6.1

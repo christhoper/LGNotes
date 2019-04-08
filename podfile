@@ -8,7 +8,6 @@ pod 'MBProgressHUD'
 pod 'MJExtension'
 pod 'MJRefresh'
 pod 'TFHpple', '~> 2.0.0'
-pod 'SDWebImage' ,'<= 4.4.6'
-pod 'YBImageBrowser'
-
+pod 'SDWebImage', '~> 4.4.6'
+pod 'YYImage', '~> 1.0.4'
 end
