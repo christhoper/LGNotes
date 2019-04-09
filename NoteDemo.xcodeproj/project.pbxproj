@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		320D4E8F224372EA0013872A /* NoteMoreImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D4E8E224372EA0013872A /* NoteMoreImageTableViewCell.m */; };
-		321156F3223637900000A054 /* NoteEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 321156F2223637900000A054 /* NoteEditView.m */; };
+		320D4E8F224372EA0013872A /* LGNNoteMoreImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 320D4E8E224372EA0013872A /* LGNNoteMoreImageTableViewCell.m */; };
+		321156F3223637900000A054 /* LGNNoteEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 321156F2223637900000A054 /* LGNNoteEditView.m */; };
 		3213BBF9225B23660065E2DD /* LGNoteSafeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213BBF8225B23660065E2DD /* LGNoteSafeTool.m */; };
 		3213BBFC225B24CF0065E2DD /* NSData+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213BBFB225B24CF0065E2DD /* NSData+Notes.m */; };
 		3213BC3A225B46B90065E2DD /* YBImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213BBFE225B46B90065E2DD /* YBImageBrowser.m */; };
@@ -34,8 +34,8 @@
 		3213BC4E225B46B90065E2DD /* YBImageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213BC33225B46B90065E2DD /* YBImageBrowserView.m */; };
 		3213BC4F225B46B90065E2DD /* YBImageBrowserViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3213BC37225B46B90065E2DD /* YBImageBrowserViewLayout.m */; };
 		3213BC50225B46B90065E2DD /* YBImageBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3213BC39225B46B90065E2DD /* YBImageBrowser.bundle */; };
-		321932C6224263400019AA64 /* NoteMainImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C5224263400019AA64 /* NoteMainImageTableViewCell.m */; };
-		321932C9224274D90019AA64 /* SubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C8224274D90019AA64 /* SubjectModel.m */; };
+		321932C6224263400019AA64 /* LGNNoteMainImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C5224263400019AA64 /* LGNNoteMainImageTableViewCell.m */; };
+		321932C9224274D90019AA64 /* LGNSubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 321932C8224274D90019AA64 /* LGNSubjectModel.m */; };
 		32326422216D9006005CC784 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326421216D9006005CC784 /* AppDelegate.m */; };
 		32326425216D9006005CC784 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326424216D9006005CC784 /* ViewController.m */; };
 		32326428216D9006005CC784 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32326426216D9006005CC784 /* Main.storyboard */; };
@@ -44,53 +44,53 @@
 		32326430216D9007005CC784 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232642F216D9007005CC784 /* main.m */; };
 		3232643A216D9007005CC784 /* NoteDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326439216D9007005CC784 /* NoteDemoTests.m */; };
 		32326445216D9007005CC784 /* NoteDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326444216D9007005CC784 /* NoteDemoUITests.m */; };
-		32326456216D93A9005CC784 /* NoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326455216D93A9005CC784 /* NoteModel.m */; };
-		3232645C216DE8E2005CC784 /* NoteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232645B216DE8E2005CC784 /* NoteMainViewController.m */; };
-		3232645F216DE8F8005CC784 /* NoteEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232645E216DE8F8005CC784 /* NoteEditViewController.m */; };
-		32326462216DE923005CC784 /* NoteSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326461216DE923005CC784 /* NoteSearchViewController.m */; };
-		32326465216DE963005CC784 /* NoteViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326464216DE963005CC784 /* NoteViewModel.m */; };
-		32326468216DED2D005CC784 /* NoteMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326467216DED2D005CC784 /* NoteMainTableViewCell.m */; };
-		32326474216DF420005CC784 /* NoteTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326473216DF420005CC784 /* NoteTools.m */; };
-		32326477216DF5D0005CC784 /* NoteMainTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326476216DF5D0005CC784 /* NoteMainTableView.m */; };
-		3232647B216E2142005CC784 /* ParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232647A216E2142005CC784 /* ParamModel.m */; };
+		32326456216D93A9005CC784 /* LGNNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326455216D93A9005CC784 /* LGNNoteModel.m */; };
+		3232645C216DE8E2005CC784 /* LGNNoteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232645B216DE8E2005CC784 /* LGNNoteMainViewController.m */; };
+		3232645F216DE8F8005CC784 /* LGNNoteEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232645E216DE8F8005CC784 /* LGNNoteEditViewController.m */; };
+		32326462216DE923005CC784 /* LGNNoteSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326461216DE923005CC784 /* LGNNoteSearchViewController.m */; };
+		32326465216DE963005CC784 /* LGNViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326464216DE963005CC784 /* LGNViewModel.m */; };
+		32326468216DED2D005CC784 /* LGNNoteMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326467216DED2D005CC784 /* LGNNoteMainTableViewCell.m */; };
+		32326474216DF420005CC784 /* LGNNoteTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326473216DF420005CC784 /* LGNNoteTools.m */; };
+		32326477216DF5D0005CC784 /* LGNNoteMainTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326476216DF5D0005CC784 /* LGNNoteMainTableView.m */; };
+		3232647B216E2142005CC784 /* LGNParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232647A216E2142005CC784 /* LGNParamModel.m */; };
 		32326481216E265D005CC784 /* LGNoteMBAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326480216E265D005CC784 /* LGNoteMBAlert.m */; };
 		32326487216E2C87005CC784 /* LGNoteNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326486216E2C87005CC784 /* LGNoteNetworkManager.m */; };
 		3232648D216E2C94005CC784 /* LGNoteBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326489216E2C94005CC784 /* LGNoteBaseViewController.m */; };
 		3232648E216E2C94005CC784 /* LGNoteBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232648C216E2C94005CC784 /* LGNoteBaseTableView.m */; };
-		32326491216E3796005CC784 /* SubjectPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326490216E3796005CC784 /* SubjectPickerView.m */; };
+		32326491216E3796005CC784 /* LGNSubjectPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326490216E3796005CC784 /* LGNSubjectPickerView.m */; };
 		32326494216E398C005CC784 /* LGNoteBaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326493216E398C005CC784 /* LGNoteBaseTextField.m */; };
 		3232649A216E3B35005CC784 /* LGNoteBaseTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326498216E3B35005CC784 /* LGNoteBaseTextView.m */; };
-		3246AD03222FC8E200940E2D /* SearchToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3246AD02222FC8E200940E2D /* SearchToolView.m */; };
-		3246AD06222FC97200940E2D /* SearchToolViewConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 3246AD05222FC97200940E2D /* SearchToolViewConfigure.m */; };
-		324FF7BD22290FEF008EF565 /* NoteCustomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FF7BC22290FEF008EF565 /* NoteCustomWindow.m */; };
+		3246AD03222FC8E200940E2D /* LGNSearchToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3246AD02222FC8E200940E2D /* LGNSearchToolView.m */; };
+		3246AD06222FC97200940E2D /* LGNSearchToolViewConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 3246AD05222FC97200940E2D /* LGNSearchToolViewConfigure.m */; };
+		324FF7BD22290FEF008EF565 /* LGNNoteCustomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 324FF7BC22290FEF008EF565 /* LGNNoteCustomWindow.m */; };
 		325BC3A1216EE2EB00D077F5 /* LGNote.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 325BC3A0216EE2EB00D077F5 /* LGNote.bundle */; };
-		325BC3A7216EF2E600D077F5 /* NoteFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A6216EF2E600D077F5 /* NoteFilterViewController.m */; };
-		325BC3AE216EF7B800D077F5 /* NoteFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A8216EF7B700D077F5 /* NoteFilterCollectionViewCell.m */; };
-		325BC3B0216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3AD216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m */; };
-		32B6BE6022485BD0001F9E10 /* NoteDrawSettingButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5822485BD0001F9E10 /* NoteDrawSettingButtonView.m */; };
-		32B6BE6122485BD0001F9E10 /* BoardBgCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5922485BD0001F9E10 /* BoardBgCollectionViewCell.m */; };
-		32B6BE6222485BD0001F9E10 /* PenFontBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5B22485BD0001F9E10 /* PenFontBallView.m */; };
-		32B6BE6322485BD0001F9E10 /* BoardBgImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5C22485BD0001F9E10 /* BoardBgImageView.m */; };
-		32B6BE6422485BD0001F9E10 /* NoteDrawSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5F22485BD0001F9E10 /* NoteDrawSettingView.m */; };
-		32B6BE6722485C09001F9E10 /* NoteDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE6622485C09001F9E10 /* NoteDrawView.m */; };
+		325BC3A7216EF2E600D077F5 /* LGNNoteFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A6216EF2E600D077F5 /* LGNNoteFilterViewController.m */; };
+		325BC3AE216EF7B800D077F5 /* LGNNoteFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3A8216EF7B700D077F5 /* LGNNoteFilterCollectionViewCell.m */; };
+		325BC3B0216EF7B800D077F5 /* LGNNoteFilterCollectionReusableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 325BC3AD216EF7B800D077F5 /* LGNNoteFilterCollectionReusableViewHeader.m */; };
+		32B6BE6022485BD0001F9E10 /* LGNNoteDrawSettingButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5822485BD0001F9E10 /* LGNNoteDrawSettingButtonView.m */; };
+		32B6BE6122485BD0001F9E10 /* LGNBoardBgCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5922485BD0001F9E10 /* LGNBoardBgCollectionViewCell.m */; };
+		32B6BE6222485BD0001F9E10 /* LGNPenFontBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5B22485BD0001F9E10 /* LGNPenFontBallView.m */; };
+		32B6BE6322485BD0001F9E10 /* LGNBoardBgImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5C22485BD0001F9E10 /* LGNBoardBgImageView.m */; };
+		32B6BE6422485BD0001F9E10 /* LGNNoteDrawSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE5F22485BD0001F9E10 /* LGNNoteDrawSettingView.m */; };
+		32B6BE6722485C09001F9E10 /* LGNNoteDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE6622485C09001F9E10 /* LGNNoteDrawView.m */; };
 		32B6BE6A22485E4A001F9E10 /* LGNoteBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE6922485E4A001F9E10 /* LGNoteBaseModel.m */; };
-		32B6BE6D22485F2C001F9E10 /* DrawBoardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE6C22485F2C001F9E10 /* DrawBoardModel.m */; };
-		32B6BE7322487EBF001F9E10 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7022487EBE001F9E10 /* YYClassInfo.m */; };
+		32B6BE6D22485F2C001F9E10 /* LGNDrawBoardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE6C22485F2C001F9E10 /* LGNDrawBoardModel.m */; };
+		32B6BE7322487EBF001F9E10 /* LGNYYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7022487EBE001F9E10 /* LGNYYClassInfo.m */; };
 		32B6BE7422487EBF001F9E10 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7222487EBF001F9E10 /* NSObject+YYModel.m */; };
 		32B6BE8422488002001F9E10 /* NSString+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7722488002001F9E10 /* NSString+Notes.m */; };
 		32B6BE8522488002001F9E10 /* UITextView+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7922488002001F9E10 /* UITextView+Notes.m */; };
 		32B6BE8622488002001F9E10 /* UIButton+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7A22488002001F9E10 /* UIButton+Notes.m */; };
 		32B6BE8722488002001F9E10 /* NSBundle+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE7E22488002001F9E10 /* NSBundle+Notes.m */; };
 		32B6BE8822488002001F9E10 /* NSString+NotesEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8122488002001F9E10 /* NSString+NotesEmoji.m */; };
-		32B6BE8922488002001F9E10 /* UIView+LGNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8222488002001F9E10 /* UIView+LGNote.m */; };
+		32B6BE8922488002001F9E10 /* UIView+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8222488002001F9E10 /* UIView+Notes.m */; };
 		32B6BE8A22488002001F9E10 /* UIColor+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8322488002001F9E10 /* UIColor+Notes.m */; };
-		32B6BE8F224880FE001F9E10 /* LGNoteDrawBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8B224880FD001F9E10 /* LGNoteDrawBoardViewController.m */; };
-		32B6BE90224880FE001F9E10 /* LGNoteImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8D224880FE001F9E10 /* LGNoteImagePickerViewController.m */; };
-		32D72A9F2249B03B00FFB9B4 /* TKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72A9E2249B03A00FFB9B4 /* TKImageView.m */; };
-		32D72AA22249B9FC00FFB9B4 /* LGNoteCutImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72AA12249B9FC00FFB9B4 /* LGNoteCutImageViewController.m */; };
+		32B6BE8F224880FE001F9E10 /* LGNDrawBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8B224880FD001F9E10 /* LGNDrawBoardViewController.m */; };
+		32B6BE90224880FE001F9E10 /* LGNImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6BE8D224880FE001F9E10 /* LGNImagePickerViewController.m */; };
+		32D72A9F2249B03B00FFB9B4 /* LGNImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72A9E2249B03A00FFB9B4 /* LGNImageView.m */; };
+		32D72AA22249B9FC00FFB9B4 /* LGNCutImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72AA12249B9FC00FFB9B4 /* LGNCutImageViewController.m */; };
 		32D72AA6224A43B200FFB9B4 /* NoteXMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D72AA5224A43B200FFB9B4 /* NoteXMLDictionary.m */; };
 		32D8CEFD2237D199000BD642 /* LGNoteBaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D8CEFC2237D199000BD642 /* LGNoteBaseNavigationViewController.m */; };
-		32DA50BC224DC4450064787C /* NoteSourceDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA50BB224DC4450064787C /* NoteSourceDetailView.m */; };
+		32DA50BC224DC4450064787C /* LGNNoteSourceDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA50BB224DC4450064787C /* LGNNoteSourceDetailView.m */; };
 		C089BECC87C865CAFC5664C8 /* Pods_NoteDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69574B6C56DF4CDE82A6315 /* Pods_NoteDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,10 +113,10 @@
 
 /* Begin PBXFileReference section */
 		1327CF5CEE302EAC89AC964E /* Pods-NoteDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteDemo.release.xcconfig"; path = "Target Support Files/Pods-NoteDemo/Pods-NoteDemo.release.xcconfig"; sourceTree = "<group>"; };
-		320D4E8D224372EA0013872A /* NoteMoreImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteMoreImageTableViewCell.h; sourceTree = "<group>"; };
-		320D4E8E224372EA0013872A /* NoteMoreImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMoreImageTableViewCell.m; sourceTree = "<group>"; };
-		321156F1223637900000A054 /* NoteEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteEditView.h; sourceTree = "<group>"; };
-		321156F2223637900000A054 /* NoteEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteEditView.m; sourceTree = "<group>"; };
+		320D4E8D224372EA0013872A /* LGNNoteMoreImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteMoreImageTableViewCell.h; sourceTree = "<group>"; };
+		320D4E8E224372EA0013872A /* LGNNoteMoreImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteMoreImageTableViewCell.m; sourceTree = "<group>"; };
+		321156F1223637900000A054 /* LGNNoteEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteEditView.h; sourceTree = "<group>"; };
+		321156F2223637900000A054 /* LGNNoteEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteEditView.m; sourceTree = "<group>"; };
 		3213BBF7225B23660065E2DD /* LGNoteSafeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteSafeTool.h; sourceTree = "<group>"; };
 		3213BBF8225B23660065E2DD /* LGNoteSafeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteSafeTool.m; sourceTree = "<group>"; };
 		3213BBFA225B24CF0065E2DD /* NSData+Notes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Notes.h"; sourceTree = "<group>"; };
@@ -175,10 +175,10 @@
 		3213BC37225B46B90065E2DD /* YBImageBrowserViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserViewLayout.m; sourceTree = "<group>"; };
 		3213BC38225B46B90065E2DD /* YBImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowser.h; sourceTree = "<group>"; };
 		3213BC39225B46B90065E2DD /* YBImageBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = YBImageBrowser.bundle; sourceTree = "<group>"; };
-		321932C4224263400019AA64 /* NoteMainImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteMainImageTableViewCell.h; sourceTree = "<group>"; };
-		321932C5224263400019AA64 /* NoteMainImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMainImageTableViewCell.m; sourceTree = "<group>"; };
-		321932C7224274D90019AA64 /* SubjectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubjectModel.h; sourceTree = "<group>"; };
-		321932C8224274D90019AA64 /* SubjectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubjectModel.m; sourceTree = "<group>"; };
+		321932C4224263400019AA64 /* LGNNoteMainImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteMainImageTableViewCell.h; sourceTree = "<group>"; };
+		321932C5224263400019AA64 /* LGNNoteMainImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteMainImageTableViewCell.m; sourceTree = "<group>"; };
+		321932C7224274D90019AA64 /* LGNSubjectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNSubjectModel.h; sourceTree = "<group>"; };
+		321932C8224274D90019AA64 /* LGNSubjectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNSubjectModel.m; sourceTree = "<group>"; };
 		3232641D216D9006005CC784 /* NoteDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32326420216D9006005CC784 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32326421216D9006005CC784 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -195,25 +195,25 @@
 		32326440216D9007005CC784 /* NoteDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoteDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32326444216D9007005CC784 /* NoteDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDemoUITests.m; sourceTree = "<group>"; };
 		32326446216D9007005CC784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32326454216D93A9005CC784 /* NoteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteModel.h; sourceTree = "<group>"; };
-		32326455216D93A9005CC784 /* NoteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteModel.m; sourceTree = "<group>"; };
-		3232645A216DE8E2005CC784 /* NoteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteMainViewController.h; sourceTree = "<group>"; };
-		3232645B216DE8E2005CC784 /* NoteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMainViewController.m; sourceTree = "<group>"; };
-		3232645D216DE8F8005CC784 /* NoteEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteEditViewController.h; sourceTree = "<group>"; };
-		3232645E216DE8F8005CC784 /* NoteEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteEditViewController.m; sourceTree = "<group>"; };
-		32326460216DE923005CC784 /* NoteSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteSearchViewController.h; sourceTree = "<group>"; };
-		32326461216DE923005CC784 /* NoteSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteSearchViewController.m; sourceTree = "<group>"; };
-		32326463216DE963005CC784 /* NoteViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteViewModel.h; sourceTree = "<group>"; };
-		32326464216DE963005CC784 /* NoteViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteViewModel.m; sourceTree = "<group>"; };
-		32326466216DED2D005CC784 /* NoteMainTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteMainTableViewCell.h; sourceTree = "<group>"; };
-		32326467216DED2D005CC784 /* NoteMainTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMainTableViewCell.m; sourceTree = "<group>"; };
-		32326471216DF03A005CC784 /* Configure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Configure.h; sourceTree = "<group>"; };
-		32326472216DF420005CC784 /* NoteTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteTools.h; sourceTree = "<group>"; };
-		32326473216DF420005CC784 /* NoteTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteTools.m; sourceTree = "<group>"; };
-		32326475216DF5D0005CC784 /* NoteMainTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteMainTableView.h; sourceTree = "<group>"; };
-		32326476216DF5D0005CC784 /* NoteMainTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteMainTableView.m; sourceTree = "<group>"; };
-		32326479216E2142005CC784 /* ParamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParamModel.h; sourceTree = "<group>"; };
-		3232647A216E2142005CC784 /* ParamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParamModel.m; sourceTree = "<group>"; };
+		32326454216D93A9005CC784 /* LGNNoteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteModel.h; sourceTree = "<group>"; };
+		32326455216D93A9005CC784 /* LGNNoteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteModel.m; sourceTree = "<group>"; };
+		3232645A216DE8E2005CC784 /* LGNNoteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteMainViewController.h; sourceTree = "<group>"; };
+		3232645B216DE8E2005CC784 /* LGNNoteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteMainViewController.m; sourceTree = "<group>"; };
+		3232645D216DE8F8005CC784 /* LGNNoteEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteEditViewController.h; sourceTree = "<group>"; };
+		3232645E216DE8F8005CC784 /* LGNNoteEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteEditViewController.m; sourceTree = "<group>"; };
+		32326460216DE923005CC784 /* LGNNoteSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteSearchViewController.h; sourceTree = "<group>"; };
+		32326461216DE923005CC784 /* LGNNoteSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteSearchViewController.m; sourceTree = "<group>"; };
+		32326463216DE963005CC784 /* LGNViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNViewModel.h; sourceTree = "<group>"; };
+		32326464216DE963005CC784 /* LGNViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNViewModel.m; sourceTree = "<group>"; };
+		32326466216DED2D005CC784 /* LGNNoteMainTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteMainTableViewCell.h; sourceTree = "<group>"; };
+		32326467216DED2D005CC784 /* LGNNoteMainTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteMainTableViewCell.m; sourceTree = "<group>"; };
+		32326471216DF03A005CC784 /* LGNConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNConfigure.h; sourceTree = "<group>"; };
+		32326472216DF420005CC784 /* LGNNoteTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteTools.h; sourceTree = "<group>"; };
+		32326473216DF420005CC784 /* LGNNoteTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteTools.m; sourceTree = "<group>"; };
+		32326475216DF5D0005CC784 /* LGNNoteMainTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteMainTableView.h; sourceTree = "<group>"; };
+		32326476216DF5D0005CC784 /* LGNNoteMainTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteMainTableView.m; sourceTree = "<group>"; };
+		32326479216E2142005CC784 /* LGNParamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNParamModel.h; sourceTree = "<group>"; };
+		3232647A216E2142005CC784 /* LGNParamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNParamModel.m; sourceTree = "<group>"; };
 		3232647F216E265D005CC784 /* LGNoteMBAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteMBAlert.h; sourceTree = "<group>"; };
 		32326480216E265D005CC784 /* LGNoteMBAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteMBAlert.m; sourceTree = "<group>"; };
 		32326485216E2C87005CC784 /* LGNoteNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteNetworkManager.h; sourceTree = "<group>"; };
@@ -222,46 +222,46 @@
 		3232648A216E2C94005CC784 /* LGNoteBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteBaseTableView.h; sourceTree = "<group>"; };
 		3232648B216E2C94005CC784 /* LGNoteBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteBaseViewController.h; sourceTree = "<group>"; };
 		3232648C216E2C94005CC784 /* LGNoteBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteBaseTableView.m; sourceTree = "<group>"; };
-		3232648F216E3796005CC784 /* SubjectPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubjectPickerView.h; sourceTree = "<group>"; };
-		32326490216E3796005CC784 /* SubjectPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubjectPickerView.m; sourceTree = "<group>"; };
+		3232648F216E3796005CC784 /* LGNSubjectPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNSubjectPickerView.h; sourceTree = "<group>"; };
+		32326490216E3796005CC784 /* LGNSubjectPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNSubjectPickerView.m; sourceTree = "<group>"; };
 		32326492216E398C005CC784 /* LGNoteBaseTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteBaseTextField.h; sourceTree = "<group>"; };
 		32326493216E398C005CC784 /* LGNoteBaseTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteBaseTextField.m; sourceTree = "<group>"; };
 		32326498216E3B35005CC784 /* LGNoteBaseTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteBaseTextView.m; sourceTree = "<group>"; };
 		32326499216E3B35005CC784 /* LGNoteBaseTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteBaseTextView.h; sourceTree = "<group>"; };
-		3246AD01222FC8E200940E2D /* SearchToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchToolView.h; sourceTree = "<group>"; };
-		3246AD02222FC8E200940E2D /* SearchToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchToolView.m; sourceTree = "<group>"; };
-		3246AD04222FC97200940E2D /* SearchToolViewConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchToolViewConfigure.h; sourceTree = "<group>"; };
-		3246AD05222FC97200940E2D /* SearchToolViewConfigure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchToolViewConfigure.m; sourceTree = "<group>"; };
-		324FF7BB22290FEF008EF565 /* NoteCustomWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteCustomWindow.h; sourceTree = "<group>"; };
-		324FF7BC22290FEF008EF565 /* NoteCustomWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteCustomWindow.m; sourceTree = "<group>"; };
+		3246AD01222FC8E200940E2D /* LGNSearchToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNSearchToolView.h; sourceTree = "<group>"; };
+		3246AD02222FC8E200940E2D /* LGNSearchToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNSearchToolView.m; sourceTree = "<group>"; };
+		3246AD04222FC97200940E2D /* LGNSearchToolViewConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNSearchToolViewConfigure.h; sourceTree = "<group>"; };
+		3246AD05222FC97200940E2D /* LGNSearchToolViewConfigure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNSearchToolViewConfigure.m; sourceTree = "<group>"; };
+		324FF7BB22290FEF008EF565 /* LGNNoteCustomWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteCustomWindow.h; sourceTree = "<group>"; };
+		324FF7BC22290FEF008EF565 /* LGNNoteCustomWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteCustomWindow.m; sourceTree = "<group>"; };
 		325BC3A0216EE2EB00D077F5 /* LGNote.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LGNote.bundle; sourceTree = "<group>"; };
-		325BC3A5216EF2E600D077F5 /* NoteFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteFilterViewController.h; sourceTree = "<group>"; };
-		325BC3A6216EF2E600D077F5 /* NoteFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteFilterViewController.m; sourceTree = "<group>"; };
-		325BC3A8216EF7B700D077F5 /* NoteFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilterCollectionViewCell.m; sourceTree = "<group>"; };
-		325BC3A9216EF7B700D077F5 /* NoteFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilterCollectionViewCell.h; sourceTree = "<group>"; };
-		325BC3AA216EF7B700D077F5 /* NoteFilterCollectionReusableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilterCollectionReusableViewHeader.h; sourceTree = "<group>"; };
-		325BC3AD216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilterCollectionReusableViewHeader.m; sourceTree = "<group>"; };
+		325BC3A5216EF2E600D077F5 /* LGNNoteFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteFilterViewController.h; sourceTree = "<group>"; };
+		325BC3A6216EF2E600D077F5 /* LGNNoteFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteFilterViewController.m; sourceTree = "<group>"; };
+		325BC3A8216EF7B700D077F5 /* LGNNoteFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNNoteFilterCollectionViewCell.m; sourceTree = "<group>"; };
+		325BC3A9216EF7B700D077F5 /* LGNNoteFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNNoteFilterCollectionViewCell.h; sourceTree = "<group>"; };
+		325BC3AA216EF7B700D077F5 /* LGNNoteFilterCollectionReusableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNNoteFilterCollectionReusableViewHeader.h; sourceTree = "<group>"; };
+		325BC3AD216EF7B800D077F5 /* LGNNoteFilterCollectionReusableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNNoteFilterCollectionReusableViewHeader.m; sourceTree = "<group>"; };
 		3267FD6E2170372700CCBCEF /* LGNoteConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteConfigure.h; sourceTree = "<group>"; };
-		32B6BE5622485BD0001F9E10 /* NoteDrawSettingButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDrawSettingButtonView.h; sourceTree = "<group>"; };
-		32B6BE5722485BD0001F9E10 /* BoardBgImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardBgImageView.h; sourceTree = "<group>"; };
-		32B6BE5822485BD0001F9E10 /* NoteDrawSettingButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDrawSettingButtonView.m; sourceTree = "<group>"; };
-		32B6BE5922485BD0001F9E10 /* BoardBgCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardBgCollectionViewCell.m; sourceTree = "<group>"; };
-		32B6BE5A22485BD0001F9E10 /* PenFontBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenFontBallView.h; sourceTree = "<group>"; };
-		32B6BE5B22485BD0001F9E10 /* PenFontBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenFontBallView.m; sourceTree = "<group>"; };
-		32B6BE5C22485BD0001F9E10 /* BoardBgImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardBgImageView.m; sourceTree = "<group>"; };
-		32B6BE5D22485BD0001F9E10 /* BoardBgCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardBgCollectionViewCell.h; sourceTree = "<group>"; };
-		32B6BE5E22485BD0001F9E10 /* NoteDrawSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDrawSettingView.h; sourceTree = "<group>"; };
-		32B6BE5F22485BD0001F9E10 /* NoteDrawSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDrawSettingView.m; sourceTree = "<group>"; };
-		32B6BE6522485C09001F9E10 /* NoteDrawView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDrawView.h; sourceTree = "<group>"; };
-		32B6BE6622485C09001F9E10 /* NoteDrawView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDrawView.m; sourceTree = "<group>"; };
+		32B6BE5622485BD0001F9E10 /* LGNNoteDrawSettingButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNNoteDrawSettingButtonView.h; sourceTree = "<group>"; };
+		32B6BE5722485BD0001F9E10 /* LGNBoardBgImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNBoardBgImageView.h; sourceTree = "<group>"; };
+		32B6BE5822485BD0001F9E10 /* LGNNoteDrawSettingButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNNoteDrawSettingButtonView.m; sourceTree = "<group>"; };
+		32B6BE5922485BD0001F9E10 /* LGNBoardBgCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNBoardBgCollectionViewCell.m; sourceTree = "<group>"; };
+		32B6BE5A22485BD0001F9E10 /* LGNPenFontBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNPenFontBallView.h; sourceTree = "<group>"; };
+		32B6BE5B22485BD0001F9E10 /* LGNPenFontBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNPenFontBallView.m; sourceTree = "<group>"; };
+		32B6BE5C22485BD0001F9E10 /* LGNBoardBgImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNBoardBgImageView.m; sourceTree = "<group>"; };
+		32B6BE5D22485BD0001F9E10 /* LGNBoardBgCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNBoardBgCollectionViewCell.h; sourceTree = "<group>"; };
+		32B6BE5E22485BD0001F9E10 /* LGNNoteDrawSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNNoteDrawSettingView.h; sourceTree = "<group>"; };
+		32B6BE5F22485BD0001F9E10 /* LGNNoteDrawSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNNoteDrawSettingView.m; sourceTree = "<group>"; };
+		32B6BE6522485C09001F9E10 /* LGNNoteDrawView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteDrawView.h; sourceTree = "<group>"; };
+		32B6BE6622485C09001F9E10 /* LGNNoteDrawView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteDrawView.m; sourceTree = "<group>"; };
 		32B6BE6822485E4A001F9E10 /* LGNoteBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteBaseModel.h; sourceTree = "<group>"; };
 		32B6BE6922485E4A001F9E10 /* LGNoteBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteBaseModel.m; sourceTree = "<group>"; };
-		32B6BE6B22485F2C001F9E10 /* DrawBoardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawBoardModel.h; sourceTree = "<group>"; };
-		32B6BE6C22485F2C001F9E10 /* DrawBoardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawBoardModel.m; sourceTree = "<group>"; };
-		32B6BE6E22487EBE001F9E10 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		32B6BE6B22485F2C001F9E10 /* LGNDrawBoardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNDrawBoardModel.h; sourceTree = "<group>"; };
+		32B6BE6C22485F2C001F9E10 /* LGNDrawBoardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNDrawBoardModel.m; sourceTree = "<group>"; };
+		32B6BE6E22487EBE001F9E10 /* LGNYYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNYYClassInfo.h; sourceTree = "<group>"; };
 		32B6BE6F22487EBE001F9E10 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
-		32B6BE7022487EBE001F9E10 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
-		32B6BE7122487EBF001F9E10 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
+		32B6BE7022487EBE001F9E10 /* LGNYYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNYYClassInfo.m; sourceTree = "<group>"; };
+		32B6BE7122487EBF001F9E10 /* LGNYYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNYYModel.h; sourceTree = "<group>"; };
 		32B6BE7222487EBF001F9E10 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
 		32B6BE7622488002001F9E10 /* NSBundle+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Notes.h"; sourceTree = "<group>"; };
 		32B6BE7722488002001F9E10 /* NSString+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Notes.m"; sourceTree = "<group>"; };
@@ -269,28 +269,28 @@
 		32B6BE7922488002001F9E10 /* UITextView+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Notes.m"; sourceTree = "<group>"; };
 		32B6BE7A22488002001F9E10 /* UIButton+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Notes.m"; sourceTree = "<group>"; };
 		32B6BE7B22488002001F9E10 /* UIColor+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Notes.h"; sourceTree = "<group>"; };
-		32B6BE7C22488002001F9E10 /* UIView+LGNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LGNote.h"; sourceTree = "<group>"; };
+		32B6BE7C22488002001F9E10 /* UIView+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Notes.h"; sourceTree = "<group>"; };
 		32B6BE7D22488002001F9E10 /* NSString+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Notes.h"; sourceTree = "<group>"; };
 		32B6BE7E22488002001F9E10 /* NSBundle+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Notes.m"; sourceTree = "<group>"; };
 		32B6BE7F22488002001F9E10 /* UIButton+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Notes.h"; sourceTree = "<group>"; };
 		32B6BE8022488002001F9E10 /* UITextView+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Notes.h"; sourceTree = "<group>"; };
 		32B6BE8122488002001F9E10 /* NSString+NotesEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NotesEmoji.m"; sourceTree = "<group>"; };
-		32B6BE8222488002001F9E10 /* UIView+LGNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGNote.m"; sourceTree = "<group>"; };
+		32B6BE8222488002001F9E10 /* UIView+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Notes.m"; sourceTree = "<group>"; };
 		32B6BE8322488002001F9E10 /* UIColor+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Notes.m"; sourceTree = "<group>"; };
-		32B6BE8B224880FD001F9E10 /* LGNoteDrawBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteDrawBoardViewController.m; sourceTree = "<group>"; };
-		32B6BE8C224880FE001F9E10 /* LGNoteImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteImagePickerViewController.h; sourceTree = "<group>"; };
-		32B6BE8D224880FE001F9E10 /* LGNoteImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNoteImagePickerViewController.m; sourceTree = "<group>"; };
-		32B6BE8E224880FE001F9E10 /* LGNoteDrawBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNoteDrawBoardViewController.h; sourceTree = "<group>"; };
-		32D72A9D2249B03A00FFB9B4 /* TKImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKImageView.h; sourceTree = "<group>"; };
-		32D72A9E2249B03A00FFB9B4 /* TKImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKImageView.m; sourceTree = "<group>"; };
-		32D72AA02249B9FC00FFB9B4 /* LGNoteCutImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteCutImageViewController.h; sourceTree = "<group>"; };
-		32D72AA12249B9FC00FFB9B4 /* LGNoteCutImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteCutImageViewController.m; sourceTree = "<group>"; };
+		32B6BE8B224880FD001F9E10 /* LGNDrawBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNDrawBoardViewController.m; sourceTree = "<group>"; };
+		32B6BE8C224880FE001F9E10 /* LGNImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNImagePickerViewController.h; sourceTree = "<group>"; };
+		32B6BE8D224880FE001F9E10 /* LGNImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNImagePickerViewController.m; sourceTree = "<group>"; };
+		32B6BE8E224880FE001F9E10 /* LGNDrawBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNDrawBoardViewController.h; sourceTree = "<group>"; };
+		32D72A9D2249B03A00FFB9B4 /* LGNImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNImageView.h; sourceTree = "<group>"; };
+		32D72A9E2249B03A00FFB9B4 /* LGNImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNImageView.m; sourceTree = "<group>"; };
+		32D72AA02249B9FC00FFB9B4 /* LGNCutImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNCutImageViewController.h; sourceTree = "<group>"; };
+		32D72AA12249B9FC00FFB9B4 /* LGNCutImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNCutImageViewController.m; sourceTree = "<group>"; };
 		32D72AA4224A43B200FFB9B4 /* NoteXMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteXMLDictionary.h; sourceTree = "<group>"; };
 		32D72AA5224A43B200FFB9B4 /* NoteXMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteXMLDictionary.m; sourceTree = "<group>"; };
 		32D8CEFB2237D199000BD642 /* LGNoteBaseNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoteBaseNavigationViewController.h; sourceTree = "<group>"; };
 		32D8CEFC2237D199000BD642 /* LGNoteBaseNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoteBaseNavigationViewController.m; sourceTree = "<group>"; };
-		32DA50BA224DC4450064787C /* NoteSourceDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteSourceDetailView.h; sourceTree = "<group>"; };
-		32DA50BB224DC4450064787C /* NoteSourceDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteSourceDetailView.m; sourceTree = "<group>"; };
+		32DA50BA224DC4450064787C /* LGNNoteSourceDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNNoteSourceDetailView.h; sourceTree = "<group>"; };
+		32DA50BB224DC4450064787C /* LGNNoteSourceDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNNoteSourceDetailView.m; sourceTree = "<group>"; };
 		598743329030DF392A5BCC27 /* Pods-NoteDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteDemo.debug.xcconfig"; path = "Target Support Files/Pods-NoteDemo/Pods-NoteDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F69574B6C56DF4CDE82A6315 /* Pods_NoteDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoteDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -514,12 +514,12 @@
 		32326453216D9398005CC784 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				32326454216D93A9005CC784 /* NoteModel.h */,
-				32326455216D93A9005CC784 /* NoteModel.m */,
-				32326479216E2142005CC784 /* ParamModel.h */,
-				3232647A216E2142005CC784 /* ParamModel.m */,
-				321932C7224274D90019AA64 /* SubjectModel.h */,
-				321932C8224274D90019AA64 /* SubjectModel.m */,
+				32326454216D93A9005CC784 /* LGNNoteModel.h */,
+				32326455216D93A9005CC784 /* LGNNoteModel.m */,
+				32326479216E2142005CC784 /* LGNParamModel.h */,
+				3232647A216E2142005CC784 /* LGNParamModel.m */,
+				321932C7224274D90019AA64 /* LGNSubjectModel.h */,
+				321932C8224274D90019AA64 /* LGNSubjectModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -527,8 +527,8 @@
 		32326457216DE809005CC784 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				32326463216DE963005CC784 /* NoteViewModel.h */,
-				32326464216DE963005CC784 /* NoteViewModel.m */,
+				32326463216DE963005CC784 /* LGNViewModel.h */,
+				32326464216DE963005CC784 /* LGNViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -536,20 +536,20 @@
 		32326458216DE809005CC784 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3232645A216DE8E2005CC784 /* NoteMainViewController.h */,
-				3232645B216DE8E2005CC784 /* NoteMainViewController.m */,
-				3232645D216DE8F8005CC784 /* NoteEditViewController.h */,
-				3232645E216DE8F8005CC784 /* NoteEditViewController.m */,
-				32326460216DE923005CC784 /* NoteSearchViewController.h */,
-				32326461216DE923005CC784 /* NoteSearchViewController.m */,
-				325BC3A5216EF2E600D077F5 /* NoteFilterViewController.h */,
-				325BC3A6216EF2E600D077F5 /* NoteFilterViewController.m */,
-				32B6BE8E224880FE001F9E10 /* LGNoteDrawBoardViewController.h */,
-				32B6BE8B224880FD001F9E10 /* LGNoteDrawBoardViewController.m */,
-				32B6BE8C224880FE001F9E10 /* LGNoteImagePickerViewController.h */,
-				32B6BE8D224880FE001F9E10 /* LGNoteImagePickerViewController.m */,
-				32D72AA02249B9FC00FFB9B4 /* LGNoteCutImageViewController.h */,
-				32D72AA12249B9FC00FFB9B4 /* LGNoteCutImageViewController.m */,
+				3232645A216DE8E2005CC784 /* LGNNoteMainViewController.h */,
+				3232645B216DE8E2005CC784 /* LGNNoteMainViewController.m */,
+				3232645D216DE8F8005CC784 /* LGNNoteEditViewController.h */,
+				3232645E216DE8F8005CC784 /* LGNNoteEditViewController.m */,
+				32326460216DE923005CC784 /* LGNNoteSearchViewController.h */,
+				32326461216DE923005CC784 /* LGNNoteSearchViewController.m */,
+				325BC3A5216EF2E600D077F5 /* LGNNoteFilterViewController.h */,
+				325BC3A6216EF2E600D077F5 /* LGNNoteFilterViewController.m */,
+				32B6BE8E224880FE001F9E10 /* LGNDrawBoardViewController.h */,
+				32B6BE8B224880FD001F9E10 /* LGNDrawBoardViewController.m */,
+				32B6BE8C224880FE001F9E10 /* LGNImagePickerViewController.h */,
+				32B6BE8D224880FE001F9E10 /* LGNImagePickerViewController.m */,
+				32D72AA02249B9FC00FFB9B4 /* LGNCutImageViewController.h */,
+				32D72AA12249B9FC00FFB9B4 /* LGNCutImageViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -559,30 +559,30 @@
 			children = (
 				32D72A9C2249B03A00FFB9B4 /* CutImageView */,
 				32B6BE5522485B8C001F9E10 /* DrawBoardView */,
-				32326466216DED2D005CC784 /* NoteMainTableViewCell.h */,
-				32326467216DED2D005CC784 /* NoteMainTableViewCell.m */,
-				321932C4224263400019AA64 /* NoteMainImageTableViewCell.h */,
-				321932C5224263400019AA64 /* NoteMainImageTableViewCell.m */,
-				320D4E8D224372EA0013872A /* NoteMoreImageTableViewCell.h */,
-				320D4E8E224372EA0013872A /* NoteMoreImageTableViewCell.m */,
-				32326475216DF5D0005CC784 /* NoteMainTableView.h */,
-				32326476216DF5D0005CC784 /* NoteMainTableView.m */,
-				3232648F216E3796005CC784 /* SubjectPickerView.h */,
-				32326490216E3796005CC784 /* SubjectPickerView.m */,
-				325BC3AA216EF7B700D077F5 /* NoteFilterCollectionReusableViewHeader.h */,
-				325BC3AD216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m */,
-				325BC3A9216EF7B700D077F5 /* NoteFilterCollectionViewCell.h */,
-				325BC3A8216EF7B700D077F5 /* NoteFilterCollectionViewCell.m */,
-				324FF7BB22290FEF008EF565 /* NoteCustomWindow.h */,
-				324FF7BC22290FEF008EF565 /* NoteCustomWindow.m */,
-				3246AD01222FC8E200940E2D /* SearchToolView.h */,
-				3246AD02222FC8E200940E2D /* SearchToolView.m */,
-				3246AD04222FC97200940E2D /* SearchToolViewConfigure.h */,
-				3246AD05222FC97200940E2D /* SearchToolViewConfigure.m */,
-				321156F1223637900000A054 /* NoteEditView.h */,
-				321156F2223637900000A054 /* NoteEditView.m */,
-				32DA50BA224DC4450064787C /* NoteSourceDetailView.h */,
-				32DA50BB224DC4450064787C /* NoteSourceDetailView.m */,
+				32326466216DED2D005CC784 /* LGNNoteMainTableViewCell.h */,
+				32326467216DED2D005CC784 /* LGNNoteMainTableViewCell.m */,
+				321932C4224263400019AA64 /* LGNNoteMainImageTableViewCell.h */,
+				321932C5224263400019AA64 /* LGNNoteMainImageTableViewCell.m */,
+				320D4E8D224372EA0013872A /* LGNNoteMoreImageTableViewCell.h */,
+				320D4E8E224372EA0013872A /* LGNNoteMoreImageTableViewCell.m */,
+				32326475216DF5D0005CC784 /* LGNNoteMainTableView.h */,
+				32326476216DF5D0005CC784 /* LGNNoteMainTableView.m */,
+				3232648F216E3796005CC784 /* LGNSubjectPickerView.h */,
+				32326490216E3796005CC784 /* LGNSubjectPickerView.m */,
+				325BC3AA216EF7B700D077F5 /* LGNNoteFilterCollectionReusableViewHeader.h */,
+				325BC3AD216EF7B800D077F5 /* LGNNoteFilterCollectionReusableViewHeader.m */,
+				325BC3A9216EF7B700D077F5 /* LGNNoteFilterCollectionViewCell.h */,
+				325BC3A8216EF7B700D077F5 /* LGNNoteFilterCollectionViewCell.m */,
+				324FF7BB22290FEF008EF565 /* LGNNoteCustomWindow.h */,
+				324FF7BC22290FEF008EF565 /* LGNNoteCustomWindow.m */,
+				3246AD01222FC8E200940E2D /* LGNSearchToolView.h */,
+				3246AD02222FC8E200940E2D /* LGNSearchToolView.m */,
+				3246AD04222FC97200940E2D /* LGNSearchToolViewConfigure.h */,
+				3246AD05222FC97200940E2D /* LGNSearchToolViewConfigure.m */,
+				321156F1223637900000A054 /* LGNNoteEditView.h */,
+				321156F2223637900000A054 /* LGNNoteEditView.m */,
+				32DA50BA224DC4450064787C /* LGNNoteSourceDetailView.h */,
+				32DA50BB224DC4450064787C /* LGNNoteSourceDetailView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -594,10 +594,10 @@
 				32D72AA3224A43B200FFB9B4 /* XMLDictionary */,
 				32326485216E2C87005CC784 /* LGNoteNetworkManager.h */,
 				32326486216E2C87005CC784 /* LGNoteNetworkManager.m */,
-				32326471216DF03A005CC784 /* Configure.h */,
+				32326471216DF03A005CC784 /* LGNConfigure.h */,
 				3267FD6E2170372700CCBCEF /* LGNoteConfigure.h */,
-				32326472216DF420005CC784 /* NoteTools.h */,
-				32326473216DF420005CC784 /* NoteTools.m */,
+				32326472216DF420005CC784 /* LGNNoteTools.h */,
+				32326473216DF420005CC784 /* LGNNoteTools.m */,
 				3232647F216E265D005CC784 /* LGNoteMBAlert.h */,
 				32326480216E265D005CC784 /* LGNoteMBAlert.m */,
 				3213BBF7225B23660065E2DD /* LGNoteSafeTool.h */,
@@ -638,23 +638,23 @@
 			children = (
 				32B6BE6F22487EBE001F9E10 /* NSObject+YYModel.h */,
 				32B6BE7222487EBF001F9E10 /* NSObject+YYModel.m */,
-				32B6BE6E22487EBE001F9E10 /* YYClassInfo.h */,
-				32B6BE7022487EBE001F9E10 /* YYClassInfo.m */,
-				32B6BE7122487EBF001F9E10 /* YYModel.h */,
-				32B6BE5D22485BD0001F9E10 /* BoardBgCollectionViewCell.h */,
-				32B6BE5922485BD0001F9E10 /* BoardBgCollectionViewCell.m */,
-				32B6BE5722485BD0001F9E10 /* BoardBgImageView.h */,
-				32B6BE5C22485BD0001F9E10 /* BoardBgImageView.m */,
-				32B6BE5622485BD0001F9E10 /* NoteDrawSettingButtonView.h */,
-				32B6BE5822485BD0001F9E10 /* NoteDrawSettingButtonView.m */,
-				32B6BE5E22485BD0001F9E10 /* NoteDrawSettingView.h */,
-				32B6BE5F22485BD0001F9E10 /* NoteDrawSettingView.m */,
-				32B6BE5A22485BD0001F9E10 /* PenFontBallView.h */,
-				32B6BE5B22485BD0001F9E10 /* PenFontBallView.m */,
-				32B6BE6522485C09001F9E10 /* NoteDrawView.h */,
-				32B6BE6622485C09001F9E10 /* NoteDrawView.m */,
-				32B6BE6B22485F2C001F9E10 /* DrawBoardModel.h */,
-				32B6BE6C22485F2C001F9E10 /* DrawBoardModel.m */,
+				32B6BE6E22487EBE001F9E10 /* LGNYYClassInfo.h */,
+				32B6BE7022487EBE001F9E10 /* LGNYYClassInfo.m */,
+				32B6BE7122487EBF001F9E10 /* LGNYYModel.h */,
+				32B6BE5D22485BD0001F9E10 /* LGNBoardBgCollectionViewCell.h */,
+				32B6BE5922485BD0001F9E10 /* LGNBoardBgCollectionViewCell.m */,
+				32B6BE5722485BD0001F9E10 /* LGNBoardBgImageView.h */,
+				32B6BE5C22485BD0001F9E10 /* LGNBoardBgImageView.m */,
+				32B6BE5622485BD0001F9E10 /* LGNNoteDrawSettingButtonView.h */,
+				32B6BE5822485BD0001F9E10 /* LGNNoteDrawSettingButtonView.m */,
+				32B6BE5E22485BD0001F9E10 /* LGNNoteDrawSettingView.h */,
+				32B6BE5F22485BD0001F9E10 /* LGNNoteDrawSettingView.m */,
+				32B6BE5A22485BD0001F9E10 /* LGNPenFontBallView.h */,
+				32B6BE5B22485BD0001F9E10 /* LGNPenFontBallView.m */,
+				32B6BE6522485C09001F9E10 /* LGNNoteDrawView.h */,
+				32B6BE6622485C09001F9E10 /* LGNNoteDrawView.m */,
+				32B6BE6B22485F2C001F9E10 /* LGNDrawBoardModel.h */,
+				32B6BE6C22485F2C001F9E10 /* LGNDrawBoardModel.m */,
 			);
 			path = DrawBoardView;
 			sourceTree = "<group>";
@@ -674,8 +674,8 @@
 				32B6BE8322488002001F9E10 /* UIColor+Notes.m */,
 				32B6BE8022488002001F9E10 /* UITextView+Notes.h */,
 				32B6BE7922488002001F9E10 /* UITextView+Notes.m */,
-				32B6BE7C22488002001F9E10 /* UIView+LGNote.h */,
-				32B6BE8222488002001F9E10 /* UIView+LGNote.m */,
+				32B6BE7C22488002001F9E10 /* UIView+Notes.h */,
+				32B6BE8222488002001F9E10 /* UIView+Notes.m */,
 				3213BBFA225B24CF0065E2DD /* NSData+Notes.h */,
 				3213BBFB225B24CF0065E2DD /* NSData+Notes.m */,
 			);
@@ -685,8 +685,8 @@
 		32D72A9C2249B03A00FFB9B4 /* CutImageView */ = {
 			isa = PBXGroup;
 			children = (
-				32D72A9D2249B03A00FFB9B4 /* TKImageView.h */,
-				32D72A9E2249B03A00FFB9B4 /* TKImageView.m */,
+				32D72A9D2249B03A00FFB9B4 /* LGNImageView.h */,
+				32D72A9E2249B03A00FFB9B4 /* LGNImageView.m */,
 			);
 			path = CutImageView;
 			sourceTree = "<group>";
@@ -907,38 +907,38 @@
 			files = (
 				3213BC3C225B46B90065E2DD /* YBVideoBrowseActionBar.m in Sources */,
 				32326481216E265D005CC784 /* LGNoteMBAlert.m in Sources */,
-				325BC3B0216EF7B800D077F5 /* NoteFilterCollectionReusableViewHeader.m in Sources */,
+				325BC3B0216EF7B800D077F5 /* LGNNoteFilterCollectionReusableViewHeader.m in Sources */,
 				32326425216D9006005CC784 /* ViewController.m in Sources */,
-				32B6BE6322485BD0001F9E10 /* BoardBgImageView.m in Sources */,
+				32B6BE6322485BD0001F9E10 /* LGNBoardBgImageView.m in Sources */,
 				32B6BE8422488002001F9E10 /* NSString+Notes.m in Sources */,
 				3213BC3A225B46B90065E2DD /* YBImageBrowser.m in Sources */,
 				32326494216E398C005CC784 /* LGNoteBaseTextField.m in Sources */,
-				32326477216DF5D0005CC784 /* NoteMainTableView.m in Sources */,
+				32326477216DF5D0005CC784 /* LGNNoteMainTableView.m in Sources */,
 				3213BC4F225B46B90065E2DD /* YBImageBrowserViewLayout.m in Sources */,
-				32B6BE6722485C09001F9E10 /* NoteDrawView.m in Sources */,
+				32B6BE6722485C09001F9E10 /* LGNNoteDrawView.m in Sources */,
 				3213BC41225B46B90065E2DD /* YBImageBrowserTipView.m in Sources */,
-				3232647B216E2142005CC784 /* ParamModel.m in Sources */,
-				3246AD03222FC8E200940E2D /* SearchToolView.m in Sources */,
-				321932C6224263400019AA64 /* NoteMainImageTableViewCell.m in Sources */,
+				3232647B216E2142005CC784 /* LGNParamModel.m in Sources */,
+				3246AD03222FC8E200940E2D /* LGNSearchToolView.m in Sources */,
+				321932C6224263400019AA64 /* LGNNoteMainImageTableViewCell.m in Sources */,
 				32D8CEFD2237D199000BD642 /* LGNoteBaseNavigationViewController.m in Sources */,
 				3213BC45225B46B90065E2DD /* YBImageBrowseCell.m in Sources */,
-				32326456216D93A9005CC784 /* NoteModel.m in Sources */,
+				32326456216D93A9005CC784 /* LGNNoteModel.m in Sources */,
 				32D72AA6224A43B200FFB9B4 /* NoteXMLDictionary.m in Sources */,
 				32B6BE6A22485E4A001F9E10 /* LGNoteBaseModel.m in Sources */,
 				32B6BE8A22488002001F9E10 /* UIColor+Notes.m in Sources */,
-				320D4E8F224372EA0013872A /* NoteMoreImageTableViewCell.m in Sources */,
-				32326468216DED2D005CC784 /* NoteMainTableViewCell.m in Sources */,
-				3246AD06222FC97200940E2D /* SearchToolViewConfigure.m in Sources */,
+				320D4E8F224372EA0013872A /* LGNNoteMoreImageTableViewCell.m in Sources */,
+				32326468216DED2D005CC784 /* LGNNoteMainTableViewCell.m in Sources */,
+				3246AD06222FC97200940E2D /* LGNSearchToolViewConfigure.m in Sources */,
 				32B6BE8522488002001F9E10 /* UITextView+Notes.m in Sources */,
-				3232645F216DE8F8005CC784 /* NoteEditViewController.m in Sources */,
-				325BC3A7216EF2E600D077F5 /* NoteFilterViewController.m in Sources */,
-				32B6BE6122485BD0001F9E10 /* BoardBgCollectionViewCell.m in Sources */,
+				3232645F216DE8F8005CC784 /* LGNNoteEditViewController.m in Sources */,
+				325BC3A7216EF2E600D077F5 /* LGNNoteFilterViewController.m in Sources */,
+				32B6BE6122485BD0001F9E10 /* LGNBoardBgCollectionViewCell.m in Sources */,
 				3232649A216E3B35005CC784 /* LGNoteBaseTextView.m in Sources */,
 				32B6BE8722488002001F9E10 /* NSBundle+Notes.m in Sources */,
 				32B6BE8822488002001F9E10 /* NSString+NotesEmoji.m in Sources */,
 				3213BC3B225B46B90065E2DD /* YBVideoBrowseCell.m in Sources */,
 				32B6BE7422487EBF001F9E10 /* NSObject+YYModel.m in Sources */,
-				321156F3223637900000A054 /* NoteEditView.m in Sources */,
+				321156F3223637900000A054 /* LGNNoteEditView.m in Sources */,
 				32B6BE8622488002001F9E10 /* UIButton+Notes.m in Sources */,
 				3213BC46225B46B90065E2DD /* YBIBWebImageManager.m in Sources */,
 				3213BBF9225B23660065E2DD /* LGNoteSafeTool.m in Sources */,
@@ -947,41 +947,41 @@
 				3213BC4D225B46B90065E2DD /* YBIBGestureInteractionProfile.m in Sources */,
 				3232648D216E2C94005CC784 /* LGNoteBaseViewController.m in Sources */,
 				3213BC4A225B46B90065E2DD /* YBIBLayoutDirectionManager.m in Sources */,
-				32D72AA22249B9FC00FFB9B4 /* LGNoteCutImageViewController.m in Sources */,
+				32D72AA22249B9FC00FFB9B4 /* LGNCutImageViewController.m in Sources */,
 				3213BC40225B46B90065E2DD /* YBImageBrowserToolBar.m in Sources */,
-				32B6BE6222485BD0001F9E10 /* PenFontBallView.m in Sources */,
+				32B6BE6222485BD0001F9E10 /* LGNPenFontBallView.m in Sources */,
 				3213BC3F225B46B90065E2DD /* YBImageBrowserProgressView.m in Sources */,
 				32326430216D9007005CC784 /* main.m in Sources */,
 				3213BC42225B46B90065E2DD /* YBImageBrowserSheetView.m in Sources */,
-				321932C9224274D90019AA64 /* SubjectModel.m in Sources */,
+				321932C9224274D90019AA64 /* LGNSubjectModel.m in Sources */,
 				3213BC4B225B46B90065E2DD /* YBIBPhotoAlbumManager.m in Sources */,
 				3213BC44225B46B90065E2DD /* YBImageBrowseCellData.m in Sources */,
-				32B6BE6D22485F2C001F9E10 /* DrawBoardModel.m in Sources */,
-				32B6BE90224880FE001F9E10 /* LGNoteImagePickerViewController.m in Sources */,
-				32326465216DE963005CC784 /* NoteViewModel.m in Sources */,
+				32B6BE6D22485F2C001F9E10 /* LGNDrawBoardModel.m in Sources */,
+				32B6BE90224880FE001F9E10 /* LGNImagePickerViewController.m in Sources */,
+				32326465216DE963005CC784 /* LGNViewModel.m in Sources */,
 				3232648E216E2C94005CC784 /* LGNoteBaseTableView.m in Sources */,
 				3213BC49225B46B90065E2DD /* YBIBUtilities.m in Sources */,
 				32326422216D9006005CC784 /* AppDelegate.m in Sources */,
-				3232645C216DE8E2005CC784 /* NoteMainViewController.m in Sources */,
-				32B6BE8922488002001F9E10 /* UIView+LGNote.m in Sources */,
-				32326474216DF420005CC784 /* NoteTools.m in Sources */,
+				3232645C216DE8E2005CC784 /* LGNNoteMainViewController.m in Sources */,
+				32B6BE8922488002001F9E10 /* UIView+Notes.m in Sources */,
+				32326474216DF420005CC784 /* LGNNoteTools.m in Sources */,
 				3213BC4C225B46B90065E2DD /* YBIBTransitionManager.m in Sources */,
-				32B6BE8F224880FE001F9E10 /* LGNoteDrawBoardViewController.m in Sources */,
-				32DA50BC224DC4450064787C /* NoteSourceDetailView.m in Sources */,
-				32B6BE6422485BD0001F9E10 /* NoteDrawSettingView.m in Sources */,
-				32326462216DE923005CC784 /* NoteSearchViewController.m in Sources */,
+				32B6BE8F224880FE001F9E10 /* LGNDrawBoardViewController.m in Sources */,
+				32DA50BC224DC4450064787C /* LGNNoteSourceDetailView.m in Sources */,
+				32B6BE6422485BD0001F9E10 /* LGNNoteDrawSettingView.m in Sources */,
+				32326462216DE923005CC784 /* LGNNoteSearchViewController.m in Sources */,
 				3213BC4E225B46B90065E2DD /* YBImageBrowserView.m in Sources */,
 				3213BC3E225B46B90065E2DD /* YBVideoBrowseCellData.m in Sources */,
 				3213BC3D225B46B90065E2DD /* YBVideoBrowseTopBar.m in Sources */,
-				32326491216E3796005CC784 /* SubjectPickerView.m in Sources */,
+				32326491216E3796005CC784 /* LGNSubjectPickerView.m in Sources */,
 				3213BC43225B46B90065E2DD /* YBImage.m in Sources */,
-				32B6BE7322487EBF001F9E10 /* YYClassInfo.m in Sources */,
+				32B6BE7322487EBF001F9E10 /* LGNYYClassInfo.m in Sources */,
 				3213BC47225B46B90065E2DD /* YBIBFileManager.m in Sources */,
-				324FF7BD22290FEF008EF565 /* NoteCustomWindow.m in Sources */,
-				32B6BE6022485BD0001F9E10 /* NoteDrawSettingButtonView.m in Sources */,
+				324FF7BD22290FEF008EF565 /* LGNNoteCustomWindow.m in Sources */,
+				32B6BE6022485BD0001F9E10 /* LGNNoteDrawSettingButtonView.m in Sources */,
 				3213BC48225B46B90065E2DD /* YBIBCopywriter.m in Sources */,
-				325BC3AE216EF7B800D077F5 /* NoteFilterCollectionViewCell.m in Sources */,
-				32D72A9F2249B03B00FFB9B4 /* TKImageView.m in Sources */,
+				325BC3AE216EF7B800D077F5 /* LGNNoteFilterCollectionViewCell.m in Sources */,
+				32D72A9F2249B03B00FFB9B4 /* LGNImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

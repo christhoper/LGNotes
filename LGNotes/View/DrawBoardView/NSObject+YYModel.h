@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
      @end
  
  */
-@interface NSObject (YYModel)
+@interface NSObject (LGNYYModel)
 
 /**
  Creates and returns a new instance of the receiver from a json.

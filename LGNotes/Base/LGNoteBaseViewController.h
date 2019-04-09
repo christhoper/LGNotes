@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Configure.h"
+#import "LGNConfigure.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -7,7 +7,7 @@
 //
 
 #import "LGNoteBaseModel.h"
-#import "YYModel.h"
+#import "LGNYYModel.h"
 
 @implementation LGNoteBaseModel
 

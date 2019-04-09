@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "NoteMainViewController.h"
+#import "LGNNoteMainViewController.h"
 
 @interface ViewController ()
 
@@ -26,15 +26,15 @@
 
 
 - (void)enterNoteViewController:(UIButton *)sender {
-    NoteMainViewController *noteController = [[NoteMainViewController alloc] initWithNaviBarLeftItemStyle:NoteMainViewControllerNaviBarStyleBack systemType:SystemUsedTypeOther];
+    LGNNoteMainViewController *noteController = [[LGNNoteMainViewController alloc] initWithNaviBarLeftItemStyle:NoteMainViewControllerNaviBarStyleBack systemType:SystemUsedTypeOther];
     // 配置笔记首页所需参数
     noteController.paramModel = [self configureParams];
     
     [self.navigationController pushViewController:noteController animated:YES];
 }
 
-- (ParamModel *)configureParams{
-    ParamModel *params = [[ParamModel alloc] init];
+- (LGNParamModel *)configureParams{
+    LGNParamModel *params = [[LGNParamModel alloc] init];
     // 系统ID，传All表示获取全部系统的数据
     params.SystemID = @"630";
     // 学科ID，传All表示获取全部学科数据
@@ -54,7 +54,7 @@
     // 笔记来源对应学习任务ID （比如作业ID，课前预习ID，自学资料ID）
     params.ResourceID = @"";
     // 笔记来源名称
-    params.ResourceName = @"";
+    params.ResourceName = @"我的笔记";
     // 学习任务相关的学习资料ID，用于取某个资料下的所有笔记
     params.MaterialID = @"";
     // 用户ID
