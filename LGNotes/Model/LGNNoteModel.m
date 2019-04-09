@@ -105,4 +105,8 @@
     _NoteContent = html;
 }
 
++ (NSArray *)mj_ignoredPropertyNames{
+    return @[@"hash",@"superclass",@"description",@"debugDescription",@"NoteContent_Att"];
+}
+
 @end

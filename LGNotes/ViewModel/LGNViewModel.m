@@ -40,7 +40,8 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
         @strongify(self);
         NSString *checkUrl = [[NSUserDefaults standardUserDefaults] valueForKey:CheckNoteBaseUrlKey];
         if (!IsStrEmpty(checkUrl)) {
-            self.paramModel.NoteBaseUrl = checkUrl;
+            self.paramModel.NoteBaseUrl = @"http://192.168.3.158:1212/";
+//            self.paramModel.NoteBaseUrl = checkUrl;
             [self p_getData];
         } else {
             RACSignal *checkSignal = [self checkNoteBaseUrl];
@@ -183,7 +184,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
                                  @"BackUpOne":@"",
                                  @"BackUpTwo":@""
                                  };
-        [kNetwork.setRequestUrl(url).setRequestType(POST).setParameters(params)starSendRequestSuccess:^(id respone) {
+        [kNetwork.setRequestUrl(url).setRequestType(POSTENCRY).setEncryKey(self.paramModel.UserID).setToken(self.paramModel.Token).setParameters(params)starSendRequestSuccess:^(id respone) {
             
             if (![respone[kErrorcode] hasSuffix:kSuccess]) {
                 [subscriber sendNext:nil];
@@ -219,7 +220,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
                                  @"BackUpOne":@"",
                                  @"BackUpTwo":@""
                                  };
-        [kNetwork.setRequestUrl(url).setRequestType(POST).setParameters(params)starSendRequestSuccess:^(id respone) {
+        [kNetwork.setRequestUrl(url).setRequestType(POSTENCRY).setEncryKey(self.paramModel.UserID).setToken(self.paramModel.Token).setParameters(params)starSendRequestSuccess:^(id respone) {
             
             if (![respone[kErrorcode] hasSuffix:kSuccess]) {
                 [subscriber sendNext:nil];
@@ -254,7 +255,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
                                  @"BackUpOne":@"",
                                  @"BackUpTwo":@""
                                  };
-        [kNetwork.setRequestUrl(url).setRequestType(POST).setParameters(params)starSendRequestSuccess:^(id respone) {
+        [kNetwork.setRequestUrl(url).setRequestType(POSTENCRY).setEncryKey(self.paramModel.UserID).setToken(self.paramModel.Token).setParameters(params)starSendRequestSuccess:^(id respone) {
             
             if (![respone[kErrorcode] hasSuffix:kSuccess]) {
                 [subscriber sendNext:nil];
@@ -296,7 +297,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
                                  @"BackUpOne":@"",
                                  @"BackUpTwo":@""
                                  };
-        [kNetwork.setRequestUrl(url).setRequestType(POST).setParameters(params)starSendRequestSuccess:^(id respone) {
+        [kNetwork.setRequestUrl(url).setRequestType(POSTENCRY).setEncryKey(self.paramModel.UserID).setToken(self.paramModel.Token).setParameters(params)starSendRequestSuccess:^(id respone) {
             
             if (![respone[kErrorcode] hasSuffix:kSuccess]) {
                 [subscriber sendNext:nil];
@@ -352,7 +353,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
 - (RACSignal *)operatedNoteWithParams:(id)params{
     return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         NSString *url = [self.paramModel.NoteBaseUrl stringByAppendingString:@"api/V2/Notes/OperateNote"];
-        [kNetwork.setRequestUrl(url).setRequestType(POST).setParameters(params)starSendRequestSuccess:^(id respone) {
+        [kNetwork.setRequestUrl(url).setRequestType(POSTENCRY).setEncryKey(self.paramModel.UserID).setToken(self.paramModel.Token).setParameters(params)starSendRequestSuccess:^(id respone) {
         
             if (![respone[kErrorcode] hasSuffix:kSuccess]) {
                 NSString *message;

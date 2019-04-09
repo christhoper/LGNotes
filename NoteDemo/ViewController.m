@@ -44,7 +44,7 @@
     // 学校ID
     params.SchoolID = @"S0-S508158-813E";
     // token值，需要必须传，不然学科信息获取不到
-    params.Token = @"41D8E3F7-22D1-440A-BEEE-04025128F7AE";
+    params.Token = @"172A1A2E-781B-4FF9-808E-B9273754E4F6";
     // 每页数据容量
     params.PageSize = 10;
     // 页面

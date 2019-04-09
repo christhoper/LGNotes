@@ -140,7 +140,8 @@
         [kMBAlert showAlertControllerOn:self.ownerController title:@"提示:" message:@"您确定要删除该条笔记数据吗?" oneTitle:@"确定" oneHandle:^(UIAlertAction * _Nonnull one) {
             @strongify(self);
             self.requestStatus = LGBaseTableViewRequestStatusStartLoading;
-            [self.viewModel.operateCommand execute:[self configureOperatedModel:model]];
+            NSDictionary *param = [self configureOperatedModel:model];
+            [self.viewModel.operateCommand execute:param];
         } twoTitle:@"取消" twoHandle:^(UIAlertAction * _Nonnull two) {
             
         } completion:^{
