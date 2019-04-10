@@ -25,8 +25,15 @@ typedef NS_ENUM(NSInteger, SystemUsedType) {
 /** 左按钮时间(可能是返回事件/也可能是用户点击事件) */
 typedef void(^LeftNaviBarItemBlock)(void);
 
-/** 检测笔记基地址接口是否可用 */
-typedef void(^CheckNoteBaseUrlAvailableBlock)(BOOL available);
+@protocol LGNNoteMainViewControllerDelegate <NSObject>
+/**
+ 视图出现
+ */
+- (void)noteMainViewControllerViewDidLoad;
+
+@end
+
+
 
 @interface LGNNoteMainViewController : LGNoteBaseViewController
 @property (nonatomic, strong) LGNNoteMainTableView *tableView;
@@ -34,7 +41,7 @@ typedef void(^CheckNoteBaseUrlAvailableBlock)(BOOL available);
 @property (nonatomic, strong) UIBarButtonItem *leftBarItem;
 /** 参数 */
 @property (nonatomic, strong) LGNParamModel *paramModel;
-
+@property (nonatomic, weak) id <LGNNoteMainViewControllerDelegate> delegate;
 
 /**
  初始化
@@ -44,13 +51,6 @@ typedef void(^CheckNoteBaseUrlAvailableBlock)(BOOL available);
  @return <#return value description#>
  */
 - (instancetype)initWithNaviBarLeftItemStyle:(NoteNaviBarLeftItemStyle)style systemType:(SystemUsedType)type;
-
-/**
- 检查笔记库网址是否可用
-
- @param completion <#completion description#>
- */
-- (void)checkNoteBaseUrlAvailableCompletion:(CheckNoteBaseUrlAvailableBlock)completion;
 
 /**
  左按钮点击事件（不一定是返回操作）

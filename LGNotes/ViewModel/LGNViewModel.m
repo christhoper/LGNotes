@@ -85,18 +85,7 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
         }];
         return [RACSignal empty];
     }];
-    
-//    self.deletedSubject = [RACSubject subject];
-//    self.deletedCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(NoteModel * _Nullable inputModel) {
-//        @strongify(self);
-//        [[self deletedNoteWithUserID:self.paramModel.UserID noteID:inputModel.NoteID schoolID:self.paramModel.SchoolID systemID:inputModel.SystemID subjectID:inputModel.SubjectID] subscribeNext:^(id  _Nullable x) {
-//            @strongify(self);
-//            [self.deletedSubject sendNext:x];
-//        }];
-//        return [RACSignal empty];
-//    }];
-    
-    
+
     self.searchSubject = [RACSubject subject];
     self.searchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
         @strongify(self);
@@ -582,9 +571,9 @@ NSString *const CheckNoteBaseUrlKey = @"CheckNoteBaseUrlKey";
 - (NSArray *)configureSubjectPickerDataSource{
     NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:self.subjectArray.count];
     for (int i = 0; i < self.subjectArray.count; i ++) {
-        // 去除第一个“全部”选项的学科
-        if (i != 0) {
-            LGNSubjectModel *model = self.subjectArray[i];
+        // 去除第一个“全部”选项的学科 和 其他
+        LGNSubjectModel *model = self.subjectArray[i];
+        if (![model.SubjectName hasPrefix:@"其他"] || ![model.SubjectName hasPrefix:@"全部"]) {
             [resultArray addObject:model.SubjectName];
         }
     }

@@ -26,7 +26,7 @@
 
 
 - (void)enterNoteViewController:(UIButton *)sender {
-    LGNNoteMainViewController *noteController = [[LGNNoteMainViewController alloc] initWithNaviBarLeftItemStyle:NoteMainViewControllerNaviBarStyleBack systemType:SystemUsedTypeOther];
+    LGNNoteMainViewController *noteController = [[LGNNoteMainViewController alloc] initWithNaviBarLeftItemStyle:NoteMainViewControllerNaviBarStyleBack systemType:SystemUsedTypeAssistanter];
     // 配置笔记首页所需参数
     noteController.paramModel = [self configureParams];
     
@@ -36,7 +36,7 @@
 - (LGNParamModel *)configureParams{
     LGNParamModel *params = [[LGNParamModel alloc] init];
     // 系统ID，传All表示获取全部系统的数据
-    params.SystemID = @"630";
+    params.SystemID = @"S21";
     // 学科ID，传All表示获取全部学科数据
     params.SubjectID = @"S1-English";
     // 学科名
@@ -44,7 +44,7 @@
     // 学校ID
     params.SchoolID = @"S0-S508158-813E";
     // token值，需要必须传，不然学科信息获取不到
-    params.Token = @"172A1A2E-781B-4FF9-808E-B9273754E4F6";
+    params.Token = @"323A2A89-BAD4-4141-88E6-8C485793DAFB";
     // 每页数据容量
     params.PageSize = 10;
     // 页面
@@ -58,7 +58,7 @@
     // 学习任务相关的学习资料ID，用于取某个资料下的所有笔记
     params.MaterialID = @"";
     // 用户ID
-    params.UserID = @"x2";
+    params.UserID = @"x1";
     // 用户类型; 2-学生   3-家长 1-教师 0-管理员
     params.UserType = 2;
     // 基础平台地址,用来获取笔记库url使用
@@ -73,7 +73,7 @@
      SystemType_CP,               // 基础平台
      SystemType_KT                // 课堂
      */
-    params.SystemType = SystemType_KQ;
+    params.SystemType = SystemType_ASSISTANTER;
     
     return params;
 }

@@ -136,7 +136,7 @@
 - (LGNNoteModel *)sourceModel{
     if (!_sourceModel) {
         _sourceModel = [[LGNNoteModel alloc] init];
-        _sourceModel.SystemID = self.paramModel.SystemID;
+        _sourceModel.SystemID = self.paramModel.SystemType == SystemType_ASSISTANTER ? @"S21":self.paramModel.SystemID;
         _sourceModel.SubjectID = self.paramModel.SubjectID;
         _sourceModel.UserID = self.paramModel.UserID;
         _sourceModel.UserName = self.paramModel.UserName;

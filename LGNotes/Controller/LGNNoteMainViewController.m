@@ -27,7 +27,6 @@ SearchToolViewDelegate
 @property (nonatomic, assign) NoteNaviBarLeftItemStyle style;
 @property (nonatomic, assign) SystemUsedType systemType;
 @property (nonatomic, copy)   LeftNaviBarItemBlock leftItemBlock;
-@property (nonatomic, copy)   CheckNoteBaseUrlAvailableBlock checkBlock;
 
 @end
 
@@ -48,10 +47,15 @@ SearchToolViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的笔记";
+    if (self.delegate && [self.delegate respondsToSelector:@selector(noteMainViewControllerViewDidLoad)]) {
+        [self.delegate noteMainViewControllerViewDidLoad];
+    }
+    
     [self lg_commonInit];
     [self creatSubViews];
     [self lg_bindData];
 }
+
 
 
 - (void)lg_commonInit{
@@ -132,10 +136,6 @@ SearchToolViewDelegate
 #pragma mark - Block
 - (void)leftNaviBarItemClickEvent:(LeftNaviBarItemBlock)block{
     _leftItemBlock = block;
-}
-
-- (void)checkNoteBaseUrlAvailableCompletion:(CheckNoteBaseUrlAvailableBlock)completion{
-    
 }
 
 #pragma mark - TableViewdelegate
